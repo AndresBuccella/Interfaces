@@ -1,0 +1,134 @@
+:root {
+    /*------------Colores------------*/
+    /*------Primary colors------*/
+    /*Color del fondo*/
+    --p-color-100: #080C2B;
+    --p-color-200: #111955;
+    --p-color-300: #192580;
+    --p-color-400: #2132AB;
+    --p-color-500: #2A3ED5;
+    --p-color-600: #5465DE;
+    --p-color-700: #7F8BE6;
+    --p-color-800: #AAB2EE;
+    --p-color-900: #D4D8F7;
+    /*------Secondary colors------*/
+    --s-color-200: #111955;
+    --s-color-300: #192580;
+    --s-color-400: #2132AB;
+    --s-color-500: #2A3ED5;
+    --s-color-600: #5465DE;
+    --s-color-700: #7F8BE6;
+    --s-color-800: #AAB2EE;
+
+    /*Miscelaneus colors*/
+    --c_black: #000000;
+    --c_white: #ffffff;
+    --c_red: #ff0000;
+    --c_green: #00ff00;
+
+    /*------------Fuentes------------*/
+    --font: 'Nunito';
+    /*------Tamaños------*/
+    --font-size-h1: 36px;
+    --font-size-h2: 30px;
+    --font-size-h3: 24px;
+    --font-size-cont: 16px;
+    --font-size-desc: 12px;
+
+    /*Absolute values*/
+    --nav-size: 58px;
+    --search-size:600px;
+}
+
+body {
+    margin: 0px;
+    font-family: var(--font);
+    background-color: var(--p-color-100);
+}
+
+header {
+    margin-bottom: var(--nav-size);
+}
+
+#navegador {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    top: 0;
+    height: var(--nav-size);
+    z-index: 1000;
+    background-color: var(--p-color-400);
+}
+
+#nav_group1 {
+    display: flex;
+    width: 0%;
+}
+
+#menu {
+    display: flex;
+    padding: 15px;
+}
+
+#title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: var(--font-size-h3);
+    font-weight: bold;
+}
+
+#title a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--p-color-900);
+}
+
+#title a img {
+    margin-right: 9.7px;
+}
+
+#buscador {
+    display: flex;
+    width: var(--search-size);
+    height: 38px;
+    align-items: center;
+}
+
+#buscador input {
+    border-radius: 19px;
+    width: 100%;
+    padding-left: 18px;
+    border: 3px solid var(--p-color-900);
+    font-size: var(--font-size-h3);
+    font-family: var(--font);
+    font-weight: bold;
+}
+
+#buscador a {
+    position: relative;
+    width: 25px;
+    right: 45px;
+    height: 26px;
+}
+
+#buscador input:focus {
+    outline: none;
+}
+
+#nav_group2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 0%;
+}
+
+#icon_carrito {
+    padding-right: 14px;
+}
+
+#icon_user {
+    padding-right: 7px;
+}
