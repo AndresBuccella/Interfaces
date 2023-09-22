@@ -30,10 +30,10 @@
     --a-color-800: #FBEE9D;
 
     /*------Degradés------*/
-    --d-footer:linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
-    --d-oferta:linear-gradient(45deg, var(--a-color-500), var(--s-color-500));
-    --d-log-reg:linear-gradient(180deg, var(--p-color-400), var(--p-color-500));
-    --d-title:linear-gradient(90deg, var(--s-color-300), var(--p-color-100));
+    --d-footer: linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
+    --d-oferta: linear-gradient(45deg, var(--a-color-500), var(--s-color-500));
+    --d-log-reg: linear-gradient(180deg, var(--p-color-400), var(--p-color-500));
+    --d-title: linear-gradient(90deg, var(--s-color-300), var(--p-color-100));
 
     /*------------Fuentes------------*/
     --font: 'Nunito';
@@ -47,6 +47,7 @@
     /*Absolute values*/
     --nav-size: 58px;
     --search-size: 600px;
+    --space-between-card: 36px;
 }
 
 body {
@@ -201,7 +202,6 @@ header {
 #juego-principal a {
     color: var(--p-color-100);
     font-weight: bold;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.50);
     bottom: 36px;
     right: 36px;
     border-radius: 29px;
@@ -218,6 +218,7 @@ header {
     background-color: var(--a-color-500);
     text-decoration: none;
     color: black;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.50);
 }
 
 .boton-jugar:hover {
@@ -226,9 +227,10 @@ header {
 
 .boton-jugar:active {
     background-color: var(--a-color-400);
+    box-shadow: none;
 }
 
-.titulo-categoria{
+.titulo-categoria {
     display: flex;
     align-items: center;
     background-image: var(--d-title);
@@ -237,11 +239,151 @@ header {
     font-size: var(--font-size-h3);
     padding-left: 45px;
     margin-top: 40px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
-.carrusel{
+.contenedor-carrusel {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.185);
     height: 234px;
+}
+
+.boton-izquierda,
+.boton-derecha {
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+
+.contenedor-carrusel:hover .boton-izquierda,
+.contenedor-carrusel:hover .boton-derecha {
+    opacity: 1;
+}
+
+.carrusel {
+    display: flex;
+    width: 100%;
+    margin: 0px 4px;
+    overflow: hidden;
+}
+
+.card {
+    width: 336px;
+    height: 234px;
+    margin-right: var(--space-between-card);
+}
+
+.card .content {
+    position: relative;
+    width: 336px;
+    height: 189px;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+}
+
+.card .content img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card .content .informacion {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(217, 217, 217, 0.60);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+}
+
+ .card:hover .content .informacion {
+    width: 100%;
+    height: 100%;
+    background: rgba(217, 217, 217, 0.60);
+    backdrop-filter: blur(2px);
+    opacity: 1;
+} 
+
+.card .content .informacion .nombre-juego {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    margin: 0px;
+    margin-top: 7px;
+    margin-left: 7px;
+    width: 267px;
+    height: 82px;
+    font-size: var(--font-size-h2);
+    color: var(--p-color-100);
+}
+
+
+
+.card .content .informacion .categorias {
+    list-style-type: none;
+    padding-inline-start: 7px;
+    color: var(--p-color-100);
+    font-size: var(--font-size-desc);
+    font-weight: bold;
+    margin: 0px;
+}
+
+.card .content .informacion .categorias>li {
+    border: 1px var(--p-color-100) solid;
+    width: fit-content;
+    border-radius: 8px;
+    padding: 0px 4px;
+    margin-bottom: 7px;
+}
+
+.card .content .informacion .categorias>li:nth-child(n+5) {
+    display: none;
+  }
+
+.card>.informacion {
+    display: flex;
+    position: relative;
+    width: 336px;
+    height: 45px;
+    background-color: var(--p-color-400);
+    border-radius: 0px 0px 5px 5px;
+    overflow: hidden;
+}
+
+.card>.informacion .nombre-juego {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0px;
+    padding: 2px 0px;
+    margin-left: 7px;
+    width: calc(70% - 7px);
+    font-size: var(--font-size-h2);
+}
+
+.card>.informacion .boton-jugar {
+    justify-content: left;
+    right: 0px;
+    padding-left: 25px;
+    width: calc(30% - 25px);
+    height: 45px;
+    font-weight: bold;
+    font-size: var(--font-size-h3);
+    border-radius: 0px 0px 0px 45px;
+}
+
+.card>.informacion .precio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    width: 30%;
+    font-size: var(--font-size-h3);
+    text-decoration: none;
+    color: white;
 }
