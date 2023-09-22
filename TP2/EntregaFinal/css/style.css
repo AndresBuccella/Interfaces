@@ -37,7 +37,7 @@
 
     /*Absolute values*/
     --nav-size: 58px;
-    --search-size:600px;
+    --search-size: 600px;
 }
 
 body {
@@ -70,6 +70,7 @@ header {
 #menu {
     display: flex;
     padding: 15px;
+    cursor: pointer;
 }
 
 #title {
@@ -127,8 +128,37 @@ header {
 
 #icon_carrito {
     padding-right: 14px;
+    cursor: pointer;
 }
 
 #icon_user {
     padding-right: 7px;
+    cursor: pointer;
+}
+
+#loading {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background-color: var(--p-color-100);
+    animation: desaparecer 0.5s forwards;
+    color: var(--p-color-900);
+    font-family: var(--font);
+    font-size: var(--font-size-h1);
+    /* El elemento es completamente visible */
+    animation-delay: 0.5s;
+    /* Retrasar la animación durante 5 segundos */
+}
+
+@keyframes desaparecer {
+    to {
+        display: none;
+        /* Cambiar la opacidad a 0 para hacerlo desaparecer */
+    }
 }
