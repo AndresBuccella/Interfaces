@@ -1,6 +1,6 @@
 :root {
     /*------------Colores------------*/
-    /*------Primary colors------*/
+    /*------Colores primarios------*/
     /*Color del fondo*/
     --p-color-100: #080C2B;
     --p-color-200: #111955;
@@ -11,20 +11,29 @@
     --p-color-700: #7F8BE6;
     --p-color-800: #AAB2EE;
     --p-color-900: #D4D8F7;
-    /*------Secondary colors------*/
-    --s-color-200: #111955;
-    --s-color-300: #192580;
-    --s-color-400: #2132AB;
-    --s-color-500: #2A3ED5;
-    --s-color-600: #5465DE;
-    --s-color-700: #7F8BE6;
-    --s-color-800: #AAB2EE;
+    /*------Colores secundarios------*/
+    --s-color-200: #400B5B;
+    --s-color-300: #601188;
+    --s-color-400: #8016B6;
+    --s-color-500: #A01CE3;
+    --s-color-600: #B349E9;
+    --s-color-700: #C677EE;
+    --s-color-800: #D9A4F4;
 
-    /*Miscelaneus colors*/
-    --c_black: #000000;
-    --c_white: #ffffff;
-    --c_red: #ff0000;
-    --c_green: #00ff00;
+    /*------Asentos------*/
+    --a-color-200: #625504;
+    --a-color-300: #937F06;
+    --a-color-400: #C4A908;
+    --a-color-500: #F5D30A;
+    --a-color-600: #F7DC3B;
+    --a-color-700: #F9E56C;
+    --a-color-800: #FBEE9D;
+
+    /*------Degradés------*/
+    --d-footer:linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
+    --d-oferta:linear-gradient(45deg, var(--a-color-500), var(--s-color-500));
+    --d-log-reg:linear-gradient(180deg, var(--p-color-400), var(--p-color-500));
+    --d-title:linear-gradient(90deg, var(--s-color-300), var(--p-color-100));
 
     /*------------Fuentes------------*/
     --font: 'Nunito';
@@ -44,6 +53,7 @@ body {
     margin: 0px;
     font-family: var(--font);
     background-color: var(--p-color-100);
+    color: var(--p-color-900);
 }
 
 header {
@@ -62,7 +72,7 @@ header {
     background-color: var(--p-color-400);
 }
 
-#nav_group1 {
+#nav-group1 {
     display: flex;
     width: 0%;
 }
@@ -71,6 +81,11 @@ header {
     display: flex;
     padding: 15px;
     cursor: pointer;
+}
+
+#menu img {
+    width: 35px;
+    height: 28px;
 }
 
 #title {
@@ -89,10 +104,13 @@ header {
 
 #title a img {
     margin-right: 9.7px;
+    width: 41.78px;
+    height: 48px;
 }
 
 #buscador {
     display: flex;
+    position: relative;
     width: var(--search-size);
     height: 38px;
     align-items: center;
@@ -102,16 +120,21 @@ header {
     border-radius: 19px;
     width: 100%;
     padding-left: 18px;
+    padding-right: calc(var(--font-size-h3)* 2);
     border: 3px solid var(--p-color-900);
     font-size: var(--font-size-h3);
     font-family: var(--font);
     font-weight: bold;
 }
 
+#buscador input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
 #buscador a {
-    position: relative;
+    position: absolute;
     width: 25px;
-    right: 45px;
+    right: 20px;
     height: 26px;
 }
 
@@ -119,25 +142,25 @@ header {
     outline: none;
 }
 
-#nav_group2 {
+#nav-group2 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 0%;
 }
 
-#icon_carrito {
+#icon-carrito {
     padding-right: 14px;
     cursor: pointer;
 }
 
-#icon_user {
+#icon-user {
     padding-right: 7px;
     cursor: pointer;
 }
 
 #loading {
-    display: flex;
+    display: none;
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -149,7 +172,6 @@ header {
     background-color: var(--p-color-100);
     animation: desaparecer 0.5s forwards;
     color: var(--p-color-900);
-    font-family: var(--font);
     font-size: var(--font-size-h1);
     /* El elemento es completamente visible */
     animation-delay: 0.5s;
@@ -161,4 +183,65 @@ header {
         display: none;
         /* Cambiar la opacidad a 0 para hacerlo desaparecer */
     }
+}
+
+#juego-principal {
+    position: relative;
+}
+
+#banner {
+    overflow: hidden;
+    max-height: 500px;
+}
+
+#banner img {
+    width: 100%;
+}
+
+#juego-principal a {
+    color: var(--p-color-100);
+    font-weight: bold;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.50);
+    bottom: 36px;
+    right: 36px;
+    border-radius: 29px;
+    font-size: var(--font-size-h2);
+    width: 181px;
+    height: 58px;
+}
+
+.boton-jugar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--a-color-500);
+    text-decoration: none;
+    color: black;
+}
+
+.boton-jugar:hover {
+    background-color: var(--a-color-800);
+}
+
+.boton-jugar:active {
+    background-color: var(--a-color-400);
+}
+
+.titulo-categoria{
+    display: flex;
+    align-items: center;
+    background-image: var(--d-title);
+    width: 415px;
+    height: 49px;
+    font-size: var(--font-size-h3);
+    padding-left: 45px;
+    margin-top: 40px;
+    margin-bottom: 18px;
+}
+
+.carrusel{
+    width: 100%;
+    background-color: white;
+    height: 234px;
 }
