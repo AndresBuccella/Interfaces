@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     containers.forEach(container => {
         const content = container.querySelector(".carrusel");
-        console.log(content)
+        const cards=content.querySelectorAll(".card")
         const btnLeft = container.querySelector(".boton-izquierda");
         const btnRight = container.querySelector(".boton-derecha");
 
@@ -23,15 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
         function scrollContent() {
             let error_margin = -35;
             if (scrollAmount < 0) {
-                if (scrollAmount == -scrollUnit) { scrollAmount = content.scrollWidth - container.clientWidth + error_margin; }
+                if (scrollAmount == -scrollUnit) { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }
                 else { scrollAmount = 0; }
             }
-            if (scrollAmount > content.scrollWidth - container.clientWidth + error_margin) {
-                if (scrollAmount == content.scrollWidth - container.clientWidth + error_margin + scrollUnit) { scrollAmount = 0; }
-                else { scrollAmount = content.scrollWidth - container.clientWidth + error_margin; }
+            if (scrollAmount > content.scrollWidth - content.clientWidth + error_margin) {
+                if (scrollAmount == content.scrollWidth - content.clientWidth + error_margin + scrollUnit) { scrollAmount = 0; }
+                else { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }
             }
             console.log(scrollAmount);
-            content.style.transform = `translateX(-${scrollAmount}px)`;
+            //content.style.transform = `translateX(-${scrollAmount}px)`;
+            cards.forEach(card => {
+                card.style.transform = `translateX(-${scrollAmount}px)`;
+            });
         }
     });
 });

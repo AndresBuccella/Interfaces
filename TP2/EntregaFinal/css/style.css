@@ -247,25 +247,22 @@ header {
 
 .contenedor-carrusel {
     display: flex;
-    position: relative;
     justify-content: space-between;
     width: 100%;
-    /* background-color: rgba(255, 255, 255, 0.185); */
+    background-color: rgba(255, 255, 255, 0.1);
     height: 234px;
     overflow: hidden;
 }
 
 .boton-izquierda,
 .boton-derecha {
-    position: absolute;
     opacity: 0;
     cursor: pointer;
     transition: opacity 0.5s;
+    width: 35px;
     z-index: 2;
 }
-.boton-derecha{
-    right: 0px;
-}
+
 .contenedor-carrusel:hover .boton-izquierda,
 .contenedor-carrusel:hover .boton-derecha {
     opacity: 1;
@@ -273,17 +270,18 @@ header {
 
 .carrusel {
     display: flex;
-    width: 100%;
+    width: calc(100% - 35px * 2 - 8px);
     margin: 0px 4px;
     z-index: 1;
-    transform: translateX(0px);
-    transition: transform 0.5s;
+    overflow: hidden;
 }
 
 .card {
     width: 336px;
     height: 234px;
     margin-right: var(--space-between-card);
+    transform: translateX(0px);
+    transition: transform 0.5s;
 }
 
 .card .content {
