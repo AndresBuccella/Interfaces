@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamesitos</title>
+    <link rel="icon" href="images/iconos/emoji _joystick.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
 </head>
@@ -17,11 +18,12 @@
                     <img src="images/iconos/menu.png" alt="Icono de manu">
                 </div>
                 <div id="title">
-                    <a href="#"><img src="images/iconos/emoji _joystick.png" alt="Icono de la pagina" disabled>Gamesitos</a>
+                    <a href="#"><img src="images/iconos/emoji _joystick.png" alt="Icono de la pagina"
+                            disabled>Gamesitos</a>
                 </div>
             </div>
             <div id="buscador">
-                <input type="text" name="" id="" placeholder="Buscar...">
+                <input type="text" name="" id="search" placeholder="Buscar...">
                 <a href=""><img src="images/iconos/icon _search.png" alt="Icono de búsqueda"></a>
             </div>
 
@@ -41,39 +43,23 @@
         Mas populares
     </h3>
     <div class="contenedor-carrusel">
-        <div class="boton-izquierda">
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="234" viewBox="0 0 35 234" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M35 35C35 15.67 19.33 0 0 0V234C19.33 234 35 218.33 35 199V35ZM6.54795 112.674C4.17306 114.672 4.17306 118.328 6.54795 120.326L20.0312 131.669C23.2835 134.405 28.25 132.093 28.25 127.843V105.157C28.25 100.907 23.2835 98.5946 20.0312 101.331L6.54795 112.674Z"
-                    fill="#8016B6" />
-            </svg>
-        </div>
+        <div class="boton-izquierda"></div>
         <div class="carrusel">
-            <div class="card">
+            <div class="card" style="transform: translateX(0px);">
                 <div class="content">
-                    <img src="images/juegos/mk 4 en linea.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Mortal Kombat 4 en linea: Sub-Zero vs Scorpion</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Acción</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Mortal Kombat 4 en linea: Sub-Zero vs Scorpion</p>
-                    <a href="" class="boton-jugar">Jugar</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
+                    <img src="images/juegos/soccer-legend-2021.png" alt="imagen del juego.jpeg">
+                    <div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>
                     <div class="informacion">
                         <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
+                        <div class="categorias-y-boton">
+                            <ul>
+                                <li>Multijugador</li>
+                                <li>Deportes</li>
+                            </ul>
+                            <button class="agregar flex">Agregar <img src="images/iconos/mini-carrito.png" alt="mini carrito.png"></button>
+                            <button class="agregado none">X<span>Agregado <img src="images/iconos/mini-carrito.png"
+                                        alt="mini carrito.png"></span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="informacion">
@@ -81,159 +67,28 @@
                     <p class="precio">$30</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
+            <!-- <div class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
+                data-imagen="mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
+            </div> -->
+            <div class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="soccer-legend-2021.png"
+                data-generos='["Multijugador","Deportes"]' data-precio="30">
             </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
+            <!-- <div class="card-normal" data-nombre="Evowars.io" data-imagen="evowars-io.png"
+                data-generos='["Multijugador","accion"]' data-precio="29.99">
             </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
+            <div class="card-normal" data-nombre="Shell Shockers" data-imagen="shell-shockers.png"
+                data-generos='["Multijugador","accion"]' data-precio="20">
             </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="images/juegos/cover-1619606990485 1.png" alt="imagen del juego.jpeg">
-                    <div class="informacion">
-                        <p class="nombre-juego">Soccer Legend 2021</p>
-                        <ul class="categorias">
-                            <li>Multijugador</li>
-                            <li>Deportes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="informacion">
-                    <p class="nombre-juego">Soccer Legend 2021</p>
-                    <p class="precio">$30</p>
-                </div>
-            </div>
+            <div class="card-normal" data-nombre="8 Ball Billiards Classic" data-imagen="8-ball-billiards-classic.png"
+                data-generos='["Multijugador","Deportes"]' data-precio="12.50">
+            </div> -->
         </div>
-        <div class="boton-derecha">
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="234" viewBox="0 0 35 234" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M0 35C0 15.67 15.67 0 35 0V234C15.67 234 0 218.33 0 199V35ZM28.452 112.674C30.8269 114.672 30.8269 118.328 28.4521 120.326L14.9688 131.669C11.7165 134.405 6.75 132.093 6.75 127.843V105.157C6.75 100.907 11.7165 98.5946 14.9688 101.331L28.452 112.674Z"
-                    fill="#8016B6" />
-            </svg>
-        </div>
+        <div class="boton-derecha"></div>
     </div>
+    <footer id="fat-footer">
+
+    </footer>
     <script src="js/carrusel.js"></script>
 </body>
+
 </html>
