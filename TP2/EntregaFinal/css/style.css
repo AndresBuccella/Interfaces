@@ -296,7 +296,7 @@ header {
     min-width: var(--card-width);
     width: var(--card-width);
     max-width: var(--card-width);
-    height:  var(--card-height);
+    height: var(--card-height);
     margin-right: var(--space-between-card);
     transform: translateX(0px);
     transition: transform 0.5s;
@@ -583,48 +583,55 @@ header {
 
 /*------------------------FOOTER---------------------------*/
 
-#fat-footer{
-    height: 33.25rem;
+#fat-footer {
+    height: 532px;
     background: var(--d-footer);
     color: #FFFFFF;
     align-items: end;
- }
- h3{
+}
+
+#fat-footer h3 {
     font-size: var(--font-size-h3);
- }
- .categorias-footer,  .links-sitio-footer{
+}
+
+#categorias-footer,
+#links-sitio-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
- }
- .nosotros-footer{
+}
+
+#nosotros-footer {
     max-width: 350px;
     text-align: center;
- }
- /* .sobre-nosotros{  
- } */
- .grupo-grande-footer{
+}
+
+#grupo-grande-footer {
     display: flex;
     justify-content: space-around;
-    padding-top: 11%;
+    padding-top: 129px;
     padding-bottom: 3.5%;
- }
-.icon-footer{
+}
+
+#nuestras-redes-footer>a>img {
     width: 32px;
     height: 32px;
     padding-left: 1%;
     padding-right: 1%;
+    transform: translateY(-1000px);
+    filter: drop-shadow(0px 1000px 0 #fff);
 }
-.links-texto-footer{
+
+#fat-footer a {
     color: #FFFFFF;
     padding-top: 3%;
     padding-bottom: 3%;
 }
-.demas-links-footer>.links-texto-footer{
-    padding: 0px;
-    padding-left: 1%;
-    padding-right: 1%;
+
+#demas-links-footer>a {
+    padding: 0px 1% !important;
 }
-.demas-links-footer{
+
+#demas-links-footer {
     text-align: center;
 }
