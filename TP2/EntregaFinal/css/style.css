@@ -20,7 +20,7 @@
     --s-color-700: #C677EE;
     --s-color-800: #D9A4F4;
 
-    /*------Asentos------*/
+    /*------Acentos------*/
     --a-color-200: #625504;
     --a-color-300: #937F06;
     --a-color-400: #C4A908;
@@ -527,4 +527,47 @@ header {
 
 /*------------------------FOOTER---------------------------*/
 
-/* #fat-footer{} */
+#fat-footer{
+    height: 33.25rem;
+    background: linear-gradient(to bottom, #080C2B, #2A3ED5);
+    color: #FFFFFF;
+    align-items: end;
+ }
+ h3{
+    font-size: var(--font-size-h3);
+ }
+ .categorias-footer,  .links-sitio-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+ .nosotros-footer{
+    max-width: 350px;
+    text-align: center;
+ }
+ .sobre-nosotros{  
+ }
+ .grupo-grande-footer{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 11%;
+    padding-bottom: 3.5%;
+ }
+.icon-footer{
+    width: 32px;
+    height: 32px;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.links-texto-footer{
+    color: #FFFFFF;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.demas-links-footer>.links-texto-footer{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.demas-links-footer{
+    text-align: center;
+}
