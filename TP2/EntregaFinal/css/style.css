@@ -585,7 +585,7 @@ header {
 
 #fat-footer{
     height: 33.25rem;
-    background: linear-gradient(to bottom, #080C2B, #2A3ED5);
+    background: var(--d-footer);
     color: #FFFFFF;
     align-items: end;
  }
@@ -601,8 +601,8 @@ header {
     max-width: 350px;
     text-align: center;
  }
- .sobre-nosotros{  
- }
+ /* .sobre-nosotros{  
+ } */
  .grupo-grande-footer{
     display: flex;
     justify-content: space-around;
@@ -621,6 +621,7 @@ header {
     padding-bottom: 3%;
 }
 .demas-links-footer>.links-texto-footer{
+    padding: 0px;
     padding-left: 1%;
     padding-right: 1%;
 }
