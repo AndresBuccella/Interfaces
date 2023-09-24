@@ -31,7 +31,7 @@
 
     /*------Degradés------*/
     --d-footer: linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
-    --d-oferta: linear-gradient(45deg, var(--a-color-500), var(--s-color-500));
+    --d-oferta: linear-gradient(90deg, var(--a-color-500), var(--s-color-500));
     --d-log-reg: linear-gradient(180deg, var(--p-color-400), var(--p-color-500));
     --d-title: linear-gradient(90deg, var(--s-color-300), var(--p-color-100));
 
@@ -48,6 +48,8 @@
     --nav-size: 58px;
     --search-size: 600px;
     --space-between-card: 36px;
+    --card-width: 336px;
+    --card-height: 234px;
     --space-between-category: 24px;
 }
 
@@ -247,7 +249,8 @@ header {
     display: flex;
     align-items: center;
     background-image: var(--d-title);
-    width: 415px;
+    width: 30%;
+    white-space: nowrap;
     height: 49px;
     font-size: var(--font-size-h3);
     padding-left: 45px;
@@ -260,7 +263,7 @@ header {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 234px;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -288,10 +291,12 @@ header {
     overflow: hidden;
 }
 
-/*Carta de los juegos*/
+/*--------Carta de los juegos--------*/
 .card {
-    width: 336px;
-    height: 234px;
+    min-width: var(--card-width);
+    width: var(--card-width);
+    max-width: var(--card-width);
+    height:  var(--card-height);
     margin-right: var(--space-between-card);
     transform: translateX(0px);
     transition: transform 0.5s;
@@ -300,15 +305,15 @@ header {
 /*Contenido superioir de la carta*/
 .card>.content {
     position: relative;
-    width: 336px;
-    height: 189px;
+    width: auto;
+    height: 80%;
     border-radius: 5px 5px 0px 0px;
     overflow: hidden;
 }
 
 .card>.content>img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -329,6 +334,21 @@ header {
     transform: translateY(-1000px);
     filter: drop-shadow(0px 1000px 0 var(--p-color-100));
     width: 35px;
+}
+
+.card>.content>.oferta {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-cont);
+    top: 17px;
+    right: -22px;
+    background-image: var(--d-oferta);
+    color: var(--p-color-300);
+    transform: rotateZ(45deg);
+    width: 100px;
+    box-shadow: 0 0 10px 4px #000000ff;
+    text-transform: uppercase;
 }
 
 .card>.content>.informacion {
@@ -372,7 +392,8 @@ header {
     align-items: flex-end;
 }
 
-.categorias-y-boton ul {
+.categorias-y-boton ul,
+.card>.content>.informacion>.categorias {
     list-style-type: none;
     padding-inline-start: 7px;
     color: var(--p-color-100);
@@ -381,7 +402,8 @@ header {
     margin: 0px;
 }
 
-.categorias-y-boton ul>li {
+.categorias-y-boton ul>li,
+.card>.content>.informacion>.categorias>li {
     border: 1px var(--p-color-100) solid;
     width: fit-content;
     border-radius: 8px;
@@ -389,7 +411,8 @@ header {
     margin-bottom: 7px;
 }
 
-.categorias-y-boton ul>li:nth-child(n+5) {
+.categorias-y-boton ul>li:nth-child(n+5),
+.card>.content>.informacion>.categorias>li:nth-child(n+5) {
     display: none;
 }
 
@@ -484,9 +507,10 @@ header {
 /*Cards carrito Informacion inferior*/
 .card>.informacion {
     display: flex;
+    align-items: center;
     position: relative;
-    width: 336px;
-    height: 45px;
+    width: auto;
+    height: 20%;
     background-color: var(--p-color-400);
     border-radius: 0px 0px 5px 5px;
     overflow: hidden;
@@ -497,9 +521,8 @@ header {
     white-space: nowrap;
     text-overflow: ellipsis;
     margin: 0px;
-    padding: 2px 0px;
-    margin-left: 7px;
-    width: calc(70% - 7px);
+    padding: 2px 0px 2px 7px;
+    width: 70%;
     font-size: var(--font-size-h2);
 }
 
@@ -508,7 +531,7 @@ header {
     right: 0px;
     padding-left: 25px;
     width: calc(30% - 25px);
-    height: 45px;
+    height: 100%;
     font-weight: bold;
     font-size: var(--font-size-h3);
     border-radius: 0px 0px 0px 45px;
@@ -516,13 +539,46 @@ header {
 
 .card>.informacion .precio {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: center;
     margin: 0px;
+    padding-right: 11px;
     width: 30%;
     font-size: var(--font-size-h3);
     text-decoration: none;
     color: white;
+}
+
+.card>.informacion .precio-oferta {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 30%;
+    text-align: right;
+    padding-right: 11px;
+    white-space: nowrap;
+    max-width: 30%;
+    width: 30%;
+}
+
+.card>.informacion .precio-oferta p {
+    margin: 0px;
+    overflow: hidden;
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card>.informacion .precio-oferta p:first-child {
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 0, 0, 0.5);
+    font-size: var(--font-size-desc);
+}
+
+.card>.informacion .precio-oferta p:last-child {
+    font-size: var(--font-size-h3);
+    color: var(--a-color-600);
 }
 
 /*------------------------FOOTER---------------------------*/

@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function generar_card_normal(nombre, imagen, generos, precio) {
             let contenido = '<div class="content">' +
                 '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
-                '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>'+
+                '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>' +
                 '<div class="informacion">' +
                 '<p class="nombre-juego">' + nombre + '</p>' +
                 '<div class="categorias-y-boton">' +
@@ -75,13 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<div class="informacion">' +
                 '<p class="nombre-juego">' + nombre + '</p>' +
                 '<p class="precio">$' + precio + '</p>' +
-                '</div>'
+                '</div>';
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
             divTemporal.className = "card";
 
             return divTemporal
         }
+
         const cards_normal = content.querySelectorAll(".card-normal")
         cards_normal.forEach(card_normal => {
             let nombre = card_normal.getAttribute("data-nombre");
@@ -89,17 +90,63 @@ document.addEventListener("DOMContentLoaded", function () {
             let precio = card_normal.getAttribute("data-precio");
             let generos = JSON.parse(card_normal.getAttribute("data-generos"));
             let nuevaetiqueta = generar_card_normal(nombre, imagen, generos, precio);
+            botones_carrito(nuevaetiqueta);
             card_normal.parentNode.replaceChild(nuevaetiqueta, card_normal);
         });
 
-        //Juntar todas las cartas
-        const cards = content.querySelectorAll(".card")
+        //En oferta
+        function generar_card_oferta(nombre, imagen, generos,precioOrg, precio) {
+            let contenido = '<div class="content">' +
+                '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
+                '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>' +
+                '<div class="informacion">' +
+                '<p class="nombre-juego">' + nombre + '</p>' +
+                '<div class="categorias-y-boton">' +
+                '<ul class="categorias">';
+            generos.forEach(genero => {
+                contenido += '<li>' + genero + '</li>';
+            });
 
-        cards.forEach(card => {
-            let btn_agregar = card.querySelector(".agregar");
-            let btn_agregado = card.querySelector(".agregado");
-            let carrito = card.querySelector(".carrito");
+            contenido += '</ul>' +
+                '<button class="agregar flex">Agregar <img src="images/iconos/mini-carrito.png" alt="mini carrito.png"></button>' +
+                '<button class="agregado none">X<span>Agregado <img src="images/iconos/mini-carrito.png"' +
+                'alt="mini carrito.png"></span></button>' +
+                '</div>' +
+                '</div>' +
+                '<div class="oferta">Oferta</div>'+
+                '</div>' +
+                '<div class="informacion">' +
+                '<p class="nombre-juego">' + nombre + '</p>' +
+                '<div class="precio-oferta">'+
+                        '<p>$'+precioOrg+'</p>'+
+                        '<p>$'+precio+'</p>'+
+                    '</div>'+
+                '</div>';
+            let divTemporal = document.createElement('div');
+            divTemporal.innerHTML = contenido;
+            divTemporal.className = "card";
 
+            return divTemporal
+        }
+
+        const cards_oferta = content.querySelectorAll(".card-oferta")
+        cards_oferta.forEach(card_oferta => {
+            let nombre = card_oferta.getAttribute("data-nombre");
+            let imagen = card_oferta.getAttribute("data-imagen");
+            let precioOrg = card_oferta.getAttribute("data-preciOrg");
+            let precio = card_oferta.getAttribute("data-precio");
+            let generos = JSON.parse(card_oferta.getAttribute("data-generos"));
+            let nuevaetiqueta = generar_card_oferta(nombre, imagen, generos,precioOrg, precio);
+            botones_carrito(nuevaetiqueta);
+            card_oferta.parentNode.replaceChild(nuevaetiqueta, card_oferta);
+        });
+
+
+        //Funcion para los botones de carrito
+        function botones_carrito(elem) {
+            let btn_agregar = elem.querySelector(".agregar");
+            let btn_agregado = elem.querySelector(".agregado");
+            let carrito = elem.querySelector(".carrito");
             btn_agregar.addEventListener("click", function () {
                 btn_agregar.classList.add("none");
                 btn_agregar.classList.remove("flex");
@@ -117,7 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 carrito.classList.add("none");
                 carrito.classList.remove("flex");
             });
-        });
+        }
+
+        //Juntar todas las cartas
+        const cards = content.querySelectorAll(".card")
 
         let scrollAmount = 0;
         const scrollUnit = content.offsetWidth; // Ajusta esta cantidad según tu preferencia
