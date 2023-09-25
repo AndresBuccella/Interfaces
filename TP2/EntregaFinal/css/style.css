@@ -47,6 +47,7 @@
     /*Absolute values*/
     --nav-size: 58px;
     --search-size: 600px;
+    --menu-width: 65px;
     --space-between-card: 36px;
     --card-width: 336px;
     --card-height: 234px;
@@ -70,11 +71,7 @@ body {
     color: var(--p-color-900);
 }
 
-header {
-    margin-bottom: var(--nav-size);
-}
-
-/*Navegador*/
+/*-----------------Navegador-----------------*/
 #navegador {
     display: flex;
     position: fixed;
@@ -92,13 +89,13 @@ header {
     width: 0%;
 }
 
-#menu {
+#menu-button {
     display: flex;
     padding: 15px;
     cursor: pointer;
 }
 
-#menu img {
+#menu-button img {
     width: 35px;
     height: 28px;
 }
@@ -174,7 +171,68 @@ header {
     cursor: pointer;
 }
 
-/*Loading*/
+/*Menu categoria*/
+#menu-categorias{
+    position: fixed;
+    width: var(--menu-width);
+    height: calc(100vh - var(--nav-size));
+    bottom: 0px;
+    z-index: 1000;
+    background-color: var(--p-color-700);
+    overflow: scroll;
+    padding: 0px;
+}
+
+#menu-categorias::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+#menu-categorias>hr {
+    width: 80%;
+    border-width: 0;
+    padding-top: 1px;
+    background: var(--d-title);
+    margin: 0px;
+}
+
+#menu-categorias,
+#menu-categorias>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu-categorias>div,
+#menu-categorias>div>a {
+    width: 100%;
+    height: auto;
+}
+
+#menu-categorias>div>a {
+    display: flex;
+    margin: 4px 0px;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+}
+
+#menu-categorias>div>a>img {
+    transform: translateX(-1000px);
+    filter: drop-shadow(1000px 0px 0 var(--s-color-200));
+    width: 32px;
+}
+
+#menu-categorias>#contactos>a {
+    height: 48px;
+    filter: drop-shadow(1000px 0px 0 var(--s-color-800));
+}
+
+/*Descripcion*/
+.menu-categorias-descripcion{
+    left: 0px;
+}
+/*-------------------Loading-------------------*/
 #loading {
     display: none;
     position: fixed;
@@ -201,6 +259,7 @@ header {
 /*Cartelera principal*/
 #juego-principal {
     position: relative;
+    margin-top: var(--nav-size);
 }
 
 #banner {
@@ -351,6 +410,7 @@ header {
     text-transform: uppercase;
 }
 
+/*Contenido del hover de cada carta*/
 .card>.content>.informacion {
     display: flex;
     flex-direction: column;
@@ -370,6 +430,7 @@ header {
     opacity: 1;
 }
 
+/*Titulo del juego*/
 .card>.content>.informacion>.nombre-juego {
     display: -webkit-box;
     overflow: hidden;
@@ -379,7 +440,7 @@ header {
     margin: 0px;
     margin-top: 7px;
     margin-left: 7px;
-    width: 267px;
+    width: 80%;
     height: 82px;
     font-size: var(--font-size-h2);
     color: var(--p-color-100);
@@ -399,7 +460,7 @@ header {
     color: var(--p-color-100);
     font-size: var(--font-size-desc);
     font-weight: bold;
-    margin: 0px;
+    margin: 0 0 7px 0;
 }
 
 .categorias-y-boton ul>li,
@@ -408,7 +469,7 @@ header {
     width: fit-content;
     border-radius: 8px;
     padding: 0px 4px;
-    margin-bottom: 7px;
+    margin-bottom: 2px;
 }
 
 .categorias-y-boton ul>li:nth-child(n+5),
@@ -588,10 +649,17 @@ header {
     background: var(--d-footer);
     color: #FFFFFF;
     align-items: end;
+    overflow: hidden;
 }
 
 #fat-footer h3 {
     font-size: var(--font-size-h3);
+}
+
+#fat-footer a {
+    color: #FFFFFF;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 #categorias-footer,
@@ -613,19 +681,20 @@ header {
     padding-bottom: 3.5%;
 }
 
-#nuestras-redes-footer>a>img {
+#nuestras-redes-footer>a {
+    display: inline-block;
+    padding: 0px;
     width: 32px;
     height: 32px;
     padding-left: 1%;
     padding-right: 1%;
-    transform: translateY(-1000px);
-    filter: drop-shadow(0px 1000px 0 #fff);
 }
 
-#fat-footer a {
-    color: #FFFFFF;
-    padding-top: 3%;
-    padding-bottom: 3%;
+#nuestras-redes-footer>a>img {
+    width: 32px;
+    height: 32px;
+    transform: translateY(-1000px);
+    filter: drop-shadow(0px 1000px 0 #fff);
 }
 
 #demas-links-footer>a {
