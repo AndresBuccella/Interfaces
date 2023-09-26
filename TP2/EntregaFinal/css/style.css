@@ -190,7 +190,14 @@ body {
 
     transform: translateX(calc(var(--menu-width) * -1));
     transition: transform 0.3s ease-in;
+    overflow-x: hidden;
+    transition: 0.2s;
 }
+
+#menu-categorias:hover {
+    width: 200px;
+}
+
 
 header>.mostrar-menu-categorias {
     transform: translateX(0) !important;
@@ -207,18 +214,19 @@ header>.mostrar-menu-categorias {
     padding-top: 1px;
     background: var(--d-title);
     margin: 0px;
+    align-self: center;
 }
 
 #menu-categorias,
 #menu-categorias>div {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #menu-categorias>div,
 #menu-categorias>div>a {
-    width: 100%;
+    width: var(--menu-width);
     height: auto;
 }
 
@@ -241,9 +249,11 @@ header>.mostrar-menu-categorias {
     filter: drop-shadow(1000px 0px 0 var(--s-color-800));
 }
 
-/*Descripcion*/
-.menu-categorias-descripcion {
-    left: 0px;
+#menu-categorias span {
+    position: absolute;
+    left: var(--menu-width);
+    width: 0px;
+    font-size: var(--font-size-h3);
 }
 
 /*-------------------Loading-------------------*/
@@ -758,7 +768,8 @@ header>.mostrar-menu-categorias {
     background-image: var(--d-log-reg);
 }
 
-.inputBox, .terminosYCondiciones {
+.inputBox,
+.terminosYCondiciones {
     position: relative;
     display: flex;
     width: 220px;
@@ -805,12 +816,13 @@ header>.mostrar-menu-categorias {
     width: 84px;
 }
 
-.terminosYCondiciones{
+.terminosYCondiciones {
     height: fit-content;
     font-size: var(--font-size-desc);
 }
 
-.btn-registrarse{ /*es otra fuente*/
+.btn-registrarse {
+    /*es otra fuente*/
     width: 110px;
     height: 24px;
     background-color: var(--s-color-800);
@@ -820,14 +832,17 @@ header>.mostrar-menu-categorias {
     border: 0px;
     border-radius: 50px;
 }
-.divisionForm{
+
+.divisionForm {
     display: flex;
     align-items: center;
 }
-.divisionForm>span{
+
+.divisionForm>span {
     color: var(--p-color-800);
 }
-.lineaDivisoriaForm{
+
+.lineaDivisoriaForm {
     height: 1px;
     width: 200px;
     background-color: var(--p-color-800);
