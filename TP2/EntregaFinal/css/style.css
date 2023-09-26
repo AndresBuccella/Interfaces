@@ -29,6 +29,11 @@
     --a-color-700: #F9E56C;
     --a-color-800: #FBEE9D;
 
+    /*------Notificacion------*/
+    --n-notificacion-color-ok: #00D322;
+    --n-notificacion-color-not-ok: #FF3D00;
+
+
     /*------Degradés------*/
     --d-footer: linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
     --d-oferta: linear-gradient(90deg, var(--a-color-500), var(--s-color-500));
@@ -178,9 +183,18 @@ body {
     height: calc(100vh - var(--nav-size));
     bottom: 0px;
     z-index: 1000;
+    
     background-color: var(--p-color-700);
     overflow: scroll;
     padding: 0px;
+
+    transform: translateX(calc(var(--menu-width) * -1));
+    transition: transform 0.3s ease-in;
+}
+
+.ocultar-menu-categorias{
+    transform: translateX(var(--menu-width));
+    z-index: 9999;
 }
 
 #menu-categorias::-webkit-scrollbar {
@@ -255,6 +269,90 @@ body {
         display: none;
     }
 }
+
+/*Registro/Login*/
+.nav-login{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+}
+.formulario-registro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    min-height: 100vh;
+    
+    width: 400px; 
+    height: 710px; 
+    background-color: blue;
+}
+.inputBox{
+    position: relative;
+    width: 250px;
+}
+.inputBox input{
+    width: 100%;
+    padding: 10px;
+    border: 0px;
+    border-radius: 50px;
+    outline: none;
+    color: var(--p-color-600);
+}
+.inputBox input:valid ~ span, .inputBox input:focus ~ span{
+    transform: translateX(4px) translateY(-10px);
+    padding-bottom: 10px;
+    font-size: var(--font-size-desc);
+    color: black;
+}
+.inputBox input:valid{
+    border: 2px solid var(--n-notificacion-color-ok);
+}
+.inputBox span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color:var(--p-color-200);
+    transition: 0.5s;
+}
+
+/*
+#nombreDeUsuario, #nombre, #apellido, #edad, #correo, #contrasenia, #repetirContrasenia{
+    width: 220px;
+    height: 40px;
+    background-color: var(--p-color-900);
+    border: 0px;
+    border-radius: 50px;
+    padding: 1.5%;
+    margin-bottom: 2%;
+    outline: none;
+
+}
+.nombreDeUsuario{
+    width: 220px;
+    height: 40px;
+
+    display:flex;
+    justify-content: center;
+}
+.nombreDeUsuario>p{
+    position: absolute;
+    left: 0px;
+    color: black;
+}
+#nombre::placeholder{
+    color: black;
+}
+#edad{
+    width: 84px;
+}*/
 
 /*Cartelera principal*/
 #juego-principal {
