@@ -8,8 +8,4 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleMenu.classList.toggle("mostrar-menu-categorias");
     }
 
-
-
-
-
 })

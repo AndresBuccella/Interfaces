@@ -833,3 +833,20 @@ header>.mostrar-menu-categorias {
     background-color: var(--p-color-800);
     margin: 4%;
 }
+.btn-google, .btn-facebook{
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 50px;
+}
+.btn-google>img, .btn-facebook>img{
+    width: 30px;
+    background-color: var(--p-color-500);
+    padding: 2px;
+    border-radius: 50px;
+}
+.btn-google>span, .btn-facebook>span{
+    text-align: center;
+    color: #000000;
+    padding: 4px;
+}
