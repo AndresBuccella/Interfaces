@@ -749,17 +749,16 @@ header>.mostrar-menu-categorias {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     border-radius: 10px;
     width: 400px;
     height: 715px;
     background-image: var(--d-log-reg);
 }
 
-.inputBox {
+.inputBox, .terminosYCondiciones {
     position: relative;
     display: flex;
     width: 220px;
@@ -772,7 +771,7 @@ header>.mostrar-menu-categorias {
     border: 0px;
     border-radius: 20px;
     outline: none;
-    color: var(--p-color-600);
+    color: var(--p-color-400);
     background-color: var(--p-color-900);
     font-family: var(--font);
     font-weight: bold;
@@ -786,7 +785,7 @@ header>.mostrar-menu-categorias {
     pointer-events: none;
     font-size: var(--font-size-cont);
     font-weight: bold;
-    color: var(--p-color-200);
+    color: var(--p-color-600);
     transition: all 0.2s;
 }
 
@@ -795,8 +794,7 @@ header>.mostrar-menu-categorias {
 .inputBox input:focus~span {
     top: 20%;
     font-size: var(--font-size-desc);
-    color: black;
-    opacity: 50%;
+    color: var(--p-color-200);
 }
 
 .inputBox input:valid {
@@ -807,30 +805,31 @@ header>.mostrar-menu-categorias {
     width: 84px;
 }
 
-/*
-#nombreDeUsuario, #nombre, #apellido, #edad, #correo, #contrasenia, #repetirContrasenia{
-    width: 220px;
-    height: 40px;
-    background-color: var(--p-color-900);
+.terminosYCondiciones{
+    height: fit-content;
+    font-size: var(--font-size-desc);
+}
+
+.btn-registrarse{ /*es otra fuente*/
+    width: 110px;
+    height: 24px;
+    background-color: var(--s-color-800);
+    color: var(--s-color-200);
+    font-size: var(--font-size-cont);
+    font-weight: bold;
     border: 0px;
     border-radius: 50px;
-    padding: 1.5%;
-    margin-bottom: 2%;
-    outline: none;
-
 }
-.nombreDeUsuario{
-    width: 220px;
-    height: 40px;
-
-    display:flex;
-    justify-content: center;
+.divisionForm{
+    display: flex;
+    align-items: center;
 }
-.nombreDeUsuario>p{
-    position: absolute;
-    left: 0px;
-    color: black;
+.divisionForm>span{
+    color: var(--p-color-800);
 }
-#nombre::placeholder{
-    color: black;
-}*/
+.lineaDivisoriaForm{
+    height: 1px;
+    width: 200px;
+    background-color: var(--p-color-800);
+    margin: 4%;
+}
