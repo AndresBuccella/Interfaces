@@ -192,9 +192,8 @@ body {
     transition: transform 0.3s ease-in;
 }
 
-.ocultar-menu-categorias {
-    transform: translateX(var(--menu-width));
-    z-index: 9999;
+header>.mostrar-menu-categorias {
+    transform: translateX(0) !important;
 }
 
 #menu-categorias::-webkit-scrollbar {
@@ -349,6 +348,9 @@ body {
     transition: opacity 0.5s;
     width: 35px;
     z-index: 2;
+    padding: 0px;
+    border: 0px;
+    background: none;
 }
 
 .contenedor-carrusel:hover .boton-izquierda,
@@ -801,7 +803,7 @@ body {
     border: 2px solid var(--n-notificacion-color-ok);
 }
 
-#edad{
+#edad {
     width: 84px;
 }
 

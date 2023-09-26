@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         //En oferta
-        function generar_card_oferta(nombre, imagen, generos,precioOrg, precio) {
+        function generar_card_oferta(nombre, imagen, generos, precioOrg, precio) {
             let contenido = '<div class="content">' +
                 '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
                 '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>' +
@@ -113,14 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 'alt="mini carrito.png"></span></button>' +
                 '</div>' +
                 '</div>' +
-                '<div class="oferta">Oferta</div>'+
+                '<div class="oferta">Oferta</div>' +
                 '</div>' +
                 '<div class="informacion">' +
                 '<p class="nombre-juego">' + nombre + '</p>' +
-                '<div class="precio-oferta">'+
-                        '<p>$'+precioOrg+'</p>'+
-                        '<p>$'+precio+'</p>'+
-                    '</div>'+
+                '<div class="precio-oferta">' +
+                '<p>$' + precioOrg + '</p>' +
+                '<p>$' + precio + '</p>' +
+                '</div>' +
                 '</div>';
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let precioOrg = card_oferta.getAttribute("data-preciOrg");
             let precio = card_oferta.getAttribute("data-precio");
             let generos = JSON.parse(card_oferta.getAttribute("data-generos"));
-            let nuevaetiqueta = generar_card_oferta(nombre, imagen, generos,precioOrg, precio);
+            let nuevaetiqueta = generar_card_oferta(nombre, imagen, generos, precioOrg, precio);
             botones_carrito(nuevaetiqueta);
             card_oferta.parentNode.replaceChild(nuevaetiqueta, card_oferta);
         });
@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const cards = content.querySelectorAll(".card")
 
         let scrollAmount = 0;
-        const scrollUnit = content.offsetWidth; // Ajusta esta cantidad según tu preferencia
-
+        const cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight);
+        const scrollUnit = cardsWidth * (Math.floor(content.clientWidth / cardsWidth));
         btnLeft.addEventListener("click", function () {
             scrollAmount -= scrollUnit;
             scrollContent();
@@ -192,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (scrollAmount == content.scrollWidth - content.clientWidth + error_margin + scrollUnit) { scrollAmount = 0; }
                 else { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }
             }
-            //content.style.transform = `translateX(-${scrollAmount}px)`;
             cards.forEach(card => {
                 card.style.transform = `translateX(-${scrollAmount}px)`;
             });
