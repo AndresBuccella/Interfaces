@@ -172,7 +172,7 @@ body {
 }
 
 /*Menu categoria*/
-#menu-categorias{
+#menu-categorias {
     position: fixed;
     width: var(--menu-width);
     height: calc(100vh - var(--nav-size));
@@ -229,9 +229,10 @@ body {
 }
 
 /*Descripcion*/
-.menu-categorias-descripcion{
+.menu-categorias-descripcion {
     left: 0px;
 }
+
 /*-------------------Loading-------------------*/
 #loading {
     display: none;
@@ -703,4 +704,43 @@ body {
 
 #demas-links-footer {
     text-align: center;
+}
+
+
+
+
+
+.input-login {
+    display: inline-block;
+    position: relative;
+    width: auto;
+}
+
+.input-login>input {
+    border-radius: 50px;
+    background-color: var(--p-color-900);
+    width: 220px;
+    height: 40px;
+    border: 0px;
+}
+
+.input-login>span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0%, -50%);
+    color: black;
+    font-size: var(--font-size-cont);
+    font-family: var(--font);
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.input-login:hover>span,
+.input-login>input:focus+span,
+.input-login>input.has-content+span {
+    top: 25%;
+    color: black;
+    font-size: var(--font-size-desc);
+
 }
