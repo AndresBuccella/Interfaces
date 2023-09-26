@@ -37,7 +37,7 @@
     /*------Degradés------*/
     --d-footer: linear-gradient(180deg, var(--p-color-100), var(--p-color-500));
     --d-oferta: linear-gradient(90deg, var(--a-color-500), var(--s-color-500));
-    --d-log-reg: linear-gradient(180deg, var(--p-color-400), var(--p-color-500));
+    --d-log-reg: linear-gradient(0, var(--p-color-400), var(--p-color-500));
     --d-title: linear-gradient(90deg, var(--s-color-300), var(--p-color-100));
 
     /*------------Fuentes------------*/
@@ -177,13 +177,13 @@ body {
 }
 
 /*Menu categoria*/
-#menu-categorias{
+#menu-categorias {
     position: fixed;
     width: var(--menu-width);
     height: calc(100vh - var(--nav-size));
     bottom: 0px;
     z-index: 1000;
-    
+
     background-color: var(--p-color-700);
     overflow: scroll;
     padding: 0px;
@@ -192,7 +192,7 @@ body {
     transition: transform 0.3s ease-in;
 }
 
-.ocultar-menu-categorias{
+.ocultar-menu-categorias {
     transform: translateX(var(--menu-width));
     z-index: 9999;
 }
@@ -243,9 +243,10 @@ body {
 }
 
 /*Descripcion*/
-.menu-categorias-descripcion{
+.menu-categorias-descripcion {
     left: 0px;
 }
+
 /*-------------------Loading-------------------*/
 #loading {
     display: none;
@@ -269,90 +270,6 @@ body {
         display: none;
     }
 }
-
-/*Registro/Login*/
-.nav-login{
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    align-self: center;
-}
-.formulario-registro{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    min-height: 100vh;
-    
-    width: 400px; 
-    height: 710px; 
-    background-color: blue;
-}
-.inputBox{
-    position: relative;
-    width: 250px;
-}
-.inputBox input{
-    width: 100%;
-    padding: 10px;
-    border: 0px;
-    border-radius: 50px;
-    outline: none;
-    color: var(--p-color-600);
-}
-.inputBox input:valid ~ span, .inputBox input:focus ~ span{
-    transform: translateX(4px) translateY(-10px);
-    padding-bottom: 10px;
-    font-size: var(--font-size-desc);
-    color: black;
-}
-.inputBox input:valid{
-    border: 2px solid var(--n-notificacion-color-ok);
-}
-.inputBox span{
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    pointer-events: none;
-    font-size: 1em;
-    color:var(--p-color-200);
-    transition: 0.5s;
-}
-
-/*
-#nombreDeUsuario, #nombre, #apellido, #edad, #correo, #contrasenia, #repetirContrasenia{
-    width: 220px;
-    height: 40px;
-    background-color: var(--p-color-900);
-    border: 0px;
-    border-radius: 50px;
-    padding: 1.5%;
-    margin-bottom: 2%;
-    outline: none;
-
-}
-.nombreDeUsuario{
-    width: 220px;
-    height: 40px;
-
-    display:flex;
-    justify-content: center;
-}
-.nombreDeUsuario>p{
-    position: absolute;
-    left: 0px;
-    color: black;
-}
-#nombre::placeholder{
-    color: black;
-}
-#edad{
-    width: 84px;
-}*/
 
 /*Cartelera principal*/
 #juego-principal {
@@ -802,3 +719,116 @@ body {
 #demas-links-footer {
     text-align: center;
 }
+
+
+
+/*----------------------------------Registro/Login----------------------------------*/
+
+#login-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+}
+
+.nav-login {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.formulario-registro {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 10px;
+    width: 400px;
+    height: 715px;
+    background-image: var(--d-log-reg);
+}
+
+.inputBox {
+    position: relative;
+    display: flex;
+    width: 220px;
+    height: 40px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 12px 10px 0px 16px;
+    border: 0px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--p-color-600);
+    background-color: var(--p-color-900);
+    font-family: var(--font);
+    font-weight: bold;
+}
+
+.inputBox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0%, -50%);
+    pointer-events: none;
+    font-size: var(--font-size-cont);
+    font-weight: bold;
+    color: var(--p-color-200);
+    transition: all 0.2s;
+}
+
+/* .inputBox input:hover~span, */
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    top: 20%;
+    font-size: var(--font-size-desc);
+    color: black;
+    opacity: 50%;
+}
+
+.inputBox input:valid {
+    border: 2px solid var(--n-notificacion-color-ok);
+}
+
+#edad{
+    width: 84px;
+}
+
+/*
+#nombreDeUsuario, #nombre, #apellido, #edad, #correo, #contrasenia, #repetirContrasenia{
+    width: 220px;
+    height: 40px;
+    background-color: var(--p-color-900);
+    border: 0px;
+    border-radius: 50px;
+    padding: 1.5%;
+    margin-bottom: 2%;
+    outline: none;
+
+}
+.nombreDeUsuario{
+    width: 220px;
+    height: 40px;
+
+    display:flex;
+    justify-content: center;
+}
+.nombreDeUsuario>p{
+    position: absolute;
+    left: 0px;
+    color: black;
+}
+#nombre::placeholder{
+    color: black;
+}*/
