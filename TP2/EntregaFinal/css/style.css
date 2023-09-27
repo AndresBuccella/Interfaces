@@ -195,7 +195,7 @@ body {
 }
 
 #menu-categorias:hover {
-    width: 200px;
+    width: 214px;
 }
 
 
@@ -252,8 +252,16 @@ header>.mostrar-menu-categorias {
 #menu-categorias span {
     position: absolute;
     left: var(--menu-width);
-    width: 0px;
+    width: 145px;
     font-size: var(--font-size-h3);
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#index-body>*:not(header) {
+    margin-left: var(--menu-width);
 }
 
 /*-------------------Loading-------------------*/
