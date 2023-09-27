@@ -347,7 +347,7 @@ header>.mostrar-menu-categorias {
     font-size: var(--font-size-h3);
     padding-left: 45px;
     margin-top: var(--space-between-category);
-    margin-bottom: calc(var(--space-between-category) * 0.25);
+    margin-bottom: calc(var(--space-between-category) * 0.75);
 }
 
 /*Contenedor del carrusel*/
@@ -764,7 +764,9 @@ header>.mostrar-menu-categorias {
     justify-content: center;
     align-self: center;
 }
-
+.formulario-iniciar-sesion{
+    background-color: var(--p-color-400);
+}
 .formulario-registro {
     display: flex;
     position: absolute;

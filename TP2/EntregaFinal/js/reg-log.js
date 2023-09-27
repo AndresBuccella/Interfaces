@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function cambiarLoginReg(){
         document.querySelector(".formulario-registro").classList.toggle("none");
-        document.querySelector(".formulario-login").classList.toggle("none");
+        document.querySelector(".formulario-iniciar-sesion").classList.toggle("none");
     }
 
 
