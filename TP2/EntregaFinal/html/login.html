@@ -16,15 +16,44 @@
         <img src="images/iconos/emoji _joystick.png" alt="">
     </nav>
 
-    <form class="formulario-registro" action="" method="get">
-        <label for="">
-            <h3>Registrarse</h3>
-        </label>
-        <label for="">
-            <p>(*) Campos obligatorios</p>
-        </label>
+    <form class="formulario-iniciar-sesion" action="">
+        
+        <h3>Iniciar sesión</h3>
         <div class="inputBox">
-            <input type="text" name="" id="" required="required">
+            <input type="email" name="" id="" required="required">
+            <span>Correo electrónico</span>
+        </div>
+        <div class="inputBox">
+            <input type="password" name="" id="" required="required">
+            <span>Contraseña*</span>
+        </div>
+        <input class="btn-registrarse" href="https://andresbuccella.github.io/Interfaces/TP2/EntregaFinal/" type="button" value="Registrarse">
+        
+        <a href="">Olvidé mi correo / contraseña</a>
+        
+        <div class="divisionForm">
+            <div class="lineaDivisoriaForm"></div>
+            <span>O</span>
+            <div class="lineaDivisoriaForm"></div>
+        </div>
+
+        <a class="btn-google" href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%2F&ec=GAZAmgQ&hl=es-419&ifkv=AYZoVhcUvE7zdtSrvvJmlnpwImu2ERcYjm55r6uVn5-gsp5fiBiANe9cXeAm-EsiAhe-cc7N1-X-zg&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-82948159%3A1695829779936266&theme=glif">
+            <img src="/TP2/EntregaFinal/images/iconos/google-color.png" alt="google">
+            <span class="span-registrarseCon">Registrarse con Google</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
+        <a class="btn-facebook" href="https://www.facebook.com/">
+            <img src="/TP2/EntregaFinal/images/iconos/facebook-color.png" alt="facebook">
+            <span class="span-registrarseCon">Registrar con Facebook</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
+    </form>
+
+    <form class="formulario-registro none" action="" method="get">
+        <h3>Registrarse</h3>
+        <p>(*) Campos obligatorios</p>
+        <div class="inputBox">
+            <input type="text" name="" id="">
             <span>Nombre de usuario</span>
         </div>
         <div class="inputBox">
@@ -40,15 +69,20 @@
             <span>Edad*</span>
         </div>
         <div class="inputBox">
-            <input type="text" name="" id="" required="required">
+            <input type="email" name="" id="" required="required">
             <span>Correo*</span>
         </div>
         <div class="inputBox">
             <input type="password" name="" id="" required="required">
             <span>Contraseña*</span>
         </div>
-        <div>
-            Nosoyunrobot
+        <div class="inputBox">
+            <input type="password" name="" id="" required="required">
+            <span>Repetir contraseña*</span>
+        </div>
+        <div class="recaptcha">
+            <input class="checkbox" type="checkbox" name="" id="">
+            <img src="../images/Recaptcha.png" alt="">
         </div>
         <label class="terminosYCondiciones" for="">
             <input type="checkbox" name="" id="">
@@ -57,22 +91,33 @@
                 acuerdo a la Declaración de Privacidad.</span>
         </label>
 
-        <input class="btn-registrarse" type="button" value="Registrarse">
+        <input class="btn-registrarse" href="https://andresbuccella.github.io/Interfaces/TP2/EntregaFinal/" type="button" value="Registrarse">
+        
+        <div class="div-ya-tienes-cuenta">
+            <p>Ya tienes cuenta?</p>
+            <a class="a-iniciar-sesion" href="">Iniciar Sesión</a>
+        </div>
+        
         <div class="divisionForm">
             <div class="lineaDivisoriaForm"></div>
             <span>O</span>
             <div class="lineaDivisoriaForm"></div>
         </div>
 
-        <div class="btn-google">
+        <a class="btn-google" href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%2F&ec=GAZAmgQ&hl=es-419&ifkv=AYZoVhcUvE7zdtSrvvJmlnpwImu2ERcYjm55r6uVn5-gsp5fiBiANe9cXeAm-EsiAhe-cc7N1-X-zg&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-82948159%3A1695829779936266&theme=glif">
             <img src="/TP2/EntregaFinal/images/iconos/google-color.png" alt="google">
-            <span>Registrarse con Google</span>
-        </div>
-        <div class="btn-facebook">
+            <span class="span-registrarseCon">Registrarse con Google</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
+        <a class="btn-facebook" href="https://www.facebook.com/">
             <img src="/TP2/EntregaFinal/images/iconos/facebook-color.png" alt="facebook">
-            <span>Registrar con Facebook</span>
-        </div>
+            <span class="span-registrarseCon">Registrar con Facebook</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
     </form>
+
+
+    <script src="../js/reg-log.js"></script>
 
 </body>
 
