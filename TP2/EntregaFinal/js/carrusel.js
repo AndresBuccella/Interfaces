@@ -149,20 +149,14 @@ document.addEventListener("DOMContentLoaded", function () {
             let carrito = elem.querySelector(".carrito");
             btn_agregar.addEventListener("click", function () {
                 btn_agregar.classList.add("none");
-                btn_agregar.classList.remove("flex");
-                btn_agregado.classList.add("flex");
                 btn_agregado.classList.remove("none");
-                carrito.classList.add("flex");
                 carrito.classList.remove("none");
             });
 
             btn_agregado.addEventListener("click", function () {
                 btn_agregado.classList.add("none");
-                btn_agregado.classList.remove("flex");
-                btn_agregar.classList.add("flex");
                 btn_agregar.classList.remove("none");
                 carrito.classList.add("none");
-                carrito.classList.remove("flex");
             });
         }
 
@@ -171,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let scrollAmount = 0;
         const cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight);
-        const scrollUnit = cardsWidth * (Math.floor(content.clientWidth / cardsWidth));
+        const scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
         btnLeft.addEventListener("click", function () {
             scrollAmount -= scrollUnit;
             scrollContent();
