@@ -164,19 +164,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const cards = content.querySelectorAll(".card")
 
         let scrollAmount = 0;
-        const cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight);
-        const scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
         btnLeft.addEventListener("click", function () {
+            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight); 
+            let scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
             scrollAmount -= scrollUnit;
-            scrollContent();
+            scrollContent(scrollUnit);
         });
 
         btnRight.addEventListener("click", function () {
+            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight); 
+            let scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
             scrollAmount += scrollUnit;
-            scrollContent();
+            scrollContent(scrollUnit);
         });
 
-        function scrollContent() {
+        function scrollContent(scrollUnit) {
             let error_margin = -35;
             if (scrollAmount < 0) {
                 if (scrollAmount == -scrollUnit) { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }

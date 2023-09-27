@@ -711,7 +711,6 @@ header>.mostrar-menu-categorias {
 /*------------------------FOOTER---------------------------*/
 
 #fat-footer {
-    height: 532px;
     background: var(--d-footer);
     color: #FFFFFF;
     align-items: end;
