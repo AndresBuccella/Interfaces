@@ -894,6 +894,7 @@ header>.mostrar-menu-categorias {
     height: 40px;
     &:hover{
         background-color: var(--p-color-500);
+        text-decoration: none;
     }
     &:hover img{
         transition: 0.3s ease-in-out;
@@ -905,7 +906,6 @@ header>.mostrar-menu-categorias {
     &:hover .span-registrarse{
         display: block;
         transform: translateX(23.1px);
-        /*BUSCAR POR QUE TIENE ESTILOS, DE DONDE SALE EL SUBRAYADO????*/
         color: white;
     }
 }
