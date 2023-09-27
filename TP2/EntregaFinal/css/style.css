@@ -61,14 +61,23 @@
 
 /*Etiquetas miscelaneas*/
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .none {
-    display: none;
+    display: none !important;
+}
+
+.block{
+    display: block !important;
 }
 
 /*Etiquetas generales*/
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
 body {
     margin: 0px;
     font-family: var(--font);
@@ -750,6 +759,9 @@ header>.mostrar-menu-categorias {
     align-items: center;
     position: relative;
     height: 100vh;
+    background-image: url(../images/Sub-Zero_vs_Scorpion.jpg);
+    background-position: center;
+    backdrop-filter: blur(3px);
 }
 
 .nav-login {
@@ -772,7 +784,8 @@ header>.mostrar-menu-categorias {
     gap: 10px;
     border-radius: 10px;
     width: 400px;
-    height: 715px;
+    height: fit-content;
+    padding: 8px;
     background-image: var(--d-log-reg);
 }
 
@@ -828,17 +841,38 @@ header>.mostrar-menu-categorias {
     height: fit-content;
     font-size: var(--font-size-desc);
 }
+.terminosYCondiciones span{
+    padding: 5px;
+}
 
 .btn-registrarse {
     /*es otra fuente*/
     width: 110px;
     height: 24px;
-    background-color: var(--s-color-800);
+    background-color: var(--s-color-700);
     color: var(--s-color-200);
     font-size: var(--font-size-cont);
     font-weight: bold;
     border: 0px;
     border-radius: 50px;
+
+    &:hover{
+        background-color: var(--s-color-800);
+    }
+    &:active{
+        background-color: var(--s-color-300);
+        color: var(--s-color-800);
+    }
+}
+
+.div-ya-tienes-cuenta{
+    display: flex;
+    padding-top: 5px;
+    font-size: var(--font-size-desc);
+}
+.div-ya-tienes-cuenta a{
+    padding-left: 3px;
+    color: var(--p-color-900);
 }
 
 .divisionForm {
@@ -855,4 +889,50 @@ header>.mostrar-menu-categorias {
     width: 200px;
     background-color: var(--p-color-800);
     margin: 4%;
+}
+.span-registrarse{
+    display: none;
+}
+.btn-google, .btn-facebook{
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 50px;
+    width: 220px;
+    height: 40px;
+    &:hover{
+        background-color: var(--p-color-500);
+    }
+    &:hover img{
+        transition: 0.3s ease-in-out;
+        transform: translateX(183.1px);
+    }
+    &:hover .span-registrarseCon{
+        display: none;
+    }
+    &:hover .span-registrarse{
+        display: block;
+        transform: translateX(23.1px);
+        /*BUSCAR POR QUE TIENE ESTILOS, DE DONDE SALE EL SUBRAYADO????*/
+        color: white;
+    }
+}
+.btn-google>img, .btn-facebook>img{
+    transition: 0.3s;
+    position: relative;
+    width: 36.5px;
+    background-color: var(--p-color-500);
+    padding: 2px;
+    border-radius: 50px;
+}
+.span-registrarseCon{
+    position: absolute;
+    transform: translateX(38px);
+    color: #000000;
+    padding: 4px;
+}
+.recaptcha .checkbox{
+    position: absolute;
+    transform: translate(13px, 10px);
+    
 }
