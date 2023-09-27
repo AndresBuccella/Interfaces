@@ -269,10 +269,6 @@ header>.mostrar-menu-categorias {
     text-overflow: ellipsis;
 }
 
-#index-body>*:not(header) {
-    margin-left: var(--menu-width);
-}
-
 /*-------------------Loading-------------------*/
 #loading {
     display: none;
