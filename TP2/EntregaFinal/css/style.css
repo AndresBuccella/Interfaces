@@ -68,16 +68,17 @@
     display: none !important;
 }
 
-.block{
+.block {
     display: block !important;
 }
 
 /*Etiquetas generales*/
-*{
+* {
     margin: 0;
     padding: 0;
     border: 0;
 }
+
 body {
     margin: 0px;
     font-family: var(--font);
@@ -86,6 +87,13 @@ body {
 }
 
 /*-----------------Navegador-----------------*/
+#navegador-group {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
 #navegador {
     display: flex;
     position: fixed;
@@ -185,6 +193,13 @@ body {
     cursor: pointer;
 }
 
+
+@media (max-width: 768px) {
+    #buscador{
+        display: none;
+    }
+}
+
 /*Menu categoria*/
 #menu-categorias {
     position: fixed;
@@ -267,6 +282,16 @@ header>.mostrar-menu-categorias {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.menu-abierto {
+    transition: all 0.2s;
+    padding-left: var(--menu-width);
+}
+
+.menu-cerrado {
+    transition: all 0.2s;
+    padding-left: 0;
 }
 
 /*-------------------Loading-------------------*/
@@ -417,6 +442,7 @@ header>.mostrar-menu-categorias {
 }
 
 .card>.content>.carrito {
+    display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -450,7 +476,7 @@ header>.mostrar-menu-categorias {
     text-transform: uppercase;
 }
 
-/*Contenido del hover de cada carta*/
+/*---Contenido del hover de cada carta---*/
 .card>.content>.informacion {
     display: flex;
     flex-direction: column;
@@ -605,7 +631,7 @@ header>.mostrar-menu-categorias {
 }
 
 
-/*Cards carrito Informacion inferior*/
+/*---Cards Informacion inferior--*/
 .card>.informacion {
     display: flex;
     align-items: center;
@@ -624,7 +650,7 @@ header>.mostrar-menu-categorias {
     margin: 0px;
     padding: 2px 0px 2px 7px;
     width: 70%;
-    font-size: var(--font-size-h2);
+    font-size: var(--font-size-h3);
 }
 
 .card>.informacion .boton-jugar {
@@ -837,7 +863,8 @@ header>.mostrar-menu-categorias {
     height: fit-content;
     font-size: var(--font-size-desc);
 }
-.terminosYCondiciones span{
+
+.terminosYCondiciones span {
     padding: 5px;
 }
 
@@ -852,21 +879,23 @@ header>.mostrar-menu-categorias {
     border: 0px;
     border-radius: 50px;
 
-    &:hover{
+    &:hover {
         background-color: var(--s-color-800);
     }
-    &:active{
+
+    &:active {
         background-color: var(--s-color-300);
         color: var(--s-color-800);
     }
 }
 
-.div-ya-tienes-cuenta{
+.div-ya-tienes-cuenta {
     display: flex;
     padding-top: 5px;
     font-size: var(--font-size-desc);
 }
-.div-ya-tienes-cuenta a{
+
+.div-ya-tienes-cuenta a {
     padding-left: 3px;
     color: var(--p-color-900);
 }
@@ -886,34 +915,43 @@ header>.mostrar-menu-categorias {
     background-color: var(--p-color-800);
     margin: 4%;
 }
-.span-registrarse{
+
+.span-registrarse {
     display: none;
 }
-.btn-google, .btn-facebook{
+
+.btn-google,
+.btn-facebook {
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
     border-radius: 50px;
     width: 220px;
     height: 40px;
-    &:hover{
+
+    &:hover {
         background-color: var(--p-color-500);
     }
-    &:hover img{
+
+    &:hover img {
         transition: 0.3s ease-in-out;
         transform: translateX(183.1px);
     }
-    &:hover .span-registrarseCon{
+
+    &:hover .span-registrarseCon {
         display: none;
     }
-    &:hover .span-registrarse{
+
+    &:hover .span-registrarse {
         display: block;
         transform: translateX(23.1px);
         /*BUSCAR POR QUE TIENE ESTILOS, DE DONDE SALE EL SUBRAYADO????*/
         color: white;
     }
 }
-.btn-google>img, .btn-facebook>img{
+
+.btn-google>img,
+.btn-facebook>img {
     transition: 0.3s;
     position: relative;
     width: 36.5px;
@@ -921,14 +959,16 @@ header>.mostrar-menu-categorias {
     padding: 2px;
     border-radius: 50px;
 }
-.span-registrarseCon{
+
+.span-registrarseCon {
     position: absolute;
     transform: translateX(38px);
     color: #000000;
     padding: 4px;
 }
-.recaptcha .checkbox{
+
+.recaptcha .checkbox {
     position: absolute;
     transform: translate(13px, 10px);
-    
+
 }
