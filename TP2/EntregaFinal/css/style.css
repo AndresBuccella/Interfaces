@@ -376,7 +376,7 @@ header>.mostrar-menu-categorias {
     font-size: var(--font-size-h3);
     padding-left: 45px;
     margin-top: var(--space-between-category);
-    margin-bottom: calc(var(--space-between-category) * 0.25);
+    margin-bottom: calc(var(--space-between-category) * 0.75);
 }
 
 /*Contenedor del carrusel*/
@@ -793,7 +793,9 @@ header>.mostrar-menu-categorias {
     justify-content: center;
     align-self: center;
 }
-
+.formulario-iniciar-sesion{
+    background-color: var(--p-color-400);
+}
 .formulario-registro {
     display: flex;
     position: absolute;
@@ -930,6 +932,7 @@ header>.mostrar-menu-categorias {
 
     &:hover {
         background-color: var(--p-color-500);
+        text-decoration: none;
     }
 
     &:hover img {
@@ -944,7 +947,6 @@ header>.mostrar-menu-categorias {
     &:hover .span-registrarse {
         display: block;
         transform: translateX(23.1px);
-        /*BUSCAR POR QUE TIENE ESTILOS, DE DONDE SALE EL SUBRAYADO????*/
         color: white;
     }
 }
