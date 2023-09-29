@@ -9,8 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function si() {
         let toggleMenu = document.getElementById("menu-categorias");
         toggleMenu.classList.toggle("mostrar-menu-categorias");
-        body.classList.toggle("menu-abierto");
-        body.classList.toggle("menu-cerrado");
+        if (body) {
+            body.classList.toggle("menu-abierto");
+            body.classList.toggle("menu-cerrado");
+        }
     }
 
 })
