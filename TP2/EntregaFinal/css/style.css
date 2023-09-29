@@ -195,7 +195,7 @@ body {
 
 
 @media (max-width: 768px) {
-    #buscador{
+    #buscador {
         display: none;
     }
 }
@@ -793,23 +793,61 @@ header>.mostrar-menu-categorias {
     justify-content: center;
     align-self: center;
 }
-.formulario-iniciar-sesion{
-    background-color: var(--p-color-400);
-}
-.formulario-registro {
+
+#formulario-iniciar-sesion {
     display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: calc(var(--nav-size) + 32px);
+    background-color: var(--p-color-200);
+    border-radius: 10px;
+    height: 450px;
+    width: 400px;
+}
+
+#formulario-iniciar-sesion>p {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-left: 19px;
+    font-weight: bolder;
+}
+
+#a-registrarse {
+    margin-left: 6px;
+    cursor: pointer;
+    color: var(--p-color-800);
+}
+
+#formulario-iniciar-sesion-caja-grande {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: var(--d-log-reg);
+    border-radius: 10px;
+    min-height: 386px;
+}
+
+#formulario-iniciar-sesion-caja-grande>h3 {
+    margin: 30px 0px;
+}
+
+
+
+#formulario-registro {
+    display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    overflow: hidden;
+    margin-top: calc(var(--nav-size) + 32px);
     border-radius: 10px;
     width: 400px;
-    height: fit-content;
-    padding: 8px;
+    height: 715px;
     background-image: var(--d-log-reg);
+}
+
+.inputBox {
+    margin-bottom: 10px;
 }
 
 .inputBox,
@@ -856,10 +894,6 @@ header>.mostrar-menu-categorias {
     border: 2px solid var(--n-notificacion-color-ok);
 }
 
-#edad {
-    width: 84px;
-}
-
 .terminosYCondiciones {
     height: fit-content;
     font-size: var(--font-size-desc);
@@ -875,10 +909,12 @@ header>.mostrar-menu-categorias {
     height: 24px;
     background-color: var(--s-color-700);
     color: var(--s-color-200);
+    font-family: var(--font);
     font-size: var(--font-size-cont);
     font-weight: bold;
     border: 0px;
     border-radius: 50px;
+    margin: 5px 0 12px 0;
 
     &:hover {
         background-color: var(--s-color-800);
@@ -888,6 +924,15 @@ header>.mostrar-menu-categorias {
         background-color: var(--s-color-300);
         color: var(--s-color-800);
     }
+}
+
+#formulario-iniciar-sesion-caja-grande>a:first-of-type {
+    color: rgba(255, 255, 255, 0.70);
+    font-family: var(--font);
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    text-decoration: none;
 }
 
 .div-ya-tienes-cuenta {
@@ -923,12 +968,15 @@ header>.mostrar-menu-categorias {
 
 .btn-google,
 .btn-facebook {
+    position: relative;
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
     border-radius: 50px;
     width: 220px;
     height: 40px;
+    transition: 0.3s ease-in-out;
+    margin-bottom: 7px;
 
     &:hover {
         background-color: var(--p-color-500);
@@ -936,8 +984,7 @@ header>.mostrar-menu-categorias {
     }
 
     &:hover img {
-        transition: 0.3s ease-in-out;
-        transform: translateX(183.1px);
+        right: 0;
     }
 
     &:hover .span-registrarseCon {
@@ -945,20 +992,21 @@ header>.mostrar-menu-categorias {
     }
 
     &:hover .span-registrarse {
-        display: block;
-        transform: translateX(23.1px);
+        display: flex;
+        width: 100%;
+        justify-content: center;
         color: white;
     }
 }
 
 .btn-google>img,
 .btn-facebook>img {
-    transition: 0.3s;
-    position: relative;
-    width: 36.5px;
+    position: absolute;
+    height: 100%;
     background-color: var(--p-color-500);
-    padding: 2px;
     border-radius: 50px;
+    right: calc(100% - 40px);
+    transition: 0.3s ease-in-out;
 }
 
 .span-registrarseCon {
@@ -966,6 +1014,7 @@ header>.mostrar-menu-categorias {
     transform: translateX(38px);
     color: #000000;
     padding: 4px;
+    font-weight: bold;
 }
 
 .recaptcha .checkbox {
