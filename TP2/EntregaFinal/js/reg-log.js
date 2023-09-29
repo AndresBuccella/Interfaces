@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form_regist.querySelector("#edad").addEventListener("input", function() {form_validate("edad");});     
     form_regist.querySelector("#correo").addEventListener("input", function() {form_validate("correo");});     
     form_regist.querySelector("#contraseña").addEventListener("input", validate_password);
+    form_regist.querySelector("#rep-contraseña").addEventListener("input", confirm_password);
 
     function confirmar_registro() {
 
@@ -28,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!form_validate("edad")) status = false;
         if (!form_validate("correo")) status = false;
         if (!validate_password()) status = false;
-
+        if (!confirm_password()) status = false;
+        
         if (status) window.location.href = "../index.html"
     }
 
@@ -67,10 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let contraceña = document.querySelector("#contraseña");
         let errors = ["Falta completar el campo", "La contraseña debe tener mas de 6 caracteres", "Debe contener por lo menos 1 numero", "Debe contener por lo menos 1 simbolo especial"];
         let errors_status = [];
-        if (contraceña.value == "") errors_status.push(0); else errors_status.push(1);
-        if (contraceña.value.length < 7) errors_status.push(0); else errors_status.push(1);
-        if (/\d/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);
-        if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);
+
+        if (contraceña.value == "") errors_status.push(0); else errors_status.push(1);                                          //Falta completar el campo
+        if (contraceña.value.length >6) errors_status.push(1); else errors_status.push(0);                                      //La contraseña debe tener mas de 6 caracteres
+        if (/\d/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);                                     //Debe contener por lo menos 1 numero
+        if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);        //Debe contener por lo menos 1 simbolo especial
+
         let status = !errors_status.includes(0);
         if (!status) {
             contraceña.classList.add("form-error-input");
@@ -80,6 +84,23 @@ document.addEventListener("DOMContentLoaded", function () {
             divTemporal.innerHTML = form_error_message(errors, errors_status);
             contraceña.parentNode.appendChild(divTemporal.querySelector(".form-error"));
         } else reset_form_status(contraceña);
+        return status
+    }
+
+    function confirm_password() {
+        let contraceña = document.querySelector("#contraseña");
+        let contraceña_rep = document.querySelector("#rep-contraseña");
+
+        let status = true;
+        if (contraceña_rep.value != contraceña.value || contraceña_rep.value=="") {
+            status = false;
+            contraceña_rep.classList.add("form-error-input");
+            let lasterror = contraceña_rep.parentNode.querySelector(".form-error");
+            if (lasterror) lasterror.remove();
+            let divTemporal = document.createElement('div');
+            divTemporal.innerHTML = form_error_message(["Las contraseñas no coinciden o el campo esta vacio"], [0]);
+            contraceña_rep.parentNode.appendChild(divTemporal.querySelector(".form-error"));
+        } else reset_form_status(contraceña_rep);
         return status
     }
 })
