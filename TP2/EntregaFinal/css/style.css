@@ -84,6 +84,7 @@ body {
     font-family: var(--font);
     background-color: var(--p-color-100);
     color: var(--p-color-900);
+    
 }
 
 /*-----------------Navegador-----------------*/
@@ -1070,4 +1071,74 @@ header>.mostrar-menu-categorias {
 
 .form-error-valid{
     color: var(--n-notificacion-color-ok);
+}
+
+.breadcrum{
+    padding-top: var(--nav-size);
+}
+
+.contenido-general-pagina-juego{
+    display: flex;
+    padding-left: 10px;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.contenido-juego{
+}
+
+.pantalla-juego, .como-jugar{
+    width: 100%;
+}
+
+.publicidad{
+    height: fit-content;
+    width: 30%;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.descripcion-juego{
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.explicacion-como-jugar{
+    color: rebeccapurple;
+    animation: colorChange 1s infinite;
+}
+@keyframes colorChange {
+    0%{
+        color: red;
+    }
+    10%{
+        color: purple;
+    }
+    20%{
+        color: orange;
+    }
+    30%{
+        color: blue;
+    }
+    40%{
+        color: fuchsia;
+    }
+    50%{
+        color: yellow;
+    }
+    60%{
+        color: blueviolet;
+    }
+    70%{
+        color: black;
+    }
+    80%{
+        color: white;
+    }
+    90%{
+        color: green;
+    }
+    100%{
+        color: hotpink;
+    }
 }
