@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
 </head>
+
 <body class="desplegable menu-cerrado">
     <header id="navegador-group">
         <nav id="navegador">
@@ -27,27 +29,36 @@
 
             <div id="nav-group2">
                 <img src="../images/iconos/carrito_de_compra.png" alt="Carrito de compra" id="icon-carrito">
-                <a href="login.html"><img src="../images/iconos/profile_picture.png" alt="Foto de perfil" id="icon-user"></a>
+                <a href="login.html" id="icon-user"><img src="../images/profile-image.jpg" alt="Foto de perfil"></a>
             </div>
         </nav>
 
         <nav id="menu-categorias">
             <div id="filtros">
-                <a href=""><img src="../images/iconos/menu/populares.png" alt="Carrito de compra"><span>Populares</span></a>
-                <a href=""><img src="../images/iconos/menu/recientes.png" alt="Carrito de compra"><span>recientes</span></a>
+                <a href=""><img src="../images/iconos/menu/populares.png"
+                        alt="Carrito de compra"><span>Populares</span></a>
+                <a href=""><img src="../images/iconos/menu/recientes.png"
+                        alt="Carrito de compra"><span>recientes</span></a>
                 <a href=""><img src="../images/iconos/menu/nuevos.png" alt="Carrito de compra"><span>nuevos</span></a>
-                <a href=""><img src="../images/iconos/menu/tendencias.png" alt="Carrito de compra"><span>tendencias</span></a>
-                <a href=""><img src="../images/iconos/menu/actualizados.png" alt="Carrito de compra"><span>actualizados</span></a>
+                <a href=""><img src="../images/iconos/menu/tendencias.png"
+                        alt="Carrito de compra"><span>tendencias</span></a>
+                <a href=""><img src="../images/iconos/menu/actualizados.png"
+                        alt="Carrito de compra"><span>actualizados</span></a>
             </div>
             <hr>
             <div id="categorias">
                 <a href=""><img src="../images/iconos/menu/accion.png" alt="icono de categoria"><span>accion</span></a>
-                <a href=""><img src="../images/iconos/menu/aventuras.png" alt="icono de categoria"><span>aventuras</span></a>
-                <a href=""><img src="../images/iconos/menu/carreras.png" alt="icono de categoria"><span>carreras</span></a>
+                <a href=""><img src="../images/iconos/menu/aventuras.png"
+                        alt="icono de categoria"><span>aventuras</span></a>
+                <a href=""><img src="../images/iconos/menu/carreras.png"
+                        alt="icono de categoria"><span>carreras</span></a>
                 <a href=""><img src="../images/iconos/menu/casual.png" alt="icono de categoria"><span>casual</span></a>
-                <a href=""><img src="../images/iconos/menu/deportes.png" alt="icono de categoria"><span>deportes</span></a>
-                <a href=""><img src="../images/iconos/menu/disparos.png" alt="icono de categoria"><span>disparos</span></a>
-                <a href=""><img src="../images/iconos/menu/multijugador.png" alt="icono de categoria"><span>multijugador</span></a>
+                <a href=""><img src="../images/iconos/menu/deportes.png"
+                        alt="icono de categoria"><span>deportes</span></a>
+                <a href=""><img src="../images/iconos/menu/disparos.png"
+                        alt="icono de categoria"><span>disparos</span></a>
+                <a href=""><img src="../images/iconos/menu/multijugador.png"
+                        alt="icono de categoria"><span>multijugador</span></a>
             </div>
             <hr>
             <div id="contactos">
@@ -58,18 +69,19 @@
             </div>
         </nav>
     </header>
-    <div class="breadcrum">
-        <a href="../index.html">Gamesitos </a> <p>/</p>
-        <a href="">Juegos Multijugador </a> <p>/</p>
-        <a href=""> Mortal Kombat 4 en linea: Sub-Zero vs Scorpion</a>
-    </div>
-    <div class="contenido-general-pagina-juego">
+    <ul id="breadcrum">
+        <li><a href="../index.html">Gamesitos</a></li>
+        <div></div>
+        <li><a href="#">Multijugador</a></li>
+        <li><a href="#">Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</a></li>
+    </ul>
+    <div id="contenido-general-pagina-juego">
         <div class="contenido-juego">
             <div class="div-con-imagen-titulo-juego">
                 <img class="imagen-banner-juego-pagina-juego" src="../images/juegos/mk-4-en-linea.png" alt="">
                 <div class="div-sin-imagen-titulo-juego">
                     <div>
-                        <h2>Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</h2>
+                        <h1>Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</h2>
                         <p>1.7M de partidas en la última semana</p>
                     </div>
                     <div class="puntuacion-juego">
@@ -104,26 +116,31 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="pantalla-juego">
+
+            <div id="pantalla-juego">
                 <img src="../images/juegos/mk-4-en-linea-enJuego.png" alt="">
+                <div id="hover-jugar">
+                    <button class="boton-jugar">Jugar <img src="../images/iconos/jugar.png" alt="jugar.png"></button>
+                </div>
             </div>
-            
+
             <h2> Descripción</h2>
-            <p class="descripcion-juego">Adéntrate en el legendario torneo de "Mortal Kombat" de una manera completamente nueva con "Mortal Kombat 4 en Línea: Sub-Zero vs. Scorpion".
-                Este emocionante juego de 4 en línea lleva la eterna rivalidad entre dos de los personajes más icónicos de la franquicia a un campo de batalla 
+            <p class="descripcion-juego">Adéntrate en el legendario torneo de "Mortal Kombat" de una manera
+                completamente nueva con "Mortal Kombat 4 en Línea: Sub-Zero vs. Scorpion".
+                Este emocionante juego de 4 en línea lleva la eterna rivalidad entre dos de los personajes más icónicos
+                de la franquicia a un campo de batalla
                 estratégico y lleno de emoción.
             </p>
-        
+
             <h2>Cómo jugar</h2>
-            <p>Agarrar ficha, arrastrar, soltar. Usar mouse. Ganar quien ponga 4 en linea.</p>
+            <p>Agarrar ficha, arrastrar, soltar. Usar mouse. <span class="explicacion-como-jugar"> Unga unga.</span> Ganar quien ponga 4 en linea <span class="explicacion-como-jugar"> Unga unga.</span></p>
             <img class="como-jugar" src="../images/como-jugar-4-en-linea.png" alt="">
-            
+
             <h2>Videos recomendados</h2>
             <div>
                 carrousel de videos o algo de eso
             </div>
-        
+
             <div class="caja-de-comentarios">
                 <div class="tu-comentario">
                     Mi comentario a publicar
@@ -140,44 +157,7 @@
                     </div>
                 </div>
             </div>
-        
-            <h3 class="titulo-categoria">
-            Te podría interesar
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <div class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
-                        data-imagen="../images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
-                    </div>
-                    <div class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="../images/juegos/soccer-legend-2021.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="30">
-                    </div>
-                    <div class="card-normal" data-nombre="Evowars.io" data-imagen="../images/juegos/evowars-io.png"
-                        data-generos='["Multijugador","accion"]' data-precio="29.99">
-                    </div>
-                    <div class="card-oferta" data-nombre="Shell Shockers" data-imagen="../images/juegos/shell-shockers.png"
-                        data-generos='["Multijugador","accion"]' data-precio="20" data-preciOrg="50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic" data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic" data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes"]'
-                        data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic" data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic" data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-oferta" data-nombre="8 Ball Billiards Classic" data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50" data-preciOrg="20">
-                    </div>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
+
         </div>
         <div class="publicidad">
             <img src="../images/publicidades/banner-1.png" alt="">
@@ -187,7 +167,50 @@
             <img src="../images/publicidades/banner-5.png" alt="">
         </div>
     </div>
-    
+
+    <h3 class="titulo-categoria">
+        Te podría interesar
+    </h3>
+    <div class="contenedor-carrusel">
+        <button class="boton-izquierda"></button>
+        <div class="carrusel">
+            <div class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
+                data-imagen="../images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
+            </div>
+            <div class="card-normal" data-nombre="Soccer Legend 2021"
+                data-imagen="../images/juegos/soccer-legend-2021.png" data-generos='["Multijugador","Deportes"]'
+                data-precio="30">
+            </div>
+            <div class="card-normal" data-nombre="Evowars.io" data-imagen="../images/juegos/evowars-io.png"
+                data-generos='["Multijugador","accion"]' data-precio="29.99">
+            </div>
+            <div class="card-oferta" data-nombre="Shell Shockers" data-imagen="../images/juegos/shell-shockers.png"
+                data-generos='["Multijugador","accion"]' data-precio="20" data-preciOrg="50">
+            </div>
+            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
+                data-imagen="../images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
+                data-precio="12.50">
+            </div>
+            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
+                data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                data-generos='["Multijugador","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes"]'
+                data-precio="12.50">
+            </div>
+            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
+                data-imagen="../images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
+                data-precio="12.50">
+            </div>
+            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
+                data-imagen="../images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
+                data-precio="12.50">
+            </div>
+            <div class="card-oferta" data-nombre="8 Ball Billiards Classic"
+                data-imagen="../images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
+                data-precio="12.50" data-preciOrg="20">
+            </div>
+        </div>
+        <button class="boton-derecha"></button>
+    </div>
     <footer id="fat-footer">
 
         <div id="grupo-grande-footer">
@@ -240,4 +263,5 @@
     <script src="../js/carrusel.js"></script>
     <script src="../js/menuHamburguesa.js"></script>
 </body>
+
 </html>
