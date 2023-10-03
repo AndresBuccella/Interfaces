@@ -1077,10 +1077,97 @@ header>.mostrar-menu-categorias {
 
 /*Página del juego*/
 .breadcrum{
+    display: flex;
     padding-top: var(--nav-size);
+    padding-left: 10px;
+    margin-top: var(--space-between-sections); /*queda bien así o lo dejamos más pegado?*/
     margin-bottom: var(--space-between-sections);
+    color: var(--p-color-900);
+}
+.breadcrum *{
+    padding-right: 5px;
+    color: var(--p-color-900);
+    text-decoration: none;
+}
+.div-con-imagen-titulo-juego{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+.div-con-imagen-titulo-juego, .div-sin-imagen-titulo-juego{
+    display: flex;
+    width: 100%;
+}
+
+.imagen-banner-juego-pagina-juego{
+    width: 15%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.5);
+
+}
+
+.div-sin-imagen-titulo-juego{
+    margin: 0px 10px 0px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.puntuacion-juego{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.estrellas{
+
+    display: flex;
+    flex-direction: row-reverse;
+
+    & > *{
+        margin-left: 3px;
+    }
+    &>.estrella{
+        width: 25px; /*me parece muy chico los 19px que tenemos en figma, no sé que te parece*/
+        fill: transparent;
+        cursor: pointer;
+        transition: fill 0.15s ease;
+    }
+
+    &>.estrella:hover{
+        fill: var(--a-color-600);
+    }
+    &>.estrella:hover ~ .estrella{
+        fill: var(--a-color-600);
+    
+    }
+}
+
+.caja-meGusta-noMeGusta{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+
+    & > *{
+        margin: 5px;
+    }
+
+    & > span{
+        font-size: var(--font-size-cont);
+    }
+    & > .icono-me-gusta, > .icono-no-me-gusta{
+        width: 25px;
+        fill: transparent;
+        cursor: pointer;
+        transition: fill 0.3s ease;
+    }
+    &>.icono-me-gusta:hover{ /*no funciona ninguno de los dos hover y no veo por qué*/
+        fill: var(--a-color-600)
+    }
+    &>.icono-no-me-gusta:hover{
+        fill: var(--s-color-500);
+    }
+
+}
 .contenido-general-pagina-juego{
     padding-right: var(--width-banner-publicidad);
     padding-left: 10px;
@@ -1124,69 +1211,4 @@ header>.mostrar-menu-categorias {
     padding-left: 40px;
     padding-right: 40px;
     margin-bottom: var(--space-between-sections);
-}
-.puntuacion-juego{
-    text-align: center;
-}
-.explicacion-como-jugar{
-    color: rebeccapurple;
-    animation: colorChange 1s infinite;
-}
-@keyframes colorChange {
-    0%{
-        color: red;
-    }
-    10%{
-        color: purple;
-    }
-    20%{
-        color: orange;
-    }
-    30%{
-        color: blue;
-    }
-    40%{
-        color: fuchsia;
-    }
-    50%{
-        color: yellow;
-    }
-    60%{
-        color: blueviolet;
-    }
-    70%{
-        color: black;
-    }
-    80%{
-        color: white;
-    }
-    90%{
-        color: green;
-    }
-    100%{
-        color: hotpink;
-    }
-}
-
-.div-con-imagen-titulo-juego{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.div-con-imagen-titulo-juego, .div-sin-imagen-titulo-juego{
-    display: flex;
-    width: 100%;
-}
-
-.imagen-banner-juego-pagina-juego{
-    width: 15%;
-    border-radius: 5px;
-    box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.5);
-
-}
-
-.div-sin-imagen-titulo-juego{
-    margin: 0px 10px 0px 10px;
-    justify-content: space-between;
-    align-items: center;
 }
