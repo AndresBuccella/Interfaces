@@ -1,6 +1,7 @@
-1_El carrousel en la pagina del juego se ve como mobile
-2_Implementar lo dicho por el profesor.
-
+1_El carrousel no funciona en la pagina del juego
+2_El carrousel en la pagina del juego se ve como mobile
+3_Implementar lo dicho por el profesor.
+4_Implementar 16:9 en pantalla del juego (tiene 17:10)
 
 
 

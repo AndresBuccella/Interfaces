@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="informacion">
                         <p class="nombre-juego">${nombre}</p>
-                        <p class="precio">${precio}</p>
+                        <p class="precio">$${precio}</p>
                     </div>`;
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;

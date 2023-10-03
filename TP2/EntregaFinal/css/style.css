@@ -58,6 +58,7 @@
     --card-height: 234px;
     --space-between-category: 24px;
     --width-banner-publicidad: 16%;
+    --space-between-sections: 15px;
 }
 
 /*Etiquetas miscelaneas*/
@@ -1073,8 +1074,11 @@ header>.mostrar-menu-categorias {
     color: var(--n-notificacion-color-ok);
 }
 
+
+/*Página del juego*/
 .breadcrum{
     padding-top: var(--nav-size);
+    margin-bottom: var(--space-between-sections);
 }
 
 .contenido-general-pagina-juego{
@@ -1083,9 +1087,27 @@ header>.mostrar-menu-categorias {
     justify-content: space-between;
 }
 
-
-.pantalla-juego, .como-jugar{
+.pantalla-juego{    
+    max-width: 100%;
     width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 56.25%; /* 9/16 * 100% (para una relación de aspecto 16:9) SUPUESTAMENTE, pero no sé qué pasa que da 17:10*/
+
+    margin-bottom: var(--space-between-sections);
+    /*width: 100% calc(100% - var(--width-banner-publicidad))*/;
+}
+.pantalla-juego img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+.como-jugar{
+    width: 100%;
+    margin-bottom: var(--space-between-sections);
 }
 
 .publicidad{
@@ -1099,15 +1121,16 @@ header>.mostrar-menu-categorias {
 }
 
 .descripcion-juego{
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: var(--space-between-sections);
 }
 .puntuacion-juego{
     text-align: center;
 }
 .explicacion-como-jugar{
     color: rebeccapurple;
-    animation: colorChange 300ms infinite;
+    animation: colorChange 1s infinite;
 }
 @keyframes colorChange {
     0%{
