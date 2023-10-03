@@ -53,6 +53,7 @@
     --nav-size: 58px;
     --search-size: 600px;
     --menu-width: 65px;
+    --menu-carrito-width: 400px;
     --space-between-card: 36px;
     --card-width: 336px;
     --card-height: 234px;
@@ -85,7 +86,7 @@ body {
     font-family: var(--font);
     background-color: var(--p-color-100);
     color: var(--p-color-900);
-    
+
 }
 
 /*-----------------Navegador-----------------*/
@@ -191,8 +192,18 @@ body {
 }
 
 #icon-user {
-    padding-right: 7px;
+    margin-right: 7px;
+    overflow: hidden;
+    min-width: 44px;
+    max-width: 44px;
+    min-height: 44px;
+    max-height: 44px;
+    border-radius: 50%;
+}
+
+#icon-user>img {
     cursor: pointer;
+    width: 44px;
 }
 
 
@@ -215,9 +226,8 @@ body {
     padding: 0px;
 
     transform: translateX(calc(var(--menu-width) * -1));
-    transition: transform 0.3s ease-in;
     overflow-x: hidden;
-    transition: 0.2s;
+    transition: transform 0.2s;
 }
 
 #menu-categorias:hover {
@@ -295,6 +305,184 @@ header>.mostrar-menu-categorias {
     transition: all 0.2s;
     padding-left: 0;
 }
+
+/*Menu carrito de compra*/
+#menu-carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: var(--menu-carrito-width);
+    height: calc(100vh - var(--nav-size));
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--p-color-900);
+    padding: 0px;
+    transition: 0.2s;
+    color: black;
+}
+
+#menu-carrito>h3 {
+    margin: 16px 0px;
+    font-size: var(--font-size-h3);
+}
+
+#menu-carrito>#carrito {
+    height: 75%;
+    width: 90%;
+    max-width: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*Scrollbar*/
+/* Firefox */
+#menu-carrito>#carrito {
+    scrollbar-width: auto;
+    scrollbar-color: var(--p-color-700) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+#menu-carrito>#carrito::-webkit-scrollbar {
+    width: 11px;
+}
+
+#menu-carrito>#carrito::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+#menu-carrito>#carrito::-webkit-scrollbar-thumb {
+    background-color: var(--p-color-700);
+    border-radius: 5px;
+    border: 0px none #ffffff;
+}
+
+/*card-carrito*/
+
+.card-carrito {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 98px;
+    margin-bottom: 20px;
+}
+
+.card-carrito>img:first-of-type {
+    height: 100%;
+    margin-right: 10px;
+}
+
+.card-carrito .informacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.card-carrito .informacion .nombre {
+    font-size: var(--font-size-cont);
+    width: 120px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+}
+
+.card-carrito .informacion .precio {
+    display: flex;
+    padding-top: 2px;
+    font-size: var(--font-size-desc);
+}
+
+.card-carrito .informacion .precio span {
+    text-decoration: line-through;
+    margin-right: 5px;
+    transform: translateY(-2px);
+}
+
+.card-carrito .eliminar {
+    cursor: pointer;
+    height: 30px;
+    margin-right: 6px;
+}
+
+#menu-carrito #total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 372px;
+    height: 39px;
+    background-color: var(--p-color-800);
+    border-radius: 100px;
+    margin-top: 13px;
+}
+
+#menu-carrito #total h3 {
+    font-size: var(--font-size-h3);
+    margin-left: 16px;
+}
+
+#menu-carrito #total p {
+    font-size: var(--font-size-cont);
+    margin-right: 16px;
+}
+
+#botonera-carrito {
+    margin-top: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 372px;
+    height: 39px;
+}
+
+#botonera-carrito #ir-carrito,
+#botonera-carrito #iniciar-compra {
+    width: 168px;
+    height: 39px;
+    border-radius: 20px;
+    font-size: var(--font-size-cont);
+    font-weight: bold;
+    font-family: var(--font);
+    cursor: pointer;
+}
+
+#botonera-carrito #ir-carrito {
+    background-color: var(--s-color-700);
+    transition: background-color 0.2s;
+}
+
+#botonera-carrito #ir-carrito:hover {
+    background-color: var(--s-color-800);
+    transition: background-color 0s, color 0s;
+}
+
+#botonera-carrito #ir-carrito:active {
+    background-color: var(--s-color-300);
+    color: white;
+}
+
+#botonera-carrito #iniciar-compra {
+    background-color: var(--p-color-200);
+    color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#botonera-carrito #iniciar-compra:hover {
+    background-color: var(--p-color-800);
+    color: black;
+    transition: background-color 0s;
+}
+
+#botonera-carrito #iniciar-compra:active {
+    background-color: var(--p-color-700);
+}
+
+
 
 /*-------------------Loading-------------------*/
 #loading {
@@ -1070,122 +1258,203 @@ header>.mostrar-menu-categorias {
     border: 2px solid var(--n-notificacion-color-not-ok) !important;
 }
 
-.form-error-valid{
+.form-error-valid {
     color: var(--n-notificacion-color-ok);
 }
 
 
 /*Página del juego*/
-.breadcrum{
-    padding-top: var(--nav-size);
+#breadcrum {
+    margin-top: calc(var(--nav-size) + 8px);
     margin-bottom: var(--space-between-sections);
-}
-
-.contenido-general-pagina-juego{
-    padding-right: var(--width-banner-publicidad);
-    padding-left: 10px;
-    justify-content: space-between;
-}
-
-.pantalla-juego{    
-    max-width: 100%;
-    width: 100%;
-    overflow: hidden;
     position: relative;
-    padding-top: 56.25%; /* 9/16 * 100% (para una relación de aspecto 16:9) SUPUESTAMENTE, pero no sé qué pasa que da 17:10*/
-
-    margin-bottom: var(--space-between-sections);
-    /*width: 100% calc(100% - var(--width-banner-publicidad))*/;
 }
-.pantalla-juego img{
+
+#breadcrum li {
+    display: inline-block;
+    padding: 10px;
+    padding-right: 16px;
+    background-color: var(--s-color-300);
+    transform: skew(-36deg);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+#breadcrum li:hover {
+    background-color: var(--s-color-200);
+}
+
+#breadcrum li a {
+    display: block;
+    transform: skew(36deg);
+    text-decoration: none;
+    font-size: var(--font-size-cont);
+    color: var(--s-color-900);
+}
+
+#breadcrum div {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--s-color-300);
+    z-index: -1;
+    transition: background-color 0.2s;
+}
+
+#breadcrum li:first-of-type:hover~div {
+    background-color: var(--s-color-200);
+}
+
+#contenido-general-pagina-juego {
+    display: flex;
+}
+
+.contenido-juego {
+    padding: 0px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#pantalla-juego {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+    width: calc(16px * 64);
+    height: calc(9px * 64);
+    background-color: black;
+}
+
+#pantalla-juego img {
+    width: auto;
+    height: 100%;
+}
+
+#hover-jugar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
+    background-color: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(2px);
 }
-.como-jugar{
+
+#hover-jugar>button {
+    width: 190px;
+    height: 54px;
+    border-radius: 37px;
+    font-size: var(--font-size-h2);
+    font-weight: bold;
+    font-family: var(--font);
+    justify-content: space-between;
+    padding-left: 55px;
+    padding-right: 10px;
+}
+
+#hover-jugar>button>img {
+    width: 36px;
+    height: 36px;
+}
+
+.como-jugar {
     width: 100%;
     margin-bottom: var(--space-between-sections);
 }
 
-.publicidad{
+.publicidad {
     display: flex;
     flex-flow: column;
     height: fit-content;
     width: calc(var(--width-banner-publicidad) - 2%);
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
-.descripcion-juego{
+.descripcion-juego {
     padding-left: 40px;
     padding-right: 40px;
     margin-bottom: var(--space-between-sections);
 }
-.puntuacion-juego{
+
+.puntuacion-juego {
     text-align: center;
 }
-.explicacion-como-jugar{
+
+.explicacion-como-jugar {
     color: rebeccapurple;
     animation: colorChange 1s infinite;
 }
+
 @keyframes colorChange {
-    0%{
+    0% {
         color: red;
     }
-    10%{
+
+    10% {
         color: purple;
     }
-    20%{
+
+    20% {
         color: orange;
     }
-    30%{
+
+    30% {
         color: blue;
     }
-    40%{
+
+    40% {
         color: fuchsia;
     }
-    50%{
+
+    50% {
         color: yellow;
     }
-    60%{
+
+    60% {
         color: blueviolet;
     }
-    70%{
+
+    70% {
         color: black;
     }
-    80%{
+
+    80% {
         color: white;
     }
-    90%{
+
+    90% {
         color: green;
     }
-    100%{
+
+    100% {
         color: hotpink;
     }
 }
 
-.div-con-imagen-titulo-juego{
+.div-con-imagen-titulo-juego {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.div-con-imagen-titulo-juego, .div-sin-imagen-titulo-juego{
+.div-con-imagen-titulo-juego,
+.div-sin-imagen-titulo-juego {
     display: flex;
     width: 100%;
 }
 
-.imagen-banner-juego-pagina-juego{
+.imagen-banner-juego-pagina-juego {
     width: 15%;
     border-radius: 5px;
     box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.5);
 
 }
 
-.div-sin-imagen-titulo-juego{
+.div-sin-imagen-titulo-juego {
     margin: 0px 10px 0px 10px;
     justify-content: space-between;
     align-items: center;
