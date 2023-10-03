@@ -57,6 +57,7 @@
     --card-width: 336px;
     --card-height: 234px;
     --space-between-category: 24px;
+    --width-banner-publicidad: 16%;
 }
 
 /*Etiquetas miscelaneas*/
@@ -80,7 +81,6 @@
 }
 
 body {
-    margin: 0px;
     font-family: var(--font);
     background-color: var(--p-color-100);
     color: var(--p-color-900);
@@ -1078,34 +1078,36 @@ header>.mostrar-menu-categorias {
 }
 
 .contenido-general-pagina-juego{
-    display: flex;
+    padding-right: var(--width-banner-publicidad);
     padding-left: 10px;
-    width: fit-content;
     justify-content: space-between;
 }
 
-.contenido-juego{
-}
 
 .pantalla-juego, .como-jugar{
     width: 100%;
 }
 
 .publicidad{
+    display: flex;
+    flex-flow: column;
     height: fit-content;
-    width: 30%;
-    margin-left: 10px;
-    margin-bottom: 5px;
+    width: calc(var(--width-banner-publicidad) - 2%);
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .descripcion-juego{
     padding-left: 70px;
     padding-right: 70px;
 }
-
+.puntuacion-juego{
+    text-align: center;
+}
 .explicacion-como-jugar{
     color: rebeccapurple;
-    animation: colorChange 1s infinite;
+    animation: colorChange 300ms infinite;
 }
 @keyframes colorChange {
     0%{
@@ -1141,4 +1143,27 @@ header>.mostrar-menu-categorias {
     100%{
         color: hotpink;
     }
+}
+
+.div-con-imagen-titulo-juego{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.div-con-imagen-titulo-juego, .div-sin-imagen-titulo-juego{
+    display: flex;
+    width: 100%;
+}
+
+.imagen-banner-juego-pagina-juego{
+    width: 15%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.5);
+
+}
+
+.div-sin-imagen-titulo-juego{
+    margin: 0px 10px 0px 10px;
+    justify-content: space-between;
+    align-items: center;
 }

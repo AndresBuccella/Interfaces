@@ -20,23 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
         //En posesion
         function generar_card_posesion(nombre, imagen, generos) {
             let contenido =
-                '  <div class="content">' +
-                '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<ul class="categorias">';
-
+            `  <div class="content"> 
+            <img src="${imagen}" alt="${nombre}.jpeg">
+            <div class="informacion">
+            <p class="nombre-juego"> ${nombre} </p>
+            <ul class="categorias">`;
             generos.forEach(genero => {
-                contenido += '<li>' + genero + '</li>';
+                contenido += `<li> ${genero} </li>`;
             });
 
-            contenido += '</ul>' +
-                '</div>' +
-                '</div>' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<a href="html/mk_4_en_linea.html" class="boton-jugar">Jugar</a>' +
-                '</div>';
+            contenido += 
+                `</ul>
+                    </div>
+                    </div>
+                    <div class="informacion">
+                        <p class="nombre-juego">${nombre}</p>
+                        <a href="html/mk_4_en_linea.html" class="boton-jugar">Jugar</a>
+                    </div>`;
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
             divTemporal.className = "card";
@@ -54,28 +54,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //A comprar
         function generar_card_normal(nombre, imagen, generos, precio) {
-            let contenido = '<div class="content">' +
-                '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
-                '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<div class="categorias-y-boton">' +
-                '<ul class="categorias">';
+            let ubicacionCarrito = 'images/iconos/carrito_de_compra.png'
+            let ubicacionCarritoBotonAgregar = 'images/iconos/mini-carrito.png'
+            if(imagen.includes('../')){
+                ubicacionCarrito = '../' + ubicacionCarrito;
+                ubicacionCarritoBotonAgregar =  '../' + ubicacionCarritoBotonAgregar;
+            }
+            let contenido = 
+                    `<div class="content">
+                        <img src="${imagen}" alt="imagen del juego.jpeg">
+                        <div class="carrito none"> <img src="${ubicacionCarrito}" alt=""></div>
+                            <div class="informacion">
+                                <p class="nombre-juego"> ${nombre}</p>
+                                <div class="categorias-y-boton">
+                                    <ul class="categorias">`;
             generos.forEach(genero => {
-                contenido += '<li>' + genero + '</li>';
+                contenido += `<li> ${genero} </li>`;
             });
 
-            contenido += '</ul>' +
-                '<button class="agregar flex">Agregar <img src="images/iconos/mini-carrito.png" alt="mini carrito.png"></button>' +
-                '<button class="agregado none">X<span>Agregado <img src="images/iconos/mini-carrito.png"' +
-                'alt="mini carrito.png"></span></button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<p class="precio">$' + precio + '</p>' +
-                '</div>';
+            contenido += 
+                `</ul>
+                    <button class="agregar flex">Agregar <img src="${ubicacionCarritoBotonAgregar}" alt="mini carrito.png"></button>
+                    <button class="agregado none">X<span>Agregado <img src="${ubicacionCarritoBotonAgregar}"
+                    alt="mini carrito.png"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="informacion">
+                        <p class="nombre-juego">${nombre}</p>
+                        <p class="precio">${precio}</p>
+                    </div>`;
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
             divTemporal.className = "card";
@@ -96,32 +104,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //En oferta
         function generar_card_oferta(nombre, imagen, generos, precioOrg, precio) {
-            let contenido = '<div class="content">' +
-                '<img src="images/juegos/' + imagen + '" alt="imagen del juego.jpeg">' +
-                '<div class="carrito none"> <img src="images/iconos/carrito_de_compra.png" alt=""></div>' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<div class="categorias-y-boton">' +
-                '<ul class="categorias">';
+            let ubicacionCarrito = 'images/iconos/carrito_de_compra.png'
+            let ubicacionCarritoBotonAgregar = 'images/iconos/mini-carrito.png'
+            if(imagen.includes('../')){
+                ubicacionCarrito = '../' + ubicacionCarrito;
+                ubicacionCarritoBotonAgregar =  '../' + ubicacionCarritoBotonAgregar;
+            }
+            let contenido = `<div class="content">
+                <img src="${imagen}" alt="imagen del juego.jpeg">
+                <div class="carrito none"> <img src="${ubicacionCarrito}" alt=""></div>
+                <div class="informacion">
+                <p class="nombre-juego">'${nombre}</p>
+                <div class="categorias-y-boton">
+                <ul class="categorias">`;
             generos.forEach(genero => {
                 contenido += '<li>' + genero + '</li>';
             });
 
-            contenido += '</ul>' +
-                '<button class="agregar flex">Agregar <img src="images/iconos/mini-carrito.png" alt="mini carrito.png"></button>' +
-                '<button class="agregado none">X<span>Agregado <img src="images/iconos/mini-carrito.png"' +
-                'alt="mini carrito.png"></span></button>' +
-                '</div>' +
-                '</div>' +
-                '<div class="oferta">Oferta</div>' +
-                '</div>' +
-                '<div class="informacion">' +
-                '<p class="nombre-juego">' + nombre + '</p>' +
-                '<div class="precio-oferta">' +
-                '<p>$' + precioOrg + '</p>' +
-                '<p>$' + precio + '</p>' +
-                '</div>' +
-                '</div>';
+            contenido += 
+                `</ul>
+                <button class="agregar flex">Agregar <img src="${ubicacionCarritoBotonAgregar}" alt="mini carrito.png"></button>
+                <button class="agregado none">X<span>Agregado <img src="${ubicacionCarritoBotonAgregar}"
+                alt="mini carrito.png"></span></button>
+                </div>
+                </div>
+                <div class="oferta">Oferta</div>
+                </div>
+                <div class="informacion">
+                    <p class="nombre-juego">${nombre}</p>
+                <div class="precio-oferta">
+                    <p>$${precioOrg}</p>
+                    <p>$${precio}</p>
+                </div>
+                </div>`;
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
             divTemporal.className = "card";

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.addEventListener("click", si);
 
 
-    const body = document.querySelector("#index-body");
+    const body = document.querySelector(".desplegable");
 
     function si() {
         let toggleMenu = document.getElementById("menu-categorias");
@@ -14,5 +14,4 @@ document.addEventListener("DOMContentLoaded", function () {
             body.classList.toggle("menu-cerrado");
         }
     }
-
 })
