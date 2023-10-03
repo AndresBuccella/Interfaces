@@ -220,14 +220,12 @@ body {
     height: calc(100vh - var(--nav-size));
     bottom: 0px;
     z-index: 1000;
-
     background-color: var(--p-color-700);
     overflow: scroll;
     padding: 0px;
-
     transform: translateX(calc(var(--menu-width) * -1));
     overflow-x: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.2s, width 0.2s;
 }
 
 #menu-categorias:hover {
@@ -321,6 +319,7 @@ header>.mostrar-menu-categorias {
     padding: 0px;
     transition: 0.2s;
     color: black;
+    transform: translateX(var(--menu-carrito-width));
 }
 
 #menu-carrito>h3 {
@@ -482,7 +481,18 @@ header>.mostrar-menu-categorias {
     background-color: var(--p-color-700);
 }
 
+#borrar-carrito {
+    font-size: var(--font-size-desc);
+    color: var(--p-color-400);
+    font-family: var(--font);
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 20px;
+    cursor: pointer;
+}
 
+header>.mostrar-menu-carrito {
+    transform: translateX(0) !important;
+}
 
 /*-------------------Loading-------------------*/
 #loading {
