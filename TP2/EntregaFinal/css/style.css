@@ -1018,7 +1018,6 @@ header>.mostrar-menu-carrito {
     align-items: center;
     background-image: url(../images/Sub-Zero_vs_Scorpion.jpg);
     background-position: center;
-    backdrop-filter: blur(3px);
 }
 
 #formulario-iniciar-sesion {
@@ -1392,7 +1391,7 @@ header>.mostrar-menu-carrito {
     &>.icono-me-gusta,
     >.icono-no-me-gusta {
         width: 25px;
-        fill: transparent;
+        fill: red;
         cursor: pointer;
         transition: fill 0.3s ease;
     }
