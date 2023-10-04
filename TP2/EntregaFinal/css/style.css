@@ -1459,7 +1459,7 @@ header>.mostrar-menu-carrito {
     color: var(--s-color-900);
 }
 
-#breadcrum div {
+#breadcrum>div {
     position: absolute;
     width: 50px;
     height: 100%;
