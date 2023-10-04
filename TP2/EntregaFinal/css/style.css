@@ -218,7 +218,7 @@ body {
     position: fixed;
     width: var(--menu-width);
     height: calc(100vh - var(--nav-size));
-    top: var(--nav-size);
+    bottom: 0;
     z-index: 1000;
     background-color: var(--p-color-700);
     overflow: scroll;
