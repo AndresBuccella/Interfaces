@@ -218,7 +218,7 @@ body {
     position: fixed;
     width: var(--menu-width);
     height: calc(100vh - var(--nav-size));
-    bottom: 0px;
+    top: var(--nav-size);
     z-index: 1000;
     background-color: var(--p-color-700);
     overflow: scroll;
@@ -585,7 +585,6 @@ header>.mostrar-menu-carrito {
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 /*Botones del carrusel izq y der*/
@@ -612,7 +611,7 @@ header>.mostrar-menu-carrito {
     width: calc(100% - 35px * 2 - 8px);
     margin: 0px 4px;
     z-index: 1;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 /*--------Carta de los juegos--------*/
@@ -621,9 +620,47 @@ header>.mostrar-menu-carrito {
     width: var(--card-width);
     max-width: var(--card-width);
     height: var(--card-height);
+    perspective: 700px;
     margin-right: var(--space-between-card);
     transform: translateX(0px);
     transition: transform 0.5s;
+}
+
+.card-rot-der>.content,
+.card-rot-der>.informacion {
+    animation: rotacion-y-der 0.5s;
+}
+.card-rot-izq>.content,
+.card-rot-izq>.informacion {
+    animation: rotacion-y-izq 0.5s;
+}
+
+@keyframes rotacion-y-der {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(45deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes rotacion-y-izq {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(-45deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
 }
 
 /*Contenido superioir de la carta*/
@@ -1278,105 +1315,120 @@ header>.mostrar-menu-carrito {
     display: flex;
     margin-top: calc(var(--nav-size) + 8px);
     padding-left: 10px;
-    margin-top: var(--space-between-sections); /*queda bien así o lo dejamos más pegado?*/
+    margin-top: var(--space-between-sections);
+    /*queda bien así o lo dejamos más pegado?*/
     margin-bottom: var(--space-between-sections);
     color: var(--p-color-900);
 }
-.breadcrum *{
+
+.breadcrum * {
     padding-right: 5px;
     color: var(--p-color-900);
     text-decoration: none;
 }
-.div-con-imagen-titulo-juego{
+
+.div-con-imagen-titulo-juego {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.div-con-imagen-titulo-juego, .div-sin-imagen-titulo-juego{
+.div-con-imagen-titulo-juego,
+.div-sin-imagen-titulo-juego {
     display: flex;
     width: 100%;
 }
 
-.imagen-banner-juego-pagina-juego{
+.imagen-banner-juego-pagina-juego {
     width: 15%;
     border-radius: 5px;
     box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.5);
 
 }
 
-.div-sin-imagen-titulo-juego{
+.div-sin-imagen-titulo-juego {
     margin: 0px 10px 0px 10px;
     justify-content: space-between;
     align-items: center;
 }
 
-.puntuacion-juego{
+.puntuacion-juego {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.estrellas{
+
+.estrellas {
 
     display: flex;
     flex-direction: row-reverse;
 
-    & > *{
+    &>* {
         margin-left: 3px;
     }
-    &>.estrella{
-        width: 25px; /*me parece muy chico los 19px que tenemos en figma, no sé que te parece*/
+
+    &>.estrella {
+        width: 25px;
+        /*me parece muy chico los 19px que tenemos en figma, no sé que te parece*/
         fill: transparent;
         cursor: pointer;
         transition: fill 0.15s ease;
     }
 
-    &>.estrella:hover{
+    &>.estrella:hover {
         fill: var(--a-color-600);
     }
-    &>.estrella:hover ~ .estrella{
+
+    &>.estrella:hover~.estrella {
         fill: var(--a-color-600);
-    
+
     }
 }
 
-.caja-meGusta-noMeGusta{
+.caja-meGusta-noMeGusta {
     width: fit-content;
     display: flex;
     align-items: center;
     background-color: transparent;
 
-    & > *{
+    &>* {
         margin: 5px;
     }
 
-    & > span{
+    &>span {
         font-size: var(--font-size-cont);
     }
-    & > .icono-me-gusta, > .icono-no-me-gusta{
+
+    &>.icono-me-gusta,
+    >.icono-no-me-gusta {
         width: 25px;
         fill: transparent;
         cursor: pointer;
         transition: fill 0.3s ease;
     }
-    &>.icono-me-gusta:hover{ /*no funciona ninguno de los dos hover y no veo por qué*/
+
+    &>.icono-me-gusta:hover {
+        /*no funciona ninguno de los dos hover y no veo por qué*/
         fill: var(--a-color-600)
     }
-    &>.icono-no-me-gusta:hover{
+
+    &>.icono-no-me-gusta:hover {
         fill: var(--s-color-500);
     }
 
 }
-.contenido-general-pagina-juego{
+
+.contenido-general-pagina-juego {
     padding-right: var(--width-banner-publicidad);
     padding-left: 10px;
     justify-content: space-between;
 }
 
-.pantalla-juego{    
+.pantalla-juego {
     max-width: 100%;
     width: 100%;
     overflow: hidden;
 }
+
 #breadcrum {
     margin-top: calc(var(--nav-size) + 8px);
     position: relative;
@@ -1392,6 +1444,7 @@ header>.mostrar-menu-carrito {
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.2s;
+    margin-right: 6px;
 }
 
 #breadcrum li:hover {
@@ -1408,7 +1461,7 @@ header>.mostrar-menu-carrito {
 
 #breadcrum div {
     position: absolute;
-    width: 30px;
+    width: 50px;
     height: 100%;
     top: 0;
     left: 0;

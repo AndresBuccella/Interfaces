@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //En posesion
         function generar_card_posesion(nombre, imagen, generos) {
             let contenido =
-            `  <div class="content"> 
+                `  <div class="content"> 
             <img src="${imagen}" alt="${nombre}.jpeg">
             <div class="informacion">
             <p class="nombre-juego"> ${nombre} </p>
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 contenido += `<li> ${genero} </li>`;
             });
 
-            contenido += 
+            contenido +=
                 `</ul>
                     </div>
                     </div>
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
         function generar_card_normal(nombre, imagen, generos, precio) {
             let ubicacionCarrito = 'images/iconos/carrito_de_compra.png'
             let ubicacionCarritoBotonAgregar = 'images/iconos/mini-carrito.png'
-            if(imagen.includes('../')){
+            if (imagen.includes('../')) {
                 ubicacionCarrito = '../' + ubicacionCarrito;
-                ubicacionCarritoBotonAgregar =  '../' + ubicacionCarritoBotonAgregar;
+                ubicacionCarritoBotonAgregar = '../' + ubicacionCarritoBotonAgregar;
             }
-            let contenido = 
-                    `<div class="content">
+            let contenido =
+                `<div class="content">
                         <img src="${imagen}" alt="imagen del juego.jpeg">
                         <div class="carrito none"> <img src="${ubicacionCarrito}" alt=""></div>
                             <div class="informacion">
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 contenido += `<li> ${genero} </li>`;
             });
 
-            contenido += 
+            contenido +=
                 `</ul>
                     <button class="agregar flex">Agregar <img src="${ubicacionCarritoBotonAgregar}" alt="mini carrito.png"></button>
                     <button class="agregado none">X<span>Agregado <img src="${ubicacionCarritoBotonAgregar}"
@@ -106,9 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
         function generar_card_oferta(nombre, imagen, generos, precioOrg, precio) {
             let ubicacionCarrito = 'images/iconos/carrito_de_compra.png'
             let ubicacionCarritoBotonAgregar = 'images/iconos/mini-carrito.png'
-            if(imagen.includes('../')){
+            if (imagen.includes('../')) {
                 ubicacionCarrito = '../' + ubicacionCarrito;
-                ubicacionCarritoBotonAgregar =  '../' + ubicacionCarritoBotonAgregar;
+                ubicacionCarritoBotonAgregar = '../' + ubicacionCarritoBotonAgregar;
             }
             let contenido = `<div class="content">
                 <img src="${imagen}" alt="imagen del juego.jpeg">
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 contenido += '<li>' + genero + '</li>';
             });
 
-            contenido += 
+            contenido +=
                 `</ul>
                 <button class="agregar flex">Agregar <img src="${ubicacionCarritoBotonAgregar}" alt="mini carrito.png"></button>
                 <button class="agregado none">X<span>Agregado <img src="${ubicacionCarritoBotonAgregar}"
@@ -180,31 +180,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let scrollAmount = 0;
         btnLeft.addEventListener("click", function () {
-            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight); 
-            let scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
+            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight);
+            let scrollUnit = cardsWidth * Math.max((Math.floor(content.clientWidth / cardsWidth)), 1);
             scrollAmount -= scrollUnit;
-            scrollContent(scrollUnit);
+            scrollContent(scrollUnit, cardsWidth * cards.length, "card-rot-izq");
         });
 
         btnRight.addEventListener("click", function () {
-            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight); 
-            let scrollUnit =cardsWidth * Math.max ((Math.floor(content.clientWidth / cardsWidth)),1);
+            let cardsWidth = cards[0].offsetWidth + parseFloat(getComputedStyle(cards[0]).marginRight);
+            let scrollUnit = cardsWidth * Math.max((Math.floor(content.clientWidth / cardsWidth)), 1);
             scrollAmount += scrollUnit;
-            scrollContent(scrollUnit);
+            scrollContent(scrollUnit, cardsWidth * cards.length, "card-rot-der");
         });
 
-        function scrollContent(scrollUnit) {
+        function scrollContent(scrollUnit, ancho, dir) {
             let error_margin = -35;
+            console.log(scrollAmount);
             if (scrollAmount < 0) {
-                if (scrollAmount == -scrollUnit) { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }
+                if (scrollAmount == -scrollUnit) {
+                    scrollAmount = ancho - content.clientWidth + error_margin;
+                    dir = "card-rot-der";
+                }
                 else { scrollAmount = 0; }
             }
-            if (scrollAmount > content.scrollWidth - content.clientWidth + error_margin) {
-                if (scrollAmount == content.scrollWidth - content.clientWidth + error_margin + scrollUnit) { scrollAmount = 0; }
-                else { scrollAmount = content.scrollWidth - content.clientWidth + error_margin; }
+            if (scrollAmount > ancho - content.clientWidth + error_margin) {
+                if (scrollAmount == ancho - content.clientWidth + error_margin + scrollUnit) {
+                    scrollAmount = 0;
+                    dir = "card-rot-izq";
+                }
+                else { scrollAmount = ancho - content.clientWidth + error_margin; }
             }
             cards.forEach(card => {
                 card.style.transform = `translateX(-${scrollAmount}px)`;
+                card.classList.add(dir);
+                card.addEventListener("animationend", function () {
+                    card.classList.remove(dir);
+                });
             });
         }
     });
