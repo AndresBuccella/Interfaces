@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
 </head>
 
-<body id="login-register">
+<body id="login-register" class="desplegable menu-cerrado">
 
     <header id="navegador-group">
         <nav id="navegador">
@@ -30,7 +30,7 @@
 
             <div id="nav-group2">
                 <img src="../images/iconos/carrito_de_compra.png" alt="Carrito de compra" id="icon-carrito">
-                <a href="#" id="icon-user"><img src="../images/profile-image.jpg" alt="Foto de perfil"></a>
+                <a href="html/login.html" id="icon-user"><img src="../images/profile-image.jpg" alt="Foto de perfil"></a>
             </div>
         </nav>
 
@@ -51,13 +51,10 @@
                 <a href=""><img src="../images/iconos/menu/accion.png" alt="icono de categoria"><span>accion</span></a>
                 <a href=""><img src="../images/iconos/menu/aventuras.png"
                         alt="icono de categoria"><span>aventuras</span></a>
-                <a href=""><img src="../images/iconos/menu/carreras.png"
-                        alt="icono de categoria"><span>carreras</span></a>
+                <a href=""><img src="../images/iconos/menu/carreras.png" alt="icono de categoria"><span>carreras</span></a>
                 <a href=""><img src="../images/iconos/menu/casual.png" alt="icono de categoria"><span>casual</span></a>
-                <a href=""><img src="../images/iconos/menu/deportes.png"
-                        alt="icono de categoria"><span>deportes</span></a>
-                <a href=""><img src="../images/iconos/menu/disparos.png"
-                        alt="icono de categoria"><span>disparos</span></a>
+                <a href=""><img src="../images/iconos/menu/deportes.png" alt="icono de categoria"><span>deportes</span></a>
+                <a href=""><img src="../images/iconos/menu/disparos.png" alt="icono de categoria"><span>disparos</span></a>
                 <a href=""><img src="../images/iconos/menu/multijugador.png"
                         alt="icono de categoria"><span>multijugador</span></a>
             </div>
@@ -68,6 +65,75 @@
                 <a href=""><img src="../images/iconos/twitter.png" alt="icono de categoria"><span>twitter</span></a>
                 <a href=""><img src="../images/iconos/youtube.png" alt="Carrito de compra"><span>youtube</span></a>
             </div>
+        </nav>
+
+        <nav id="menu-carrito">
+            <h3>Mi carrito</h3>
+            <div id="carrito">
+                <div class="card-carrito">
+                    <img src="../images/juegos/force-bullet.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">Force Bullet</p>
+                        <p class="precio">$30</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+                <div class="card-carrito">
+                    <img src="../images/juegos/tower-defense-clash.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">Tower defense clash</p>
+                        <p class="precio">$15</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+                <div class="card-carrito">
+                    <img src="../images/juegos/wrestle-bros.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">Wrestle Bros</p>
+                        <p class="precio">$15</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+                <div class="card-carrito">
+                    <img src="../images/juegos/hightway-racer-2.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">Hightway Racer 2</p>
+                        <p class="precio"><span>$30</span>19.99</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+                <div class="card-carrito">
+                    <img src="../images/juegos/1-v-1-battle.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">1 v 1 battle</p>
+                        <p class="precio">$0</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+                <div class="card-carrito">
+                    <img src="../images/juegos/evowars-io.png" alt="imagen del juego">
+                    <div class="informacion">
+                        <p class="nombre">Evowars io</p>
+                        <p class="precio">$29.99</p>
+                    </div>
+                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
+                        title="Eliminar del carrito">
+                </div>
+            </div>
+            <div id="total">
+                <h3>Total</h3>
+                <p>$109.98</p>
+            </div>
+            <div id="botonera-carrito">
+                <button id="ir-carrito">Ir al carrito</button>
+                <button id="iniciar-compra">Iniciar compra</button>
+            </div>
+            <button id="borrar-carrito">Borrar carrito</button>
         </nav>
     </header>
 

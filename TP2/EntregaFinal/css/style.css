@@ -1021,15 +1021,6 @@ header>.mostrar-menu-carrito {
     backdrop-filter: blur(3px);
 }
 
-.nav-login {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    align-self: center;
-}
-
 #formulario-iniciar-sesion {
     display: flex;
     flex-direction: column;
