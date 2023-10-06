@@ -1545,11 +1545,16 @@ header>.mostrar-menu-carrito {
 }
 
 .descripcion-juego {
-    padding-left: 40px;
-    padding-right: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
     margin-bottom: var(--space-between-sections);
 }
 
+.contenido-juego > p{
+    margin-left: 40px;
+    margin-right: 40px;
+    
+}
 .puntuacion-juego {
     text-align: center;
 }
@@ -1562,6 +1567,7 @@ header>.mostrar-menu-carrito {
 .div-con-imagen-titulo-juego {
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 .div-con-imagen-titulo-juego,
@@ -1581,4 +1587,45 @@ header>.mostrar-menu-carrito {
     margin: 0px 10px 0px 10px;
     justify-content: space-between;
     align-items: center;
+}
+
+#caja-de-comentarios{
+    width: 100%;
+    height: fit-content;
+}
+#tu-comentario{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;
+}
+#tu-comentario > textarea{
+    width: 100%;
+    resize: none;
+    border: 0px;
+    border-radius: 5px;
+    padding: 2px;
+    font-family: var(--font);
+    padding-right: 15%;
+    background-color: #fafafa;
+
+    &:focus{
+        outline: none;
+    }
+}
+#boton-publicar{
+    font-family: var(--font);
+    font-size: var(--font-size-cont);
+    width: 134px;
+    height: 38px;
+    transform: translate(0%, -50%);
+    right: 15px;
+    top: 50%;
+    border-radius: 50px;
+}
+#identificacion-y-comentarios{
+    width: 100%;
+    height: 100px;
+    background-color: var(--p-color-900);
 }
