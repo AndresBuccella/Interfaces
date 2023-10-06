@@ -1807,7 +1807,7 @@ header>.mostrar-menu-carrito {
     }
 
     .card {
-        max-width: var(--card-width);
+        min-width: var(--card-width);
         width: var(--card-width);
     }
 

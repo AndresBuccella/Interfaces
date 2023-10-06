@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function desplegar_menu_categorias() {
         let toggleMenu = document.getElementById("menu-categorias");
         toggleMenu.classList.toggle("mostrar-menu-categorias");
-        if (body) {
+        if (body && window.innerWidth>768) {
             body.classList.toggle("menu-abierto");
             body.classList.toggle("menu-cerrado");
         }
