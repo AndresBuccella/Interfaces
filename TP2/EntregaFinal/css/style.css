@@ -171,9 +171,10 @@ body {
     cursor: pointer;
     width: 44px;
 }
+
 #buscador {
     display: none;
-
+}
 
 /*Menu categoria*/
 #menu-categorias {
@@ -484,12 +485,11 @@ header>.mostrar-menu-carrito {
 #juego-principal {
     position: relative;
     margin-top: var(--nav-size);
-    max-height: 55vh;
 }
 
 #banner {
     overflow: hidden;
-    max-height: 55vh;
+    max-height: 500px;
 }
 
 #banner img {
@@ -559,6 +559,7 @@ header>.mostrar-menu-carrito {
     padding: 0px;
     border: 0px;
     background: none;
+    
 }
 
 /*Carrusel*/
@@ -586,7 +587,6 @@ header>.mostrar-menu-carrito {
 .card-rot-der>.informacion {
     animation: rotacion-y-der 0.5s;
 }
-
 .card-rot-izq>.content,
 .card-rot-izq>.informacion {
     animation: rotacion-y-izq 0.5s;
@@ -952,12 +952,9 @@ header>.mostrar-menu-carrito {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(../images/Sub-Zero_vs_Scorpion.jpg);
     background-position: center;
-    background-image: url(../images/background1-lr.jpg);
-    background-size: cover;
 }
-
-
 
 #formulario-iniciar-sesion {
     display: flex;
