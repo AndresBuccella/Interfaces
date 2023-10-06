@@ -25,9 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function desplegar_menu_carrito() {
         toggleMenu_carrito.classList.toggle("mostrar-menu-carrito");
-        if (toggleMenu_perfil.classList.contains("mostrar-menu-carrito")) {
-            toggleMenu_perfil.classList.toggle("mostrar-menu-carrito");
-        }
+        toggleMenu_perfil.classList.remove("mostrar-menu-carrito");
+
     }
 
     //Menu Perfil de usuario
@@ -39,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function desplegar_menu_perfil() {
         toggleMenu_perfil.classList.toggle("mostrar-menu-carrito");
-        if (toggleMenu_carrito.classList.contains("mostrar-menu-carrito")) {
-            toggleMenu_carrito.classList.toggle("mostrar-menu-carrito");
-        }
+        toggleMenu_carrito.classList.remove("mostrar-menu-carrito");
     }
 })
