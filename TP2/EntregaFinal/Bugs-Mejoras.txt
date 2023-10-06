@@ -2,8 +2,8 @@ v1_El carrousel no funciona en la pagina del juego
 v2_El carrousel en la pagina del juego se ve como mobile
 3_Implementar lo dicho por el profesor.
 v4_Implementar 16:9 en pantalla del juego (tiene 17:10)
-5_Hay un error en la imagen de perfil en el header cuando vas del home al login se aleja o algo raro
-6_Se rompió el carrito. Creo que se actualizó raro el index, a un push viejo
+v5_Hay un error en la imagen de perfil en el header cuando vas del home al login se aleja o algo raro
+v6_Se rompió el carrito. Creo que se actualizó raro el index, a un push viejo
 
 
 
