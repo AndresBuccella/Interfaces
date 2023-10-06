@@ -1532,8 +1532,8 @@ header>.mostrar-menu-carrito {
     align-self: center;
     justify-content: center;
     position: relative;
-    width: calc(16px * 64);
-    height: calc(9px * 64);
+    height: 40vw;
+    width: calc(40vw * 16 / 9);
     background-color: black;
 }
 
@@ -1573,8 +1573,8 @@ header>.mostrar-menu-carrito {
 }
 
 .como-jugar {
-    width: 100%;
-    margin-bottom: var(--space-between-sections);
+    width: auto;
+    margin: 0px 40px var(--space-between-sections) 40px;
 }
 
 #descripcion-como-jugar {}
@@ -1710,8 +1710,8 @@ header>.mostrar-menu-carrito {
 
 .foto-perfil {
     width: 50px;
-    border-radius: 50px;
-
+    height: 50px;
+    border-radius: 50%;
 }
 
 .comentario-y-calificacion {
