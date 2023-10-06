@@ -48,7 +48,7 @@
 
     /*Absolute values*/
     --nav-height: 58px;
-    --search-size: 600px;
+    --search-width: 40%;
     --menu-width: 65px;
     --menu-carrito-width: 400px;
     --menu-perfil-width: 168px;
@@ -659,8 +659,8 @@ header>.mostrar-menu-carrito {
 
 /*--------Carta de los juegos--------*/
 .card {
-    min-width: var(--card-width);
-    width: var(--card-width);
+    min-width: 100%;
+    width: 100%;
     max-width: var(--card-width);
     height: var(--card-height);
     perspective: 700px;
@@ -998,10 +998,12 @@ header>.mostrar-menu-carrito {
     overflow: hidden;
     width: 100%;
 }
-#fat-footer ul{
+
+#fat-footer ul {
     list-style: none;
     text-align: center;
 }
+
 #fat-footer h3 {
     font-size: var(--font-size-h3);
 }
@@ -1015,10 +1017,12 @@ header>.mostrar-menu-carrito {
 #categorias-footer {
     display: none;
 }
-#categorias-footer ul{
+
+#categorias-footer ul {
     list-style: none;
     text-align: center;
 }
+
 #links-sitio-footer {
     display: flex;
     flex-direction: column;
@@ -1757,7 +1761,7 @@ header>.mostrar-menu-carrito {
     #buscador {
         display: flex;
         position: relative;
-        width: var(--search-size);
+        width: var(--search-width);
         height: 38px;
         align-items: center;
     }
@@ -1802,6 +1806,11 @@ header>.mostrar-menu-carrito {
         opacity: 1;
     }
 
+    .card {
+        max-width: var(--card-width);
+        width: var(--card-width);
+    }
+
     /*---------------FOOTER--------------*/
     #fat-footer {
         background: var(--d-footer);
@@ -1834,15 +1843,18 @@ header>.mostrar-menu-carrito {
         justify-content: space-around;
         padding-bottom: 3.5%;
     }
-    #redes-footer, #demas-links-footer{
+
+    #redes-footer,
+    #demas-links-footer {
         display: block;
     }
 
-    #redes-footer>div{
+    #redes-footer>div {
         display: flex;
         justify-content: space-around;
         gap: 7px;
     }
+
     #redes-footer>div>a {
         display: inline-block;
         padding: 0px;
