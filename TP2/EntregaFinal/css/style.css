@@ -911,7 +911,10 @@ header>.mostrar-menu-carrito {
     overflow: hidden;
     width: 100%;
 }
-
+#fat-footer ul{
+    list-style: none;
+    text-align: center;
+}
 #fat-footer h3 {
     font-size: var(--font-size-h3);
 }
@@ -925,13 +928,17 @@ header>.mostrar-menu-carrito {
 #categorias-footer{
     display: none;
 }
+#categorias-footer ul{
+    list-style: none;
+    text-align: center;
+}
 #links-sitio-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#nosotros-footer {
+#redes-footer {
     display: none;
 }
 
@@ -1715,20 +1722,22 @@ header>.mostrar-menu-carrito {
         align-items: center;
     }
 
-    #nosotros-footer {
-        display: block;
-        max-width: 350px;
-        text-align: center;
-    }
 
     #grupo-grande-footer {
         display: flex;
         justify-content: space-around;
-        padding-top: 129px;
         padding-bottom: 3.5%;
     }
+    #redes-footer, #demas-links-footer{
+        display: block;
+    }
 
-    #nuestras-redes-footer>a {
+    #redes-footer>div{
+        display: flex;
+        justify-content: space-around;
+        gap: 7px;
+    }
+    #redes-footer>div>a {
         display: inline-block;
         padding: 0px;
         width: 32px;
@@ -1737,7 +1746,7 @@ header>.mostrar-menu-carrito {
         padding-right: 1%;
     }
 
-    #nuestras-redes-footer>a>img {
+    #redes-footer>div>a>img {
         width: 32px;
         height: 32px;
         transform: translateY(-1000px);
