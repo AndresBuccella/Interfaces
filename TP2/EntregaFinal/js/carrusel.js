@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <img src="${imagen}" alt="imagen del juego.jpeg">
                 <div class="carrito none"> <img src="${ubicacionCarrito}" alt=""></div>
                 <div class="informacion">
-                <p class="nombre-juego">'${nombre}</p>
+                <p class="nombre-juego">${nombre}</p>
                 <div class="categorias-y-boton">
                 <ul class="categorias">`;
             generos.forEach(genero => {
