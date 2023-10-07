@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    //CAOS
+    //---------------------CAOS
 
     //Validacion de registro
     let btn_registro = document.querySelector("#registrarse"); //Boton de registro
@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     form_regist.querySelector("#correo").addEventListener("input", function () { form_validate("correo"); });
     form_regist.querySelector("#contraseña").addEventListener("input", validate_password);
     form_regist.querySelector("#rep-contraseña").addEventListener("input", confirm_password);
+    form_regist.querySelector("#captcha").addEventListener("input", function () { form_validate_checkbox("captcha"); });
+    form_regist.querySelector("#terminos").addEventListener("input", function () { form_validate_checkbox("terminos"); });
 
     const loader = document.querySelectorAll('.btn-registrarse .loader')[1]; //Loader del registro solo
 
@@ -55,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!form_validate("apellido")) status = false;
         if (!form_validate("edad")) status = false;
         if (!form_validate("correo")) status = false;
+        if (!form_validate_checkbox("captcha")) status = false;
+        if (!form_validate_checkbox("terminos")) status = false;
         if (!validate_password()) status = false;
         if (!confirm_password()) status = false;
     }
@@ -72,6 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
             divTemporal.innerHTML = form_error_message(["Falta completar el campo"], [0]);
             input.parentNode.appendChild(divTemporal.querySelector(".form-error"));
         } else reset_form_status(input);
+        return status
+    }
+    function form_validate_checkbox(id) {
+        let input = document.querySelector("#" + id);
+        let status = input.checked;
+        if (status) {
+            input.style.boxShadow = " inset 0 0 4px var(--n-notificacion-color-ok)";
+        } else input.style.boxShadow = "inset 0 0 4px var(--n-notificacion-color-not-ok)";
         return status
     }
 
