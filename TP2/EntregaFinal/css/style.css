@@ -52,7 +52,7 @@
     --menu-width: 65px;
     --menu-carrito-width: 400px;
     --menu-perfil-width: 168px;
-    --menu-perfil-height: 270px;
+    --menu-perfil-height: 300px;
     --space-between-card: 36px;
     --card-width: 336px;
     --card-height: 234px;
@@ -533,16 +533,46 @@ header>.mostrar-menu-carrito {
 }
 
 #menu-perfil #opciones a {
+    position: relative;
     text-decoration: none;
     color: #1b1b1b;
 }
 
+#menu-perfil #opciones a span,
+#menu-perfil #cerrar span {
+    position: absolute;
+    border-bottom: 1px solid black;
+    bottom: 3px;
+    left: 50%;
+    width: 0px;
+    transition: width 0.5s, left 0.5s;
+}
+
+#menu-perfil #opciones a:hover span {
+    width: 100%;
+    left: 0px;
+}
+
 #menu-perfil #cerrar {
+    position: relative;
     height: 100%;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #1b1b1b;
+}
+
+#menu-perfil #cerrar span {
+    border-top: 1px solid black;
+    height: 1rem;
+    transform: translate(0%, 50%);
+    bottom: 50%;
+    transition: width 0.5s, left 0.5s;
+}
+
+#menu-perfil #cerrar:hover span {
+    width: 100%;
+    left: 0px;
 }
 
 /*-------------------Loading-------------------*/
@@ -1395,30 +1425,53 @@ header>.mostrar-menu-carrito {
 }
 
 .estrellas {
-
     display: flex;
-    flex-direction: row-reverse;
+    align-items: center;
+}
 
-    &>* {
-        margin-left: 3px;
-    }
+.estrellas .estrella,
+.estrellas .estrella:hover~.estrella {
+    fill: transparent;
+    transform: rotate(0deg);
+    transition: fill 200ms, transform 200ms;
+    transition-delay: 0s;
+}
 
-    &>.estrella {
-        width: 25px;
-        /*me parece muy chico los 19px que tenemos en figma, no sé que te parece*/
-        fill: transparent;
-        cursor: pointer;
-        transition: fill 0.15s ease;
-    }
+.estrellas:hover .estrella {
+    fill: var(--a-color-600);
+    transform: rotate(360deg);
+}
 
-    &>.estrella:hover {
-        fill: var(--a-color-600);
-    }
+.estrellas:hover .estrella:nth-child(2) {
+    transition-delay: 30ms;
+}
 
-    &>.estrella:hover~.estrella {
-        fill: var(--a-color-600);
+.estrellas:hover .estrella:nth-child(3) {
+    transition-delay: 60ms;
+}
 
-    }
+.estrellas:hover .estrella:nth-child(4) {
+    transition-delay: 90ms;
+}
+
+.estrellas:hover .estrella:nth-child(5) {
+    transition-delay: 120ms;
+}
+
+.estrellas .estrella {
+    width: 25px;
+    fill: transparent;
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+.estrellas span {
+    margin-left: 6px;
+}
+
+.estrella-activa {
+    fill: var(--a-color-600) !important;
+    transform: rotate(360deg) !important;
 }
 
 .caja-meGusta-noMeGusta {
@@ -1440,7 +1493,8 @@ header>.mostrar-menu-carrito {
         width: 25px;
         stroke: var(--p-color-900);
         cursor: pointer;
-        transition: fill 0.3s ease;
+        fill: rgba(255, 255, 255, 0);
+        transition: fill 0.3s ease, transform 0.3s ease;
     }
 
     &>.icono-me-gusta>path,
@@ -1449,12 +1503,13 @@ header>.mostrar-menu-carrito {
     }
 
     &>.icono-me-gusta:hover {
-        /*no funciona ninguno de los dos hover y no veo por qué*/
-        fill: var(--a-color-600)
+        fill: var(--a-color-600);
+        transform: translateY(-5px) translatex(-5px) rotate(-20deg);
     }
 
     &>.icono-no-me-gusta:hover {
         fill: var(--s-color-500);
+        transform: translateY(5px) rotate(20deg);
     }
 
 }
@@ -1576,8 +1631,6 @@ header>.mostrar-menu-carrito {
     width: auto;
     margin: 0px 40px var(--space-between-sections) 40px;
 }
-
-#descripcion-como-jugar {}
 
 .publicidad {
     display: flex;
@@ -1757,14 +1810,18 @@ header>.mostrar-menu-carrito {
     width: 35px;
     padding-right: 5px;
     cursor: pointer;
+    fill: rgba(255, 255, 255, 0);
+    transition: fill 0.3s ease, transform 0.3s ease;
 }
 
 .like-comentario:hover {
+    transform: translateY(-5px) translatex(-5px) rotate(-20deg);
     fill: var(--a-color-600);
 }
 
 .dislike-comentario:hover {
     fill: var(--s-color-500);
+    transform: translateY(5px) rotate(20deg);
 }
 
 @media only screen and (min-width:768px) {
