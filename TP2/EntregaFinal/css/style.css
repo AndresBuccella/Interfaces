@@ -49,7 +49,7 @@
     /*Absolute values*/
     --nav-height: 58px;
     --search-width: 40%;
-    --menu-categoria-width:214px;
+    --menu-categoria-width: 214px;
     --menu-categoria-width-minimized: 65px;
     --menu-carrito-width: 400px;
     --menu-perfil-width: 168px;
@@ -182,7 +182,7 @@ body {
 #menu-categorias {
     position: fixed;
     width: var(--menu-categoria-width);
-    height: calc(100%  - var(--nav-height));
+    height: calc(100% - var(--nav-height));
     bottom: 0;
     z-index: 1000;
     background-color: var(--p-color-700);
@@ -282,7 +282,7 @@ header>.mostrar-menu-categorias {
     align-items: center;
     position: fixed;
     width: var(--menu-carrito-width);
-    height: calc(100%  - var(--nav-height));
+    height: calc(100% - var(--nav-height));
     bottom: 0;
     right: 0;
     z-index: 999;
@@ -584,7 +584,9 @@ header>.mostrar-menu-carrito {
 
 /*-------------------Loading-------------------*/
 #loading {
-    display: none;
+    --img-width: 50%;
+    --img-width-max: 500px;
+    display: flex;
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -592,12 +594,10 @@ header>.mostrar-menu-carrito {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1001;
+    z-index: 9999;
     background-color: var(--p-color-100);
-    animation: desaparecer 0.5s forwards;
-    color: var(--p-color-900);
-    font-size: var(--font-size-h1);
-    animation-delay: 0.5s;
+    /* animation: desaparecer 0.5s forwards; */
+    animation-delay: 5s;
 }
 
 @keyframes desaparecer {
@@ -606,7 +606,215 @@ header>.mostrar-menu-carrito {
     }
 }
 
-/*Cartelera principal*/
+#loading img {
+    width: var(--img-width);
+    max-width: var(--img-width-max);
+}
+
+#pacman {
+    --pacman-size: min(5.7vw, 50px);
+    position: fixed;
+    width: var(--pacman-size);
+    height: var(--pacman-size);
+    animation: pacman-move 5s linear infinite;
+}
+
+@keyframes pacman-move {
+    0% {
+        transform: translate(0px, 0px) scaleX(-1) rotate(25deg);
+        z-index: -1;
+    }
+
+    24% {
+        transform: translate(-260px, 120px) scaleX(-1) rotate(25deg);
+        z-index: -1;
+    }
+
+    26% {
+        transform: translate(-260px, 120px) scaleX(1) rotate(25deg);
+        z-index: 0;
+    }
+
+    48% {
+        transform: translate(-5px, 230px) scaleX(1) rotate(25deg);
+    }
+
+    52% {
+        transform: translate(5px, 230px) scaleX(1) rotate(-25deg);
+    }
+
+    74% {
+        transform: translate(260px, 120px) scaleX(1) rotate(-25deg);
+        z-index: 0;
+    }
+
+    76% {
+        transform: translate(260px, 120px) scaleX(-1) rotate(-25deg);
+        z-index: -1;
+    }
+
+    100% {
+        transform: translate(-0px, 0px) scaleX(-1) rotate(-25deg);
+        z-index: -1;
+    }
+}
+
+#pacman-t,
+#pacman-b {
+    background-color: yellow;
+    width: var(--pacman-size);
+    height: calc(var(--pacman-size) / 2);
+    filter: drop-shadow(2px 0px 4px yellow);
+}
+
+#pacman-t {
+    transform-origin: center bottom;
+    border-radius: calc(var(--pacman-size) / 2) calc(var(--pacman-size) / 2) 0 0;
+    animation: open-pacman-t 0.5s linear infinite;
+}
+
+@keyframes open-pacman-t {
+    0% {
+
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+
+        transform: rotateZ(-30deg);
+    }
+
+    100% {
+
+        transform: rotateZ(0deg);
+    }
+}
+
+#pacman-b {
+    transform-origin: center top;
+    border-radius: 0 0 calc(var(--pacman-size) / 2) calc(var(--pacman-size) / 2);
+    animation: open-pacman-b 0.5s linear infinite;
+}
+
+@keyframes open-pacman-b {
+    0% {
+
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+
+        transform: rotateZ(30deg);
+    }
+
+    100% {
+
+        transform: rotateZ(0deg);
+    }
+}
+
+#pacman-ojo {
+    position: absolute;
+    top: 10%;
+    right: 27%;
+    background-color: black;
+    width: 18%;
+    height: 18%;
+    border-radius: 50%;
+}
+
+
+.pacman-ghost {
+    z-index: -1;
+    position: fixed;
+    --ghost-width: min(5.7vw, 40px);
+    --ghost-height: calc(var(--ghost-width) + 10px);
+    width: var(--ghost-width);
+    height: var(--ghost-height);
+    overflow: hidden;
+    animation: pacman-move 5s linear infinite;
+}
+
+.pacman-ghost:nth-child(3) {
+    filter: drop-shadow(0 0 4px red);
+    animation-delay: 0.5s;
+}
+
+.pacman-ghost:nth-child(4) {
+    filter: hue-rotate(225deg) saturate(50) drop-shadow(0 0 4px cyan);
+    animation-delay: 0.9s;
+}
+
+.pacman-ghost:nth-child(5) {
+    filter: hue-rotate(300deg) drop-shadow(0 0 4px rgb(255, 0, 255));
+    animation-delay: 1.3s;
+}
+
+.pacman-ghost:nth-child(6) {
+    filter: hue-rotate(70deg) saturate(30) drop-shadow(0 0 4px yellow);
+    animation-delay: 1.7s;
+}
+
+.pacman-ghost-head {
+    position: relative;
+    width: var(--ghost-width);
+    height: var(--ghost-width);
+    border-radius: calc(var(--ghost-width) / 2) calc(var(--ghost-width) / 2) 0 0;
+    background-color: red;
+}
+
+.pacman-ghost-ojo {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-color: white;
+    top: 36%;
+}
+
+.pacman-ghost-ojo div {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.pacman-ghost-ojo:nth-child(1) {
+    left: 10%;
+}
+
+.pacman-ghost-ojo:nth-child(2) {
+    right: 10%;
+}
+
+.pacman-ghost-b {
+    display: flex;
+    width: var(--ghost-width);
+    height: calc(var(--ghost-height) - var(--ghost-width));
+}
+
+.pacman-ghost-b div {
+    min-width: calc(var(--ghost-height) - var(--ghost-width));
+    height: calc(var(--ghost-height) - var(--ghost-width));
+    background-color: red;
+    border-radius: 0 0 50% 50%;
+    animation: pacman-ghost-b 0.5s linear infinite;
+}
+
+@keyframes pacman-ghost-b {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc((var(--ghost-height) - var(--ghost-width)) * -1));
+    }
+}
+
+/*-----------Cartelera principal-----------*/
 #juego-principal {
     position: relative;
     margin-top: var(--nav-height);
