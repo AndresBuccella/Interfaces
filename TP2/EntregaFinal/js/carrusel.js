@@ -212,6 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             cards.forEach(card => {
                 card.style.transform = `translateX(-${scrollAmount}px)`;
+                card.classList.remove("card-rot-der");
+                card.classList.remove("card-rot-izq");
+                card.offsetWidth; //Truco para reiniciar animacion por CHATGPT
                 card.classList.add(dir);
                 card.addEventListener("animationend", function () {
                     card.classList.remove(dir);
