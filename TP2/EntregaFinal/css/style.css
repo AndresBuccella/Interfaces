@@ -49,7 +49,8 @@
     /*Absolute values*/
     --nav-height: 58px;
     --search-width: 40%;
-    --menu-width: 65px;
+    --menu-categoria-width:214px;
+    --menu-categoria-width-minimized: 65px;
     --menu-carrito-width: 400px;
     --menu-perfil-width: 168px;
     --menu-perfil-height: 300px;
@@ -180,22 +181,17 @@ body {
 /*Menu categoria*/
 #menu-categorias {
     position: fixed;
-    width: var(--menu-width);
-    height: calc(100vh - var(--nav-height));
+    width: var(--menu-categoria-width);
+    height: calc(100%  - var(--nav-height));
     bottom: 0;
     z-index: 1000;
     background-color: var(--p-color-700);
     overflow: scroll;
     padding: 0px;
-    transform: translateX(calc(var(--menu-width) * -1));
+    transform: translateX(calc(var(--menu-categoria-width) * -1));
     overflow-x: hidden;
     transition: transform 0.2s, width 0.2s;
 }
-
-#menu-categorias:hover {
-    width: 214px;
-}
-
 
 header>.mostrar-menu-categorias {
     transform: translateX(0) !important;
@@ -224,7 +220,7 @@ header>.mostrar-menu-categorias {
 
 #menu-categorias>div,
 #menu-categorias>div>a {
-    width: var(--menu-width);
+    width: var(--menu-categoria-width-minimized);
     height: auto;
 }
 
@@ -255,7 +251,7 @@ header>.mostrar-menu-categorias {
 
 #menu-categorias span {
     position: absolute;
-    left: var(--menu-width);
+    left: var(--menu-categoria-width-minimized);
     width: 145px;
     font-size: var(--font-size-h3);
     text-transform: capitalize;
@@ -266,12 +262,12 @@ header>.mostrar-menu-categorias {
 }
 
 #menu-categorias>div>a:hover>span {
-    left: calc(var(--menu-width) + 4px);
+    left: calc(var(--menu-categoria-width-minimized) + 4px);
 }
 
 .menu-abierto {
     transition: all 0.2s;
-    padding-left: var(--menu-width);
+    padding-left: var(--menu-categoria-width-minimized);
 }
 
 .menu-cerrado {
@@ -286,7 +282,7 @@ header>.mostrar-menu-categorias {
     align-items: center;
     position: fixed;
     width: var(--menu-carrito-width);
-    height: calc(100vh - var(--nav-height));
+    height: calc(100%  - var(--nav-height));
     bottom: 0;
     right: 0;
     z-index: 999;
@@ -1965,6 +1961,17 @@ header>.mostrar-menu-carrito {
 
     #buscador input:focus {
         outline: none;
+    }
+
+
+    /*Menu categoria*/
+    #menu-categorias {
+        width: var(--menu-categoria-width-minimized);
+        transform: translateX(calc(var(--menu-categoria-width-minimized) * -1));
+    }
+
+    #menu-categorias:hover {
+        width: 214px;
     }
 
     /*Botones del carrusel izq y der*/
