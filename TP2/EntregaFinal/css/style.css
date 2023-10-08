@@ -2255,9 +2255,12 @@ header>.mostrar-menu-carrito {
     width: 100%;
     height: fit-content;
     margin-left: 90px;
+    padding: 0px 40px 0px 2px;
+    margin-bottom: 5px;
+    border-left: 1px solid var(--p-color-900);
 }
 .puntero-a-comentario{
-    width: 46px;
+    width: 49px;
     height: 18px;
     left: 40px;
     top: 55px;
@@ -2266,15 +2269,12 @@ header>.mostrar-menu-carrito {
     border-bottom: 1px solid var(--p-color-900);
 }
 .fecha-comentario {
-    position: absolute;
-    right: 15px;
-    top: -10PX;
     color: hsla(0, 0%, 98%, 0.534);
+    margin-left: 15px;
 }
 
 .calificacion-comentario {
     display: flex;
-    align-self: center;
     height: fit-content;
 }
 
