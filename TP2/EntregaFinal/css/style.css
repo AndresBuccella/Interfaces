@@ -1519,10 +1519,11 @@ header>.mostrar-menu-carrito {
 }
 
 #contraseña::-ms-reveal,
-#contraseña::-ms-clear{
+#contraseña::-ms-clear {
     display: none;
     fill: black;
 }
+
 .inputBox,
 .terminosYCondiciones {
     position: relative;
@@ -2034,23 +2035,30 @@ header>.mostrar-menu-carrito {
     width: calc(100% - var(--width-banner-publicidad) - 32px);
 }
 
-#banner-compartir-juego{
+#banner-compartir-juego {
     display: flex;
     align-self: center;
-    height: 100%;
     width: calc(40vw * 16 / 9);
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 0 0 5px 5px;
 }
-#banner-compartir-juego svg{
+
+#banner-compartir-juego svg {
     cursor: pointer;
 }
-#help, #compartir-redes{
+
+#banner-compartir-juego a{
+    text-decoration: none;
+}
+
+#help,
+#compartir-redes {
     height: fit-content;
     padding: 5px;
 }
+
 #pantalla-juego {
     display: flex;
     align-self: center;
@@ -2165,7 +2173,7 @@ header>.mostrar-menu-carrito {
     height: fit-content;
 }
 
-#caja-de-comentarios hr{
+#caja-de-comentarios hr {
     width: 100%;
     height: 1px;
     background-color: var(--p-color-900);
@@ -2246,6 +2254,7 @@ header>.mostrar-menu-carrito {
 
 
 .comentario {
+    position: relative;
     color: var(--p-color-900);
     width: calc(100% - 90px);
     height: fit-content;
@@ -2255,7 +2264,24 @@ header>.mostrar-menu-carrito {
     padding: 0px 40px 0px 2px;
     border-left: 1px solid var(--p-color-900);
 }
-.puntero-a-comentario{
+
+.comentario span:nth-child(1),
+.comentario span:nth-child(2) {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 1px;
+    background-color: var(--p-color-900);
+}
+.comentario span:nth-child(1){
+    top: 0;
+}
+.comentario span:nth-child(2) {
+    bottom: 0;
+}
+
+.puntero-a-comentario {
     width: 49px;
     height: 13px;
     left: 40px;
@@ -2264,6 +2290,7 @@ header>.mostrar-menu-carrito {
     border-left: 1px solid var(--p-color-900);
     border-bottom: 1px solid var(--p-color-900);
 }
+
 .fecha-comentario {
     color: hsla(0, 0%, 98%, 0.534);
     margin-left: 15px;
