@@ -4,7 +4,7 @@ v2_El carrousel en la pagina del juego se ve como mobile
 v4_Implementar 16:9 en pantalla del juego (tiene 17:10)
 v5_Hay un error en la imagen de perfil en el header cuando vas del home al login se aleja o algo raro
 v6_Se rompió el carrito. Creo que se actualizó raro el index, a un push viejo
-
+7_Acomodar seccion de comentarios
 
 
 
