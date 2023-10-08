@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#formulario-iniciar-sesion").classList.toggle("none");
     }
 
-
-    //---------------------CAOS
-
     //Validacion de registro
     let btn_registro = document.querySelector("#registrarse"); //Boton de registro
     let status; //Variable resultado de validacion
