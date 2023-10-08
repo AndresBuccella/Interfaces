@@ -1008,7 +1008,7 @@ header>.mostrar-menu-carrito {
     box-shadow: none;
 }
 
-/*------------------------CATEGORIAS Y CARROUSEL------------------------*/
+/*------------------------CATEGORIAS Y CARRUSEL------------------------*/
 /*Nombre de la categoria*/
 .titulo-categoria {
     display: flex;
@@ -1054,7 +1054,6 @@ header>.mostrar-menu-carrito {
 .carrusel {
     display: flex;
     width: calc(100% - 35px * 2 - 8px);
-    margin: 0px 4px;
     z-index: 1;
     overflow-x: clip;
 }
