@@ -1,710 +1,897 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamesitos</title>
-    <link rel="icon" href="../images/iconos/emoji-joystick.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamesitos</title>
+        <link rel="icon" href="../images/iconos/emoji-joystick.png"
+            type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body class="desplegable menu-cerrado">
-    <header id="navegador-group">
-        <nav id="navegador">
-            <div id="nav-group1">
-                <div id="menu-button">
-                    <img src="../images/iconos/menu.png" alt="Icono de menu">
+    <body class="desplegable menu-cerrado">
+        <header id="navegador-group">
+            <nav id="navegador">
+                <div id="nav-group1">
+                    <div id="menu-button">
+                        <img src="../images/iconos/menu.png" alt="Icono de menu">
+                    </div>
+                    <div id="title">
+                        <a href="../index.html"><img
+                                src="../images/iconos/emoji-joystick.png"
+                                alt="Icono de la pagina"
+                                disabled>Gamesitos</a>
+                    </div>
                 </div>
-                <div id="title">
-                    <a href="../index.html"><img src="../images/iconos/emoji-joystick.png" alt="Icono de la pagina"
-                            disabled>Gamesitos</a>
+                <div id="buscador">
+                    <input type="text" name id="search" placeholder="Buscar...">
+                    <a href><img src="../images/iconos/icon _search.png"
+                            alt="Icono de búsqueda"></a>
                 </div>
-            </div>
-            <div id="buscador">
-                <input type="text" name="" id="search" placeholder="Buscar...">
-                <a href=""><img src="../images/iconos/icon _search.png" alt="Icono de búsqueda"></a>
-            </div>
 
-            <div id="nav-group2">
-                <img src="../images/iconos/carrito_de_compra.png" alt="Carrito de compra" id="icon-carrito">
-                <button id="icon-user"><img src="../images/profile-image.jpg" alt="Foto de perfil"></button>
-            </div>
-        </nav>
+                <div id="nav-group2">
+                    <img src="../images/iconos/carrito_de_compra.png"
+                        alt="Carrito de compra" id="icon-carrito">
+                    <button id="icon-user"><img
+                            src="../images/profile-image.jpg"
+                            alt="Foto de perfil"></button>
+                </div>
+            </nav>
 
-        <nav id="menu-categorias">
-            <div id="filtros">
-                <a href=""><img src="../images/iconos/menu/populares.png"
-                        alt="Carrito de compra"><span>Populares</span></a>
-                <a href=""><img src="../images/iconos/menu/recientes.png"
-                        alt="Carrito de compra"><span>recientes</span></a>
-                <a href=""><img src="../images/iconos/menu/nuevos.png" alt="Carrito de compra"><span>nuevos</span></a>
-                <a href=""><img src="../images/iconos/menu/tendencias.png"
-                        alt="Carrito de compra"><span>tendencias</span></a>
-                <a href=""><img src="../images/iconos/menu/actualizados.png"
-                        alt="Carrito de compra"><span>actualizados</span></a>
-            </div>
-            <hr>
-            <div id="categorias">
-                <a href=""><img src="../images/iconos/menu/accion.png" alt="icono de categoria"><span>accion</span></a>
-                <a href=""><img src="../images/iconos/menu/aventuras.png"
-                        alt="icono de categoria"><span>aventuras</span></a>
-                <a href=""><img src="../images/iconos/menu/carreras.png"
-                        alt="icono de categoria"><span>carreras</span></a>
-                <a href=""><img src="../images/iconos/menu/casual.png" alt="icono de categoria"><span>casual</span></a>
-                <a href=""><img src="../images/iconos/menu/deportes.png"
-                        alt="icono de categoria"><span>deportes</span></a>
-                <a href=""><img src="../images/iconos/menu/disparos.png"
-                        alt="icono de categoria"><span>disparos</span></a>
-                <a href=""><img src="../images/iconos/menu/multijugador.png"
-                        alt="icono de categoria"><span>multijugador</span></a>
-            </div>
-            <hr>
-            <div id="contactos">
-                <a href=""><img src="../images/iconos/facebook.png" alt="icono de categoria"><span>facebook</span></a>
-                <a href=""><img src="../images/iconos/instagram.png" alt="icono de categoria"><span>instagram</span></a>
-                <a href=""><img src="../images/iconos/twitter.png" alt="icono de categoria"><span>twitter</span></a>
-                <a href=""><img src="../images/iconos/youtube.png" alt="Carrito de compra"><span>youtube</span></a>
-            </div>
-        </nav>
+            <nav id="menu-categorias">
+                <div id="filtros">
+                    <a href><img src="../images/iconos/menu/populares.png"
+                            alt="Carrito de compra"><span>Populares</span></a>
+                    <a href><img src="../images/iconos/menu/recientes.png"
+                            alt="Carrito de compra"><span>recientes</span></a>
+                    <a href><img src="../images/iconos/menu/nuevos.png"
+                            alt="Carrito de compra"><span>nuevos</span></a>
+                    <a href><img src="../images/iconos/menu/tendencias.png"
+                            alt="Carrito de compra"><span>tendencias</span></a>
+                    <a href><img src="../images/iconos/menu/actualizados.png"
+                            alt="Carrito de compra"><span>actualizados</span></a>
+                </div>
+                <hr>
+                <div id="categorias">
+                    <a href><img src="../images/iconos/menu/accion.png"
+                            alt="icono de categoria"><span>accion</span></a>
+                    <a href><img src="../images/iconos/menu/aventuras.png"
+                            alt="icono de categoria"><span>aventuras</span></a>
+                    <a href><img src="../images/iconos/menu/carreras.png"
+                            alt="icono de categoria"><span>carreras</span></a>
+                    <a href><img src="../images/iconos/menu/casual.png"
+                            alt="icono de categoria"><span>casual</span></a>
+                    <a href><img src="../images/iconos/menu/deportes.png"
+                            alt="icono de categoria"><span>deportes</span></a>
+                    <a href><img src="../images/iconos/menu/disparos.png"
+                            alt="icono de categoria"><span>disparos</span></a>
+                    <a href><img src="../images/iconos/menu/multijugador.png"
+                            alt="icono de categoria"><span>multijugador</span></a>
+                </div>
+                <hr>
+                <div id="contactos">
+                    <a href><img src="../images/iconos/facebook.png"
+                            alt="icono de categoria"><span>facebook</span></a>
+                    <a href><img src="../images/iconos/instagram.png"
+                            alt="icono de categoria"><span>instagram</span></a>
+                    <a href><img src="../images/iconos/twitter.png"
+                            alt="icono de categoria"><span>twitter</span></a>
+                    <a href><img src="../images/iconos/youtube.png"
+                            alt="Carrito de compra"><span>youtube</span></a>
+                </div>
+            </nav>
 
-        <nav id="menu-carrito">
-            <h3>Mi carrito</h3>
-            <div id="carrito">
-                <div class="card-carrito">
-                    <img src="../images/juegos/force-bullet.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">Force Bullet</p>
-                        <p class="precio">$30</p>
+            <nav id="menu-carrito">
+                <h3>Mi carrito</h3>
+                <div id="carrito">
+                    <div class="card-carrito">
+                        <img src="../images/juegos/force-bullet.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">Force Bullet</p>
+                            <p class="precio">$30</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
-                </div>
-                <div class="card-carrito">
-                    <img src="../images/juegos/tower-defense-clash.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">Tower defense clash</p>
-                        <p class="precio">$15</p>
+                    <div class="card-carrito">
+                        <img src="../images/juegos/tower-defense-clash.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">Tower defense clash</p>
+                            <p class="precio">$15</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
-                </div>
-                <div class="card-carrito">
-                    <img src="../images/juegos/wrestle-bros.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">Wrestle Bros</p>
-                        <p class="precio">$15</p>
+                    <div class="card-carrito">
+                        <img src="../images/juegos/wrestle-bros.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">Wrestle Bros</p>
+                            <p class="precio">$15</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
-                </div>
-                <div class="card-carrito">
-                    <img src="../images/juegos/highway-racer-2.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">Highway Racer 2</p>
-                        <p class="precio"><span>$30</span>19.99</p>
+                    <div class="card-carrito">
+                        <img src="../images/juegos/highway-racer-2.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">Highway Racer 2</p>
+                            <p class="precio"><span>$30</span>19.99</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
-                </div>
-                <div class="card-carrito">
-                    <img src="../images/juegos/1-v-1-battle.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">1 v 1 battle</p>
-                        <p class="precio">$0</p>
+                    <div class="card-carrito">
+                        <img src="../images/juegos/1-v-1-battle.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">1 v 1 battle</p>
+                            <p class="precio">$0</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
-                </div>
-                <div class="card-carrito">
-                    <img src="../images/juegos/evowars-io.png" alt="imagen del juego">
-                    <div class="informacion">
-                        <p class="nombre">Evowars io</p>
-                        <p class="precio">$29.99</p>
+                    <div class="card-carrito">
+                        <img src="../images/juegos/evowars-io.png"
+                            alt="imagen del juego">
+                        <div class="informacion">
+                            <p class="nombre">Evowars io</p>
+                            <p class="precio">$29.99</p>
+                        </div>
+                        <img src="../images/iconos/eliminar.png"
+                            alt="imagen del juego" class="eliminar"
+                            title="Eliminar del carrito">
                     </div>
-                    <img src="../images/iconos/eliminar.png" alt="imagen del juego" class="eliminar"
-                        title="Eliminar del carrito">
                 </div>
-            </div>
-            <div id="total">
-                <h3>Total</h3>
-                <p>$109.98</p>
-            </div>
-            <div id="botonera-carrito">
-                <button id="ir-carrito">Ir al carrito</button>
-                <button id="iniciar-compra">Iniciar compra</button>
-            </div>
-            <button id="borrar-carrito">Borrar carrito</button>
-        </nav>
-        <nav id="menu-perfil">
-            <p id="correo-perfil">raiden@yahoo.com</p>
-            <button id="foto-perfil">
-                <img src="../images/profile-image.jpg" alt="foto de perfil">
-                <div>
-                    <svg width="44" height="40" viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M22 28.3334C25.4519 28.3334 28.25 25.5352 28.25 22.0834C28.25 18.6315 25.4519 15.8334 22 15.8334C18.5481 15.8334 15.75 18.6315 15.75 22.0834C15.75 25.5352 18.5481 28.3334 22 28.3334Z"
-                            fill="white" fill-opacity="0.5" stroke="black" stroke-width="5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M3.25 30V14.1667C3.25 11.8332 3.25 10.6664 3.70415 9.77508C4.1036 8.99106 4.74102 8.35364 5.52504 7.95419C6.41633 7.50004 7.58312 7.50004 9.91667 7.50004H12.1138C12.37 7.50004 12.498 7.50004 12.6162 7.4865C13.2326 7.4159 13.7855 7.07419 14.1244 6.55439C14.1893 6.45477 14.2466 6.34021 14.3611 6.11115C14.5902 5.653 14.7047 5.42392 14.8346 5.22467C15.5123 4.18508 16.6181 3.50167 17.851 3.36044C18.0873 3.33337 18.3433 3.33337 18.8556 3.33337H25.1444C25.6567 3.33337 25.9127 3.33337 26.149 3.36044C27.3819 3.50167 28.4877 4.18508 29.1654 5.22467C29.2952 5.4239 29.4098 5.65306 29.639 6.11115C29.7533 6.34023 29.8106 6.45477 29.8756 6.55439C30.2146 7.07419 30.7673 7.4159 31.3837 7.4865C31.5021 7.50004 31.63 7.50004 31.8862 7.50004H34.0833C36.4169 7.50004 37.5838 7.50004 38.475 7.95419C39.259 8.35364 39.8965 8.99106 40.2958 9.77508C40.75 10.6664 40.75 11.8332 40.75 14.1667V30C40.75 32.3336 40.75 33.5005 40.2958 34.3917C39.8965 35.1757 39.259 35.8132 38.475 36.2125C37.5838 36.6667 36.4169 36.6667 34.0833 36.6667H9.91667C7.58312 36.6667 6.41633 36.6667 5.52504 36.2125C4.74102 35.8132 4.1036 35.1757 3.70415 34.3917C3.25 33.5005 3.25 32.3336 3.25 30Z"
-                            fill="white" fill-opacity="0.5" stroke="black" stroke-opacity="0.5" stroke-width="5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                <div id="total">
+                    <h3>Total</h3>
+                    <p>$109.98</p>
                 </div>
-            </button>
-            <p id="nombre-perfil">¡Hola, Raiden!</p>
-            <div id="opciones-perfil">
-                <a href="">Mi Perfil<span></span></a>
-                <a href="">Mi carrito<span></span></a>
-                <a href="">Biblioteca<span></span></a>
-                <a href="">Enviar comentarios<span></span></a>
-            </div>
-            <a href="login.html" id="cerrar-perfil">Cerrar sesión<span></span></a>
-        </nav>
-    </header>
-    <ul id="breadcrum">
-        <li><a href="../index.html">Gamesitos</a></li>
-        <div></div>
-        <li><a href="#">Multijugador</a></li>
-        <li><a href="#">Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</a></li>
-    </ul>
-    <div id="contenido-general-pagina-juego">
-        <div class="contenido-juego">
-            <div class="div-con-imagen-titulo-juego">
-                <img class="imagen-banner-juego-pagina-juego" src="../images/juegos/mk-4-en-linea.png" alt="">
-                <div class="div-sin-imagen-titulo-juego">
+                <div id="botonera-carrito">
+                    <button id="ir-carrito">Ir al carrito</button>
+                    <button id="iniciar-compra">Iniciar compra</button>
+                </div>
+                <button id="borrar-carrito">Borrar carrito</button>
+            </nav>
+            <nav id="menu-perfil">
+                <p id="correo-perfil">raiden@yahoo.com</p>
+                <button id="foto-perfil">
+                    <img src="../images/profile-image.jpg" alt="foto de perfil">
                     <div>
-                        <h1>Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</h2>
+                        <svg width="44" height="40" viewBox="0 0 44 40"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 28.3334C25.4519 28.3334 28.25 25.5352 28.25 22.0834C28.25 18.6315 25.4519 15.8334 22 15.8334C18.5481 15.8334 15.75 18.6315 15.75 22.0834C15.75 25.5352 18.5481 28.3334 22 28.3334Z"
+                                fill="white" fill-opacity="0.5" stroke="black"
+                                stroke-width="5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M3.25 30V14.1667C3.25 11.8332 3.25 10.6664 3.70415 9.77508C4.1036 8.99106 4.74102 8.35364 5.52504 7.95419C6.41633 7.50004 7.58312 7.50004 9.91667 7.50004H12.1138C12.37 7.50004 12.498 7.50004 12.6162 7.4865C13.2326 7.4159 13.7855 7.07419 14.1244 6.55439C14.1893 6.45477 14.2466 6.34021 14.3611 6.11115C14.5902 5.653 14.7047 5.42392 14.8346 5.22467C15.5123 4.18508 16.6181 3.50167 17.851 3.36044C18.0873 3.33337 18.3433 3.33337 18.8556 3.33337H25.1444C25.6567 3.33337 25.9127 3.33337 26.149 3.36044C27.3819 3.50167 28.4877 4.18508 29.1654 5.22467C29.2952 5.4239 29.4098 5.65306 29.639 6.11115C29.7533 6.34023 29.8106 6.45477 29.8756 6.55439C30.2146 7.07419 30.7673 7.4159 31.3837 7.4865C31.5021 7.50004 31.63 7.50004 31.8862 7.50004H34.0833C36.4169 7.50004 37.5838 7.50004 38.475 7.95419C39.259 8.35364 39.8965 8.99106 40.2958 9.77508C40.75 10.6664 40.75 11.8332 40.75 14.1667V30C40.75 32.3336 40.75 33.5005 40.2958 34.3917C39.8965 35.1757 39.259 35.8132 38.475 36.2125C37.5838 36.6667 36.4169 36.6667 34.0833 36.6667H9.91667C7.58312 36.6667 6.41633 36.6667 5.52504 36.2125C4.74102 35.8132 4.1036 35.1757 3.70415 34.3917C3.25 33.5005 3.25 32.3336 3.25 30Z"
+                                fill="white" fill-opacity="0.5" stroke="black"
+                                stroke-opacity="0.5" stroke-width="5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </button>
+                <p id="nombre-perfil">¡Hola, Raiden!</p>
+                <div id="opciones-perfil">
+                    <a href>Mi Perfil<span></span></a>
+                    <a href>Mi carrito<span></span></a>
+                    <a href>Biblioteca<span></span></a>
+                    <a href>Enviar comentarios<span></span></a>
+                </div>
+                <a href="login.html" id="cerrar-perfil">Cerrar sesión<span></span></a>
+            </nav>
+        </header>
+        <ul id="breadcrum">
+            <li><a href="../index.html">Gamesitos</a></li>
+            <div></div>
+            <li><a href="#">Multijugador</a></li>
+            <li><a href="#">Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</a></li>
+        </ul>
+        <div id="contenido-general-pagina-juego">
+            <div class="contenido-juego">
+                <div class="div-con-imagen-titulo-juego">
+                    <img class="imagen-banner-juego-pagina-juego"
+                        src="../images/juegos/mk-4-en-linea.png" alt>
+                    <div class="div-sin-imagen-titulo-juego">
+                        <div>
+                            <h1>Mortal Kombat 4 en línea: Sub-Zero vs Scorpion</h2>
                             <p>1.7M de partidas en la última semana</p>
-                    </div>
-                    <div class="puntuacion-juego">
-                        <div class="estrellas">
-                            <svg class="estrella" xmls="../images/iconos/estrella.svg" viewBox="0 0 23 22">
-                                <path
-                                    d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
-                                    stroke="#D4D8F7" stroke-width="2.90099" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <svg class="estrella" xmls="../images/iconos/estrella.svg" viewBox="0 0 23 22">
-                                <path
-                                    d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
-                                    stroke="#D4D8F7" stroke-width="2.90099" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <svg class="estrella" xmls="../images/iconos/estrella.svg" viewBox="0 0 23 22">
-                                <path
-                                    d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
-                                    stroke="#D4D8F7" stroke-width="2.90099" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <svg class="estrella" xmls="../images/iconos/estrella.svg" viewBox="0 0 23 22">
-                                <path
-                                    d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
-                                    stroke="#D4D8F7" stroke-width="2.90099" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <svg class="estrella" xmls="../images/iconos/estrella.svg" viewBox="0 0 23 22">
-                                <path
-                                    d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
-                                    stroke="#D4D8F7" stroke-width="2.90099" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>4.9/5</span>
                         </div>
-                        <div class="caja-meGusta-noMeGusta">
-                            <svg class="icono-me-gusta" width="52" height="48" viewBox="0 0 52 48" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
-                                    stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
-                                    stroke="black" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span class="contador">3234</span>
-                            <svg class="icono-no-me-gusta" width="52" height="48" viewBox="0 0 52 48" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
-                                    stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
-                                    stroke="black" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span class="contador">53</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <canvas id="pantalla-juego">
-                <img src="../images/juegos/mk-4-en-linea-enJuego.png" alt="">
-                <div id="hover-jugar">
-                    <button class="boton-jugar">Jugar <img src="../images/iconos/jugar.png" alt="jugar.png"></button>
-                </div>
-            </canvas>
-            <aside id="banner-compartir-juego">
-                <div id="compartir-redes">
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25.5 0H4.5C2.01472 0 0 2.01472 0 4.5V25.5C0 27.9853 2.01472 30 4.5 30H25.5C27.9853 30 30 27.9853 30 25.5V4.5C30 2.01472 27.9853 0 25.5 0Z" fill="#1877F2"/>
-                            <path d="M20.8359 19.3359L21.5039 15H17.3438V12.1875C17.3438 11.0039 17.9238 9.84375 19.7871 9.84375H21.6797V6.15234C21.6797 6.15234 19.9629 5.85938 18.3223 5.85938C14.8945 5.85938 12.6562 7.93359 12.6562 11.6953V15H8.84766V19.3359H12.6562V30H17.3438V19.3359H20.8359Z" fill="white"/>
-                        </svg>
-                    </a>
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect y="4" width="30" height="22" rx="3" fill="white"/>
-                            <path d="M27.1875 4H2.8125C1.25918 4 0 5.2312 0 6.75V23.25C0 24.7688 1.25918 26 2.8125 26H27.1875C28.7408 26 30 24.7688 30 23.25V6.75C30 5.2312 28.7408 4 27.1875 4ZM27.1875 6.75V9.08779C25.8737 10.1339 23.7792 11.7605 19.3015 15.1888C18.3148 15.9477 16.3601 17.771 15 17.7498C13.6402 17.7713 11.6848 15.9474 10.6985 15.1888C6.22148 11.761 4.12646 10.134 2.8125 9.08779V6.75H27.1875ZM2.8125 23.25V12.6166C4.15512 13.6622 6.05912 15.1295 8.96121 17.3515C10.2419 18.3372 12.4847 20.5132 15 20.4999C17.5029 20.5132 19.7173 18.3688 21.0383 17.3519C23.9403 15.13 25.8448 13.6623 27.1875 12.6166V23.25H2.8125Z" fill="#FF3D00"/>
-                        </svg>
-                    </a>
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="30" height="30" rx="8" fill="url(#paint0_linear_352_4978)"/>
-                            <path d="M11.2509 15C11.2509 12.929 12.9294 11.2497 15.0005 11.2497C17.0715 11.2497 18.7509 12.929 18.7509 15C18.7509 17.071 17.0715 18.7503 15.0005 18.7503C12.9294 18.7503 11.2509 17.071 11.2509 15ZM9.22348 15C9.22348 18.1905 11.8098 20.7767 15.0005 20.7767C18.1911 20.7767 20.7774 18.1905 20.7774 15C20.7774 11.8095 18.1911 9.22326 15.0005 9.22326C11.8098 9.22326 9.22348 11.8095 9.22348 15ZM19.6561 8.99421C19.6558 9.73979 20.26 10.3445 21.0056 10.3447C21.7512 10.345 22.3559 9.74087 22.3562 8.99529C22.3565 8.24971 21.7523 7.64505 21.0067 7.64475C20.2614 7.6451 19.6567 8.24898 19.6561 8.99421ZM10.4553 24.1572C9.35839 24.1073 8.76221 23.9246 8.36601 23.7702C7.84075 23.5658 7.46598 23.3222 7.07194 22.9287C6.67791 22.5352 6.434 22.1608 6.23041 21.6356C6.07596 21.2396 5.89326 20.6433 5.84339 19.5464C5.78885 18.3606 5.77796 18.0044 5.77796 15.0001C5.77796 11.9958 5.78975 11.6406 5.84339 10.4537C5.89335 9.35691 6.0774 8.76174 6.23041 8.36457C6.4349 7.83933 6.67845 7.46457 7.07194 7.07055C7.46544 6.67653 7.83985 6.43263 8.36601 6.22905C8.76203 6.07461 9.35839 5.89191 10.4553 5.84205C11.6412 5.78751 11.9974 5.77662 15.0005 5.77662C18.0035 5.77662 18.3601 5.78841 19.547 5.84205C20.6439 5.892 21.239 6.07605 21.6362 6.22905C22.1615 6.43263 22.5363 6.67707 22.9303 7.07055C23.3243 7.46403 23.5674 7.83933 23.7718 8.36457C23.9263 8.76057 24.109 9.35691 24.1589 10.4537C24.2134 11.6406 24.2243 11.9958 24.2243 15.0001C24.2243 18.0044 24.2134 18.3596 24.1589 19.5464C24.1089 20.6433 23.9253 21.2394 23.7718 21.6356C23.5674 22.1608 23.3238 22.5356 22.9303 22.9287C22.5368 23.3218 22.1615 23.5658 21.6362 23.7702C21.2402 23.9247 20.6439 24.1074 19.547 24.1572C18.3611 24.2118 18.0049 24.2227 15.0005 24.2227C11.996 24.2227 11.6408 24.2118 10.4553 24.1572ZM10.3621 3.81813C9.16444 3.87267 8.34603 4.06257 7.63132 4.34067C6.89113 4.62786 6.26452 5.01315 5.63837 5.63829C5.01221 6.26343 4.6279 6.891 4.34069 7.63116C4.06258 8.3463 3.87267 9.16422 3.81813 10.3618C3.76269 11.5614 3.75 11.9449 3.75 15C3.75 18.0551 3.76269 18.4386 3.81813 19.6381C3.87267 20.8359 4.06258 21.6537 4.34069 22.3688C4.6279 23.1085 5.0123 23.7368 5.63837 24.3617C6.26443 24.9866 6.89113 25.3713 7.63132 25.6593C8.34738 25.9374 9.16444 26.1273 10.3621 26.1819C11.5623 26.2364 11.9452 26.25 15.0005 26.25C18.0557 26.25 18.4392 26.2373 19.6388 26.1819C20.8366 26.1273 21.6544 25.9374 22.3696 25.6593C23.1093 25.3713 23.7364 24.9869 24.3625 24.3617C24.9887 23.7366 25.3722 23.1085 25.6602 22.3688C25.9383 21.6537 26.1291 20.8358 26.1828 19.6381C26.2373 18.4377 26.25 18.0551 26.25 15C26.25 11.9449 26.2373 11.5614 26.1828 10.3618C26.1282 9.16413 25.9383 8.34585 25.6602 7.63116C25.3722 6.89145 24.9877 6.26442 24.3625 5.63829C23.7374 5.01216 23.1093 4.62786 22.3705 4.34067C21.6544 4.06257 20.8365 3.87177 19.6397 3.81813C18.4401 3.76359 18.0566 3.75 15.0014 3.75C11.9461 3.75 11.5623 3.76269 10.3621 3.81813Z" fill="url(#paint1_radial_352_4978)"/>
-                            <defs>
-                                <linearGradient id="paint0_linear_352_4978" x1="25.0633" y1="7.36226e-07" x2="-3.43196" y2="21.8381" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#801DFD"/>
-                                    <stop offset="0.0544606" stop-color="#A830E1"/>
-                                    <stop offset="0.308921" stop-color="#D235C3"/>
-                                    <stop offset="0.579132" stop-color="#C01285"/>
-                                    <stop offset="0.708036" stop-color="#C91717"/>
-                                    <stop offset="0.899989" stop-color="#EE815E"/>
-                                    <stop offset="1" stop-color="#FFE600"/>
-                                </linearGradient>
-                                <radialGradient id="paint1_radial_352_4978" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(51.5801 365.451) scale(469.969)">
-                                    <stop offset="0.09" stop-color="white"/>
-                                    <stop offset="0.78" stop-color="#FAFAFA"/>
-                                </radialGradient>
-                            </defs>
-                        </svg>
-                    </a>
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30Z" fill="#1DA1F2"/>
-                            <path d="M22.793 10.3945C22.2422 10.6377 21.6533 10.8018 21.0322 10.8779C21.665 10.4971 22.1514 9.89648 22.3799 9.18164C21.7881 9.52734 21.1289 9.7793 20.4316 9.91992C19.8721 9.32227 19.0781 8.94727 18.1934 8.94727C16.5 8.94727 15.126 10.3213 15.126 12.0117C15.126 12.2549 15.1553 12.4893 15.2051 12.7119C12.6562 12.5918 10.3945 11.3672 8.88281 9.51562C8.61621 9.9668 8.4668 10.4883 8.4668 11.0596C8.4668 12.126 9.00879 13.0635 9.83203 13.6143C9.32813 13.5967 8.85645 13.459 8.44336 13.2305V13.2686C8.44336 14.7568 9.49805 15.9961 10.9043 16.2773C10.6465 16.3477 10.374 16.3828 10.0957 16.3828C9.89941 16.3828 9.71191 16.3652 9.52441 16.3301C9.91699 17.5488 11.0479 18.4365 12.3955 18.46C11.3496 19.2832 10.0195 19.7725 8.59277 19.7725C8.34961 19.7725 8.10645 19.7578 7.86328 19.7314C9.22852 20.6016 10.8369 21.1084 12.5742 21.1084C18.2139 21.1084 21.2988 16.4355 21.2988 12.3896C21.2988 12.2607 21.2988 12.1289 21.29 11.9971C21.8877 11.5664 22.4121 11.0244 22.8223 10.4092L22.793 10.3945Z" fill="white"/>
-                        </svg>
-                    </a>
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect y="1" width="30" height="28.24" rx="2" fill="#55CD61"/>
-                            <mask id="path-2-inside-1_349_5554" fill="white">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.882 26.3574C22.0867 26.3574 27.1173 21.3266 27.1173 15.1199C27.1173 8.91333 22.0867 3.88244 15.882 3.88244C9.6772 3.88244 4.64667 8.91333 4.64667 15.1199C4.64667 16.7283 4.98447 18.2577 5.59298 19.6411L3.45502 25.4654L9.55455 24.4072C11.3567 25.6379 13.5353 26.3574 15.882 26.3574ZM15.882 28.3574C23.1916 28.3574 29.1173 22.4308 29.1173 15.1199C29.1173 7.80907 23.1916 1.88245 15.882 1.88245C8.57231 1.88245 2.64667 7.80907 2.64667 15.1199C2.64667 16.8459 2.97692 18.4946 3.57766 20.0065L0.744141 27.7245L8.82782 26.3226C10.8698 27.6116 13.2888 28.3574 15.882 28.3574Z"/>
-                            </mask>
-                            <path d="M5.59298 19.6411L7.47048 20.3302L7.74824 19.5736L7.4237 18.8358L5.59298 19.6411ZM3.45502 25.4654L1.57752 24.7762L0.383853 28.028L3.79688 27.4359L3.45502 25.4654ZM9.55455 24.4072L10.6824 22.7556L10.0123 22.298L9.2127 22.4367L9.55455 24.4072ZM3.57766 20.0065L5.45513 20.6958L5.71855 19.9783L5.43631 19.268L3.57766 20.0065ZM0.744141 27.7245L-1.13333 27.0353L-2.32716 30.287L1.08589 29.6951L0.744141 27.7245ZM8.82782 26.3226L9.89537 24.6313L9.24447 24.2205L8.48607 24.352L8.82782 26.3226ZM25.1173 15.1199C25.1173 20.2223 20.9819 24.3574 15.882 24.3574V28.3574C23.1916 28.3574 29.1173 22.4308 29.1173 15.1199H25.1173ZM15.882 5.88244C20.9819 5.88244 25.1173 10.0176 25.1173 15.1199H29.1173C29.1173 7.80906 23.1916 1.88244 15.882 1.88244V5.88244ZM6.64667 15.1199C6.64667 10.0176 10.7821 5.88244 15.882 5.88244V1.88244C8.57233 1.88244 2.64667 7.80906 2.64667 15.1199H6.64667ZM7.4237 18.8358C6.9247 17.7014 6.64667 16.4458 6.64667 15.1199H2.64667C2.64667 17.0108 3.04425 18.814 3.76226 20.4463L7.4237 18.8358ZM5.33253 26.1545L7.47048 20.3302L3.71548 18.9519L1.57752 24.7762L5.33253 26.1545ZM9.2127 22.4367L3.11317 23.4948L3.79688 27.4359L9.8964 26.3778L9.2127 22.4367ZM15.882 24.3574C13.9504 24.3574 12.1628 23.7665 10.6824 22.7556L8.42668 26.0589C10.5505 27.5092 13.1203 28.3574 15.882 28.3574V24.3574ZM27.1173 15.1199C27.1173 21.3266 22.0867 26.3574 15.882 26.3574V30.3574C24.2965 30.3574 31.1173 23.5351 31.1173 15.1199H27.1173ZM15.882 3.88245C22.0867 3.88245 27.1173 8.91333 27.1173 15.1199H31.1173C31.1173 6.70482 24.2965 -0.117554 15.882 -0.117554V3.88245ZM4.64667 15.1199C4.64667 8.91333 9.6772 3.88245 15.882 3.88245V-0.117554C7.46743 -0.117554 0.646669 6.70482 0.646669 15.1199H4.64667ZM5.43631 19.268C4.92741 17.9873 4.64667 16.5888 4.64667 15.1199H0.646669C0.646669 17.1029 1.02643 19.002 1.71901 20.745L5.43631 19.268ZM2.62161 28.4138L5.45513 20.6958L1.70019 19.3172L-1.13333 27.0353L2.62161 28.4138ZM8.48607 24.352L0.402387 25.754L1.08589 29.6951L9.16958 28.2932L8.48607 24.352ZM15.882 26.3574C13.6777 26.3574 11.6273 25.7246 9.89537 24.6313L7.76027 28.0139C10.1124 29.4986 12.8999 30.3574 15.882 30.3574V26.3574Z" fill="white" mask="url(#path-2-inside-1_349_5554)"/>
-                            <g clip-path="url(#clip0_349_5554)">
-                                <path d="M12.1326 13.9307C13.4561 15.9164 14.6326 17.5395 16.6914 18.8706L17.3531 17.7234C17.5517 17.5248 17.8752 17.4513 18.6987 17.7234C19.5223 17.9955 20.412 18.1425 21.3237 18.1425C21.7281 18.1425 22.059 18.4735 22.059 18.878V21.4446C22.059 21.849 21.7281 22.18 21.3237 22.18C14.4193 22.18 8.82373 16.5835 8.82373 9.6779C8.82373 9.27342 9.15461 8.94248 9.55902 8.94248H12.1326C12.537 8.94248 12.8678 9.27342 12.8678 9.6779C12.8678 10.5972 13.0149 11.4797 13.287 12.3033C13.3678 12.5607 13.662 13.0629 13.4561 13.2689L12.1326 13.9307Z" fill="white"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_349_5554">
-                                    <rect width="30" height="28.24" fill="white" transform="translate(0 1)"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </a>
-                    <a href="">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="5.75" width="25.5" height="18.5" fill="#FF1616"/>
-                            <path d="M18 15.5L12 10.9534V20.0466L18 15.5Z" fill="white"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8702 9.1647C11.4833 8.94362 11.008 8.94521 10.6226 9.16886C10.2372 9.39251 10 9.80441 10 10.25V20.25C10 20.6956 10.2372 21.1075 10.6226 21.3311C11.008 21.5547 11.4833 21.5564 11.8702 21.3352L20.6201 16.3352C21.0096 16.1127 21.25 15.6986 21.25 15.25C21.25 14.8014 21.0096 14.3872 20.6201 14.1647L11.8702 9.1647ZM17.4805 15.25L12.5 18.096V12.404L17.4805 15.25Z" fill="white"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 15.25C0 10.5628 0 8.21925 1.19364 6.57634C1.57914 6.04575 2.04575 5.57914 2.57634 5.19364C4.21925 4 6.56284 4 11.25 4H18.75C23.4371 4 25.7808 4 27.4236 5.19364C27.9543 5.57914 28.4209 6.04575 28.8064 6.57634C30 8.21925 30 10.5628 30 15.25C30 19.9371 30 22.2808 28.8064 23.9236C28.4209 24.4543 27.9543 24.9209 27.4236 25.3064C25.7808 26.5 23.4371 26.5 18.75 26.5H11.25C6.56284 26.5 4.21925 26.5 2.57634 25.3064C2.04575 24.9209 1.57914 24.4543 1.19364 23.9236C0 22.2808 0 19.9371 0 15.25ZM11.25 6.5H18.75C21.1493 6.5 22.7479 6.50344 23.9591 6.63466C25.1236 6.76082 25.63 6.9806 25.9542 7.21619C26.2725 7.44749 26.5525 7.72745 26.7839 8.0458C27.0194 8.37006 27.2391 8.87641 27.3654 10.0409C27.4966 11.2521 27.5 12.8507 27.5 15.25C27.5 17.6493 27.4966 19.2479 27.3654 20.4591C27.2391 21.6236 27.0194 22.13 26.7839 22.4542C26.5525 22.7725 26.2725 23.0525 25.9542 23.2839C25.63 23.5194 25.1236 23.7391 23.9591 23.8654C22.7479 23.9966 21.1493 24 18.75 24H11.25C8.85073 24 7.25209 23.9966 6.04086 23.8654C4.87641 23.7391 4.37006 23.5194 4.0458 23.2839C3.72745 23.0525 3.44749 22.7725 3.21619 22.4542C2.9806 22.13 2.76082 21.6236 2.63466 20.4591C2.50344 19.2479 2.5 17.6493 2.5 15.25C2.5 12.8507 2.50344 11.2521 2.63466 10.0409C2.76082 8.87641 2.9806 8.37006 3.21619 8.0458C3.44749 7.72745 3.72745 7.44749 4.0458 7.21619C4.37006 6.9806 4.87641 6.76082 6.04086 6.63466C7.25209 6.50344 8.85073 6.5 11.25 6.5Z" fill="#FF1616"/>
-                        </svg>                    
-                    </a>
-                </div>
-                <a href="#descripcion-como-jugar">
-                    <svg id="help" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_352_5211)">
-                        <path d="M14.9792 0C23.2642 0 30 6.73584 30 15.0208C30 23.3057 23.2642 30 14.9792 30C6.69434 30 0 23.3057 0 15.0208C0 6.73584 6.69434 0 14.9792 0ZM13.8492 19.6653H14.8534C14.9792 17.1134 15.5643 16.2766 17.9502 14.8534C19.4149 13.9323 19.8755 13.6404 20.4191 13.054C21.1728 12.2587 21.5491 11.2545 21.5491 10.083C21.5491 7.11206 19.1645 5.31262 15.2725 5.31262C13.9336 5.31262 12.8879 5.56433 11.8409 5.94055C9.74829 6.73584 8.45227 8.40943 8.45227 10.2504C8.45227 11.1715 9.0802 11.6307 10.3776 11.6307C11.4661 11.6307 12.0511 11.1702 12.0096 10.4177V9.41358C12.0096 8.78565 12.2613 7.69849 12.5961 7.15357C13.0151 6.48413 13.8934 6.02356 14.8976 6.02356C16.78 6.02356 17.9944 7.52979 17.9944 9.74695C17.9944 10.5837 17.8685 11.379 17.5338 12.1315C17.2406 12.7179 16.9059 13.1771 15.9017 14.2656C14.3112 15.9392 13.8519 17.1522 13.8519 19.036V19.6639L13.8492 19.6653ZM14.3928 25.7317C15.6058 25.7317 16.5685 24.769 16.5685 23.556C16.5685 22.343 15.6473 21.3804 14.3928 21.3804C13.1798 21.3804 12.2587 22.343 12.2587 23.556C12.2587 24.769 13.1798 25.7317 14.3928 25.7317Z" fill="#D4D8F7"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_352_5211">
-                        <rect width="30" height="30" fill="white"/>
-                        </clipPath>
-                        </defs>
-                    </svg>
-                </a>
-                    
-            </aside>
-
-            <h2 class="h-pagina-juego"> Descripción</h2>
-            <p id="descripcion-juego">Adéntrate en el legendario torneo de "Mortal Kombat" de una manera
-                completamente nueva con "Mortal Kombat 4 en Línea: Sub-Zero vs. Scorpion".
-                Este emocionante juego de 4 en línea lleva la eterna rivalidad entre dos de los personajes más icónicos
-                de la franquicia a un campo de batalla
-                estratégico y lleno de emoción.
-            </p>
-
-            <h2 class="h-pagina-juego">Cómo jugar</h2>
-            <p id="descripcion-como-jugar">Se utiliza el mouse para jugar. Se toma la ficha correspondiente con el click
-                izquierdo,
-                se mantiene y se arrastra hasta el lugar donde quiere que caiga la ficha y ahí se suelta.
-                Gana quien ponga 4 fichas en linea horizontal, vertical o diagonal</p>
-            <img id="como-jugar" src="../images/como-jugar-4-en-linea.png" alt="">
-
-            <h2 class="h-pagina-juego">Videos recomendados</h2>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/1h3mGwgc89o?si=1_eM1jC-wgMqPWkP"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/JvYSlxKMLAs?si=jOmrbd39ebd1ivSa"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/2wcE_qRUgyc?si=yMajkuCp1bOS35g5"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/1h3mGwgc89o?si=1_eM1jC-wgMqPWkP"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/JvYSlxKMLAs?si=jOmrbd39ebd1ivSa"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <iframe src="https://www.youtube.com/embed/2wcE_qRUgyc?si=yMajkuCp1bOS35g5"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                        <div class="informacion">
-                            <p class="nombre-juego">Titulo del video</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-
-            <div id="caja-de-comentarios">
-                <h2 class="h-pagina-juego">Tú, ¿qué piensas sobre este juego? </h2>
-                <div id="tu-comentario">
-                    <textarea placeholder="Comentario"></textarea>
-                    <button id="boton-publicar" class="boton-jugar">Publicar</button>
-                </div>
-                <div class="caja-de-comentario-publicado">
-                    <div class="identificacion-del-comentario">
-                        <img class="foto-perfil" src="../images/profile-image.jpg" alt="">
-                        <h3>ShadowHunter87</h3>
-                        <p class="fecha-comentario">1/10/2023</p>
-                    </div>
-                    <div class="puntero-a-comentario"></div>
-                    <div class="comentario-y-calificacion">
-                        <p class="comentario">El mejor 4 en línea que jugué</p>
-                        <div class="calificacion-comentario">
-                            <div class="caja-like">
-                                <svg class="like-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                        <div class="puntuacion-juego">
+                            <div class="estrellas">
+                                <svg class="estrella"
+                                    xmls="../images/iconos/estrella.svg"
+                                    viewBox="0 0 23 22">
+                                    <path
+                                        d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
+                                        stroke="#D4D8F7" stroke-width="2.90099"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg class="estrella"
+                                    xmls="../images/iconos/estrella.svg"
+                                    viewBox="0 0 23 22">
+                                    <path
+                                        d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
+                                        stroke="#D4D8F7" stroke-width="2.90099"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg class="estrella"
+                                    xmls="../images/iconos/estrella.svg"
+                                    viewBox="0 0 23 22">
+                                    <path
+                                        d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
+                                        stroke="#D4D8F7" stroke-width="2.90099"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg class="estrella"
+                                    xmls="../images/iconos/estrella.svg"
+                                    viewBox="0 0 23 22">
+                                    <path
+                                        d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
+                                        stroke="#D4D8F7" stroke-width="2.90099"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <svg class="estrella"
+                                    xmls="../images/iconos/estrella.svg"
+                                    viewBox="0 0 23 22">
+                                    <path
+                                        d="M8.258 7.44917L10.7257 2.47857C11.0424 1.84048 11.9576 1.84048 12.2743 2.47857L14.742 7.44917L20.2604 8.25116C20.9685 8.35405 21.2506 9.21943 20.7381 9.7158L16.7456 13.5822L17.6878 19.0443C17.8088 19.7458 17.0683 20.2807 16.4348 19.9494L11.5 17.3691L6.5652 19.9494C5.93167 20.2807 5.19114 19.7458 5.31213 19.0443L6.25434 13.5822L2.26196 9.7158C1.74936 9.21943 2.03156 8.35405 2.7396 8.25116L8.258 7.44917Z"
+                                        stroke="#D4D8F7" stroke-width="2.90099"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <span>4.9/5</span>
+                            </div>
+                            <div class="caja-meGusta-noMeGusta">
+                                <svg class="icono-me-gusta" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="black" stroke-width="3.6"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <span class="contador">3234</span>
+                                <svg class="icono-no-me-gusta" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
+                                        stroke-width="3.6"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
+                                        stroke="black" stroke-width="3.6"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <span class="contador">53</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <canvas id="pantalla-juego">
+                    <img src="../images/juegos/mk-4-en-linea-enJuego.png" alt>
+                    <div id="hover-jugar">
+                        <button class="boton-jugar">Jugar <img
+                                src="../images/iconos/jugar.png" alt="jugar.png"></button>
+                    </div>
+                </canvas>
+                <aside id="banner-compartir-juego">
+                    <div id="compartir-redes">
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M25.5 0H4.5C2.01472 0 0 2.01472 0 4.5V25.5C0 27.9853 2.01472 30 4.5 30H25.5C27.9853 30 30 27.9853 30 25.5V4.5C30 2.01472 27.9853 0 25.5 0Z"
+                                    fill="#1877F2" />
+                                <path
+                                    d="M20.8359 19.3359L21.5039 15H17.3438V12.1875C17.3438 11.0039 17.9238 9.84375 19.7871 9.84375H21.6797V6.15234C21.6797 6.15234 19.9629 5.85938 18.3223 5.85938C14.8945 5.85938 12.6562 7.93359 12.6562 11.6953V15H8.84766V19.3359H12.6562V30H17.3438V19.3359H20.8359Z"
+                                    fill="white" />
+                            </svg>
+                        </a>
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="4" width="30" height="22" rx="3"
+                                    fill="white" />
+                                <path
+                                    d="M27.1875 4H2.8125C1.25918 4 0 5.2312 0 6.75V23.25C0 24.7688 1.25918 26 2.8125 26H27.1875C28.7408 26 30 24.7688 30 23.25V6.75C30 5.2312 28.7408 4 27.1875 4ZM27.1875 6.75V9.08779C25.8737 10.1339 23.7792 11.7605 19.3015 15.1888C18.3148 15.9477 16.3601 17.771 15 17.7498C13.6402 17.7713 11.6848 15.9474 10.6985 15.1888C6.22148 11.761 4.12646 10.134 2.8125 9.08779V6.75H27.1875ZM2.8125 23.25V12.6166C4.15512 13.6622 6.05912 15.1295 8.96121 17.3515C10.2419 18.3372 12.4847 20.5132 15 20.4999C17.5029 20.5132 19.7173 18.3688 21.0383 17.3519C23.9403 15.13 25.8448 13.6623 27.1875 12.6166V23.25H2.8125Z"
+                                    fill="#FF3D00" />
+                            </svg>
+                        </a>
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="30" height="30" rx="8"
+                                    fill="url(#paint0_linear_352_4978)" />
+                                <path
+                                    d="M11.2509 15C11.2509 12.929 12.9294 11.2497 15.0005 11.2497C17.0715 11.2497 18.7509 12.929 18.7509 15C18.7509 17.071 17.0715 18.7503 15.0005 18.7503C12.9294 18.7503 11.2509 17.071 11.2509 15ZM9.22348 15C9.22348 18.1905 11.8098 20.7767 15.0005 20.7767C18.1911 20.7767 20.7774 18.1905 20.7774 15C20.7774 11.8095 18.1911 9.22326 15.0005 9.22326C11.8098 9.22326 9.22348 11.8095 9.22348 15ZM19.6561 8.99421C19.6558 9.73979 20.26 10.3445 21.0056 10.3447C21.7512 10.345 22.3559 9.74087 22.3562 8.99529C22.3565 8.24971 21.7523 7.64505 21.0067 7.64475C20.2614 7.6451 19.6567 8.24898 19.6561 8.99421ZM10.4553 24.1572C9.35839 24.1073 8.76221 23.9246 8.36601 23.7702C7.84075 23.5658 7.46598 23.3222 7.07194 22.9287C6.67791 22.5352 6.434 22.1608 6.23041 21.6356C6.07596 21.2396 5.89326 20.6433 5.84339 19.5464C5.78885 18.3606 5.77796 18.0044 5.77796 15.0001C5.77796 11.9958 5.78975 11.6406 5.84339 10.4537C5.89335 9.35691 6.0774 8.76174 6.23041 8.36457C6.4349 7.83933 6.67845 7.46457 7.07194 7.07055C7.46544 6.67653 7.83985 6.43263 8.36601 6.22905C8.76203 6.07461 9.35839 5.89191 10.4553 5.84205C11.6412 5.78751 11.9974 5.77662 15.0005 5.77662C18.0035 5.77662 18.3601 5.78841 19.547 5.84205C20.6439 5.892 21.239 6.07605 21.6362 6.22905C22.1615 6.43263 22.5363 6.67707 22.9303 7.07055C23.3243 7.46403 23.5674 7.83933 23.7718 8.36457C23.9263 8.76057 24.109 9.35691 24.1589 10.4537C24.2134 11.6406 24.2243 11.9958 24.2243 15.0001C24.2243 18.0044 24.2134 18.3596 24.1589 19.5464C24.1089 20.6433 23.9253 21.2394 23.7718 21.6356C23.5674 22.1608 23.3238 22.5356 22.9303 22.9287C22.5368 23.3218 22.1615 23.5658 21.6362 23.7702C21.2402 23.9247 20.6439 24.1074 19.547 24.1572C18.3611 24.2118 18.0049 24.2227 15.0005 24.2227C11.996 24.2227 11.6408 24.2118 10.4553 24.1572ZM10.3621 3.81813C9.16444 3.87267 8.34603 4.06257 7.63132 4.34067C6.89113 4.62786 6.26452 5.01315 5.63837 5.63829C5.01221 6.26343 4.6279 6.891 4.34069 7.63116C4.06258 8.3463 3.87267 9.16422 3.81813 10.3618C3.76269 11.5614 3.75 11.9449 3.75 15C3.75 18.0551 3.76269 18.4386 3.81813 19.6381C3.87267 20.8359 4.06258 21.6537 4.34069 22.3688C4.6279 23.1085 5.0123 23.7368 5.63837 24.3617C6.26443 24.9866 6.89113 25.3713 7.63132 25.6593C8.34738 25.9374 9.16444 26.1273 10.3621 26.1819C11.5623 26.2364 11.9452 26.25 15.0005 26.25C18.0557 26.25 18.4392 26.2373 19.6388 26.1819C20.8366 26.1273 21.6544 25.9374 22.3696 25.6593C23.1093 25.3713 23.7364 24.9869 24.3625 24.3617C24.9887 23.7366 25.3722 23.1085 25.6602 22.3688C25.9383 21.6537 26.1291 20.8358 26.1828 19.6381C26.2373 18.4377 26.25 18.0551 26.25 15C26.25 11.9449 26.2373 11.5614 26.1828 10.3618C26.1282 9.16413 25.9383 8.34585 25.6602 7.63116C25.3722 6.89145 24.9877 6.26442 24.3625 5.63829C23.7374 5.01216 23.1093 4.62786 22.3705 4.34067C21.6544 4.06257 20.8365 3.87177 19.6397 3.81813C18.4401 3.76359 18.0566 3.75 15.0014 3.75C11.9461 3.75 11.5623 3.76269 10.3621 3.81813Z"
+                                    fill="url(#paint1_radial_352_4978)" />
+                                <defs>
+                                    <lineargradient id="paint0_linear_352_4978"
+                                        x1="25.0633" y1="7.36226e-07"
+                                        x2="-3.43196" y2="21.8381"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#801DFD" />
+                                        <stop offset="0.0544606"
+                                            stop-color="#A830E1" />
+                                        <stop offset="0.308921"
+                                            stop-color="#D235C3" />
+                                        <stop offset="0.579132"
+                                            stop-color="#C01285" />
+                                        <stop offset="0.708036"
+                                            stop-color="#C91717" />
+                                        <stop offset="0.899989"
+                                            stop-color="#EE815E" />
+                                        <stop offset="1" stop-color="#FFE600" />
+                                    </lineargradient>
+                                    <radialgradient id="paint1_radial_352_4978"
+                                        cx="0" cy="0" r="1"
+                                        gradientUnits="userSpaceOnUse"
+                                        gradientTransform="translate(51.5801 365.451) scale(469.969)">
+                                        <stop offset="0.09" stop-color="white" />
+                                        <stop offset="0.78" stop-color="#FAFAFA" />
+                                    </radialgradient>
+                                </defs>
+                            </svg>
+                        </a>
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30Z"
+                                    fill="#1DA1F2" />
+                                <path
+                                    d="M22.793 10.3945C22.2422 10.6377 21.6533 10.8018 21.0322 10.8779C21.665 10.4971 22.1514 9.89648 22.3799 9.18164C21.7881 9.52734 21.1289 9.7793 20.4316 9.91992C19.8721 9.32227 19.0781 8.94727 18.1934 8.94727C16.5 8.94727 15.126 10.3213 15.126 12.0117C15.126 12.2549 15.1553 12.4893 15.2051 12.7119C12.6562 12.5918 10.3945 11.3672 8.88281 9.51562C8.61621 9.9668 8.4668 10.4883 8.4668 11.0596C8.4668 12.126 9.00879 13.0635 9.83203 13.6143C9.32813 13.5967 8.85645 13.459 8.44336 13.2305V13.2686C8.44336 14.7568 9.49805 15.9961 10.9043 16.2773C10.6465 16.3477 10.374 16.3828 10.0957 16.3828C9.89941 16.3828 9.71191 16.3652 9.52441 16.3301C9.91699 17.5488 11.0479 18.4365 12.3955 18.46C11.3496 19.2832 10.0195 19.7725 8.59277 19.7725C8.34961 19.7725 8.10645 19.7578 7.86328 19.7314C9.22852 20.6016 10.8369 21.1084 12.5742 21.1084C18.2139 21.1084 21.2988 16.4355 21.2988 12.3896C21.2988 12.2607 21.2988 12.1289 21.29 11.9971C21.8877 11.5664 22.4121 11.0244 22.8223 10.4092L22.793 10.3945Z"
+                                    fill="white" />
+                            </svg>
+                        </a>
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="1" width="30" height="28.24" rx="2"
+                                    fill="#55CD61" />
+                                <mask id="path-2-inside-1_349_5554" fill="white">
+                                    <path fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M15.882 26.3574C22.0867 26.3574 27.1173 21.3266 27.1173 15.1199C27.1173 8.91333 22.0867 3.88244 15.882 3.88244C9.6772 3.88244 4.64667 8.91333 4.64667 15.1199C4.64667 16.7283 4.98447 18.2577 5.59298 19.6411L3.45502 25.4654L9.55455 24.4072C11.3567 25.6379 13.5353 26.3574 15.882 26.3574ZM15.882 28.3574C23.1916 28.3574 29.1173 22.4308 29.1173 15.1199C29.1173 7.80907 23.1916 1.88245 15.882 1.88245C8.57231 1.88245 2.64667 7.80907 2.64667 15.1199C2.64667 16.8459 2.97692 18.4946 3.57766 20.0065L0.744141 27.7245L8.82782 26.3226C10.8698 27.6116 13.2888 28.3574 15.882 28.3574Z" />
+                                </mask>
+                                <path
+                                    d="M5.59298 19.6411L7.47048 20.3302L7.74824 19.5736L7.4237 18.8358L5.59298 19.6411ZM3.45502 25.4654L1.57752 24.7762L0.383853 28.028L3.79688 27.4359L3.45502 25.4654ZM9.55455 24.4072L10.6824 22.7556L10.0123 22.298L9.2127 22.4367L9.55455 24.4072ZM3.57766 20.0065L5.45513 20.6958L5.71855 19.9783L5.43631 19.268L3.57766 20.0065ZM0.744141 27.7245L-1.13333 27.0353L-2.32716 30.287L1.08589 29.6951L0.744141 27.7245ZM8.82782 26.3226L9.89537 24.6313L9.24447 24.2205L8.48607 24.352L8.82782 26.3226ZM25.1173 15.1199C25.1173 20.2223 20.9819 24.3574 15.882 24.3574V28.3574C23.1916 28.3574 29.1173 22.4308 29.1173 15.1199H25.1173ZM15.882 5.88244C20.9819 5.88244 25.1173 10.0176 25.1173 15.1199H29.1173C29.1173 7.80906 23.1916 1.88244 15.882 1.88244V5.88244ZM6.64667 15.1199C6.64667 10.0176 10.7821 5.88244 15.882 5.88244V1.88244C8.57233 1.88244 2.64667 7.80906 2.64667 15.1199H6.64667ZM7.4237 18.8358C6.9247 17.7014 6.64667 16.4458 6.64667 15.1199H2.64667C2.64667 17.0108 3.04425 18.814 3.76226 20.4463L7.4237 18.8358ZM5.33253 26.1545L7.47048 20.3302L3.71548 18.9519L1.57752 24.7762L5.33253 26.1545ZM9.2127 22.4367L3.11317 23.4948L3.79688 27.4359L9.8964 26.3778L9.2127 22.4367ZM15.882 24.3574C13.9504 24.3574 12.1628 23.7665 10.6824 22.7556L8.42668 26.0589C10.5505 27.5092 13.1203 28.3574 15.882 28.3574V24.3574ZM27.1173 15.1199C27.1173 21.3266 22.0867 26.3574 15.882 26.3574V30.3574C24.2965 30.3574 31.1173 23.5351 31.1173 15.1199H27.1173ZM15.882 3.88245C22.0867 3.88245 27.1173 8.91333 27.1173 15.1199H31.1173C31.1173 6.70482 24.2965 -0.117554 15.882 -0.117554V3.88245ZM4.64667 15.1199C4.64667 8.91333 9.6772 3.88245 15.882 3.88245V-0.117554C7.46743 -0.117554 0.646669 6.70482 0.646669 15.1199H4.64667ZM5.43631 19.268C4.92741 17.9873 4.64667 16.5888 4.64667 15.1199H0.646669C0.646669 17.1029 1.02643 19.002 1.71901 20.745L5.43631 19.268ZM2.62161 28.4138L5.45513 20.6958L1.70019 19.3172L-1.13333 27.0353L2.62161 28.4138ZM8.48607 24.352L0.402387 25.754L1.08589 29.6951L9.16958 28.2932L8.48607 24.352ZM15.882 26.3574C13.6777 26.3574 11.6273 25.7246 9.89537 24.6313L7.76027 28.0139C10.1124 29.4986 12.8999 30.3574 15.882 30.3574V26.3574Z"
+                                    fill="white"
+                                    mask="url(#path-2-inside-1_349_5554)" />
+                                <g clip-path="url(#clip0_349_5554)">
+                                    <path
+                                        d="M12.1326 13.9307C13.4561 15.9164 14.6326 17.5395 16.6914 18.8706L17.3531 17.7234C17.5517 17.5248 17.8752 17.4513 18.6987 17.7234C19.5223 17.9955 20.412 18.1425 21.3237 18.1425C21.7281 18.1425 22.059 18.4735 22.059 18.878V21.4446C22.059 21.849 21.7281 22.18 21.3237 22.18C14.4193 22.18 8.82373 16.5835 8.82373 9.6779C8.82373 9.27342 9.15461 8.94248 9.55902 8.94248H12.1326C12.537 8.94248 12.8678 9.27342 12.8678 9.6779C12.8678 10.5972 13.0149 11.4797 13.287 12.3033C13.3678 12.5607 13.662 13.0629 13.4561 13.2689L12.1326 13.9307Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clippath id="clip0_349_5554">
+                                        <rect width="30" height="28.24"
+                                            fill="white"
+                                            transform="translate(0 1)" />
+                                    </clippath>
+                                </defs>
+                            </svg>
+                        </a>
+                        <a href>
+                            <svg width="30" height="30" viewBox="0 0 30 30"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="5.75" width="25.5" height="18.5"
+                                    fill="#FF1616" />
+                                <path d="M18 15.5L12 10.9534V20.0466L18 15.5Z"
+                                    fill="white" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11.8702 9.1647C11.4833 8.94362 11.008 8.94521 10.6226 9.16886C10.2372 9.39251 10 9.80441 10 10.25V20.25C10 20.6956 10.2372 21.1075 10.6226 21.3311C11.008 21.5547 11.4833 21.5564 11.8702 21.3352L20.6201 16.3352C21.0096 16.1127 21.25 15.6986 21.25 15.25C21.25 14.8014 21.0096 14.3872 20.6201 14.1647L11.8702 9.1647ZM17.4805 15.25L12.5 18.096V12.404L17.4805 15.25Z"
+                                    fill="white" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M0 15.25C0 10.5628 0 8.21925 1.19364 6.57634C1.57914 6.04575 2.04575 5.57914 2.57634 5.19364C4.21925 4 6.56284 4 11.25 4H18.75C23.4371 4 25.7808 4 27.4236 5.19364C27.9543 5.57914 28.4209 6.04575 28.8064 6.57634C30 8.21925 30 10.5628 30 15.25C30 19.9371 30 22.2808 28.8064 23.9236C28.4209 24.4543 27.9543 24.9209 27.4236 25.3064C25.7808 26.5 23.4371 26.5 18.75 26.5H11.25C6.56284 26.5 4.21925 26.5 2.57634 25.3064C2.04575 24.9209 1.57914 24.4543 1.19364 23.9236C0 22.2808 0 19.9371 0 15.25ZM11.25 6.5H18.75C21.1493 6.5 22.7479 6.50344 23.9591 6.63466C25.1236 6.76082 25.63 6.9806 25.9542 7.21619C26.2725 7.44749 26.5525 7.72745 26.7839 8.0458C27.0194 8.37006 27.2391 8.87641 27.3654 10.0409C27.4966 11.2521 27.5 12.8507 27.5 15.25C27.5 17.6493 27.4966 19.2479 27.3654 20.4591C27.2391 21.6236 27.0194 22.13 26.7839 22.4542C26.5525 22.7725 26.2725 23.0525 25.9542 23.2839C25.63 23.5194 25.1236 23.7391 23.9591 23.8654C22.7479 23.9966 21.1493 24 18.75 24H11.25C8.85073 24 7.25209 23.9966 6.04086 23.8654C4.87641 23.7391 4.37006 23.5194 4.0458 23.2839C3.72745 23.0525 3.44749 22.7725 3.21619 22.4542C2.9806 22.13 2.76082 21.6236 2.63466 20.4591C2.50344 19.2479 2.5 17.6493 2.5 15.25C2.5 12.8507 2.50344 11.2521 2.63466 10.0409C2.76082 8.87641 2.9806 8.37006 3.21619 8.0458C3.44749 7.72745 3.72745 7.44749 4.0458 7.21619C4.37006 6.9806 4.87641 6.76082 6.04086 6.63466C7.25209 6.50344 8.85073 6.5 11.25 6.5Z"
+                                    fill="#FF1616" />
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="#descripcion-como-jugar">
+                        <svg id="help" width="30" height="30"
+                            viewBox="0 0 30 30" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_352_5211)">
+                                <path
+                                    d="M14.9792 0C23.2642 0 30 6.73584 30 15.0208C30 23.3057 23.2642 30 14.9792 30C6.69434 30 0 23.3057 0 15.0208C0 6.73584 6.69434 0 14.9792 0ZM13.8492 19.6653H14.8534C14.9792 17.1134 15.5643 16.2766 17.9502 14.8534C19.4149 13.9323 19.8755 13.6404 20.4191 13.054C21.1728 12.2587 21.5491 11.2545 21.5491 10.083C21.5491 7.11206 19.1645 5.31262 15.2725 5.31262C13.9336 5.31262 12.8879 5.56433 11.8409 5.94055C9.74829 6.73584 8.45227 8.40943 8.45227 10.2504C8.45227 11.1715 9.0802 11.6307 10.3776 11.6307C11.4661 11.6307 12.0511 11.1702 12.0096 10.4177V9.41358C12.0096 8.78565 12.2613 7.69849 12.5961 7.15357C13.0151 6.48413 13.8934 6.02356 14.8976 6.02356C16.78 6.02356 17.9944 7.52979 17.9944 9.74695C17.9944 10.5837 17.8685 11.379 17.5338 12.1315C17.2406 12.7179 16.9059 13.1771 15.9017 14.2656C14.3112 15.9392 13.8519 17.1522 13.8519 19.036V19.6639L13.8492 19.6653ZM14.3928 25.7317C15.6058 25.7317 16.5685 24.769 16.5685 23.556C16.5685 22.343 15.6473 21.3804 14.3928 21.3804C13.1798 21.3804 12.2587 22.343 12.2587 23.556C12.2587 24.769 13.1798 25.7317 14.3928 25.7317Z"
+                                    fill="#D4D8F7" />
+                            </g>
+                            <defs>
+                                <clippath id="clip0_352_5211">
+                                    <rect width="30" height="30" fill="white" />
+                                </clippath>
+                            </defs>
+                        </svg>
+                    </a>
+
+                </aside>
+
+                <h2 class="h-pagina-juego"> Descripción</h2>
+                <p id="descripcion-juego">Adéntrate en el legendario torneo de
+                    "Mortal Kombat" de una manera
+                    completamente nueva con
+                    "Mortal Kombat 4 en Línea: Sub-Zero vs. Scorpion".
+                    Este emocionante juego de 4 en línea lleva la eterna
+                    rivalidad entre dos de los personajes más icónicos
+                    de la franquicia a un campo de batalla
+                    estratégico y lleno de emoción.
+                </p>
+
+                <h2 class="h-pagina-juego">Cómo jugar</h2>
+                <p id="descripcion-como-jugar">Se utiliza el mouse para jugar.
+                    Se toma la ficha correspondiente con el click
+                    izquierdo,
+                    se mantiene y se arrastra hasta el lugar donde quiere que
+                    caiga la ficha y ahí se suelta.
+                    Gana quien ponga 4 fichas en linea horizontal, vertical o
+                    diagonal</p>
+                <img id="como-jugar" src="../images/como-jugar-4-en-linea.png"
+                    alt>
+
+                <h2 class="h-pagina-juego">Videos recomendados</h2>
+                <div class="contenedor-carrusel">
+                    <button class="boton-izquierda"></button>
+                    <div class="carrusel">
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/1h3mGwgc89o?si=1_eM1jC-wgMqPWkP"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/JvYSlxKMLAs?si=jOmrbd39ebd1ivSa"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/2wcE_qRUgyc?si=yMajkuCp1bOS35g5"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/1h3mGwgc89o?si=1_eM1jC-wgMqPWkP"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/JvYSlxKMLAs?si=jOmrbd39ebd1ivSa"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="content">
+                                <iframe
+                                    src="https://www.youtube.com/embed/2wcE_qRUgyc?si=yMajkuCp1bOS35g5"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="informacion">
+                                <p class="nombre-juego">Titulo del video</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="boton-derecha"></button>
+                </div>
+
+                <section id="caja-de-comentarios">
+                    <h2 class="h-pagina-juego">Tú, ¿qué piensas sobre este
+                        juego? </h2>
+                    <div id="tu-comentario">
+                        <textarea placeholder="Comentario"></textarea>
+                        <button id="boton-publicar" class="boton-jugar">Publicar</button>
+                    </div>
+
+                    <div class="caja-de-comentario-publicado">
+                        <div>
+                            <div class="identificacion-del-comentario">
+                                <img class="foto-perfil"
+                                    src="../images/profile-image.jpg" alt>
+                                <h3>ShadowHunter87</h3>
+                                <p class="fecha-comentario">1/10/2023</p>
+                            </div>
+                            <div class="puntero-a-comentario"></div>
+                            <div class="comentario-y-calificacion">
+                                <p class="comentario">El mejor 4 en línea que
+                                    jugué</p>
+                            </div>
+                        </div>
+                        <div class="calificacion-comentario">
+                            <div class="caja-like">
+                                <svg class="like-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>3234</span>
                             </div>
                             <div class="caja-dislike">
-                                <svg class="dislike-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="dislike-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>53</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="caja-de-comentario-publicado">
-                    <div class="identificacion-del-comentario">
-                        <img class="foto-perfil" src="../images/profile-image.jpg" alt="">
-                        <h3>CyberNinjaX</h3>
-                        <p class="fecha-comentario">1/10/2023</p>
-                    </div>
-                    <div class="puntero-a-comentario"></div>
-                    <div class="comentario-y-calificacion">
-                        <p class="comentario">El juego es un tributo perfecto a la icónica rivalidad entre Scorpion 
-                            y Sub-Zero, y es un verdadero placer para los fanáticos de Mortal Kombat. 
-                            ¡Recomendaría este juego a cualquier amante de los juegos de estrategia y a los 
-                            fanáticos de Mortal Kombat por igual!</p>
+                    
+                    <div class="caja-de-comentario-publicado">
+                        <div>
+                            <div class="identificacion-del-comentario">
+                                <img class="foto-perfil"
+                                    src="../images/profile-image.jpg" alt>
+                                <h3>CyberNinjaX</h3>
+                                <p class="fecha-comentario">1/10/2023</p>
+                            </div>
+                            <div class="puntero-a-comentario"></div>
+                            <div class="comentario-y-calificacion">
+                                <p class="comentario">El juego es un tributo
+                                    perfecto a la icónica rivalidad entre Scorpion
+                                    y Sub-Zero, y es un verdadero placer para los
+                                    fanáticos de Mortal Kombat.
+                                    ¡Recomendaría este juego a cualquier amante de
+                                    los juegos de estrategia y a los
+                                    fanáticos de Mortal Kombat por igual!</p>
+                            </div>
+                        </div>
                         <div class="calificacion-comentario">
                             <div class="caja-like">
-                                <svg class="like-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="like-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>1235</span>
                             </div>
                             <div class="caja-dislike">
-                                <svg class="dislike-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="dislike-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>28</span>
                             </div>
                         </div>
-                    </div>                    
-                </div>
-                <div class="caja-de-comentario-publicado">
-                    <div class="identificacion-del-comentario">
-                        <img class="foto-perfil" src="../images/profile-image.jpg" alt="">
-                        <h3>GameMaster3000</h3>
-                        <p class="fecha-comentario">1/10/2023</p>
                     </div>
-                    <div class="puntero-a-comentario"></div>
-                    <div class="comentario-y-calificacion">
-                        <p class="comentario">Buenos gráficos y animaciones!</p>
+                    
+                    <div class="caja-de-comentario-publicado">
+                        <div>
+                            <div class="identificacion-del-comentario">
+                                <img class="foto-perfil"
+                                    src="../images/profile-image.jpg" alt>
+                                <h3>GameMaster3000</h3>
+                                <p class="fecha-comentario">1/10/2023</p>
+                            </div>
+                            <div class="puntero-a-comentario"></div>
+                            <div class="comentario-y-calificacion">
+                                <p class="comentario">Buenos gráficos y animaciones!</p>
+                            </div>
+                        </div>
                         <div class="calificacion-comentario">
                             <div class="caja-like">
-                                <svg class="like-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="like-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>5378</span>
                             </div>
                             <div class="caja-dislike">
-                                <svg class="dislike-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="dislike-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>3</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="caja-de-comentario-publicado">
-                    <div class="identificacion-del-comentario">
-                        <img class="foto-perfil" src="../images/profile-image.jpg" alt="">
-                        <h3>PixelWarrior42</h3>
-                        <p class="fecha-comentario">1/10/2023</p>
-                    </div>
-                    <div class="puntero-a-comentario"></div>
-                    <div class="comentario-y-calificacion">
-                        <p class="comentario">Horrible, malísima jugabilidad</p>
+                    
+                    <div class="caja-de-comentario-publicado">
+                        <div>
+                            <div class="identificacion-del-comentario">
+                                <img class="foto-perfil"
+                                    src="../images/profile-image.jpg" alt>
+                                <h3>PixelWarrior42</h3>
+                                <p class="fecha-comentario">1/10/2023</p>
+                            </div>
+                            <div class="puntero-a-comentario"></div>
+                            <div class="comentario-y-calificacion">
+                                <p class="comentario">Horrible, malísima jugabilidad</p>
+                            </div>
+                        </div>
                         <div class="calificacion-comentario">
                             <div class="caja-like">
-                                <svg class="like-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="like-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.672C1.95241 22.5841 2.11525 21.4954 2.49058 20.4725C2.86589 19.4494 3.44578 18.5139 4.19487 17.7226C4.94398 16.9314 5.84653 16.301 6.84737 15.8703C7.84825 15.4396 8.92642 15.2176 10.016 15.2176C11.1056 15.2176 12.1838 15.4396 13.1846 15.8703C14.1855 16.301 15.088 16.9314 15.8371 17.7226C16.5862 18.5139 17.1662 19.4494 17.5415 20.4725C17.9168 21.4954 18.0796 22.5841 18.02 23.672V37.184C18.0796 38.2719 17.9168 39.3608 17.5415 40.3837C17.1662 41.4065 16.5862 42.3421 15.8371 43.1333C15.088 43.9246 14.1855 44.5549 13.1846 44.9857C12.1838 45.4162 11.1056 45.6385 10.016 45.6385C8.92642 45.6385 7.84825 45.4162 6.84737 44.9857C5.84653 44.5549 4.94398 43.9246 4.19487 43.1333C3.44578 42.3421 2.86589 41.4065 2.49058 40.3837C2.11525 39.3608 1.95241 38.2719 2.012 37.184V23.672Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 37.184C18.058 38.2397 18.2597 39.2864 18.6579 40.2644C19.0562 41.2421 19.6431 42.1321 20.3852 42.8833C21.1273 43.6342 22.01 44.2318 22.9832 44.6415C23.9562 45.0514 25.0004 45.2657 26.0564 45.272H35.9444C38.2499 45.2703 40.4929 44.5208 42.3364 43.136C44.1798 41.7512 45.5245 39.8057 46.1685 37.592L49.7685 25.4C50.055 24.5895 50.1438 23.7224 50.0279 22.8706C49.9117 22.0189 49.594 21.2072 49.1013 20.503C48.6083 19.7989 47.9543 19.2224 47.1937 18.8218C46.4332 18.4213 45.5879 18.2081 44.7284 18.2H31.4804V5.52795C31.4836 5.06778 31.396 4.61161 31.2229 4.18527C31.0496 3.75894 30.7943 3.37088 30.471 3.04328C30.148 2.71566 29.7635 2.45485 29.3394 2.27583C28.9156 2.09684 28.4605 2.00314 28.0004 2C27.2432 2.00343 26.5079 2.2537 25.906 2.7128C25.3038 3.1719 24.868 3.81478 24.6644 4.544L18.0644 26.528"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>2</span>
                             </div>
                             <div class="caja-dislike">
-                                <svg class="dislike-comentario" width="52" height="48" viewBox="0 0 52 48" fill="none"
+                                <svg class="dislike-comentario" width="52"
+                                    height="48" viewBox="0 0 52 48" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.012 23.9665C1.95241 25.0544 2.11525 26.143 2.49058 27.1659C2.86589 28.189 3.44578 29.1245 4.19487 29.9158C4.94398 30.7071 5.84653 31.3374 6.84737 31.7681C7.84825 32.1988 8.92642 32.4208 10.016 32.4208C11.1056 32.4208 12.1838 32.1988 13.1846 31.7681C14.1855 31.3374 15.088 30.7071 15.8371 29.9158C16.5862 29.1245 17.1662 28.189 17.5415 27.1659C17.9168 26.143 18.0796 25.0544 18.02 23.9665V10.4545C18.0796 9.36653 17.9168 8.27765 17.5415 7.25477C17.1662 6.23189 16.5862 5.29637 15.8371 4.50509C15.088 3.71381 14.1855 3.08357 13.1846 2.65277C12.1838 2.22221 11.1056 1.99997 10.016 1.99997C8.92642 1.99997 7.84825 2.22221 6.84737 2.65277C5.84653 3.08357 4.94398 3.71381 4.19487 4.50509C3.44578 5.29637 2.86589 6.23189 2.49058 7.25477C2.11525 8.27765 1.95241 9.36653 2.012 10.4545V23.9665Z"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                     <path
                                         d="M18.0644 10.4545C18.058 9.39869 18.2597 8.35205 18.6579 7.37405C19.0562 6.39629 19.6431 5.50637 20.3852 4.75517C21.1273 4.00421 22.01 3.40661 22.9832 2.99693C23.9562 2.58701 25.0004 2.37269 26.0564 2.36645H35.9444C38.2499 2.36813 40.4929 3.11765 42.3364 4.50245C44.1798 5.88725 45.5245 7.83269 46.1685 10.0465L49.7685 22.2384C50.055 23.0489 50.1438 23.9161 50.0279 24.7678C49.9117 25.6196 49.594 26.4313 49.1013 27.1354C48.6083 27.8396 47.9543 28.4161 47.1937 28.8166C46.4332 29.2172 45.5879 29.4303 44.7284 29.4384H31.4804V42.1105C31.4836 42.5707 31.396 43.0268 31.2229 43.4532C31.0496 43.8795 30.7943 44.2675 30.471 44.5951C30.148 44.9228 29.7635 45.1836 29.3394 45.3626C28.9156 45.5416 28.4605 45.6353 28.0004 45.6384C27.2432 45.635 26.5079 45.3847 25.906 44.9256C25.3038 44.4665 24.868 43.8236 24.6644 43.0944L18.0644 21.1105"
-                                        stroke="#D4D8F7" stroke-width="3.6" stroke-linecap="round"
+                                        stroke="#D4D8F7" stroke-width="3.6"
+                                        stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                                 <span>2541</span>
                             </div>
                         </div>
                     </div>
+                   
+                    
+                    
+                </section>
+                <h3 class="titulo-categoria">
+                    Te podría interesar
+                </h3>
+                <div class="contenedor-carrusel">
+                    <button class="boton-izquierda"></button>
+                    <div class="carrusel">
+                        <div class="card-posesion"
+                            data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"/2023
+                            data-imagen="../images/juegos/mk-4-en-linea.png"
+                            data-generos='["Multijugador", "Acción"]'>
+                        </div>
+                        <div class="card-normal"
+                            data-nombre="Soccer Legend 2021"
+                            data-imagen="../images/juegos/soccer-legend-2021.png"
+                            data-generos='["Multijugador","Deportes"]'
+                            data-precio="30">
+                        </div>
+                        <div class="card-normal" data-nombre="Evowars.io"
+                            data-imagen="../images/juegos/evowars-io.png"
+                            data-generos='["Multijugador","accion"]'
+                            data-precio="29.99">
+                        </div>
+                        <div class="card-oferta" data-nombre="Shell Shockers"
+                            data-imagen="../images/juegos/shell-shockers.png"
+                            data-generos='["Multijugador","accion"]'
+                            data-precio="20" data-preciOrg="50">
+                        </div>
+                        <div class="card-normal"
+                            data-nombre="8 Ball Billiards Classic"
+                            data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                            data-generos='["Multijugador","Deportes"]'
+                            data-precio="12.50">
+                        </div>
+                        <div class="card-normal"
+                            data-nombre="8 Ball Billiards Classic"
+                            data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                            data-generos='["Multijugador","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes"]'
+                            data-precio="12.50">
+                        </div>
+                        <div class="card-normal"
+                            data-nombre="8 Ball Billiards Classic"
+                            data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                            data-generos='["Multijugador","Deportes"]'
+                            data-precio="12.50">
+                        </div>
+                        <div class="card-normal"
+                            data-nombre="8 Ball Billiards Classic"
+                            data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                            data-generos='["Multijugador","Deportes"]'
+                            data-precio="12.50">
+                        </div>
+                        <div class="card-oferta"
+                            data-nombre="8 Ball Billiards Classic"
+                            data-imagen="../images/juegos/8-ball-billiards-classic.png"
+                            data-generos='["Multijugador","Deportes"]'
+                            data-precio="12.50" data-preciOrg="20">
+                        </div>
+                    </div>
+                    <button class="boton-derecha"></button>
                 </div>
             </div>
-            <h3 class="titulo-categoria">
-                Te podría interesar
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <div class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"/2023
-                        data-imagen="../images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
-                    </div>
-                    <div class="card-normal" data-nombre="Soccer Legend 2021"
-                        data-imagen="../images/juegos/soccer-legend-2021.png" data-generos='["Multijugador","Deportes"]'
-                        data-precio="30">
-                    </div>
-                    <div class="card-normal" data-nombre="Evowars.io" data-imagen="../images/juegos/evowars-io.png"
-                        data-generos='["Multijugador","accion"]' data-precio="29.99">
-                    </div>
-                    <div class="card-oferta" data-nombre="Shell Shockers"
-                        data-imagen="../images/juegos/shell-shockers.png" data-generos='["Multijugador","accion"]'
-                        data-precio="20" data-preciOrg="50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes","Deportes"]'
-                        data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50">
-                    </div>
-                    <div class="card-oferta" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="../images/juegos/8-ball-billiards-classic.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="12.50" data-preciOrg="20">
-                    </div>
-                </div>
-                <button class="boton-derecha"></button>
+            <div class="publicidad">
+                <img src="../images/publicidades/banner-1.png" alt>
+                <img src="../images/publicidades/banner-2.png" alt>
+                <img src="../images/publicidades/banner-3.png" alt>
+                <img src="../images/publicidades/banner-4.png" alt>
+                <img src="../images/publicidades/banner-5.png" alt>
             </div>
         </div>
-        <div class="publicidad">
-            <img src="../images/publicidades/banner-1.png" alt="">
-            <img src="../images/publicidades/banner-2.png" alt="">
-            <img src="../images/publicidades/banner-3.png" alt="">
-            <img src="../images/publicidades/banner-4.png" alt="">
-            <img src="../images/publicidades/banner-5.png" alt="">
-        </div>
-    </div>
 
+        <footer id="fat-footer">
 
+            <div id="grupo-grande-footer">
+                <section id="categorias-footer">
+                    <ul>
+                        <li>
+                            <h3>Categorías</h3>
+                        </li>
+                        <li><a href>Acción</a></li>
+                        <li><a href>Multijugador</a></li>
+                        <li><a href>Deportes</a></li>
+                        <li><a href>Disparos</a></li>
+                        <li><a href>Carreras</a></li>
+                        <li><a href>Casual</a></li>
+                    </ul>
+                </section>
+                <section id="links-sitio-footer">
+                    <ul>
+                        <li>
+                            <h3>Links del sitio</h3>
+                        </li>
+                        <li><a href="#">Pagina de inicio</a></li>
+                        <li><a href>Usuario</a></li>
+                        <li><a href>Mi carrito</a></li>
+                        <li><a href>Mis juegos</a></li>
+                        <li><a href>Lista de deseados</a></li>
+                    </ul>
+                </section>
+                <section id="redes-footer">
+                    <h3>Nuestras redes</h3>
+                    <div>
+                        <a href><img src="../images/iconos/facebook.png"
+                                alt="link a facebook"></a>
+                        <a href><img src="../images/iconos/instagram.png"
+                                alt="link a instagram"></a>
+                        <a href><img src="../images/iconos/twitter.png"
+                                alt="link a twitter"></a>
+                        <a href><img src="../images/iconos/youtube.png"
+                                alt="link a youtube"></a>
+                    </div>
+                </section>
+                <section id="demas-links-footer">
+                    <ul>
+                        <li>
+                            <h3>Más información</h3>
+                        </li>
+                        <li><a href>Sobre nosotros</a></li>
+                        <li><a href>Política de privacidad</a></li>
+                        <li><a href>Derechos de copyright</a></li>
+                        <li><a href>Acuerdo de suscriptor a Gamesitos</a></li>
+                        <li><a href>Empleo</a></li>
+                        <li><a href>Soporte</a></li>
+                    </ul>
+                </section>
+            </div>
+        </footer>
 
-    <footer id="fat-footer">
-
-        <div id="grupo-grande-footer">
-            <section id="categorias-footer">
-                <ul>
-                    <li>
-                        <h3>Categorías</h3>
-                    </li>
-                    <li><a href="">Acción</a></li>
-                    <li><a href="">Multijugador</a></li>
-                    <li><a href="">Deportes</a></li>
-                    <li><a href="">Disparos</a></li>
-                    <li><a href="">Carreras</a></li>
-                    <li><a href="">Casual</a></li>
-                </ul>
-            </section>
-            <section id="links-sitio-footer">
-                <ul>
-                    <li>
-                        <h3>Links del sitio</h3>
-                    </li>
-                    <li><a href="#">Pagina de inicio</a></li>
-                    <li><a href="">Usuario</a></li>
-                    <li><a href="">Mi carrito</a></li>
-                    <li><a href="">Mis juegos</a></li>
-                    <li><a href="">Lista de deseados</a></li>
-                </ul>
-            </section>
-            <section id="redes-footer">
-                <h3>Nuestras redes</h3>
-                <div>
-                    <a href=""><img src="../images/iconos/facebook.png" alt="link a facebook"></a>
-                    <a href=""><img src="../images/iconos/instagram.png" alt="link a instagram"></a>
-                    <a href=""><img src="../images/iconos/twitter.png" alt="link a twitter"></a>
-                    <a href=""><img src="../images/iconos/youtube.png" alt="link a youtube"></a>
-                </div>
-            </section>
-            <section id="demas-links-footer">
-                <ul>
-                    <li>
-                        <h3>Más información</h3>
-                    </li>
-                    <li><a href="">Sobre nosotros</a></li>
-                    <li><a href="">Política de privacidad</a></li>
-                    <li><a href="">Derechos de copyright</a></li>
-                    <li><a href="">Acuerdo de suscriptor a Gamesitos</a></li>
-                    <li><a href="">Empleo</a></li>
-                    <li><a href="">Soporte</a></li>
-                </ul>
-            </section>
-        </div>
-    </footer>
-
-
-    <script src="../js/pagina-juego.js"></script>
-    <script src="../js/carrusel.js"></script>
-    <script src="../js/menusDesplegables.js"></script>
-</body>
+        <script src="../js/pagina-juego.js"></script>
+        <script src="../js/carrusel.js"></script>
+        <script src="../js/menusDesplegables.js"></script>
+    </body>
 
 </html>
