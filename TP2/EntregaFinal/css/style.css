@@ -1901,19 +1901,19 @@ header>.mostrar-menu-carrito {
 }
 
 .estrellas:hover .estrella:nth-child(2) {
-    transition-delay: 30ms;
-}
-
-.estrellas:hover .estrella:nth-child(3) {
     transition-delay: 60ms;
 }
 
+.estrellas:hover .estrella:nth-child(3) {
+    transition-delay: 120ms;
+}
+
 .estrellas:hover .estrella:nth-child(4) {
-    transition-delay: 90ms;
+    transition-delay: 180ms;
 }
 
 .estrellas:hover .estrella:nth-child(5) {
-    transition-delay: 120ms;
+    transition-delay: 240ms;
 }
 
 .estrellas .estrella {
