@@ -1346,7 +1346,7 @@ header>.mostrar-menu-carrito {
     margin: 0px;
     padding: 2px 0px 2px 7px;
     width: 70%;
-    font-size: var(--font-size-h3);
+    font-size: var(--font-size-cont);
 }
 
 .card>.informacion .boton-jugar {
