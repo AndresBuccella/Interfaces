@@ -2118,8 +2118,11 @@ header>.mostrar-menu-carrito {
     height: 36px;
 }
 
+#seccion-como-jugar{
+    width: webkit-fill-abailable;
+}
 #como-jugar {
-    width: auto;
+    width: calc(40vw * 16 / 9);
     margin: 0px 40px var(--space-between-sections) 40px;
 }
 

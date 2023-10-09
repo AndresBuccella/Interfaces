@@ -161,8 +161,8 @@
             <a href="html/login.html" id="cerrar-perfil">Cerrar sesión<span></span></a>
         </nav>
     </header>
-
-    <div id="loading">
+    <main>
+        <div id="loading">
         <div id="contenedor-icono-loading">
             <img src="images/gamesitos-logo.svg" alt="Logo de la pagina">
             <div class="movement-loading">
@@ -265,202 +265,212 @@
             </div>
             <div id="loading-contador">0</div>
         </div>
-    </div>
-
-    <div id="juego-principal">
-        <div id="banner"><img src="images/genshin_impact_banner.jpeg" alt="juego portada.jpeg"></div>
-        <a href="" class="boton-jugar">Comprar</a>
-    </div>
-    <h3 class="titulo-categoria">
-        Mas populares
-    </h3>
-    <div class="contenedor-carrusel">
-        <button class="boton-izquierda"></button>
-        <div class="carrusel">
-            <div class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
-                data-imagen="images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
-            </div>
-            <div class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
-                data-generos='["Multijugador","Deportes"]' data-precio="30">
-            </div>
-            <div class="card-normal" data-nombre="Evowars.io" data-imagen="images/juegos/evowars-io.png"
-                data-generos='["Multijugador","Accion"]' data-precio="35">
-            </div>
-            <div class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
-                data-generos='["Multijugador","Accion","Disparos"]' data-precio="20">
-            </div>
-            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
-                data-precio="25">
-            </div>
-            <div class="card-normal" data-nombre="Tower Defense clash"
-                data-imagen="images/juegos/tower-defense-clash.png"
-                data-generos='["Multijugador","Tower defense","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador"]'
-                data-precio="10">
-            </div>
-            <div class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
-                data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
-            </div>
-            <div class="card-oferta" data-nombre="Raft life" data-imagen="images/juegos/raft-life.png"
-                data-generos='["Un jugador","Supervivencia","Pesca"]' data-preciOrg="12.50" data-precio="9.50">
-            </div>
         </div>
-        <button class="boton-derecha"></button>
-    </div>
-
-    <h3 class="titulo-categoria">
-        Recomendados
-    </h3>
-    <div class="contenedor-carrusel">
-        <button class="boton-izquierda"></button>
-        <div class="carrusel">
-            <div class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
-                data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
-            </div>
-            <div class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
-                data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
-            </div>
-            <div class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
-                data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
-            </div>
-            <div class="card-normal" data-nombre="Bapbap" data-imagen="images/juegos/bapbap.png"
-                data-generos='["Multijugador","Lucha","Patos salvajes", "2d"]' data-precio="20">
-            </div>
-            <div class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
-                data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
-            </div>
-            <div class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
-                data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
-            </div>
-            <div class="card-normal" data-nombre="Table Tennis World Tour"
-                data-imagen="images/juegos/table-tennis-world-tour.png"
-                data-generos='["Multijugador","Deportes","Tenis de mesa"]' data-precio="12.50">
-            </div>
-            <div class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
-                data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
-            </div>
-            <div class="card-ofera" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
-                data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
-            </div>
+        
+        <div id="juego-principal">
+            <div id="banner"><img src="images/genshin_impact_banner.jpeg" alt="juego portada.jpeg"></div>
+            <a href="" class="boton-jugar">Comprar</a>
         </div>
-        <button class="boton-derecha"></button>
-    </div>
-
-    <h3 class="titulo-categoria">
-        Disparos
-    </h3>
-    <div class="contenedor-carrusel">
-        <button class="boton-izquierda"></button>
-        <div class="carrusel">
-            <div class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
-                data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
+    
+        <section aria-label="Carrousel de los juegos más populares">
+            <h3 class="titulo-categoria">
+                Mas populares
+            </h3>
+            <div class="contenedor-carrusel">
+                <button class="boton-izquierda"></button>
+                <div class="carrusel">
+                    <article class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
+                        data-imagen="images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
+                    </article>
+                    <article class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
+                        data-generos='["Multijugador","Deportes"]' data-precio="30">
+                    </article>
+                    <article class="card-normal" data-nombre="Evowars.io" data-imagen="images/juegos/evowars-io.png"
+                        data-generos='["Multijugador","Accion"]' data-precio="35">
+                    </article>
+                    <article class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
+                        data-generos='["Multijugador","Accion","Disparos"]' data-precio="20">
+                    </article>
+                    <article class="card-normal" data-nombre="8 Ball Billiards Classic"
+                        data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
+                        data-precio="25">
+                    </article>
+                    <article class="card-normal" data-nombre="Tower Defense clash"
+                        data-imagen="images/juegos/tower-defense-clash.png"
+                        data-generos='["Multijugador","Tower defense","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador"]'
+                        data-precio="10">
+                    </article>
+                    <article class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
+                        data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
+                    </article>
+                    <article class="card-oferta" data-nombre="Raft life" data-imagen="images/juegos/raft-life.png"
+                        data-generos='["Un jugador","Supervivencia","Pesca"]' data-preciOrg="12.50" data-precio="9.50">
+                    </article>
+                </div>
+                <button class="boton-derecha"></button>
             </div>
-            <div class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
-                data-generos='["Un jugador","Accion","Disparos"]' data-precio="20">
+        </section>
+    
+        <section aria-label="Carrousel de los juegos recomendados para vos">
+            <h3 class="titulo-categoria">
+                Recomendados
+            </h3>
+            <div class="contenedor-carrusel">
+                <button class="boton-izquierda"></button>
+                <div class="carrusel">
+                    <article class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
+                        data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
+                    </article>
+                    <article class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
+                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
+                    </article>
+                    <article class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
+                        data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
+                    </article>
+                    <article class="card-normal" data-nombre="Bapbap" data-imagen="images/juegos/bapbap.png"
+                        data-generos='["Multijugador","Lucha","Patos salvajes", "2d"]' data-precio="20">
+                    </article>
+                    <article class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
+                        data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
+                    </article>
+                    <article class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
+                        data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
+                    </article>
+                    <article class="card-normal" data-nombre="Table Tennis World Tour"
+                        data-imagen="images/juegos/table-tennis-world-tour.png"
+                        data-generos='["Multijugador","Deportes","Tenis de mesa"]' data-precio="12.50">
+                    </article>
+                    <article class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
+                        data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
+                    </article>
+                    <article class="card-ofera" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
+                        data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
+                    </article>
+                </div>
+                <button class="boton-derecha"></button>
             </div>
-            <div class="card-oferta" data-nombre="Tanks Arena.io" data-imagen="images/juegos/tanks-arena-io.png"
-                data-generos='["Multijugador","Accion", "Disparos","Tankes"]' data-preciOrg="60" data-precio="29.99">
+        
+            <h3 class="titulo-categoria">
+                Disparos
+            </h3>
+            <div class="contenedor-carrusel">
+                <button class="boton-izquierda"></button>
+                <div class="carrusel">
+                    <div class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
+                        data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
+                    </div>
+                    <div class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
+                        data-generos='["Un jugador","Accion","Disparos"]' data-precio="20">
+                    </div>
+                    <div class="card-oferta" data-nombre="Tanks Arena.io" data-imagen="images/juegos/tanks-arena-io.png"
+                        data-generos='["Multijugador","Accion", "Disparos","Tankes"]' data-preciOrg="60" data-precio="29.99">
+                    </div>
+                    <div class="card-normal" data-nombre="Shell Shockers Bad Egg"
+                        data-imagen="images/juegos/shell-shockers-bad-egg.png" data-generos='["Un jugador","Accion","Disparos"]'
+                        data-precio="25">
+                    </div>
+                    <div class="card-normal" data-nombre="Skibidi toilets: infection"
+                        data-imagen="images/juegos/skibidi-toilets-infection.png"
+                        data-generos='["Un jugador","Disparos","Fantasía"]' data-precio="40">
+                    </div>
+                    <div class="card-oferta" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
+                        data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
+                    </div>
+                    <div class="card-normal" data-nombre="Ninja Hands 2" data-imagen="images/juegos/ninja-hands-2.png"
+                        data-generos='["Multijugador","Disparos","Ninjas","Acción"]' data-precio="20">
+                    </div>
+                    <div class="card-normal" data-nombre="Shadow Ninja Revenge"
+                        data-imagen="images/juegos/shadow-ninja-revenge.png"
+                        data-generos='["Un jugador","Ninjas","Accion","Disparos"]' data-precio="12.50">
+                    </div>
+                    <div class="card-oferta" data-nombre="Getaway Shootout" data-imagen="images/juegos/getaway-shootout.png"
+                        data-generos='["Un jugador","Disparos","2d","Sangriento"]' data-preciOrg="30" data-precio="12.50">
+                    </div>
+                </div>
+                <button class="boton-derecha"></button>
             </div>
-            <div class="card-normal" data-nombre="Shell Shockers Bad Egg"
-                data-imagen="images/juegos/shell-shockers-bad-egg.png" data-generos='["Un jugador","Accion","Disparos"]'
-                data-precio="25">
+        </section>
+    
+        <section aria-label="Carrousel de los juegos de carreras">
+            <h3 class="titulo-categoria">
+                Carreras
+            </h3>
+            <div class="contenedor-carrusel">
+                <button class="boton-izquierda"></button>
+                <div class="carrusel">
+                    <article class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
+                        data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
+                    </article>
+                    <article class="card-normal" data-nombre="Crazy for speed" data-imagen="images/juegos/crazy-for-speed.png"
+                        data-generos='["Multijugador","Carreras", "2 jugadores"]' data-precio="35">
+                    </article>
+                    <article class="card-normal" data-nombre="Superbike the champion"
+                        data-imagen="images/juegos/superbike-the-champion.png" data-generos='["Un jugador","Carreras","Motos"]'
+                        data-precio="15">
+                    </article>
+                    <article class="card-oferta" data-nombre="Turbo Crash Racing" data-imagen="images/juegos/turbo-crash-racing.png"
+                        data-generos='["Un jugador","Carreras", "Tunning"]' data-preciOrg="25" data-precio="20">
+                    </article>
+                    <article class="card-normal" data-nombre="Crazy Drift" data-imagen="images/juegos/crazy-drift.png"
+                        data-generos='["Un jugador","Carreras","Drift","Tuning"]' data-precio="10">
+                    </article>
+                    <article class="card-oferta" data-nombre="Highway Racer 2" data-imagen="images/juegos/highway-racer-2.png"
+                        data-generos='["Multijugador","Carreras","Mundo abierto"]' data-preciOrg="60" data-precio="12.50">
+                    </article>
+                    <article class="card-normal" data-nombre="Crazy MX" data-imagen="images/juegos/crazy-mx.png"
+                        data-generos='["Multijugador","MX","Carreras","2d"]' data-precio="9.99">
+                    </article>
+                    <article class="card-normal" data-nombre="Crazy Grandprix" data-imagen="images/juegos/crazy-grand-prix.png"
+                        data-generos='["1 jugador","Carreras","Formula 1"]' data-preciOrg="30" data-precio="15">
+                    </article>
+                </div>
+                <button class="boton-derecha"></button>
             </div>
-            <div class="card-normal" data-nombre="Skibidi toilets: infection"
-                data-imagen="images/juegos/skibidi-toilets-infection.png"
-                data-generos='["Un jugador","Disparos","Fantasía"]' data-precio="40">
+        </section>
+    
+        <section aria-label="Carrousel de los juegos de deportes">
+            <h3 class="titulo-categoria">
+                Deportes
+            </h3>
+            <div class="contenedor-carrusel">
+                <button class="boton-izquierda"></button>
+                <div class="carrusel">
+                    <article class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
+                        data-generos='["2 jugadores","Deportes"]' data-precio="30">
+                    </article>
+                    <article class="card-normal" data-nombre="8 Ball Billiards Classic"
+                        data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["2 jugadores","Deportes"]'
+                        data-precio="25">
+                    </diarticlev>
+                    <article class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
+                        data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
+                    </article>
+                    <article class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
+                        data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
+                    </article>
+                    <article class="card-normal" data-nombre="Basketball Stars" data-imagen="images/juegos/basketball-stars.png"
+                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-precio="15.50">
+                    </article>
+                    <article class="card-normal" data-nombre="Table Tennis World Tour"
+                        data-imagen="images/juegos/table-tennis-world-tour.png"
+                        data-generos='["2 jugadores","Deportes","Tenis de mesa"]' data-precio="12.50">
+                    </article>
+                    <article class="card-normal" data-nombre="Tap-tap Shots" data-imagen="images/juegos/tap-tap-shots.png"
+                        data-generos='["Multijugador","Deportes","2d"]' data-precio="5">
+                    </article>
+                    <article class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
+                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
+                    </article>
+                </div>
+                <button class="boton-derecha"></button>
             </div>
-            <div class="card-oferta" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
-                data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
-            </div>
-            <div class="card-normal" data-nombre="Ninja Hands 2" data-imagen="images/juegos/ninja-hands-2.png"
-                data-generos='["Multijugador","Disparos","Ninjas","Acción"]' data-precio="20">
-            </div>
-            <div class="card-normal" data-nombre="Shadow Ninja Revenge"
-                data-imagen="images/juegos/shadow-ninja-revenge.png"
-                data-generos='["Un jugador","Ninjas","Accion","Disparos"]' data-precio="12.50">
-            </div>
-            <div class="card-oferta" data-nombre="Getaway Shootout" data-imagen="images/juegos/getaway-shootout.png"
-                data-generos='["Un jugador","Disparos","2d","Sangriento"]' data-preciOrg="30" data-precio="12.50">
-            </div>
-        </div>
-        <button class="boton-derecha"></button>
-    </div>
-
-    <h3 class="titulo-categoria">
-        Carreras
-    </h3>
-    <div class="contenedor-carrusel">
-        <button class="boton-izquierda"></button>
-        <div class="carrusel">
-            <div class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
-                data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
-            </div>
-            <div class="card-normal" data-nombre="Crazy for speed" data-imagen="images/juegos/crazy-for-speed.png"
-                data-generos='["Multijugador","Carreras", "2 jugadores"]' data-precio="35">
-            </div>
-            <div class="card-normal" data-nombre="Superbike the champion"
-                data-imagen="images/juegos/superbike-the-champion.png" data-generos='["Un jugador","Carreras","Motos"]'
-                data-precio="15">
-            </div>
-            <div class="card-oferta" data-nombre="Turbo Crash Racing" data-imagen="images/juegos/turbo-crash-racing.png"
-                data-generos='["Un jugador","Carreras", "Tunning"]' data-preciOrg="25" data-precio="20">
-            </div>
-            <div class="card-normal" data-nombre="Crazy Drift" data-imagen="images/juegos/crazy-drift.png"
-                data-generos='["Un jugador","Carreras","Drift","Tuning"]' data-precio="10">
-            </div>
-            <div class="card-oferta" data-nombre="Highway Racer 2" data-imagen="images/juegos/highway-racer-2.png"
-                data-generos='["Multijugador","Carreras","Mundo abierto"]' data-preciOrg="60" data-precio="12.50">
-            </div>
-            <div class="card-normal" data-nombre="Crazy MX" data-imagen="images/juegos/crazy-mx.png"
-                data-generos='["Multijugador","MX","Carreras","2d"]' data-precio="9.99">
-            </div>
-            <div class="card-normal" data-nombre="Crazy Grandprix" data-imagen="images/juegos/crazy-grand-prix.png"
-                data-generos='["1 jugador","Carreras","Formula 1"]' data-preciOrg="30" data-precio="15">
-            </div>
-        </div>
-        <button class="boton-derecha"></button>
-    </div>
-
-    <h3 class="titulo-categoria">
-        Deportes
-    </h3>
-    <div class="contenedor-carrusel">
-        <button class="boton-izquierda"></button>
-        <div class="carrusel">
-            <div class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
-                data-generos='["2 jugadores","Deportes"]' data-precio="30">
-            </div>
-            <div class="card-normal" data-nombre="8 Ball Billiards Classic"
-                data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["2 jugadores","Deportes"]'
-                data-precio="25">
-            </div>
-            <div class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
-                data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
-            </div>
-            <div class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
-                data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
-            </div>
-            <div class="card-normal" data-nombre="Basketball Stars" data-imagen="images/juegos/basketball-stars.png"
-                data-generos='["Multijugador","Deportes","Basketball","2d"]' data-precio="15.50">
-            </div>
-            <div class="card-normal" data-nombre="Table Tennis World Tour"
-                data-imagen="images/juegos/table-tennis-world-tour.png"
-                data-generos='["2 jugadores","Deportes","Tenis de mesa"]' data-precio="12.50">
-            </div>
-            <div class="card-normal" data-nombre="Tap-tap Shots" data-imagen="images/juegos/tap-tap-shots.png"
-                data-generos='["Multijugador","Deportes","2d"]' data-precio="5">
-            </div>
-            <div class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
-                data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
-            </div>
-        </div>
-        <button class="boton-derecha"></button>
-    </div>
+        </section>
+    </main>
 
     <footer id="fat-footer">
 
         <div id="grupo-grande-footer">
-            <section id="categorias-footer">
+            <section id="categorias-footer" aria-label="Categorías">
                 <ul>
                     <li>
                         <h3>Categorías</h3>
@@ -473,7 +483,8 @@
                     <li><a href="">Casual</a></li>
                 </ul>
             </section>
-            <section id="links-sitio-footer">
+
+            <section id="links-sitio-footer" aria-label="Links del sitio">
                 <ul>
                     <li>
                         <h3>Links del sitio</h3>
@@ -485,16 +496,18 @@
                     <li><a href="">Lista de deseados</a></li>
                 </ul>
             </section>
-            <section id="redes-footer">
+
+            <section id="redes-footer" aria-label="nuestras redes">
                 <h3>Nuestras redes</h3>
                 <div>
-                    <a href=""><img src="images/iconos/facebook.png" alt="link a facebook"></a>
-                    <a href=""><img src="images/iconos/instagram.png" alt="link a instagram"></a>
-                    <a href=""><img src="images/iconos/twitter.png" alt="link a twitter"></a>
-                    <a href=""><img src="images/iconos/youtube.png" alt="link a youtube"></a>
+                    <a href=""><img src="images/iconos/facebook.png" alt="Enlace a nuestra página de facebook"></a>
+                    <a href=""><img src="images/iconos/instagram.png" alt="Enlace a nuestro perfil de instagram"></a>
+                    <a href=""><img src="images/iconos/twitter.png" alt="Enlace a nuestra cuenta de twitter"></a>
+                    <a href=""><img src="images/iconos/youtube.png" alt="Enlace a nuestro canal de youtube"></a>
                 </div>
             </section>
-            <section id="demas-links-footer">
+
+            <section id="demas-links-footer" aria-label="Más información">
                 <ul>
                     <li>
                         <h3>Más información</h3>
