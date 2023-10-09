@@ -20,11 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form_regist.querySelector("#nombre").addEventListener("input", function () { form_validate("nombre"); });
     form_regist.querySelector("#apellido").addEventListener("input", function () { form_validate("apellido"); });
     form_regist.querySelector("#edad").addEventListener("input", function () { form_validate("edad"); });
-    form_regist.querySelector("#correo").addEventListener("input", 
-    function () { 
-        form_validate("correo");
-        validate_mail();
-    });
+    form_regist.querySelector("#correo").addEventListener("input", validate_correo);
     form_regist.querySelector("#contraseña").addEventListener("input", validate_password);
     form_regist.querySelector("#rep-contraseña").addEventListener("input", confirm_password);
     form_regist.querySelector("#captcha").addEventListener("input", function () { form_validate_checkbox("captcha"); });
@@ -57,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!form_validate("nombre")) status = false;
         if (!form_validate("apellido")) status = false;
         if (!form_validate("edad")) status = false;
-        if (!form_validate("correo")) status = false;
+        if (!validate_correo()) status = false;
         if (!form_validate_checkbox("captcha")) status = false;
         if (!form_validate_checkbox("terminos")) status = false;
         if (!validate_password()) status = false;
@@ -93,7 +89,17 @@ document.addEventListener("DOMContentLoaded", function () {
         elem = '<div class="form-error"><img src="../images/form-error.png" alt="">'
 
         for (let i = 0; i < errors.length; i++) {
-            elem += '<p class="' + "form-error-valid".repeat(errors_status[i]) + '">' + errors[i] + '</p>';
+            switch (errors_status[i]) {
+                case 1:
+                    elem += '<p class="form-error-valid">' + errors[i] + '</p>';
+                    break;
+                case 2:
+                    elem += '<p class="form-error-inf">' + errors[i] + '</p>';
+                    break
+                default:
+                    elem += '<p>' + errors[i] + '</p>';
+                    break;
+            }
         }
         elem += '</div>';
         return elem
@@ -105,13 +111,26 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lasterror) lasterror.remove();
     }
 
-    function validate_mail(){
+    function validate_correo() {
         let correo = document.querySelector("#correo");
-        if(!correo.value.includes('@') || !(correo.value.includes('.com'))){
-            correo.classList.add('form-error-input');
-        }else{
-            correo.classList.remove('form-error-input');
-        }
+        let errors = ["Falta completar el campo", "El correo debe contener un arroba", "Debe contener un dominio", "Debe terminar en .com", "Ej: miCorreo@dominio.com"];
+        let errors_status = [];
+
+        if (correo.value == "") errors_status.push(0); else errors_status.push(1);                  //Falta completar el campo
+        if (/^[^@]*@[^@]*$/.test(correo.value)) errors_status.push(1); else errors_status.push(0);  //El correo debe contener un arroba
+        if (/@[\w\d]/.test(correo.value)) errors_status.push(1); else errors_status.push(0);        //contener un dominio
+        if (correo.value.endsWith(".com")) errors_status.push(1); else errors_status.push(0);       //Debe terminar en .com
+        errors_status.push(2);
+        let status = !errors_status.includes(0);
+        if (!status) {
+            correo.classList.add("form-error-input");
+            let lasterror = correo.parentNode.querySelector(".form-error");
+            if (lasterror) lasterror.remove();
+            let divTemporal = document.createElement('div');
+            divTemporal.innerHTML = form_error_message(errors, errors_status);
+            correo.parentNode.appendChild(divTemporal.querySelector(".form-error"));
+        } else reset_form_status(correo);
+        return status
     }
 
     function validate_password() {
@@ -123,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (contraceña.value.length > 6) errors_status.push(1); else errors_status.push(0);                                      //La contraseña debe tener mas de 6 caracteres
         if (/\d/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);                                     //Debe contener por lo menos 1 numero
         if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/.test(contraceña.value)) errors_status.push(1); else errors_status.push(0);        //Debe contener por lo menos 1 simbolo especial
-
+        
         let status = !errors_status.includes(0);
         if (!status) {
             contraceña.classList.add("form-error-input");

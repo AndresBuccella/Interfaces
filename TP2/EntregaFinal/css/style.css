@@ -1829,6 +1829,9 @@ header>.mostrar-menu-carrito {
     color: var(--n-notificacion-color-ok);
 }
 
+.form-error-inf {
+    color: gray;
+}
 
 /*Página del juego*/
 #breadcrum {
