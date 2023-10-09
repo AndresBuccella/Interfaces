@@ -1060,8 +1060,8 @@ header>.mostrar-menu-carrito {
 
 /*--------Carta de los juegos--------*/
 .card {
-    min-width: 100%;
-    width: 100%;
+    min-width: min(100%,var(--card-width));
+    width: min(100%,var(--card-width));
     max-width: var(--card-width);
     height: var(--card-height);
     perspective: 700px;
@@ -1358,6 +1358,17 @@ header>.mostrar-menu-carrito {
     font-weight: bold;
     font-size: var(--font-size-h3);
     border-radius: 0px 0px 0px 45px;
+    transition: width 0.6s ease-in-out, border-radius 0.6s ease-in-out;
+}
+
+.card>.informacion .boton-jugar span {
+    margin-left: 20px;
+    text-wrap: nowrap;
+}
+
+.card>.informacion .boton-jugar:hover {
+    width: 98%;
+    border-radius: 0;
 }
 
 .card>.informacion .precio {
@@ -2052,7 +2063,7 @@ header>.mostrar-menu-carrito {
     cursor: pointer;
 }
 
-#banner-compartir-juego a{
+#banner-compartir-juego a {
     text-decoration: none;
 }
 
@@ -2277,9 +2288,11 @@ header>.mostrar-menu-carrito {
     height: 1px;
     background-color: var(--p-color-900);
 }
-.comentario span:nth-child(1){
+
+.comentario span:nth-child(1) {
     top: 0;
 }
+
 .comentario span:nth-child(2) {
     bottom: 0;
 }

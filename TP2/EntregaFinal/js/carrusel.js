@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="informacion">
                         <p class="nombre-juego">${nombre}</p>
-                        <a href="html/mk_4_en_linea.html" class="boton-jugar">Jugar</a>
+                        <a href="html/mk_4_en_linea.html" class="boton-jugar">Jugar <span>▶ ▶ ▶ ▶ ▶ ▶ ▶ ▶ ▶</span></a>
                     </div>`;
             let divTemporal = document.createElement('div');
             divTemporal.innerHTML = contenido;
