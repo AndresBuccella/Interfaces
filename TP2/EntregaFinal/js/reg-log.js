@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
     form_regist.querySelector("#nombre").addEventListener("input", function () { form_validate("nombre"); });
     form_regist.querySelector("#apellido").addEventListener("input", function () { form_validate("apellido"); });
     form_regist.querySelector("#edad").addEventListener("input", function () { form_validate("edad"); });
-    form_regist.querySelector("#correo").addEventListener("input", function () { form_validate("correo"); });
+    form_regist.querySelector("#correo").addEventListener("input", 
+    function () { 
+        form_validate("correo");
+        validate_mail();
+    });
     form_regist.querySelector("#contraseña").addEventListener("input", validate_password);
     form_regist.querySelector("#rep-contraseña").addEventListener("input", confirm_password);
     form_regist.querySelector("#captcha").addEventListener("input", function () { form_validate_checkbox("captcha"); });
@@ -99,6 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
         elem.classList.remove("form-error-input");
         let lasterror = elem.parentNode.querySelector(".form-error");
         if (lasterror) lasterror.remove();
+    }
+
+    function validate_mail(){
+        let correo = document.querySelector("#correo");
+        if(!correo.value.includes('@') || !(correo.value.includes('.com'))){
+            correo.classList.add('form-error-input');
+        }else{
+            correo.classList.remove('form-error-input');
+        }
     }
 
     function validate_password() {
