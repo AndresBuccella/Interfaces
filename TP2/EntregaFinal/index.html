@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
 </head>
 
-<body class="desplegable menu-cerrado">
+<body id="login-register" class="desplegable menu-cerrado">
+
     <header id="navegador-group">
         <nav id="navegador">
             <div id="nav-group1">
@@ -18,8 +19,8 @@
                     <img src="images/iconos/menu.png" alt="Icono de menu">
                 </div>
                 <div id="title">
-                    <a href="index.html">
-                        <img src="images/iconos/emoji-joystick.png" alt="Icono de la pagina" disabled>Gamesitos</a>
+                    <a href="html/home.html"><img src="images/iconos/emoji-joystick.png" alt="Icono de la pagina"
+                            disabled>Gamesitos</a>
                 </div>
             </div>
             <div id="buscador">
@@ -50,10 +51,13 @@
                 <a href=""><img src="images/iconos/menu/accion.png" alt="icono de categoria"><span>accion</span></a>
                 <a href=""><img src="images/iconos/menu/aventuras.png"
                         alt="icono de categoria"><span>aventuras</span></a>
-                <a href=""><img src="images/iconos/menu/carreras.png" alt="icono de categoria"><span>carreras</span></a>
+                <a href=""><img src="images/iconos/menu/carreras.png"
+                        alt="icono de categoria"><span>carreras</span></a>
                 <a href=""><img src="images/iconos/menu/casual.png" alt="icono de categoria"><span>casual</span></a>
-                <a href=""><img src="images/iconos/menu/deportes.png" alt="icono de categoria"><span>deportes</span></a>
-                <a href=""><img src="images/iconos/menu/disparos.png" alt="icono de categoria"><span>disparos</span></a>
+                <a href=""><img src="images/iconos/menu/deportes.png"
+                        alt="icono de categoria"><span>deportes</span></a>
+                <a href=""><img src="images/iconos/menu/disparos.png"
+                        alt="icono de categoria"><span>disparos</span></a>
                 <a href=""><img src="images/iconos/menu/multijugador.png"
                         alt="icono de categoria"><span>multijugador</span></a>
             </div>
@@ -154,323 +158,129 @@
             <p id="nombre-perfil">¡Hola, Raiden!</p>
             <div id="opciones-perfil">
                 <a href="">Mi Perfil<span></span></a>
-                <a href="">Mi carrito <span></span></a>
+                <a href="">Mi carrito<span></span></a>
                 <a href="">Biblioteca<span></span></a>
                 <a href="">Enviar comentarios<span></span></a>
             </div>
-            <a href="html/login.html" id="cerrar-perfil">Cerrar sesión<span></span></a>
+            <a href="" id="cerrar-perfil">Cerrar sesión<span></span></a>
         </nav>
     </header>
-    <main>
-        <div id="loading">
-        <div id="contenedor-icono-loading">
-            <img src="images/gamesitos-logo.svg" alt="Logo de la pagina">
-            <div class="movement-loading">
-                <div id="pacman">
-                    <div id="pacman-t">
-                        <div id="pacman-ojo"></div>
-                    </div>
-                    <div id="pacman-b"></div>
-                </div>
-            </div>
 
-            <div class="movement-loading">
-                <div class="pacman-ghost">
-                    <div class="pacman-ghost-head">
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="pacman-ghost-b">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
+    <form id="formulario-iniciar-sesion" class="none" action="">
 
-            <div class="movement-loading">
-                <div class="pacman-ghost">
-                    <div class="pacman-ghost-head">
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="pacman-ghost-b">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
+        <div id="formulario-iniciar-sesion-caja-grande">
+            <h3>Iniciar sesión</h3>
+            <div class="inputBox">
+                <input type="email" name="" id="email" required="required" autocomplete="on">
+                <span>Correo electrónico</span>
             </div>
+            <div class="inputBox">
+                <input type="password" name="" id="init-contraceña" required="required">
+                <span>Contraseña*</span>
 
-            <div class="movement-loading">
-                <div class="pacman-ghost">
-                    <div class="pacman-ghost-head">
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="pacman-ghost-b">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
             </div>
+            <label class="btn-registrarse"> <input href="https://andresbuccella.github.io/Interfaces/TP2/EntregaFinal/"
+                    type="button" value="Iniciar sesión">
+                <div class="loader"></div>
+            </label>
 
-            <div class="movement-loading">
-                <div class="pacman-ghost">
-                    <div class="pacman-ghost-head">
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                        <div class="pacman-ghost-ojo">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="pacman-ghost-b">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-            <div id="texto-cargando">
-                <span>C</span>
-                <span>A</span>
-                <span>R</span>
-                <span>G</span>
-                <span>A</span>
-                <span>N</span>
-                <span>D</span>
+            <a href="">Olvidé mi correo / contraseña</a>
+
+            <div class="divisionForm">
+                <div class="lineaDivisoriaForm"></div>
                 <span>O</span>
+                <div class="lineaDivisoriaForm"></div>
             </div>
-            <div id="loading-contador">0</div>
+
+            <a class="btn-google" href="index.html">
+                <img src="images/iconos/google-color.png" alt="google">
+                <span class="span-registrarseCon">Iniciar con Google</span>
+                <span class="span-registrarse">Iniciar sesión</span>
+            </a>
+            <a class="btn-facebook" href="index.html">
+                <img src="images/iconos/facebook-color.png" alt="facebook">
+                <span class="span-registrarseCon">Iniciar con Facebook</span>
+                <span class="span-registrarse">Iniciar sesión</span>
+            </a>
         </div>
+        <p>No tienes cuenta?<span id="a-registrarse" href="">Registrarse</span></p>
+
+    </form>
+
+    <form id="formulario-registro" action="" method="get">
+        <h3>Registrarse</h3>
+        <p>(*) Campos obligatorios</p>
+        <div class="inputBox">
+            <input type="text" name="" id="user-name" required="required">
+            <span>Nombre de usuario*</span>
         </div>
-        
-        <div id="juego-principal">
-            <div id="banner"><img src="images/genshin_impact_banner.jpeg" alt="juego portada.jpeg"></div>
-            <a href="" class="boton-jugar">Comprar</a>
+        <div class="inputBox">
+            <input type="text" name="" id="nombre" required="required">
+            <span>Nombre*</span>
         </div>
-    
-        <section aria-label="Carrousel de los juegos más populares">
-            <h3 class="titulo-categoria">
-                Mas populares
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <article class="card-posesion" data-nombre="Mortal Kombat 4 en linea: Sub-Zero vs Scorpion"
-                        data-imagen="images/juegos/mk-4-en-linea.png" data-generos='["Multijugador", "Acción"]'>
-                    </article>
-                    <article class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
-                        data-generos='["Multijugador","Deportes"]' data-precio="30">
-                    </article>
-                    <article class="card-normal" data-nombre="Evowars.io" data-imagen="images/juegos/evowars-io.png"
-                        data-generos='["Multijugador","Accion"]' data-precio="35">
-                    </article>
-                    <article class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
-                        data-generos='["Multijugador","Accion","Disparos"]' data-precio="20">
-                    </article>
-                    <article class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["Multijugador","Deportes"]'
-                        data-precio="25">
-                    </article>
-                    <article class="card-normal" data-nombre="Tower Defense clash"
-                        data-imagen="images/juegos/tower-defense-clash.png"
-                        data-generos='["Multijugador","Tower defense","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador","Multijugador"]'
-                        data-precio="10">
-                    </article>
-                    <article class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
-                        data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
-                    </article>
-                    <article class="card-oferta" data-nombre="Raft life" data-imagen="images/juegos/raft-life.png"
-                        data-generos='["Un jugador","Supervivencia","Pesca"]' data-preciOrg="12.50" data-precio="9.50">
-                    </article>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-        </section>
-    
-        <section aria-label="Carrousel de los juegos recomendados para vos">
-            <h3 class="titulo-categoria">
-                Recomendados
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <article class="card-normal" data-nombre="Ludo King" data-imagen="images/juegos/ludo-king.png"
-                        data-generos='["Multijugador","Juegos de mesa","4 jugadores"]' data-precio="5">
-                    </article>
-                    <article class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
-                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
-                    </article>
-                    <article class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
-                        data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
-                    </article>
-                    <article class="card-normal" data-nombre="Bapbap" data-imagen="images/juegos/bapbap.png"
-                        data-generos='["Multijugador","Lucha","Patos salvajes", "2d"]' data-precio="20">
-                    </article>
-                    <article class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
-                        data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
-                    </article>
-                    <article class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
-                        data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
-                    </article>
-                    <article class="card-normal" data-nombre="Table Tennis World Tour"
-                        data-imagen="images/juegos/table-tennis-world-tour.png"
-                        data-generos='["Multijugador","Deportes","Tenis de mesa"]' data-precio="12.50">
-                    </article>
-                    <article class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
-                        data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
-                    </article>
-                    <article class="card-ofera" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
-                        data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
-                    </article>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-        
-            <h3 class="titulo-categoria">
-                Disparos
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <div class="card-normal" data-nombre="Force Bullet" data-imagen="images/juegos/force-bullet.png"
-                        data-generos='["Multijugador","Gratis","Mundo abierto"]' data-precio="0">
-                    </div>
-                    <div class="card-normal" data-nombre="Shell Shockers" data-imagen="images/juegos/shell-shockers.png"
-                        data-generos='["Un jugador","Accion","Disparos"]' data-precio="20">
-                    </div>
-                    <div class="card-oferta" data-nombre="Tanks Arena.io" data-imagen="images/juegos/tanks-arena-io.png"
-                        data-generos='["Multijugador","Accion", "Disparos","Tankes"]' data-preciOrg="60" data-precio="29.99">
-                    </div>
-                    <div class="card-normal" data-nombre="Shell Shockers Bad Egg"
-                        data-imagen="images/juegos/shell-shockers-bad-egg.png" data-generos='["Un jugador","Accion","Disparos"]'
-                        data-precio="25">
-                    </div>
-                    <div class="card-normal" data-nombre="Skibidi toilets: infection"
-                        data-imagen="images/juegos/skibidi-toilets-infection.png"
-                        data-generos='["Un jugador","Disparos","Fantasía"]' data-precio="40">
-                    </div>
-                    <div class="card-oferta" data-nombre="1v1 Battle" data-imagen="images/juegos/1-v-1-battle.png"
-                        data-generos='["Multijugador","Disparos","Battle-royale"]' data-preciOrg="12.50" data-precio="9.99">
-                    </div>
-                    <div class="card-normal" data-nombre="Ninja Hands 2" data-imagen="images/juegos/ninja-hands-2.png"
-                        data-generos='["Multijugador","Disparos","Ninjas","Acción"]' data-precio="20">
-                    </div>
-                    <div class="card-normal" data-nombre="Shadow Ninja Revenge"
-                        data-imagen="images/juegos/shadow-ninja-revenge.png"
-                        data-generos='["Un jugador","Ninjas","Accion","Disparos"]' data-precio="12.50">
-                    </div>
-                    <div class="card-oferta" data-nombre="Getaway Shootout" data-imagen="images/juegos/getaway-shootout.png"
-                        data-generos='["Un jugador","Disparos","2d","Sangriento"]' data-preciOrg="30" data-precio="12.50">
-                    </div>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-        </section>
-    
-        <section aria-label="Carrousel de los juegos de carreras">
-            <h3 class="titulo-categoria">
-                Carreras
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <article class="card-oferta" data-nombre="Super Star Car" data-imagen="images/juegos/super-star-car.png"
-                        data-generos='["Multijugador", "Carreras","Formula 1"]' data-preciOrg="60" data-precio="29.99">
-                    </article>
-                    <article class="card-normal" data-nombre="Crazy for speed" data-imagen="images/juegos/crazy-for-speed.png"
-                        data-generos='["Multijugador","Carreras", "2 jugadores"]' data-precio="35">
-                    </article>
-                    <article class="card-normal" data-nombre="Superbike the champion"
-                        data-imagen="images/juegos/superbike-the-champion.png" data-generos='["Un jugador","Carreras","Motos"]'
-                        data-precio="15">
-                    </article>
-                    <article class="card-oferta" data-nombre="Turbo Crash Racing" data-imagen="images/juegos/turbo-crash-racing.png"
-                        data-generos='["Un jugador","Carreras", "Tunning"]' data-preciOrg="25" data-precio="20">
-                    </article>
-                    <article class="card-normal" data-nombre="Crazy Drift" data-imagen="images/juegos/crazy-drift.png"
-                        data-generos='["Un jugador","Carreras","Drift","Tuning"]' data-precio="10">
-                    </article>
-                    <article class="card-oferta" data-nombre="Highway Racer 2" data-imagen="images/juegos/highway-racer-2.png"
-                        data-generos='["Multijugador","Carreras","Mundo abierto"]' data-preciOrg="60" data-precio="12.50">
-                    </article>
-                    <article class="card-normal" data-nombre="Crazy MX" data-imagen="images/juegos/crazy-mx.png"
-                        data-generos='["Multijugador","MX","Carreras","2d"]' data-precio="9.99">
-                    </article>
-                    <article class="card-normal" data-nombre="Crazy Grandprix" data-imagen="images/juegos/crazy-grand-prix.png"
-                        data-generos='["1 jugador","Carreras","Formula 1"]' data-preciOrg="30" data-precio="15">
-                    </article>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-        </section>
-    
-        <section aria-label="Carrousel de los juegos de deportes">
-            <h3 class="titulo-categoria">
-                Deportes
-            </h3>
-            <div class="contenedor-carrusel">
-                <button class="boton-izquierda"></button>
-                <div class="carrusel">
-                    <article class="card-normal" data-nombre="Soccer Legend 2021" data-imagen="images/juegos/soccer-legend-2021.png"
-                        data-generos='["2 jugadores","Deportes"]' data-precio="30">
-                    </article>
-                    <article class="card-normal" data-nombre="8 Ball Billiards Classic"
-                        data-imagen="images/juegos/8-ball-billiards-classic.png" data-generos='["2 jugadores","Deportes"]'
-                        data-precio="25">
-                    </article>
-                    <article class="card-oferta" data-nombre="Mini Golf Club" data-imagen="images/juegos/mini-golf-club.png"
-                        data-generos='["Multijugador","Deportes","Golf"]' data-preciOrg="60" data-precio="40">
-                    </article>
-                    <article class="card-normal" data-nombre="Wrestle Bros." data-imagen="images/juegos/wrestle-bros.png"
-                        data-generos='["Multijugador","Lucha","Deportes","2d"]' data-precio="9.99">
-                    </article>
-                    <article class="card-normal" data-nombre="Basketball Stars" data-imagen="images/juegos/basketball-stars.png"
-                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-precio="15.50">
-                    </article>
-                    <article class="card-normal" data-nombre="Table Tennis World Tour"
-                        data-imagen="images/juegos/table-tennis-world-tour.png"
-                        data-generos='["2 jugadores","Deportes","Tenis de mesa"]' data-precio="12.50">
-                    </article>
-                    <article class="card-normal" data-nombre="Tap-tap Shots" data-imagen="images/juegos/tap-tap-shots.png"
-                        data-generos='["Multijugador","Deportes","2d"]' data-precio="5">
-                    </article>
-                    <article class="card-oferta" data-nombre="Basket Bros." data-imagen="images/juegos/basket-bros.png"
-                        data-generos='["Multijugador","Deportes","Basketball","2d"]' data-preciOrg="60" data-precio="30">
-                    </article>
-                </div>
-                <button class="boton-derecha"></button>
-            </div>
-        </section>
-    </main>
+        <div class="inputBox">
+            <input type="text" name="" id="apellido" required="required">
+            <span>Apellido*</span>
+        </div>
+        <div class="inputBox">
+            <input type="number" name="" id="edad" required="required">
+            <span>Edad*</span>
+        </div>
+        <div class="inputBox">
+            <input type="text" name="" id="correo" required="required">
+            <span>Correo*</span>
+        </div>
+        <div class="inputBox">
+            <input type="password" name="" id="contraseña" required="required">
+            <span>Contraseña*</span>
+        </div>
+        <div class="inputBox">
+            <input type="password" name="" id="rep-contraseña" required="required">
+            <span>Repetir contraseña*</span>
+        </div>
+        <div class="recaptcha">
+            <input class="checkbox" type="checkbox" name="" id="captcha">
+            <img src="images/Recaptcha.png" alt="">
+        </div>
+        <label class="terminosYCondiciones" for="terminos">
+            <input type="checkbox" name="" id="terminos">
+            <span>Acepto los Términos y condiciones y
+                autorizo el uso de mis datos de
+                acuerdo a la Declaración de Privacidad.</span>
+        </label>
+        <label class="btn-registrarse">
+            <input id="registrarse" type="button" value="Registrarse">
+            <div class="loader"></div>
+        </label>
+
+        <div class="div-ya-tienes-cuenta">
+            <p>Ya tienes cuenta? </p>
+            <span id="a-iniciar-sesion">Iniciar Sesión</span>
+        </div>
+
+        <div class="divisionForm">
+            <div class="lineaDivisoriaForm"></div>
+            <span>O</span>
+            <div class="lineaDivisoriaForm"></div>
+        </div>
+
+        <a class="btn-google" href="index.html">
+            <img src="images/iconos/google-color.png" alt="google">
+            <span class="span-registrarseCon">Registrarse con Google</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
+        <a class="btn-facebook" href="index.html">
+            <img src="images/iconos/facebook-color.png" alt="facebook">
+            <img src="images/iconos/facebook-color.png" alt="facebook">
+            <span class="span-registrarseCon">Registrar con Facebook</span>
+            <span class="span-registrarse">Registrarse</span>
+        </a>
+    </form>
 
     <footer id="fat-footer">
 
         <div id="grupo-grande-footer">
-            <section id="categorias-footer" aria-label="Categorías">
+            <section id="categorias-footer">
                 <ul>
                     <li>
                         <h3>Categorías</h3>
@@ -483,8 +293,7 @@
                     <li><a href="">Casual</a></li>
                 </ul>
             </section>
-
-            <section id="links-sitio-footer" aria-label="Links del sitio">
+            <section id="links-sitio-footer">
                 <ul>
                     <li>
                         <h3>Links del sitio</h3>
@@ -496,18 +305,16 @@
                     <li><a href="">Lista de deseados</a></li>
                 </ul>
             </section>
-
-            <section id="redes-footer" aria-label="nuestras redes">
+            <section id="redes-footer">
                 <h3>Nuestras redes</h3>
                 <div>
-                    <a href=""><img src="images/iconos/facebook.png" alt="Enlace a nuestra página de facebook"></a>
-                    <a href=""><img src="images/iconos/instagram.png" alt="Enlace a nuestro perfil de instagram"></a>
-                    <a href=""><img src="images/iconos/twitter.png" alt="Enlace a nuestra cuenta de twitter"></a>
-                    <a href=""><img src="images/iconos/youtube.png" alt="Enlace a nuestro canal de youtube"></a>
+                    <a href=""><img src="images/iconos/facebook.png" alt="link a facebook"></a>
+                    <a href=""><img src="images/iconos/instagram.png" alt="link a instagram"></a>
+                    <a href=""><img src="images/iconos/twitter.png" alt="link a twitter"></a>
+                    <a href=""><img src="images/iconos/youtube.png" alt="link a youtube"></a>
                 </div>
             </section>
-
-            <section id="demas-links-footer" aria-label="Más información">
+            <section id="demas-links-footer">
                 <ul>
                     <li>
                         <h3>Más información</h3>
@@ -522,9 +329,10 @@
             </section>
         </div>
     </footer>
-    <script src="js/carrusel.js"></script>
+
+    <script src="js/reg-log.js"></script>
     <script src="js/menusDesplegables.js"></script>
-    <script src="js/index-loading.js"></script>
+
 </body>
 
 </html>
