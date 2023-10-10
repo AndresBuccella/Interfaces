@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (status) {
             btn_registro.classList.add("registro-ok");
             btn_registro.addEventListener('animationend', (event) => {
-                window.location.href = "../index.html"; //Si el resultado de la validacion de ok te envia al index al terminar la animacion del boton registro
+                window.location.href = "html/home.html"; //Si el resultado de la validacion de ok te envia al index al terminar la animacion del boton registro
             });
         }
         else btn_registro.classList.add("registro-not-ok");
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Mensaje de error
     function form_error_message(errors, errors_status) {
-        elem = '<div class="form-error"><img src="../images/form-error.png" alt="">'
+        elem = '<div class="form-error"><img src="images/form-error.png" alt="">'
 
         for (let i = 0; i < errors.length; i++) {
             switch (errors_status[i]) {
