@@ -68,9 +68,14 @@ function onMouseDown(e){
     let clickFig = findClickedFigure(e.layerX,e.layerY);
     
     if (clickFig != null) {
+
+        lastClickedFigure = clickFig;
+        
+        /* //Para que se dupliquen al tomarlas.
         const nuevaFicha = new Ficha(context, imagenSubZero, e.layerX, e.layerY, 32);
         lastClickedFigure = nuevaFicha;
         elements.push(nuevaFicha);
+     */
     }
     drawAll();
 
@@ -84,13 +89,14 @@ function onMouseMove(e){
 }
 function onMouseUp(e){
     mouseDown = false;
-
+/*
     drawAll();
     gravedad(e);
     if (lastClickedFigure.getPositionY() < canvas.clientHeight - 32) {
         
         requestAnimationFrame(onMouseUp);
     }
+*/
 }
 
 function gravedad(e){

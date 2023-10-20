@@ -1,4 +1,4 @@
-class PiezaDecorativa{
+class PiezaDecorativa extends Ficha{
 
     constructor(context, path, posX, posY, width, height){
         this.context = context;
@@ -8,6 +8,9 @@ class PiezaDecorativa{
         this.posY = posY;
         this.width = width;
         this.height = height;
+    }
+    isSelected(posX, posY){
+        return false;
     }
     getPositionX(){
         return this.posX;
