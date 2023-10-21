@@ -2,15 +2,16 @@ const canvas = document.querySelector('#main-canvas');
 const context = canvas.getContext('2d');
 const imagenSubZero = 'sub-zero.png';
 const imagenScorpion = 'scorpion.png';
+const piezaTablero = 'board.jpg';
+const imagenLateral = 'lateral-izquierdo.png';
+const widthLaterales = 80;
 
 let elements = [];
 let lastClickedFigure = null;
 let mouseDown = false;
 let gravity = 0.1;
 let velocityLimit = 5;
-let tile = new PiezaDecorativa(context, imagenScorpion,0,0,100,100);
-elements.push(tile);
-const fichaSubZero = new Ficha(context, imagenSubZero,210,90, 32);
+const fichaSubZero = new Ficha(context, imagenSubZero,215,90, 32);
 /* const fichaSubZero2 = new Ficha(context, imagenSubZero,230,90, 32);
 const fichaSubZero3 = new Ficha(context, imagenSubZero,250,90, 32);
 const fichaSubZero4 = new Ficha(context, imagenSubZero,270,90, 32);
@@ -19,7 +20,7 @@ const fichaScorpion = new Ficha(context, imagenScorpion,450,90, 32);
 const fichaScorpion2 = new Ficha(context, imagenScorpion,470,90, 32);
 const fichaScorpion3 = new Ficha(context, imagenScorpion,490,90, 32);
 const fichaScorpion4 = new Ficha(context, imagenScorpion,510,90, 32);
- */
+*/
 elements.push(fichaSubZero);
 /* elements.push(fichaSubZero2);
 elements.push(fichaSubZero3);
@@ -28,6 +29,10 @@ elements.push(fichaScorpion4);
 elements.push(fichaScorpion3);
 elements.push(fichaScorpion2);
 elements.push(fichaScorpion); */
+let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight);
+//elements.push(lateralIzquierdo);
+let tile = new PiezaDecorativa(context, piezaTablero,widthLaterales,0,100,100);
+elements.push(tile);
 
 //SE DIBUJA POR UN SETTIMEOUT BUSCAR OTRA SOLUCION
 

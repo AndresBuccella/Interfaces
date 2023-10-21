@@ -1,4 +1,4 @@
-class PiezaDecorativa extends Ficha{
+class PiezaDecorativa{
 
     constructor(context, path, posX, posY, width, height){
         this.context = context;
@@ -44,27 +44,42 @@ class PiezaDecorativa extends Ficha{
         Posteriormente se vuelve la configuracion globalCompositeOperation a su configuración por defecto 'source-over'.
         */
         this.context.save();
-        
-        
-        this.context.drawImage(this.pieza, this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
-        // Crea una máscara circular transparente
-        this.context.globalCompositeOperation = 'destination-out';
-        
         this.#cutPiece();
-           // Restaura la composición global a su valor predeterminado
-        this.context.globalCompositeOperation = 'source-over';
+        this.context.clip();
+        this.context.drawImage(this.pieza, this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+        this.context.globalCompositeOperation = '';
         
-        this.context.restore();
+        
+        this.context.globalCompositeOperation = 'source-over';
+        // Restaura la composición global a su valor predeterminado
+        //this.context.fill();
 
+        //this.context.globalCompositeOperation = 'source-over';
+        this.context.restore();
+        /* this.context.save();
+        //this.context.globalAlpha = 0;
+        //this.context.globalCompositeOperation = 'destination-in';
+        
+        /* this.context.fillStyle = 'rgba(0,0,0,0)';
+        this.context.fill(); 
+        this.context.restore();
+        */
     }
     
     #cutPiece(){
-
+        
+        //this.context.globalAlpha = 1;
         this.context.beginPath();
-        this.context.arc(this.posX + this.getWidth() / 2, this.posY + this.getHeight() / 2, 
-                    /*podria ser el tamaño de la ficha */this.width/2.5, 0, Math.PI * 2, true);
+        //podria ser el tamaño de la ficha
+        this.context.arc(this.posX + this.getWidth() / 2, this.posY + this.getHeight() / 2,  this.width/2.5, 0, Math.PI * 2, true);
         this.context.closePath();
-        this.context.fill();
+
+        /* this.context.fillStyle = 'green';
+        this.context.fillRect(this.posX, this.posY, 10, 10);
+         */
+        //this.context.fill();
+        //this.context.clip();
+
         
     }
 }

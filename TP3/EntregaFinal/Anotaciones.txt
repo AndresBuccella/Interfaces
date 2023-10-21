@@ -1,3 +1,7 @@
 _Rever nombres.
 _Estaría bueno que ficha y pieza decorativa(que es solo del tablero) que comparta clase con ficha ya que
     comparten muchas cosas
+_Hay que dibujar:
+    1__fondo en degradé
+    2__tiles
+    3__

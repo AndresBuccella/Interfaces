@@ -8,6 +8,7 @@ class Ficha{
         this.fichaCreada = new Image();
         this.fichaCreada.src = path;
         this.velocity = 0;
+        console.log("Me cree");
     }
 
     isSelected(posX, posY){
