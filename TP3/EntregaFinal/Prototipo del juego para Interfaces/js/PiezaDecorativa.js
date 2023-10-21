@@ -1,33 +1,20 @@
-class PiezaDecorativa{
+class PiezaDecorativa extends Pieza{
 
     constructor(context, path, posX, posY, width, height){
-        this.context = context;
-        this.pieza = new Image();
-        this.pieza.src = path;
-        this.posX = posX;
-        this.posY = posY;
+        super(context, path, posX, posY);
         this.width = width;
         this.height = height;
     }
-    isSelected(posX, posY){
-        return false;
-    }
-    getPositionX(){
-        return this.posX;
-    }
-    getPositionY(){
-        return this.posY;
-    }
-    setPosition(posX, posY){
-        this.posX = posX;
-        this.posY = posY;
-    }
+    
+    // GETTERS
     getWidth(){
         return this.width;
     }
     getHeight(){
         return this.height;
     }
+    
+    //SETTERS
     setWidth(width){
         this.width = width;
     }
@@ -35,9 +22,14 @@ class PiezaDecorativa{
         this.height = height;
     }
     
+    //DEMAS METODOS
+    isSelected(posX, posY){
+        return false;
+    }
+    
     draw(){
         this.context.save();
-        this.context.drawImage(this.pieza, this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+        this.context.drawImage(this.getImage(), this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
         this.context.restore();
     }
     
