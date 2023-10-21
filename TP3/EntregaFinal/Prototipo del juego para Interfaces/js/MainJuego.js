@@ -20,7 +20,7 @@ const fichaScorpion = new Ficha(context, imagenScorpion,450,90, 32);
 const fichaScorpion2 = new Ficha(context, imagenScorpion,470,90, 32);
 const fichaScorpion3 = new Ficha(context, imagenScorpion,490,90, 32);
 const fichaScorpion4 = new Ficha(context, imagenScorpion,510,90, 32);
-*/
+ */
 elements.push(fichaSubZero);
 /* elements.push(fichaSubZero2);
 elements.push(fichaSubZero3);
@@ -34,7 +34,6 @@ let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLa
 let tile = new PiezaDecorativa(context, piezaTablero,widthLaterales,0,100,100);
 elements.push(tile);
 
-//SE DIBUJA POR UN SETTIMEOUT BUSCAR OTRA SOLUCION
 
 function drawAll() {
     clearCanvas();
@@ -120,22 +119,16 @@ function gravedad(e){
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
 canvas.addEventListener('mousemove', onMouseMove, false);
+//pendiente para corregir 
+canvas.addEventListener('wheel', prueba, false);
 
-
-document.querySelector('#boton').addEventListener('click', ()=>{
-    console.log("in");
-const fichaSubZeroo = new Ficha(context, imagenSubZero,310,90, 32);
-elements.push(fichaSubZeroo);
-drawAll();
-})
-
-
-
-
-
-
+function prueba(e){
+    if (mouseDown && lastClickedFigure != null) {
+        console.log(e.deltaY);
+        lastClickedFigure.setPosition(e.pageX, e.pageY + e.deltaY);
+        drawAll();
+    }
+}
 setTimeout(function(){
     drawAll();
 }, 1)
-
-

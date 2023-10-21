@@ -3,5 +3,8 @@ _Estaría bueno que ficha y pieza decorativa(que es solo del tablero) que compar
     comparten muchas cosas
 _Hay que dibujar:
     1__fondo en degradé
-    2__tiles
-    3__
+    2__fichas
+    3__tablero
+
+
+//SE DIBUJA POR UN SETTIMEOUT BUSCAR OTRA SOLUCION
