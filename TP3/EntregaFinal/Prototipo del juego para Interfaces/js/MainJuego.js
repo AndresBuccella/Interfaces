@@ -18,13 +18,17 @@ console.log('OffsetTop:', offsetTop);
 
 let elements = [];
 
+let fichaRadius = 32;
+
 let lastClickedFigure = null;
 let difX = 0;
 let difY = 0;
 let mouseDown = false;
 
-const fichaSubZero = new Ficha(context, imagenSubZero, 215, 90, 32, 4);
+const fichaSubZero = new Ficha(context, imagenSubZero, 215, 90, fichaRadius, 20);
 elements.push(fichaSubZero);
+const fichaSubZero2 = new Ficha(context, imagenSubZero, 250, 90, fichaRadius, 20);
+elements.push(fichaSubZero2);
 
 let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight);
 //elements.push(lateralIzquierdo);
@@ -55,22 +59,19 @@ function findClickedFigure(x, y) {
     }
 }
 function onMouseDown(e) {
-    mouseDown = true;
+    if (lastClickedFigure == null) {
+        mouseDown = true;
 
-    if (lastClickedFigure != null) {
+        let clickFig = findClickedFigure(e.layerX, e.layerY);
 
-        lastClickedFigure = null;
+        if (clickFig != null) {
+            lastClickedFigure = clickFig;
+            lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+            difX = e.layerX - clickFig.getPositionX();
+            difY = e.layerY - clickFig.getPositionY();
+        }
+        drawAll();
     }
-
-    let clickFig = findClickedFigure(e.layerX, e.layerY);
-
-    if (clickFig != null) {
-        lastClickedFigure = clickFig;
-        lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
-        difX = e.layerX - clickFig.getPositionX();
-        difY = e.layerY - clickFig.getPositionY();
-    }
-    drawAll();
 }
 
 function onMouseMove(e) {
@@ -81,37 +82,40 @@ function onMouseMove(e) {
 }
 function onMouseUp(e) {
     mouseDown = false;
+    fichaCayendo = true;
 }
 
 //Caida de la ficha 
 
-let velocity=0;
+let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
 
 function gravedad(e) {
     if (lastClickedFigure != null && !mouseDown) {
         velocity = lastClickedFigure.getVelocity() + gravity;
-        lastClickedFigure.setVelocity(velocity);
         if (velocity > velocityLimit) {
             velocity = velocityLimit;
         }
+        lastClickedFigure.setVelocity(velocity);
 
         lastClickedFigure.setPosition(
             lastClickedFigure.getPositionX(),
             lastClickedFigure.getPositionY() + velocity
         );
-
-        if (lastClickedFigure.getPositionY() > canvas.clientHeight - 32 - velocity) {
-            if (lastClickedFigure.getBounces() > 0) {
+        console.log(velocity);
+        if (lastClickedFigure.getPositionY() > canvas.clientHeight - fichaRadius - velocity) {
+            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
-                lastClickedFigure.setVelocity(-3 * lastClickedFigure.getBounces());
+                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity()*0.7); //Perdida de energia???
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
             }
             else {
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
                 lastClickedFigure.setVelocity(0);
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
                 lastClickedFigure = null;
-                velocity=0
+                velocity = 0
             }
         }
         drawAll();
