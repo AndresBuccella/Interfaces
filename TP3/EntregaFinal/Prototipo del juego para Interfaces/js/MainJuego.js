@@ -6,62 +6,55 @@ const piezaTablero = 'board.jpg';
 const imagenLateral = 'lateral-izquierdo.png';
 const widthLaterales = 80;
 
-let elements = [];
-let lastClickedFigure = null;
-let mouseDown = false;
-let gravity = 0.1;
-let velocityLimit = 5;
-const fichaSubZero = new Ficha(context, imagenSubZero,215,90, 32);
-/* const fichaSubZero2 = new Ficha(context, imagenSubZero,230,90, 32);
-const fichaSubZero3 = new Ficha(context, imagenSubZero,250,90, 32);
-const fichaSubZero4 = new Ficha(context, imagenSubZero,270,90, 32);
 
-const fichaScorpion = new Ficha(context, imagenScorpion,450,90, 32);
-const fichaScorpion2 = new Ficha(context, imagenScorpion,470,90, 32);
-const fichaScorpion3 = new Ficha(context, imagenScorpion,490,90, 32);
-const fichaScorpion4 = new Ficha(context, imagenScorpion,510,90, 32);
- */
+
+// Obtén el offset del canvas
+var offsetLeft = canvas.offsetLeft;
+var offsetTop = canvas.offsetTop;
+
+console.log('OffsetLeft:', offsetLeft);
+console.log('OffsetTop:', offsetTop);
+
+
+let elements = [];
+
+let lastClickedFigure = null;
+let difX = 0;
+let difY = 0;
+let mouseDown = false;
+
+const fichaSubZero = new Ficha(context, imagenSubZero, 215, 90, 32, 4);
 elements.push(fichaSubZero);
-/* elements.push(fichaSubZero2);
-elements.push(fichaSubZero3);
-elements.push(fichaSubZero4);
-elements.push(fichaScorpion4);
-elements.push(fichaScorpion3);
-elements.push(fichaScorpion2);
-elements.push(fichaScorpion); */
+
 let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight);
 //elements.push(lateralIzquierdo);
-let tile = new PiezaDecorativa(context, piezaTablero,widthLaterales,0,100,100);
+let tile = new PiezaDecorativa(context, piezaTablero, widthLaterales, 0, 100, 100);
 elements.push(tile);
 
 
 function drawAll() {
     clearCanvas();
+    /*
     //no es buena fórmula pero es una idea para hacerlo responsive
-    let scale = (canvas.clientWidth)/(canvas.clientWidth+canvas.clientHeight)
+    let scale = (canvas.clientWidth) / (canvas.clientWidth + canvas.clientHeight)
+    */
     for (const element of elements) {
         element.draw();
     }
 };
-function clearCanvas(){
+function clearCanvas() {
     context.fillStyle = '#fafafa';
-    context.fillRect(0,0,canvas.clientWidth,canvas.clientHeight);
+    context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 }
-function findClickedFigure(x,y){
+
+function findClickedFigure(x, y) {
     for (const element of elements) {
-        if (element.isSelected(x,y)) {
+        if (element.isSelected(x, y)) {
             return element;
         }
     }
-    /* No usar forEach, no sé por qué pero no funciona con esto 
-
-        elements.forEach(element => {
-        if (element.isSelected(x,y)) {
-            return element;
-        }
-    }); */
 }
-function onMouseDown(e){
+function onMouseDown(e) {
     mouseDown = true;
 
     if (lastClickedFigure != null) {
@@ -69,50 +62,60 @@ function onMouseDown(e){
         lastClickedFigure = null;
     }
 
-    let clickFig = findClickedFigure(e.layerX,e.layerY);
-    
-    if (clickFig != null) {
+    let clickFig = findClickedFigure(e.layerX, e.layerY);
 
+    if (clickFig != null) {
         lastClickedFigure = clickFig;
-        
-        /* //Para que se dupliquen al tomarlas.
-        const nuevaFicha = new Ficha(context, imagenSubZero, e.layerX, e.layerY, 32);
-        lastClickedFigure = nuevaFicha;
-        elements.push(nuevaFicha);
-     */
+        lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+        difX = e.layerX - clickFig.getPositionX();
+        difY = e.layerY - clickFig.getPositionY();
     }
     drawAll();
-
 }
 
-function onMouseMove(e){
+function onMouseMove(e) {
     if (mouseDown && lastClickedFigure != null) {
-        lastClickedFigure.setPosition(e.layerX, e.layerY);
+        lastClickedFigure.setPosition(e.layerX - difX, e.layerY - difY);
         drawAll();
     }
 }
-function onMouseUp(e){
+function onMouseUp(e) {
     mouseDown = false;
-/*
-    drawAll();
-    gravedad(e);
-    if (lastClickedFigure.getPositionY() < canvas.clientHeight - 32) {
-        
-        requestAnimationFrame(onMouseUp);
-    }
-*/
 }
 
-function gravedad(e){
-    let velocity = lastClickedFigure.getVelocity() - gravity;
-    lastClickedFigure.setVelocity(velocity);
-    if (velocity > velocityLimit) {
-        velocity = velocityLimit;
+//Caida de la ficha 
+
+let velocity=0;
+let gravity = 1;
+let velocityLimit = 20;
+
+function gravedad(e) {
+    if (lastClickedFigure != null && !mouseDown) {
+        velocity = lastClickedFigure.getVelocity() + gravity;
+        lastClickedFigure.setVelocity(velocity);
+        if (velocity > velocityLimit) {
+            velocity = velocityLimit;
+        }
+
+        lastClickedFigure.setPosition(
+            lastClickedFigure.getPositionX(),
+            lastClickedFigure.getPositionY() + velocity
+        );
+
+        if (lastClickedFigure.getPositionY() > canvas.clientHeight - 32 - velocity) {
+            if (lastClickedFigure.getBounces() > 0) {
+                lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
+                lastClickedFigure.setVelocity(-3 * lastClickedFigure.getBounces());
+            }
+            else {
+                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+                lastClickedFigure.setVelocity(0);
+                lastClickedFigure = null;
+                velocity=0
+            }
+        }
+        drawAll();
     }
-    lastClickedFigure.setPosition(e.layerX, lastClickedFigure.getPositionY() + velocity);
-    if (lastClickedFigure.getPositionY() < canvas.clientHeight - 32) {
-    }
-    console.log(elements.length);
 }
 //carga 
 
@@ -122,13 +125,17 @@ canvas.addEventListener('mousemove', onMouseMove, false);
 //pendiente para corregir 
 canvas.addEventListener('wheel', prueba, false);
 
-function prueba(e){
+function prueba(e) {
     if (mouseDown && lastClickedFigure != null) {
         console.log(e.deltaY);
         lastClickedFigure.setPosition(e.pageX, e.pageY + e.deltaY);
         drawAll();
     }
 }
-setTimeout(function(){
+
+setInterval(gravedad, 1000 / 60);
+
+
+setTimeout(function () {
     drawAll();
-}, 1)
+}, 100)
