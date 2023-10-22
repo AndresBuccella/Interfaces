@@ -90,8 +90,8 @@ function onMouseUp(e) {
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
-
-function gravedad(e) {
+let suelo = canvas.clientHeight - fichaRadius;
+function gravedad(suelo) {
     if (lastClickedFigure != null && !mouseDown) {
         velocity = lastClickedFigure.getVelocity() + gravity;
         if (velocity > velocityLimit) {
@@ -103,17 +103,16 @@ function gravedad(e) {
             lastClickedFigure.getPositionX(),
             lastClickedFigure.getPositionY() + velocity
         );
-        console.log(velocity);
-        if (lastClickedFigure.getPositionY() > canvas.clientHeight - fichaRadius - velocity) {
-            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
+        if (lastClickedFigure.getPositionY() > suelo - velocity) {
+            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
-                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity()*0.7); //Perdida de energia???
-                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
+                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.7); //Perdida de energia (?
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
             }
             else {
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
                 lastClickedFigure.setVelocity(0);
-                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
                 lastClickedFigure = null;
                 velocity = 0
             }
@@ -121,6 +120,13 @@ function gravedad(e) {
         drawAll();
     }
 }
+
+setInterval(function () {
+    gravedad(suelo);
+}, 1000 / 60);
+
+
+
 //carga 
 
 canvas.addEventListener('mousedown', onMouseDown, false);
@@ -136,9 +142,6 @@ function prueba(e) {
         drawAll();
     }
 }
-
-setInterval(gravedad, 1000 / 60);
-
 
 setTimeout(function () {
     drawAll();
