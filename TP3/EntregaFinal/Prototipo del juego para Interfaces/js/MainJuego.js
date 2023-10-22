@@ -37,6 +37,10 @@ console.log('OffsetTop:', offsetTop);
 let elements = [];
 
 let fichaRadius = canvas.clientHeight/20;
+let fichaRadiusMax = 25;
+if (fichaRadius > fichaRadiusMax) {
+    fichaRadius = fichaRadiusMax;
+}
 
 let lastClickedFigure = null;
 let difX = 0;
