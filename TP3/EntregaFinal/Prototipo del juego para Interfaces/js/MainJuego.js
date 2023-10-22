@@ -11,35 +11,26 @@ const widthLateralDerecho = 80;
 const spriteHeightTop = 126;
 const spriteHeightBot = 0;
 
+// Obtén el offset del canvas
+var offsetLeft = canvas.offsetLeft;
+var offsetTop = canvas.offsetTop;
+
+console.log('OffsetLeft:', offsetLeft);
+console.log('OffsetTop:', offsetTop);
+
+
 let elements = [];
 
-let lastClickedFigure = null;
-let mouseDown = false;
-let gravity = 0.1;
-let velocityLimit = 5;
-//tamanio de la ficha 40 de radio para el tile de 200x200
-const fichaSubZero = new Ficha(context, imagenSubZero,215,90, 42);
-/* const fichaSubZero2 = new Ficha(context, imagenSubZero,230,90, 32);
-const fichaSubZero3 = new Ficha(context, imagenSubZero,250,90, 32);
-const fichaSubZero4 = new Ficha(context, imagenSubZero,270,90, 32);
+let fichaRadius = 32;
 
-const fichaScorpion = new Ficha(context, imagenScorpion,450,90, 32);
-const fichaScorpion2 = new Ficha(context, imagenScorpion,470,90, 32);
-const fichaScorpion3 = new Ficha(context, imagenScorpion,490,90, 32);
-const fichaScorpion4 = new Ficha(context, imagenScorpion,510,90, 32);
- */
+let lastClickedFigure = null;
+let difX = 0;
+let difY = 0;
+let mouseDown = false;
+
+const fichaSubZero = new Ficha(context, imagenSubZero, 215, 90, fichaRadius, 20);
 elements.push(fichaSubZero);
-/* elements.push(fichaSubZero2);
-elements.push(fichaSubZero3);
-elements.push(fichaSubZero4);
-elements.push(fichaScorpion4);
-elements.push(fichaScorpion3);
-elements.push(fichaScorpion2);
-elements.push(fichaScorpion); */
-/* let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight);
-elements.push(lateralIzquierdo); */
-/* let tile = new PiezaDecorativa(context, piezaTablero,widthLaterales,0,100,100);
-elements.push(tile); */
+
 let tablero = new Tablero(canvas, context, pathLateral, pathEsquina, pathCentral,spriteHeightTop,spriteHeightBot,
     widthLateralDerecho, widthLateralIzquierdo);
 tablero.createBoard(6,7);
@@ -48,14 +39,26 @@ for (const pieza of piezasTablero/* tablero.getImages() */) {
     elements.push(pieza);
 }
 
+const fichaSubZero2 = new Ficha(context, imagenSubZero, 250, 90, fichaRadius, 20);
+elements.push(fichaSubZero2);
+
+let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight,);
+elements.push(lateralIzquierdo);
+let tile = new PiezaDecorativa(context, piezaTablero, widthLaterales, 0, 100, 100);
+elements.push(tile);
+
+
 function drawAll() {
     clearCanvas();
+    /*
     //no es buena fórmula pero es una idea para hacerlo responsive
-    let scale = (canvas.clientWidth)/(canvas.clientWidth+canvas.clientHeight)
+    let scale = (canvas.clientWidth) / (canvas.clientWidth + canvas.clientHeight)
+    */
     for (const element of elements) {
         element.draw();
     }
 };
+
 function clearCanvas(){
     let gradient = context.createLinearGradient(100,0,0, canvas.clientHeight);
     gradient.addColorStop(0,'#FF8A00');
@@ -66,72 +69,75 @@ function clearCanvas(){
     context.fillRect(0,0,canvas.clientWidth,canvas.clientHeight); */
 }
 
-function findClickedFigure(x,y){
+function findClickedFigure(x, y) {
     for (const element of elements) {
-        if (element.isSelected(x,y)) {
+        if (element.isSelected(x, y)) {
             return element;
         }
     }
-    /* No usar forEach, no sé por qué pero no funciona con esto 
+}
+function onMouseDown(e) {
+    if (lastClickedFigure == null) {
+        mouseDown = true;
 
-        elements.forEach(element => {
-        if (element.isSelected(x,y)) {
-            return element;
+        let clickFig = findClickedFigure(e.layerX, e.layerY);
+
+        if (clickFig != null) {
+            lastClickedFigure = clickFig;
+            lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+            difX = e.layerX - clickFig.getPositionX();
+            difY = e.layerY - clickFig.getPositionY();
         }
-    }); */
-}
-function onMouseDown(e){
-    mouseDown = true;
-
-    if (lastClickedFigure != null) {
-
-        lastClickedFigure = null;
-    }
-
-    let clickFig = findClickedFigure(e.layerX,e.layerY);
-    
-    if (clickFig != null) {
-
-        lastClickedFigure = clickFig;
-        
-        /* //Para que se dupliquen al tomarlas.
-        const nuevaFicha = new Ficha(context, imagenSubZero, e.layerX, e.layerY, 32);
-        lastClickedFigure = nuevaFicha;
-        elements.push(nuevaFicha);
-     */
-    }
-    drawAll();
-
-}
-
-function onMouseMove(e){
-    if (mouseDown && lastClickedFigure != null) {
-        lastClickedFigure.setPosition(e.layerX, e.layerY);
         drawAll();
     }
 }
-function onMouseUp(e){
-    mouseDown = false;
-/*
-    drawAll();
-    gravedad(e);
-    if (lastClickedFigure.getPositionY() < canvas.clientHeight - 32) {
-        
-        requestAnimationFrame(onMouseUp);
+
+function onMouseMove(e) {
+    if (mouseDown && lastClickedFigure != null) {
+        lastClickedFigure.setPosition(e.layerX - difX, e.layerY - difY);
+        drawAll();
     }
-*/
+}
+function onMouseUp(e) {
+    mouseDown = false;
+    fichaCayendo = true;
 }
 
-function gravedad(e){
-    let velocity = lastClickedFigure.getVelocity() - gravity;
-    lastClickedFigure.setVelocity(velocity);
-    if (velocity > velocityLimit) {
-        velocity = velocityLimit;
+//Caida de la ficha 
+
+let velocity = 0;
+let gravity = 1;
+let velocityLimit = 20;
+
+function gravedad(e) {
+    if (lastClickedFigure != null && !mouseDown) {
+        velocity = lastClickedFigure.getVelocity() + gravity;
+        if (velocity > velocityLimit) {
+            velocity = velocityLimit;
+        }
+        lastClickedFigure.setVelocity(velocity);
+
+        lastClickedFigure.setPosition(
+            lastClickedFigure.getPositionX(),
+            lastClickedFigure.getPositionY() + velocity
+        );
+        console.log(velocity);
+        if (lastClickedFigure.getPositionY() > canvas.clientHeight - fichaRadius - velocity) {
+            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
+                lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
+                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity()*0.7); //Perdida de energia???
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
+            }
+            else {
+                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+                lastClickedFigure.setVelocity(0);
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(),canvas.clientHeight - fichaRadius);
+                lastClickedFigure = null;
+                velocity = 0
+            }
+        }
+        drawAll();
     }
-    lastClickedFigure.setPosition(e.layerX, lastClickedFigure.getPositionY() + velocity);
-    if (lastClickedFigure.getPositionY() < canvas.clientHeight - 32) {
-    }
-    console.log(elements.length);
 }
 //carga 
 
@@ -141,13 +147,17 @@ canvas.addEventListener('mousemove', onMouseMove, false);
 //pendiente para corregir 
 canvas.addEventListener('wheel', prueba, false);
 
-function prueba(e){
+function prueba(e) {
     if (mouseDown && lastClickedFigure != null) {
         console.log(e.deltaY);
         lastClickedFigure.setPosition(e.pageX, e.pageY + e.deltaY);
         drawAll();
     }
 }
-setTimeout(function(){
+
+setInterval(gravedad, 1000 / 60);
+
+
+setTimeout(function () {
     drawAll();
-}, 1000)
+}, 100)

@@ -1,39 +1,54 @@
-class Ficha extends Pieza{
 
-    constructor(context, path, posX, posY, radius){
+class Ficha  extends Pieza{
+
+    constructor(context, path, posX, posY, radius, bounces) {
         super(context, path, posX, posY);
         this.radius = radius;
         this.velocity = 0;
+        this.maxbounces = bounces;
+        this.bounces = bounces;
     }
 
     //GETTERS
-    getVelocity(){
-        return this.velocity;
+    //Rebotes
+    getMaxBounces() {
+        return this.maxbounces;
     }
     
-    getRadius(){
+    getBounces() {
+        return this.bounces;
+    }
+    getRadius() {
         return this.radius;
+    }
+    getVelocity() {
+        return this.velocity;
     }
 
     //SETTERS
-    setRadius(radius){
-        this.radius = radius;
+    setWidth(width) {
+        this.width = width;
     }
-    setVelocity(vel){
-        this.velocity = vel;
-    }
-
-    //DEMAS METODOS
-    isSelected(posX, posY){
-        let _x = this.getPositionX() - posX;
-        let _y = this.getPositionY() - posY;
-        return Math.sqrt(_x * _x + _y * _y) < this.radius;
-    }
-    isNotSelected(){ //?
-        this.isSelected = false;
+    setHeight(height) {
+        this.height = height;
     }
     
-    draw(){
+    setVelocity(vel) {
+        this.velocity = vel;
+    }
+    
+    setBounces(bounces) {
+        this.bounces = bounces;
+    }
+
+    //DEMAS METODOS    
+    isSelected(posX, posY) {
+        let _x = this.posX - posX;
+        let _y = this.posY - posY;
+        return Math.sqrt(_x * _x + _y * _y) < this.radius;
+    }
+    
+    draw() {
         this.context.save();
         
         this.context.beginPath();
