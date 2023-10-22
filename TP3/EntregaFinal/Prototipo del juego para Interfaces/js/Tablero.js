@@ -16,7 +16,9 @@ class Tablero{
         this.pathCorner = pathCorner;
     }
     getImages(){
+        //Padre de Marge: "NO ME VEEEAAAS"
         return this.arrImages;
+        
          /* let siguienteIndice = 0;
 
         return {
@@ -33,9 +35,10 @@ class Tablero{
         //que va a tener
         let posX = 0;
         let posY = 0;
-        let widthPiece = Math.floor((this.canvas.clientWidth - this.marginRight - this.marginLeft) / cantCol);
-        let heightPiece = Math.floor((this.canvas.clientHeight - this.marginTop - this.marginBottom) / cantFil);
-        //let heightPiece = widthPiece/ 4 * 3;
+        
+        let widthPiece = (this.canvas.clientWidth - this.marginRight - this.marginLeft) / cantCol;
+        let heightPiece = (this.canvas.clientHeight - this.marginTop - this.marginBottom) / cantFil;
+        //let heightPiece = widthPiece/ 3 * 4;
         for (let j = 0; j < cantFil; j++) {
             posY = this.marginTop + heightPiece * j;
             for (let i = 0; i < cantCol; i++) {

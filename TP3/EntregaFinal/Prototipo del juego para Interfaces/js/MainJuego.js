@@ -1,15 +1,30 @@
 const canvas = document.querySelector('#main-canvas');
 const context = canvas.getContext('2d');
+
+const imagenLateral = 'the-tower.png';
+const imagenTop = 'imagenTop.png';
+const imagenPinchos = 'pinchos.png';
+
 const imagenSubZero = 'sub-zero.png';
 const imagenScorpion = 'scorpion.png';
+const yFichas = canvas.clientHeight/7;
+const cantFichas = 10;
+
 const piezaTablero = 'board.png';
 const pathLateral = 'lateral-board.png';
 const pathCentral = 'board.png';
 const pathEsquina = 'corner-board.png';
-const widthLateralIzquierdo = 80;
-const widthLateralDerecho = 80;
-const spriteHeightTop = 126;
+
+const widthLateralIzquierdo = canvas.clientWidth/10;
+const widthLateralDerecho = canvas.clientWidth/10;
+//const spriteHeightTop = 126;
+const spriteHeightTop = canvas.clientHeight/5 + 6;
 const spriteHeightBot = 0;
+const spriteHeightPinchos = 45;
+
+const player1 = 1;
+const player2 = 2;
+
 
 // Obtén el offset del canvas
 var offsetLeft = canvas.offsetLeft;
@@ -21,15 +36,28 @@ console.log('OffsetTop:', offsetTop);
 
 let elements = [];
 
-let fichaRadius = 32;
+let fichaRadius = canvas.clientHeight/20;
 
 let lastClickedFigure = null;
 let difX = 0;
 let difY = 0;
 let mouseDown = false;
+let widthCanvas = canvas.clientWidth;
 
-const fichaSubZero = new Ficha(context, imagenSubZero, 215, 90, fichaRadius, 20);
-elements.push(fichaSubZero);
+let elemTop = new PiezaDecorativa(context, imagenTop, 0, 0, widthCanvas, spriteHeightTop);
+elements.push(elemTop);
+//Creacion de fichas jugador 1
+
+for (let i = 1; i < cantFichas; i++) {
+    const fichaSubZero = new Ficha(context, imagenSubZero, player1, -widthCanvas/8 + fichaRadius * i, yFichas, fichaRadius, 20);
+    elements.push(fichaSubZero);
+}
+//Creacion de fichas jugador 2
+for (let i = 1; i < cantFichas; i++) {
+    const fichaScorpion = new Ficha(context, imagenScorpion, player2, (widthCanvas + widthCanvas/8) - fichaRadius * i, yFichas, fichaRadius, 20);
+    elements.push(fichaScorpion);
+}
+
 
 let tablero = new Tablero(canvas, context, pathLateral, pathEsquina, pathCentral,spriteHeightTop,spriteHeightBot,
     widthLateralDerecho, widthLateralIzquierdo);
@@ -39,13 +67,13 @@ for (const pieza of piezasTablero/* tablero.getImages() */) {
     elements.push(pieza);
 }
 
-const fichaSubZero2 = new Ficha(context, imagenSubZero, 250, 90, fichaRadius, 20);
-elements.push(fichaSubZero2);
 
-let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, 0, widthLaterales, canvas.clientHeight,);
+let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, spriteHeightTop, widthLateralIzquierdo, canvas.clientHeight - spriteHeightTop);
 elements.push(lateralIzquierdo);
-let tile = new PiezaDecorativa(context, piezaTablero, widthLaterales, 0, 100, 100);
-elements.push(tile);
+let lateralDerecho = new PiezaDecorativa(context, imagenLateral, canvas.clientWidth - widthLateralDerecho, spriteHeightTop, widthLateralIzquierdo, canvas.clientHeight - spriteHeightTop);
+elements.push(lateralDerecho);
+let pinchos = new PiezaDecorativa(context, imagenPinchos, widthLateralIzquierdo, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - widthLateralIzquierdo - widthLateralDerecho, spriteHeightPinchos);
+elements.push(pinchos);
 
 
 function drawAll() {
@@ -65,8 +93,6 @@ function clearCanvas(){
     gradient.addColorStop(1,'#FF0000');
     context.fillStyle = gradient;
     context.fillRect(0,0,canvas.clientWidth, canvas.clientHeight);
-    /* context.fillStyle = '#fafafa';
-    context.fillRect(0,0,canvas.clientWidth,canvas.clientHeight); */
 }
 
 function findClickedFigure(x, y) {
@@ -116,11 +142,11 @@ function gravedad(suelo) {
             velocity = velocityLimit;
         }
         lastClickedFigure.setVelocity(velocity);
-
         lastClickedFigure.setPosition(
             lastClickedFigure.getPositionX(),
             lastClickedFigure.getPositionY() + velocity
         );
+        //Por que se le resta la velocidad?
         if (lastClickedFigure.getPositionY() > suelo - velocity) {
             if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
@@ -132,7 +158,7 @@ function gravedad(suelo) {
                 lastClickedFigure.setVelocity(0);
                 lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
                 lastClickedFigure = null;
-                velocity = 0
+                velocity = 0;
             }
         }
         drawAll();
@@ -160,7 +186,11 @@ function prueba(e) {
         drawAll();
     }
 }
-
 setTimeout(function () {
+    //JUEGO
+    let turno = 0;
     drawAll();
+    /* while (true) {
+        
+    } */
 }, 100)

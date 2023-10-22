@@ -1,8 +1,9 @@
 
 class Ficha  extends Pieza{
 
-    constructor(context, path, posX, posY, radius, bounces) {
+    constructor(context, path, player, posX, posY, radius, bounces) {
         super(context, path, posX, posY);
+        this.player = player;
         this.radius = radius;
         this.velocity = 0;
         this.maxbounces = bounces;
@@ -10,6 +11,16 @@ class Ficha  extends Pieza{
     }
 
     //GETTERS
+    getPlayer(){
+        return this.player;
+    }
+    
+    getRadius() {
+        return this.radius;
+    }
+    getVelocity() {
+        return this.velocity;
+    }
     //Rebotes
     getMaxBounces() {
         return this.maxbounces;
@@ -17,12 +28,6 @@ class Ficha  extends Pieza{
     
     getBounces() {
         return this.bounces;
-    }
-    getRadius() {
-        return this.radius;
-    }
-    getVelocity() {
-        return this.velocity;
     }
 
     //SETTERS
