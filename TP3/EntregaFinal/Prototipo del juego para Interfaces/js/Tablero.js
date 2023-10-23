@@ -17,10 +17,10 @@ class Tablero{
         this.pathCenter = pathCenter;
         this.pathCorner = pathCorner;
 
-        this.tablero = [[]];
+        this.matriz = [[]];
         for (let fila = 0; fila < this.cantFil; fila++) {
             for (let columna = 0; columna < this.cantCol; columna++) {
-                this.tablero[[fila,columna]] = 0;
+                this.matriz[[fila,columna]] = 0;
             }
         }
     }
@@ -51,11 +51,21 @@ class Tablero{
         return this.cantCol;
     }
     
+    getFilaDisponible(columna){
+        for (let fila = 0; fila < this.cantFil; fila++) {
+            if ((this.matriz[[fila, columna]] == 0)&&(this.matriz[[fila+1, columna]] != 0))
+                return fila;
+            
+        }
+        return -1;
+    }
+
     cargarEnMatriz(posX) {
-        let fila = 0;
         let columna = Math.floor((posX-this.marginLeft) / this.getWidthCasilla());
+        let fila = this.getFilaDisponible(columna);
         console.log('Cae en columna: ' + columna);
-        this.tablero[[fila, columna]];
+        console.log('Cae en fila: ' + fila);
+        this.matriz[[fila, columna]] = 1;
     }
 
     createBoard(){
