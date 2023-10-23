@@ -5,12 +5,15 @@ class Tablero{
     //Optimizable
         this.context = context;
         this.canvas = canvas;
+
         this.cantFil = cantFil;
         this.cantCol = cantCol;
+
         this.marginTop = marginTop;
         this.marginBottom = marginBottom;
         this.marginRight = marginRight;
         this.marginLeft = marginLeft;
+
         this.arrImages = [];
 
         this.pathLateral = pathLateral;
@@ -23,6 +26,7 @@ class Tablero{
                 this.matriz[[fila,columna]] = 0;
             }
         }
+        this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
 
     getWidthCasilla(){
@@ -50,18 +54,36 @@ class Tablero{
     getCantCol(){
         return this.cantCol;
     }
+    getSuelo(){
+        return this.suelo;
+    }
     
+    resetSuelo(){
+        this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
+    }
     getFilaDisponible(columna){
         for (let fila = 0; fila < this.cantFil; fila++) {
-            if ((this.matriz[[fila, columna]] == 0)&&(this.matriz[[fila+1, columna]] != 0))
+            if ((this.matriz[[fila, columna]] == 0)&&(this.matriz[[fila+1, columna]] != 0)){
                 return fila;
+            }else{
+                if (this.matriz[[fila, columna]] != 0) {
+                    return -1;
+                }
+            }
             
         }
-        return -1;
+    }
+    getColumnaExacta(posX){
+        let columna = Math.floor((posX-this.marginLeft) / this.getWidthCasilla());
+        return columna;
+
     }
 
+    calcularNuevoSuelo(columna){
+        this.suelo = this.suelo - (this.getHeightCasilla() * (this.cantFil - (this.getFilaDisponible(columna) + 1)) );
+    }
     cargarEnMatriz(posX) {
-        let columna = Math.floor((posX-this.marginLeft) / this.getWidthCasilla());
+        let columna = this.getColumnaExacta(posX);
         let fila = this.getFilaDisponible(columna);
         console.log('Cae en columna: ' + columna);
         console.log('Cae en fila: ' + fila);

@@ -131,14 +131,6 @@ function onMouseMove(e) {
         drawAll();
     }
 }
-function onMouseUp(e) {
-    mouseDown = false;
-    fichaCayendo = true;
-    if (lastClickedFigure != null) {
-        let posX = correccionCaidaX(e);
-        tablero.cargarEnMatriz(posX);
-    }
-}
 
 //Correccion de caida
 function correccionCaidaX(e) {
@@ -148,7 +140,8 @@ function correccionCaidaX(e) {
 
     if(posX < widthLateralIzquierdo) { posX = widthLateralIzquierdo}
     //el -1 es necesario porque no acepta iguales el if de mas abajo
-    if(posX > (widthLateralIzquierdo + tablero.getWidth())) { posX = widthLateralIzquierdo + tablero.getWidth()-1;console.log("si");}
+    if(posX > (widthLateralIzquierdo + tablero.getWidth())) 
+        posX = widthLateralIzquierdo + tablero.getWidth()-1;
 
     let aux = 0;
     for (let i = 0; i < cantColTablero; i++) {
@@ -163,7 +156,7 @@ function correccionCaidaX(e) {
     }
     //si no se apagan hace cosas raras. Se vuelven a activar cuando termina de caer la ficha
     eventListenerOff();
-    return widthLateralIzquierdo + anchoCasillaTablero / 2 * ((aux*2)+1)
+    return Math.floor(widthLateralIzquierdo + anchoCasillaTablero / 2 * ((aux*2)+1));
 }
 
 //Caida de la ficha 
@@ -171,8 +164,9 @@ function correccionCaidaX(e) {
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
-let suelo = canvas.clientHeight - fichaRadius;
-function gravedad(suelo) {
+//let suelo = canvas.clientHeight - fichaRadius;
+//console.log("Height casilla: "+tablero.getHeightCasilla());
+function gravedad() {
     if (lastClickedFigure != null && !mouseDown) {
         velocity = lastClickedFigure.getVelocity() + gravity;
         if (velocity > velocityLimit) {
@@ -184,27 +178,39 @@ function gravedad(suelo) {
             lastClickedFigure.getPositionY() + velocity
         );
         //Por que se le resta la velocidad?
-        if (lastClickedFigure.getPositionY() > suelo - velocity) {
+        if (lastClickedFigure.getPositionY() > tablero.getSuelo() - velocity) {
             if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
                 lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.7); //Perdida de energia (?
-                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), tablero.getSuelo());
             }
             else {
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
                 lastClickedFigure.setVelocity(0);
-                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
+                lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), tablero.getSuelo());
                 lastClickedFigure = null;
                 velocity = 0;
+                tablero.resetSuelo();
                 eventListenerOn();
             }
         }
         drawAll();
     }
 }
-
+function onMouseUp(e) {
+    mouseDown = false;
+    //fichaCayendo = true;
+    if (lastClickedFigure != null) {
+        let posX = correccionCaidaX(e);
+        let columna = tablero.getColumnaExacta(posX);
+        tablero.calcularNuevoSuelo(columna);
+        tablero.cargarEnMatriz(posX, tablero.getFilaDisponible(posX));
+    }
+}
+/* (tablero.getHeightCasilla()/2) * 
+                (cantFilTablero - tablero.getFilaDisponible(columna)) */
 setInterval(function () {
-    gravedad(suelo);
+    gravedad();
 }, 1000 / 60);
 
 
