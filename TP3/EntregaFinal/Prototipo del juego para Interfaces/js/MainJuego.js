@@ -15,8 +15,11 @@ const pathLateral = 'lateral-board.png';
 const pathCentral = 'board.png';
 const pathEsquina = 'corner-board.png';
 
-const widthLateralIzquierdo = canvas.clientWidth/10;
-const widthLateralDerecho = canvas.clientWidth/10;
+const cantColTablero = 6;
+const cantFilTablero = 7;
+
+const widthLateralIzquierdo = Math.floor(canvas.clientWidth/10);
+const widthLateralDerecho = Math.floor(canvas.clientWidth/10);
 //const spriteHeightTop = 126;
 const spriteHeightTop = canvas.clientHeight/5 + 6;
 const spriteHeightBot = 0;
@@ -63,9 +66,9 @@ for (let i = 1; i < cantFichas; i++) {
 }
 
 
-let tablero = new Tablero(canvas, context, pathLateral, pathEsquina, pathCentral,spriteHeightTop,spriteHeightBot,
+let tablero = new Tablero(canvas, context, cantFilTablero, cantColTablero, pathLateral, pathEsquina, pathCentral,spriteHeightTop,spriteHeightBot,
     widthLateralDerecho, widthLateralIzquierdo);
-tablero.createBoard(6,7);
+tablero.createBoard();
 let piezasTablero = tablero.getImages();
 for (const pieza of piezasTablero/* tablero.getImages() */) {
     elements.push(pieza);
@@ -131,6 +134,35 @@ function onMouseMove(e) {
 function onMouseUp(e) {
     mouseDown = false;
     fichaCayendo = true;
+    if (lastClickedFigure != null) {
+        correccionCaidaX(e);
+    }
+}
+
+//Correccion de caida
+function correccionCaidaX(e) {
+    
+    let anchoCasillaTablero = tablero.getWidthCasilla();
+    let posX = e.layerX;
+    console.log("tirado en: " + posX);
+
+    if(posX < widthLateralIzquierdo) { posX = widthLateralIzquierdo}
+    //el -1 es necesario porque no acepta iguales el if de mas abajo
+    if(posX > (widthLateralIzquierdo + tablero.getWidth())) { posX = widthLateralIzquierdo + tablero.getWidth()-1;console.log("si");}
+    let g = canvas.clientWhidth - widthLateralDerecho;
+    console.log("Limite derecho: " + g);
+    let a = 0;
+    for (let i = 0; i < cantColTablero; i++) {
+        if((posX>=(widthLateralIzquierdo + anchoCasillaTablero * i)) && 
+        (posX<(widthLateralIzquierdo + anchoCasillaTablero * (i+1)))){
+            lastClickedFigure.setPosition(
+                (widthLateralIzquierdo + anchoCasillaTablero / 2 * ((i*2)+1)), 
+                e.layerY
+            );
+        }
+    }
+    //si no se apagan hace cosas raras. Se vuelven a activar cuando termina de caer la ficha
+    eventListenerOff();
 }
 
 //Caida de la ficha 
@@ -163,6 +195,7 @@ function gravedad(suelo) {
                 lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), suelo);
                 lastClickedFigure = null;
                 velocity = 0;
+                eventListenerOn();
             }
         }
         drawAll();
@@ -176,12 +209,21 @@ setInterval(function () {
 
 
 //carga 
+function eventListenerOn() {
+    canvas.addEventListener('mousedown', onMouseDown, false);
+    canvas.addEventListener('mouseup', onMouseUp, false);
+    canvas.addEventListener('mousemove', onMouseMove, false);
+    //pendiente para corregir 
+    canvas.addEventListener('wheel', prueba, false);
+    
+}
+eventListenerOn();
 
-canvas.addEventListener('mousedown', onMouseDown, false);
-canvas.addEventListener('mouseup', onMouseUp, false);
-canvas.addEventListener('mousemove', onMouseMove, false);
-//pendiente para corregir 
-canvas.addEventListener('wheel', prueba, false);
+function eventListenerOff(){
+    canvas.removeEventListener('mousedown', onMouseDown, false);
+    canvas.removeEventListener('mouseup', onMouseUp, false);
+    canvas.removeEventListener('mousemove', onMouseMove, false);
+}
 
 function prueba(e) {
     if (mouseDown && lastClickedFigure != null) {
