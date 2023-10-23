@@ -18,6 +18,11 @@ class Tablero{
         this.pathCorner = pathCorner;
 
         this.tablero = [[]];
+        for (let fila = 0; fila < this.cantFil; fila++) {
+            for (let columna = 0; columna < this.cantCol; columna++) {
+                this.tablero[[fila,columna]] = 0;
+            }
+        }
     }
 
     getWidthCasilla(){
@@ -45,19 +50,12 @@ class Tablero{
     getCantCol(){
         return this.cantCol;
     }
-    getImages(){
-        //Padre de Marge: "NO ME VEEEAAAS"
-        return this.arrImages;
-
-         /* let siguienteIndice = 0;
-
-        return {
-            next: function() {
-            return siguienteIndice < this.arrImages.length ?
-                { value: arreglo[siguienteIndice++], done: false } :
-                { done: true };
-                }
-            }; */
+    
+    cargarEnMatriz(posX) {
+        let fila = 0;
+        let columna = Math.floor((posX-this.marginLeft) / this.getWidthCasilla());
+        console.log('Cae en columna: ' + columna);
+        this.tablero[[fila, columna]];
     }
 
     createBoard(){
@@ -77,5 +75,19 @@ class Tablero{
                 this.arrImages.push(piece);
             }
         }
+    }
+    getImages(){
+        //Padre de Marge: "NO ME VEEEAAAS"
+        return this.arrImages;
+    
+         /* let siguienteIndice = 0;
+    
+        return {
+            next: function() {
+            return siguienteIndice < this.arrImages.length ?
+                { value: arreglo[siguienteIndice++], done: false } :
+                { done: true };
+                }
+            }; */
     }
 }

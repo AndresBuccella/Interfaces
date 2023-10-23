@@ -135,7 +135,8 @@ function onMouseUp(e) {
     mouseDown = false;
     fichaCayendo = true;
     if (lastClickedFigure != null) {
-        correccionCaidaX(e);
+        let posX = correccionCaidaX(e);
+        tablero.cargarEnMatriz(posX);
     }
 }
 
@@ -144,14 +145,12 @@ function correccionCaidaX(e) {
     
     let anchoCasillaTablero = tablero.getWidthCasilla();
     let posX = e.layerX;
-    console.log("tirado en: " + posX);
 
     if(posX < widthLateralIzquierdo) { posX = widthLateralIzquierdo}
     //el -1 es necesario porque no acepta iguales el if de mas abajo
     if(posX > (widthLateralIzquierdo + tablero.getWidth())) { posX = widthLateralIzquierdo + tablero.getWidth()-1;console.log("si");}
-    let g = canvas.clientWhidth - widthLateralDerecho;
-    console.log("Limite derecho: " + g);
-    let a = 0;
+
+    let aux = 0;
     for (let i = 0; i < cantColTablero; i++) {
         if((posX>=(widthLateralIzquierdo + anchoCasillaTablero * i)) && 
         (posX<(widthLateralIzquierdo + anchoCasillaTablero * (i+1)))){
@@ -159,10 +158,12 @@ function correccionCaidaX(e) {
                 (widthLateralIzquierdo + anchoCasillaTablero / 2 * ((i*2)+1)), 
                 e.layerY
             );
+            aux=i;
         }
     }
     //si no se apagan hace cosas raras. Se vuelven a activar cuando termina de caer la ficha
     eventListenerOff();
+    return widthLateralIzquierdo + anchoCasillaTablero / 2 * ((aux*2)+1)
 }
 
 //Caida de la ficha 
