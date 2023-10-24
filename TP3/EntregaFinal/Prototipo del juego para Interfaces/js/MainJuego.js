@@ -92,6 +92,9 @@ function drawAll() {
     for (const element of elements) {
         element.draw();
     }
+    if (lastClickedFigure != null && mouseDown) {
+        lastClickedFigure.draw();
+    }
 };
 
 function clearCanvas(){
@@ -103,7 +106,8 @@ function clearCanvas(){
 }
 
 function findClickedFigure(x, y) {
-    for (const element of elements) {
+    for (let i = elements.length - 1; i >= 0; i--) {
+        const element = elements[i];
         if (element.isSelected(x, y)) {
             return element;
         }
@@ -179,7 +183,7 @@ function gravedad() {
         );
         //Por que se le resta la velocidad?
         if (lastClickedFigure.getPositionY() > tablero.getSuelo() - velocity) {
-            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0) {
+            if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
                 lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.7); //Perdida de energia (?
                 lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), tablero.getSuelo());
@@ -242,6 +246,7 @@ function prueba(e) {
 setTimeout(function () {
     //JUEGO
     let turno = 0;
+    console.log(turno);
     drawAll();
     /* while (true) {
         
