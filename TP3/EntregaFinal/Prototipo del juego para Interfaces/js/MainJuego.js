@@ -10,16 +10,13 @@ const imagenScorpion = 'scorpion.png';
 const yFichas = canvas.clientHeight/7;
 const cantFichas = 10;
 
-const piezaTablero = 'board.png';
-const pathLateral = 'lateral-board.png';
 const pathCentral = 'board.png';
-const pathEsquina = 'corner-board.png';
-
-const cantColTablero = 6;
+const pathCentralInside = 'board-inside.png';
+const pathCentralBackground= 'board-background.png';
 const cantFilTablero = 7;
+const cantColTablero = 6;
 
-const widthLateralIzquierdo = Math.floor(canvas.clientWidth/10);
-const widthLateralDerecho = Math.floor(canvas.clientWidth/10);
+const anchoTheTower= Math.floor(canvas.clientWidth/10);
 //const spriteHeightTop = 126;
 const spriteHeightTop = canvas.clientHeight/5 + 6;
 const spriteHeightBot = 0;
@@ -39,12 +36,6 @@ console.log('OffsetTop:', offsetTop);
 
 let elements = [];
 
-let fichaRadius = canvas.clientHeight/20;
-let fichaRadiusMax = 25;
-if (fichaRadius > fichaRadiusMax) {
-    fichaRadius = fichaRadiusMax;
-}
-
 let lastClickedFigure = null;
 let difX = 0;
 let difY = 0;
@@ -53,6 +44,28 @@ let widthCanvas = canvas.clientWidth;
 
 let elemTop = new PiezaDecorativa(context, imagenTop, 0, 0, widthCanvas, spriteHeightTop);
 elements.push(elemTop);
+
+let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
+let lateralDerecho = new PiezaDecorativa(context, imagenLateral, canvas.clientWidth - anchoTheTower, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
+
+
+let tablero = new Tablero(canvas, context, cantFilTablero, cantColTablero, pathCentral,pathCentralInside,pathCentralBackground,spriteHeightTop,spriteHeightBot,
+    lateralDerecho.getWidth(), lateralIzquierdo.getWidth());
+
+
+let pinchos = new PiezaDecorativa(context, imagenPinchos, anchoTheTower, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - anchoTheTower - anchoTheTower, spriteHeightPinchos);
+
+
+elements.push(lateralIzquierdo);
+elements.push(lateralDerecho);
+
+//Fichas
+let fichaRadius =32* Math.min( tablero.getWidthCasilla()/90,tablero.getHeightCasilla()/90);
+let fichaRadiusMax =32* Math.min( tablero.getWidthCasilla()/90,tablero.getHeightCasilla()/90);
+if (fichaRadius > fichaRadiusMax) {
+    fichaRadius = fichaRadiusMax;
+}
+
 //Creacion de fichas jugador 1
 
 for (let i = 1; i < cantFichas; i++) {
@@ -66,22 +79,8 @@ for (let i = 1; i < cantFichas; i++) {
 }
 
 
-let tablero = new Tablero(canvas, context, cantFilTablero, cantColTablero, pathLateral, pathEsquina, pathCentral,spriteHeightTop,spriteHeightBot,
-    widthLateralDerecho, widthLateralIzquierdo);
-tablero.createBoard();
-let piezasTablero = tablero.getImages();
-for (const pieza of piezasTablero/* tablero.getImages() */) {
-    elements.push(pieza);
-}
-
-
-let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, spriteHeightTop, widthLateralIzquierdo, canvas.clientHeight - spriteHeightTop);
-elements.push(lateralIzquierdo);
-let lateralDerecho = new PiezaDecorativa(context, imagenLateral, canvas.clientWidth - widthLateralDerecho, spriteHeightTop, widthLateralIzquierdo, canvas.clientHeight - spriteHeightTop);
-elements.push(lateralDerecho);
-let pinchos = new PiezaDecorativa(context, imagenPinchos, widthLateralIzquierdo, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - widthLateralIzquierdo - widthLateralDerecho, spriteHeightPinchos);
+elements.push(tablero);
 elements.push(pinchos);
-
 
 function drawAll() {
     clearCanvas();
@@ -89,6 +88,7 @@ function drawAll() {
     //no es buena fórmula pero es una idea para hacerlo responsive
     let scale = (canvas.clientWidth) / (canvas.clientWidth + canvas.clientHeight)
     */
+
     for (const element of elements) {
         element.draw();
     }
@@ -142,17 +142,17 @@ function correccionCaidaX(e) {
     let anchoCasillaTablero = tablero.getWidthCasilla();
     let posX = e.layerX;
 
-    if(posX < widthLateralIzquierdo) { posX = widthLateralIzquierdo}
+    if(posX < anchoTheTower) { posX = anchoTheTower}
     //el -1 es necesario porque no acepta iguales el if de mas abajo
-    if(posX > (widthLateralIzquierdo + tablero.getWidth())) 
-        posX = widthLateralIzquierdo + tablero.getWidth()-1;
+    if(posX > (anchoTheTower + tablero.getWidth())) 
+        posX = anchoTheTower + tablero.getWidth()-1;
 
     let aux = 0;
     for (let i = 0; i < cantColTablero; i++) {
-        if((posX>=(widthLateralIzquierdo + anchoCasillaTablero * i)) && 
-        (posX<(widthLateralIzquierdo + anchoCasillaTablero * (i+1)))){
+        if((posX>=(anchoTheTower + anchoCasillaTablero * i)) && 
+        (posX<(anchoTheTower + anchoCasillaTablero * (i+1)))){
             lastClickedFigure.setPosition(
-                (widthLateralIzquierdo + anchoCasillaTablero / 2 * ((i*2)+1)), 
+                (anchoTheTower + anchoCasillaTablero / 2 * ((i*2)+1)), 
                 e.layerY
             );
             aux=i;
@@ -160,7 +160,7 @@ function correccionCaidaX(e) {
     }
     //si no se apagan hace cosas raras. Se vuelven a activar cuando termina de caer la ficha
     eventListenerOff();
-    return Math.floor(widthLateralIzquierdo + anchoCasillaTablero / 2 * ((aux*2)+1));
+    return Math.floor(anchoTheTower + anchoCasillaTablero / 2 * ((aux*2)+1));
 }
 
 //Caida de la ficha 
@@ -181,7 +181,7 @@ function gravedad() {
             lastClickedFigure.getPositionX(),
             lastClickedFigure.getPositionY() + velocity
         );
-        //Por que se le resta la velocidad?
+
         if (lastClickedFigure.getPositionY() > tablero.getSuelo() - velocity) {
             if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
@@ -201,6 +201,11 @@ function gravedad() {
         drawAll();
     }
 }
+
+setInterval(function () {
+    gravedad();
+}, 1000 / 60);
+
 function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
@@ -211,11 +216,7 @@ function onMouseUp(e) {
         tablero.cargarEnMatriz(posX, tablero.getFilaDisponible(posX));
     }
 }
-/* (tablero.getHeightCasilla()/2) * 
-                (cantFilTablero - tablero.getFilaDisponible(columna)) */
-setInterval(function () {
-    gravedad();
-}, 1000 / 60);
+
 
 
 

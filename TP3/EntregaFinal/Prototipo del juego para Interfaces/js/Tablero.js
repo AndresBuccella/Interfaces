@@ -1,8 +1,8 @@
-class Tablero{
+class Tablero {
 
-    constructor(canvas, context, cantFil, cantCol, pathLateral, pathCorner, pathCenter,
-        marginTop, marginBottom, marginRight, marginLeft){
-    //Optimizable
+    constructor(canvas, context, cantFil, cantCol, pathCenter,pathCentralInside,pathCentralBackground,
+        marginTop, marginBottom, marginRight, marginLeft) {
+        //Optimizable
         this.context = context;
         this.canvas = canvas;
 
@@ -14,73 +14,74 @@ class Tablero{
         this.marginRight = marginRight;
         this.marginLeft = marginLeft;
 
-        this.arrImages = [];
-
-        this.pathLateral = pathLateral;
-        this.pathCenter = pathCenter;
-        this.pathCorner = pathCorner;
+        this.pathCenter = new Image();
+        this.pathCenter.src = pathCenter;
+        this.pathCentralInside = new Image();
+        this.pathCentralInside.src = pathCentralInside;
+        this.pathCentralBackground = new Image();
+        this.pathCentralBackground.src = pathCentralBackground;
 
         this.matriz = [[]];
         for (let fila = 0; fila < this.cantFil; fila++) {
             for (let columna = 0; columna < this.cantCol; columna++) {
-                this.matriz[[fila,columna]] = 0;
+                this.matriz[[fila, columna]] = 0;
             }
         }
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
 
-    getWidthCasilla(){
+    getWidthCasilla() {
         return this.getWidth() / this.getCantCol();
     }
-    getHeightCasilla(){
+    getHeightCasilla() {
         return this.getHeight() / this.getCantFil();
     }
 
-    getWidth(){
+    getWidth() {
         return this.canvas.clientWidth - this.marginRight - this.marginLeft;
     }
-    getHeight(){
+    getHeight() {
         return this.canvas.clientHeight - this.marginTop - this.marginBottom;
     }
-    getOrigX(){
+    getOrigX() {
         return this.marginLeft;
     }
-    getOrigY(){
+    getOrigY() {
         return this.marginTop;
     }
-    getCantFil(){
+    getCantFil() {
         return this.cantFil;
     }
-    getCantCol(){
+    getCantCol() {
         return this.cantCol;
     }
-    getSuelo(){
+    getSuelo() {
         return this.suelo;
     }
-    
-    resetSuelo(){
+
+    resetSuelo() {
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
-    getFilaDisponible(columna){
+    getFilaDisponible(columna) {
         for (let fila = 0; fila < this.cantFil; fila++) {
-            if ((this.matriz[[fila, columna]] == 0)&&(this.matriz[[fila+1, columna]] != 0)){
+            if ((this.matriz[[fila, columna]] == 0) && (this.matriz[[fila + 1, columna]] != 0)) {
                 return fila;
-            }else{
+            } else {
                 if (this.matriz[[fila, columna]] != 0) {
                     return -1;
                 }
             }
-            
+
         }
     }
-    getColumnaExacta(posX){
-        let columna = Math.floor((posX-this.marginLeft) / this.getWidthCasilla());
+    getColumnaExacta(posX) {
+        let columna = Math.floor((posX - this.marginLeft) / this.getWidthCasilla());
         return columna;
 
     }
 
-    calcularNuevoSuelo(columna){
-        this.suelo = this.suelo - (this.getHeightCasilla() * (this.cantFil - (this.getFilaDisponible(columna) + 1)) );
+    calcularNuevoSuelo(columna) {
+        this.suelo = this.suelo - (this.getHeightCasilla() * (this.cantFil - (this.getFilaDisponible(columna) + 1)));
     }
     cargarEnMatriz(posX) {
         let columna = this.getColumnaExacta(posX);
@@ -90,36 +91,30 @@ class Tablero{
         this.matriz[[fila, columna]] = 1;
     }
 
-    createBoard(){
+    draw() {
         //se calcula el espacio disponible para el tablero y se lo divide por la cantidad de columnas 
         //que va a tener
         let posX = 0;
         let posY = 0;
-        
+
         let widthPiece = this.getWidthCasilla();
         let heightPiece = this.getHeightCasilla();
-        
+        let min=Math.min( widthPiece,heightPiece)
+
+        this.context.save();
         for (let j = 0; j < this.getCantFil(); j++) {
             posY = this.marginTop + heightPiece * j;
             for (let i = 0; i < this.getCantCol(); i++) {
                 posX = this.marginLeft + widthPiece * i;
-                let piece = new PiezaDecorativa(this.context, this.pathCenter, posX, posY, widthPiece, heightPiece);
-                this.arrImages.push(piece);
+                this.context.drawImage(this.pathCentralBackground, posX, posY, (widthPiece-min)/2+1,heightPiece);
+                this.context.drawImage(this.pathCentralBackground, posX+widthPiece-(widthPiece-min)/2-1, posY, (widthPiece-min)/2,heightPiece);
+                this.context.drawImage(this.pathCentralInside, posX+(widthPiece-min)/2, posY+(heightPiece-min)/2,min,min);
+                this.context.drawImage(this.pathCenter, posX, posY, widthPiece,heightPiece);
             }
         }
+        this.context.restore();
     }
-    getImages(){
-        //Padre de Marge: "NO ME VEEEAAAS"
-        return this.arrImages;
-    
-         /* let siguienteIndice = 0;
-    
-        return {
-            next: function() {
-            return siguienteIndice < this.arrImages.length ?
-                { value: arreglo[siguienteIndice++], done: false } :
-                { done: true };
-                }
-            }; */
+    isSelected(){
+        return false;
     }
 }
