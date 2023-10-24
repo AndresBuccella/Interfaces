@@ -81,6 +81,15 @@ for (let i = 1; i < cantFichas; i++) {
 
 elements.push(tablero);
 elements.push(pinchos);
+const timeMin = 5;
+let timer = new Timer(timeMin*60, 0,0);
+setInterval(() => {
+    if (timer.getTime() > 0) {
+        timer.setTime(timer.getTime()-1);
+        drawAll();
+    }
+}, 1000);
+elements.push(timer);
 
 function drawAll() {
     clearCanvas();
@@ -247,7 +256,6 @@ function prueba(e) {
 setTimeout(function () {
     //JUEGO
     let turno = 0;
-    console.log(turno);
     drawAll();
     /* while (true) {
         
