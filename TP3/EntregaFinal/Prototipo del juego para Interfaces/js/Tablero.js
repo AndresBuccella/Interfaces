@@ -1,13 +1,13 @@
 class Tablero {
 
-    constructor(canvas, context, cantFil, cantCol, pathCenter,pathCentralInside,pathCentralBackground,
+    constructor(canvas, context, xEnLinea, pathCenter,pathCentralInside,pathCentralBackground,
         marginTop, marginBottom, marginRight, marginLeft) {
         //Optimizable
         this.context = context;
         this.canvas = canvas;
 
-        this.cantFil = cantFil;
-        this.cantCol = cantCol;
+        this.cantFil = xEnLinea + 2;
+        this.cantCol = xEnLinea + 3;
 
         this.marginTop = marginTop;
         this.marginBottom = marginBottom;
@@ -21,6 +21,9 @@ class Tablero {
         this.pathCentralBackground = new Image();
         this.pathCentralBackground.src = pathCentralBackground;
 
+        this.ultimaFilaAgregada;
+        this.ultimaColumnaAgregada;
+
         this.matriz = [[]];
         for (let fila = 0; fila < this.cantFil; fila++) {
             for (let columna = 0; columna < this.cantCol; columna++) {
@@ -28,6 +31,10 @@ class Tablero {
             }
         }
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
+    }
+
+    getMarginTop(){
+        return this.marginTop;
     }
 
     getWidthCasilla() {
@@ -83,12 +90,14 @@ class Tablero {
     calcularNuevoSuelo(columna) {
         this.suelo = this.suelo - (this.getHeightCasilla() * (this.cantFil - (this.getFilaDisponible(columna) + 1)));
     }
-    cargarEnMatriz(posX) {
+    cargarEnMatriz(ficha, posX) {
         let columna = this.getColumnaExacta(posX);
         let fila = this.getFilaDisponible(columna);
         console.log('Cae en columna: ' + columna);
         console.log('Cae en fila: ' + fila);
-        this.matriz[[fila, columna]] = 1;
+        this.matriz[[fila, columna]] = ficha.getPlayer();
+        this.ultimaFilaAgregada = fila;
+        this.ultimaColumnaAgregada = columna;
     }
 
     draw() {
@@ -116,5 +125,43 @@ class Tablero {
     }
     isSelected(){
         return false;
+    }
+    
+    winner(ficha){
+        let posibleGanador = this.matriz[[this.ultimaFilaAgregada, this.ultimaColumnaAgregada]];
+        //se puede hacer en un arreglo "mas mejor"
+        let cantFichas = 0;
+        let cantFichas2 = 0;
+        let cantFichas3 = 0;
+        let cantFichas4 = 0;
+        let cantFichas5 = 0;
+        let cantFichas6 = 0;
+        let cantFichas7 = 0;
+        let cantFichas8 = 0;
+        let cantFichas9 = 0;
+        for (let i = 0; i < this.xEnLinea; i++) {
+            if (this.matriz[[this.ultimaFilaAgregada+i, this.ultimaColumnaAgregada+i]] === ficha.getPlayer()) {
+                cantFichas++;
+            }
+            if (this.matriz[[this.ultimaFilaAgregada-i, this.ultimaColumnaAgregada-i]] === ficha.getPlayer()) {
+                cantFichas2++;
+            }
+            if (this.matriz[[this.ultimaFilaAgregada+i, this.ultimaColumnaAgregada-i]] === ficha.getPlayer()) {
+                cantFichas3++;
+            }
+            if (this.matriz[[this.ultimaFilaAgregada-i, this.ultimaColumnaAgregada+i]] === ficha.getPlayer()) {
+                cantFichas4++;
+            }
+            if (this.matriz[[this.ultimaFilaAgregada, this.ultimaColumnaAgregada+i]] === ficha.getPlayer()) {
+                cantFichas5++;
+            }
+            if (this.matriz[[this.ultimaFilaAgregada-i, this.ultimaColumnaAgregada]] === ficha.getPlayer()) {
+                cantFichas6++;
+            }
+            /* for (let j = 0; j < xEnLinea-1; j++) { //las posibilidades en un sentido
+                
+            } */
+        }
+        //console.log(`Ganó: ${ficha.getNombre()}`);
     }
 }

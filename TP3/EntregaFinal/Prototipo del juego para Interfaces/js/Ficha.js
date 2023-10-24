@@ -3,14 +3,33 @@ class Ficha  extends Pieza{
 
     constructor(context, path, player, posX, posY, radius, bounces) {
         super(context, path, posX, posY);
+        this.path = path;
+        this.posIniX = posX;
+        this.posIniY = posY;
         this.player = player;
         this.radius = radius;
         this.velocity = 0;
+        this.seleccionable = true;
+        this.estaColocada = false;
         this.maxbounces = bounces;
         this.bounces = bounces;
     }
-
+    
     //GETTERS
+    getNombre(){
+        //convierte un string en arreglo
+        let arrNombre = [...this.path];
+        let nombreFinal = '';
+        for (let i = 0; i < arrNombre.length; i++) {
+            if(arrNombre[i] === '.'){
+                return nombreFinal;
+            }
+            /* if(arrNombre[i] === '-'){
+                arrNombre[i] = ' ';
+            } */
+            nombreFinal += arrNombre[i];
+        }
+    }
     getPlayer(){
         return this.player;
     }
@@ -45,12 +64,31 @@ class Ficha  extends Pieza{
     setBounces(bounces) {
         this.bounces = bounces;
     }
+    colocada(){
+        this.estaColocada = true;
+        this.noSeleccionable();
+    }
+    getEstado(){
+        return this.seleccionable;
+    }
+    esSeleccionable(){
+        this.seleccionable = true;
+    }
+    noSeleccionable(){
+        this.seleccionable = false;
+    }
 
     //DEMAS METODOS    
     isSelected(posX, posY) {
-        let _x = this.posX - posX;
-        let _y = this.posY - posY;
-        return Math.sqrt(_x * _x + _y * _y) < this.radius;
+        if((!this.estaColocada)&&(this.seleccionable)){
+            let _x = this.posX - posX;
+            let _y = this.posY - posY;
+            return Math.sqrt(_x * _x + _y * _y) < this.radius;
+        }
+
+    }
+    volverAPosicionInicial(){
+        this.setPosition(this.posIniX, this.posIniY);
     }
     
     draw() {
