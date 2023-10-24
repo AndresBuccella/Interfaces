@@ -1,13 +1,13 @@
 class Tablero {
 
-    constructor(canvas, context, xEnLinea, pathCenter,pathCentralInside,pathCentralBackground,
+    constructor(canvas, context, xEnLinea,filas,columnas, pathCenter,pathCentralInside,pathCentralBackground,
         marginTop, marginBottom, marginRight, marginLeft) {
         //Optimizable
         this.context = context;
         this.canvas = canvas;
-
-        this.cantFil = xEnLinea + 2;
-        this.cantCol = xEnLinea + 3;
+        this.xEnLinea=xEnLinea;
+        this.filas = filas;
+        this.columnas = columnas;
 
         this.marginTop = marginTop;
         this.marginBottom = marginBottom;
@@ -25,8 +25,8 @@ class Tablero {
         this.ultimaColumnaAgregada;
 
         this.matriz = [[]];
-        for (let fila = 0; fila < this.cantFil; fila++) {
-            for (let columna = 0; columna < this.cantCol; columna++) {
+        for (let fila = 0; fila < this.filas; fila++) {
+            for (let columna = 0; columna < this.columnas; columna++) {
                 this.matriz[[fila, columna]] = 0;
             }
         }
@@ -57,10 +57,10 @@ class Tablero {
         return this.marginTop;
     }
     getCantFil() {
-        return this.cantFil;
+        return this.filas;
     }
     getCantCol() {
-        return this.cantCol;
+        return this.columnas;
     }
     getSuelo() {
         return this.suelo;
@@ -70,7 +70,7 @@ class Tablero {
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
     getFilaDisponible(columna) {
-        for (let fila = 0; fila < this.cantFil; fila++) {
+        for (let fila = 0; fila < this.filas; fila++) {
             if ((this.matriz[[fila, columna]] == 0) && (this.matriz[[fila + 1, columna]] != 0)) {
                 return fila;
             } else {
@@ -88,7 +88,7 @@ class Tablero {
     }
 
     calcularNuevoSuelo(columna) {
-        this.suelo = this.suelo - (this.getHeightCasilla() * (this.cantFil - (this.getFilaDisponible(columna) + 1)));
+        this.suelo = this.suelo - (this.getHeightCasilla() * (this.filas - (this.getFilaDisponible(columna) + 1)));
     }
     cargarEnMatriz(ficha, posX) {
         let columna = this.getColumnaExacta(posX);

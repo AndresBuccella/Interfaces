@@ -3,6 +3,11 @@ class Timer{
         this.timer = time;
         this.posX = posX;
         this.posY = posY;
+        setInterval(() => {
+            if (timer.getTime() > 0) {
+                timer.setTime(timer.getTime()-1);
+            }
+        }, 1000);
     }
 
     setTime(time){
