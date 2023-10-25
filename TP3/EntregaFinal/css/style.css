@@ -1603,12 +1603,12 @@ header>.mostrar-menu-carrito {
     margin-left: 2px;
 }
 
-.btn-registrarse {
+.btn-registrarse, .btn-iniciar-sesion {
     position: relative;
     display: flex;
 }
 
-.btn-registrarse input {
+.btn-registrarse input , .btn-iniciar-sesion input{
     --sombra-size: 2px;
     width: 110px;
     height: 24px;
@@ -1628,7 +1628,7 @@ header>.mostrar-menu-carrito {
     }
 }
 
-.btn-registrarse .loader {
+.btn-registrarse .loader, .btn-iniciar-sesion .loader {
     display: none;
     opacity: 0;
     transition: opacity 0.4s;

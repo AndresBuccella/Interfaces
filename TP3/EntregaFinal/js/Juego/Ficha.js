@@ -27,15 +27,22 @@ class Ficha extends Pieza {
     getNombre() {
         //convierte un string en arreglo
         let arrNombre = [...this.path];
+        let arrAux = [];
+
         let nombreFinal = '';
-        for (let i = 0; i < arrNombre.length; i++) {
+        for (let i = arrNombre.length - 1; i > 0; i--) {
             if (arrNombre[i] === '.') {
-                return nombreFinal;
+                for (let j = i - 1; j > 0; j--) {
+                    if (arrNombre[j] === '/') {
+                        arrAux.reverse();
+                        for (const letra of arrAux) {
+                            nombreFinal += letra;
+                        }
+                        return nombreFinal;
+                    }
+                    arrAux.push(arrNombre[j]);
+                }
             }
-            /* if(arrNombre[i] === '-'){
-                arrNombre[i] = ' ';
-            } */
-            nombreFinal += arrNombre[i];
         }
     }
     getPlayer() {
