@@ -10,14 +10,19 @@ const imagenScorpion = 'scorpion.png';
 
 const pathCentral = 'casilla.png';
 const pathCentralInside = 'casilla-interior.png';
-const pathCentralBackground= 'casilla-relleno.png';
-const xEnLinea = 2;
-const filas = 2;
-const columnas = 2;
+const pathCentralBackground = 'casilla-relleno.png';
+const xEnLinea = 4;
+const columnas = 7;
+const filas = 6;
 
-const anchoTheTower= Math.floor(canvas.clientWidth/10);
+//Fonts
+var fontFile = 'mk2.ttf';
+// Cargar la fuente utilizando FontFace
+var customFont = new FontFace('MKfont', `url(${fontFile})`);
+
+const anchoTheTower = Math.floor(canvas.clientWidth / 10);
 //const spriteHeightTop = 126;
-const spriteHeightTop = canvas.clientHeight/5 + 6;
+const spriteHeightTop = canvas.clientHeight / 5 + 6;
 const spriteHeightBot = 0;
 const spriteHeightPinchos = 45;
 
@@ -50,7 +55,7 @@ let lateralIzquierdo = new PiezaDecorativa(context, imagenLateral, 0, spriteHeig
 let lateralDerecho = new PiezaDecorativa(context, imagenLateral, canvas.clientWidth - anchoTheTower, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
 
 
-let tablero = new Tablero(canvas, context, xEnLinea,filas,columnas, pathCentral,pathCentralInside,pathCentralBackground,spriteHeightTop,spriteHeightBot,
+let tablero = new Tablero(canvas, context, xEnLinea, filas, columnas, pathCentral, pathCentralInside, pathCentralBackground, spriteHeightTop, spriteHeightBot,
     lateralDerecho.getWidth(), lateralIzquierdo.getWidth());
 
 
@@ -61,29 +66,34 @@ arrDeco.push(lateralIzquierdo);
 arrDeco.push(lateralDerecho);
 
 //Fichas
-const yFichas = canvas.clientHeight/7;
-const cantFichas = Math.floor((tablero.getCantFil()*tablero.getCantCol())/2);
-let fichaRadius =32* Math.min( tablero.getWidthCasilla()/90,tablero.getHeightCasilla()/90);
+const yFichas = canvas.clientHeight / 7;
+const cantFichas = Math.floor((tablero.getCantFil() * tablero.getCantCol()) / 2);
+let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeightCasilla() / 90);
 
 //Creacion de fichas jugador 1
 
 for (let i = cantFichas; i > 0; i--) {
-    const fichaSubZero = new Ficha(context, imagenSubZero, player2, (widthCanvas/2 + widthCanvas*0.2) + fichaRadius * i, yFichas, fichaRadius, 20);
+    const fichaSubZero = new Ficha(context, imagenSubZero, player2, (widthCanvas / 2 + widthCanvas * 0.2) + fichaRadius * i, yFichas, fichaRadius, 20);
     arrFichas.push(fichaSubZero);
 }
 //Creacion de fichas jugador 2
 for (let i = cantFichas; i > 0; i--) {
-    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas/2 - widthCanvas*0.2) - fichaRadius * i, yFichas, fichaRadius, 20);
+    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas / 2 - widthCanvas * 0.2) - fichaRadius * i, yFichas, fichaRadius, 20);
     arrFichas.push(fichaScorpion);
 }
 
 
 arrTablero.push(tablero);
 arrTablero.push(pinchos);
- const timeMin = 5;
-let timer = new Timer(timeMin*60, 0,0);
 
-arrDeco.push(timer); 
+//Timer
+let timer=null
+const timeMin = 5;
+customFont.load().then(
+    () => {
+         timer = new Timer(timeMin * 60, widthCanvas / 2 , 20, context, customFont);
+        arrDeco.push(timer);
+    });
 
 elements.push(arrDeco);
 elements.push(arrFichas);
@@ -106,25 +116,25 @@ function drawAll() {
     }
 };
 
-function clearCanvas(){
-    let gradiente = context.createLinearGradient(100,0,0, canvas.clientHeight);
-    gradiente.addColorStop(0,'#FF8A00');
-    gradiente.addColorStop(1,'#FF0000');
+function clearCanvas() {
+    let gradiente = context.createLinearGradient(100, 0, 0, canvas.clientHeight);
+    gradiente.addColorStop(0, '#FF8A00');
+    gradiente.addColorStop(1, '#FF0000');
     context.fillStyle = gradiente;
-    context.fillRect(0,0,canvas.clientWidth, canvas.clientHeight);
+    context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 }
 
 function findClickedFigure(x, y) {
-   /*  for (const ficha of arrFichas) {
-        if (ficha.isSelected(x, y)) {
-            return ficha;
-        }
-    } */
-    for (let i = arrFichas.length-1; i >=0; i--) {
-        if (arrFichas[i].isSelected(x, y)){
+    /*  for (const ficha of arrFichas) {
+         if (ficha.isSelected(x, y)) {
+             return ficha;
+         }
+     } */
+    for (let i = arrFichas.length - 1; i >= 0; i--) {
+        if (arrFichas[i].isSelected(x, y)) {
             return arrFichas[i];
         }
-        
+
     }
 }
 function onMouseDown(e) {
@@ -145,7 +155,7 @@ function onMouseMove(e) {
     if (mouseDown && lastClickedFigure != null) {
         posX = e.layerX;
         //if (e.layerY < tablero.getMarginTop() - lastClickedFigure.getRadius()) {
-            posY = e.layerY
+        posY = e.layerY
         //}
         lastClickedFigure.setPosition(posX, posY);
         drawAll();
@@ -154,29 +164,29 @@ function onMouseMove(e) {
 
 //Correccion de caida
 function correccionCaidaX(e) {
-    
+
     let anchoCasillaTablero = tablero.getWidthCasilla();
     let posX = e.layerX;
 
-    if(posX < anchoTheTower) { posX = anchoTheTower}
+    if (posX < anchoTheTower) { posX = anchoTheTower }
     //el -1 es necesario porque no acepta iguales el if de mas abajo
-    if(posX > (anchoTheTower + tablero.getWidth())) 
-        posX = anchoTheTower + tablero.getWidth()-1;
+    if (posX > (anchoTheTower + tablero.getWidth()))
+        posX = anchoTheTower + tablero.getWidth() - 1;
 
     let aux = 0;
     for (let i = 0; i < tablero.getCantCol(); i++) {
-        if((posX>=(anchoTheTower + anchoCasillaTablero * i)) && 
-        (posX<(anchoTheTower + anchoCasillaTablero * (i+1)))){
+        if ((posX >= (anchoTheTower + anchoCasillaTablero * i)) &&
+            (posX < (anchoTheTower + anchoCasillaTablero * (i + 1)))) {
             lastClickedFigure.setPosition(
-                (anchoTheTower + anchoCasillaTablero / 2 * ((i*2)+1)), 
+                (anchoTheTower + anchoCasillaTablero / 2 * ((i * 2) + 1)),
                 e.layerY
             );
-            aux=i;
+            aux = i;
         }
     }
     //si no se apagan hace cosas raras. Se vuelven a activar cuando termina de caer la ficha
     eventListenerOff();
-    return Math.round(anchoTheTower + anchoCasillaTablero / 2 * ((aux*2)+1));
+    return Math.round(anchoTheTower + anchoCasillaTablero / 2 * ((aux * 2) + 1));
 }
 
 //Caida de la ficha 
@@ -229,10 +239,10 @@ function onMouseUp(e) {
         lastClickedFigure.colocada();
         let posX = correccionCaidaX(e);
         let columna = tablero.getColumnaExacta(posX);
-        if(tablero.getFilaDisponible(columna) != -1){
+        if (tablero.getFilaDisponible(columna) != -1) {
             tablero.calcularNuevoSuelo(columna);
             tablero.cargarEnMatriz(lastClickedFigure, posX);
-        }else{
+        } else {
             lastClickedFigure.volverAPosicionInicial();
         }
     }
@@ -248,11 +258,11 @@ function eventListenerOn() {
     canvas.addEventListener('mousemove', onMouseMove, false);
     //pendiente para corregir 
     canvas.addEventListener('wheel', prueba, false);
-    
+
 }
 eventListenerOn();
 
-function eventListenerOff(){
+function eventListenerOff() {
     canvas.removeEventListener('mousedown', onMouseDown, false);
     canvas.removeEventListener('mouseup', onMouseUp, false);
     canvas.removeEventListener('mousemove', onMouseMove, false);
@@ -267,9 +277,9 @@ function prueba(e) {
 }
 function cambioTurno() {
     for (const ficha of arrFichas) {
-        if(((turno % 2) + 1) != ficha.getPlayer()){
+        if (((turno % 2) + 1) != ficha.getPlayer()) {
             ficha.noSeleccionable();
-        }else{
+        } else {
             ficha.esSeleccionable();
         }
     }
