@@ -1,24 +1,24 @@
 const canvas = document.querySelector('#main-canvas');
 const context = canvas.getContext('2d');
 
-const imagenLateral = 'the-tower.png';
-const imagenTop = 'imagenTop.png';
-const imagenPinchos = 'pinchos.png';
+const imagenLateral = '../images/juegoMK/the-tower.png';
+const imagenTop = '../images/juegoMK/imagenTop.png';
+const imagenPinchos = '../images/juegoMK/pinchos.png';
 
-const imagenSubZero = 'sub-zero.png';
-const imagenScorpion = 'scorpion.png';
+const imagenSubZero = '../images/juegoMK/sub-zero.png';
+const imagenScorpion = '../images/juegoMK/scorpion.png';
 
-const pathCentral = 'casilla.png';
-const pathCentralInside = 'casilla-interior.png';
-const pathCentralBackground = 'casilla-relleno.png';
+const pathCentral = '../images/juegoMK/casilla.png';
+const pathCentralInside = '../images/juegoMK/casilla-interior.png';
+const pathCentralBackground = '../images/juegoMK/casilla-relleno.png';
 const xEnLinea = 4;
 const columnas = 7;
 const filas = 6;
 
 //Fonts
-var fontFile = 'mk2.ttf';
+let fontFile = '../css/fonts/mk2.ttf';
 // Cargar la fuente utilizando FontFace
-var customFont = new FontFace('MKfont', `url(${fontFile})`);
+let customFont = new FontFace('MKfont', `url(${fontFile})`);
 
 const anchoTheTower = Math.floor(canvas.clientWidth / 10);
 //const spriteHeightTop = 126;
@@ -32,8 +32,8 @@ const player2 = 2;
 
 
 // Obtén el offset del canvas
-var offsetLeft = canvas.offsetLeft;
-var offsetTop = canvas.offsetTop;
+let offsetLeft = canvas.offsetLeft;
+let offsetTop = canvas.offsetTop;
 
 console.log('OffsetLeft:', offsetLeft);
 console.log('OffsetTop:', offsetTop);
@@ -148,8 +148,8 @@ function onMouseDown(e) {
     if (lastClickedFigure == null) {
         mouseDown = true;
 
-        let clickFig = findClickedFigure(e.layerX, e.layerY);
-
+        let clickFig = findClickedFigure(e.layerX - offsetLeft, e.layerY - offsetTop);
+console.log(e.layerX + ' ' + e.layerY);
         if (clickFig != null) {
             lastClickedFigure = clickFig;
             lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
@@ -160,10 +160,8 @@ function onMouseDown(e) {
 
 function onMouseMove(e) {
     if (mouseDown && lastClickedFigure != null) {
-        posX = e.layerX;
-        //if (e.layerY < tablero.getMarginTop() - lastClickedFigure.getRadius()) {
-        posY = e.layerY
-        //}
+        posX = e.layerX - offsetLeft;
+        posY = e.layerY - offsetTop;
         lastClickedFigure.setPosition(posX, posY);
         drawAll();
     }
@@ -173,7 +171,7 @@ function onMouseMove(e) {
 function correccionCaidaX(e) {
 
     let anchoCasillaTablero = tablero.getWidthCasilla();
-    let posX = e.layerX;
+    let posX = e.layerX - offsetLeft;
 
     if (posX < anchoTheTower) { posX = anchoTheTower }
     //el -1 es necesario porque no acepta iguales el if de mas abajo
@@ -186,7 +184,7 @@ function correccionCaidaX(e) {
             (posX < (anchoTheTower + anchoCasillaTablero * (i + 1)))) {
             lastClickedFigure.setPosition(
                 (anchoTheTower + anchoCasillaTablero / 2 * ((i * 2) + 1)),
-                e.layerY
+                e.layerY - offsetTop
             );
             aux = i;
         }
@@ -244,7 +242,8 @@ function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
     if (lastClickedFigure != null) {
-        if ((e.layerY < spriteHeightTop-lastClickedFigure.getRadius()) && ((e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower)))) {
+        if ((e.layerY - offsetTop < spriteHeightTop-lastClickedFigure.getRadius()) && ((e.layerX - offsetLeft > anchoTheTower) && 
+                (e.layerX - offsetLeft < (canvas.clientWidth - anchoTheTower)))) {
             for (const ficha of arrFichas) {
                 if ((ficha.getPlayer() === player1) && ((turno % 2) + 1 == player2) && (!ficha.getFiguraIsColocada())) {
                     ficha.setPositionXOriginTo(ficha.getPosIniX() + ficha.getRadius());
