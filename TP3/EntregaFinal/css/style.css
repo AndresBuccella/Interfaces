@@ -2073,15 +2073,15 @@ header>.mostrar-menu-carrito {
     padding: 5px;
 }
 
-/* #pantalla-juego {
+ #pantalla-juego {
     display: flex;
     align-self: center;
     justify-content: center;
     position: relative;
-    height: 40vw;
-    width: calc(40vw * 16 / 9);
+    /* height: 40vw;
+    width: calc(40vw * 16 / 9); */
     background-color: black;
-} */
+} 
 
 #hover-jugar {
     display: flex;
@@ -2486,16 +2486,16 @@ header>.mostrar-menu-carrito {
 
 }
 
-#pantalla-juego{
-    background-color: rgb(113,128,212);
+/* #pantalla-juego{
+    background-color: black;
     width: 800px;
     height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 canvas{
     background-color: #fafafa;
-    width: 100%;
+    width: auto;
     height: 100%;
 }
