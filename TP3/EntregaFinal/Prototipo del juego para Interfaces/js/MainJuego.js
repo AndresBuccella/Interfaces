@@ -211,6 +211,7 @@ function gravedad() {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
                 lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.7); //Perdida de energia (?
                 lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), tablero.getSuelo());
+                //aca podria ir la animacion de sangrado
             }
             else {
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
@@ -236,14 +237,22 @@ function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
     if (lastClickedFigure != null) {
-        lastClickedFigure.colocada();
-        let posX = correccionCaidaX(e);
-        let columna = tablero.getColumnaExacta(posX);
-        if (tablero.getFilaDisponible(columna) != -1) {
-            tablero.calcularNuevoSuelo(columna);
-            tablero.cargarEnMatriz(lastClickedFigure, posX);
-        } else {
-            lastClickedFigure.volverAPosicionInicial();
+        if ((e.layerY < spriteHeightTop)&&(e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower))) {
+            lastClickedFigure.colocada();
+            let posX = correccionCaidaX(e);
+            let columna = tablero.getColumnaExacta(posX);
+            if (tablero.getFilaDisponible(columna) != -1) {
+                tablero.calcularNuevoSuelo(columna);
+                tablero.cargarEnMatriz(lastClickedFigure, posX);
+            } else {
+                lastClickedFigure.volverAPosicionInicial();
+            }
+        }else{
+            lastClickedFigure.setPosition(lastClickedFigure.getPosIniX(), lastClickedFigure.getPosIniY());
+            lastClickedFigure = null;
+            eventListenerOff();
+            eventListenerOn();
+            drawAll();
         }
     }
 }

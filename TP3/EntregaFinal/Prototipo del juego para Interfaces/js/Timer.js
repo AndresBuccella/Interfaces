@@ -24,14 +24,14 @@ class Timer {
         return false;
     }
     draw() {
-        var gradient = context.createLinearGradient(0, 0, 0, 30);
+        var gradient = context.createLinearGradient(3.5, 0, 0, 30);
         gradient.addColorStop(0, 'red'); 
         gradient.addColorStop(1, 'yellow');
-        
+
         context.font = '30px MKfont';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
         context.fillStyle = gradient;
-        context.fillText(this.timer, this.posX, this.posY);
+        context.fillText(this.timer, this.posX, this.posY+45);
     }
 }

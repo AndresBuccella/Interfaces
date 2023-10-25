@@ -40,6 +40,12 @@ class Ficha  extends Pieza{
     getVelocity() {
         return this.velocity;
     }
+    getPosIniX(){
+        return this.posIniX;
+    }
+    getPosIniY(){
+        return this.posIniY;
+    }
     //Rebotes
     getMaxBounces() {
         return this.maxbounces;
