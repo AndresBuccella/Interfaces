@@ -12,8 +12,8 @@ const pathCentral = 'casilla.png';
 const pathCentralInside = 'casilla-interior.png';
 const pathCentralBackground = 'casilla-relleno.png';
 const xEnLinea = 4;
-const columnas = 7;
-const filas = 6;
+const columnas = 3;
+const filas = 3;
 
 //Fonts
 var fontFile = 'mk2.ttf';
@@ -70,28 +70,29 @@ const yFichas = canvas.clientHeight / 7;
 const cantFichas = Math.floor((tablero.getCantFil() * tablero.getCantCol()) / 2);
 let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeightCasilla() / 90);
 
+
 //Creacion de fichas jugador 1
+for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) {
+    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas / 2 - widthCanvas * 0.2) - fichaRadius * i, yFichas, fichaRadius, 20);
+    arrFichas.push(fichaScorpion);
+}
+
+//Creacion de fichas jugador 2
 
 for (let i = cantFichas; i > 0; i--) {
     const fichaSubZero = new Ficha(context, imagenSubZero, player2, (widthCanvas / 2 + widthCanvas * 0.2) + fichaRadius * i, yFichas, fichaRadius, 20);
     arrFichas.push(fichaSubZero);
 }
-//Creacion de fichas jugador 2
-for (let i = cantFichas; i > 0; i--) {
-    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas / 2 - widthCanvas * 0.2) - fichaRadius * i, yFichas, fichaRadius, 20);
-    arrFichas.push(fichaScorpion);
-}
-
 
 arrTablero.push(tablero);
 arrTablero.push(pinchos);
 
 //Timer
-let timer=null
+let timer = null
 const timeMin = 5;
 customFont.load().then(
     () => {
-         timer = new Timer(timeMin * 60, widthCanvas / 2 , 80, context, customFont);
+        timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
         arrDeco.push(timer);
     });
 
@@ -237,7 +238,7 @@ function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
     if (lastClickedFigure != null) {
-        if ((e.layerY < spriteHeightTop)&&(e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower))) {
+        if ((e.layerY < spriteHeightTop) && (e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower))) {
             lastClickedFigure.colocada();
             let posX = correccionCaidaX(e);
             let columna = tablero.getColumnaExacta(posX);
@@ -247,7 +248,7 @@ function onMouseUp(e) {
             } else {
                 lastClickedFigure.volverAPosicionInicial();
             }
-        }else{
+        } else {
             lastClickedFigure.setPosition(lastClickedFigure.getPosIniX(), lastClickedFigure.getPosIniY());
             lastClickedFigure = null;
             eventListenerOff();
