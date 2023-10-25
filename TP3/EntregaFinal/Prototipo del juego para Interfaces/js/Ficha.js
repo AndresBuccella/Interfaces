@@ -74,6 +74,9 @@ class Ficha  extends Pieza{
         this.estaColocada = true;
         this.noSeleccionable();
     }
+    figuraColocada(){
+        return this.estaColocada;
+    }
     getEstado(){
         return this.seleccionable;
     }
