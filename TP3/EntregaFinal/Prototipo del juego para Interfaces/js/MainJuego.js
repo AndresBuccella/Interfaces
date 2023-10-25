@@ -91,7 +91,7 @@ let timer=null
 const timeMin = 5;
 customFont.load().then(
     () => {
-         timer = new Timer(timeMin * 60, widthCanvas / 2 , 20, context, customFont);
+         timer = new Timer(timeMin * 60, widthCanvas / 2 , 80, context, customFont);
         arrDeco.push(timer);
     });
 
