@@ -84,18 +84,17 @@ class Tablero {
     getColumnaExacta(posX) {
         let columna = Math.floor((posX - this.marginLeft) / this.getWidthCasilla());
         return columna;
-
     }
 
     calcularNuevoSuelo(columna) {
         this.suelo = this.suelo - (this.getHeightCasilla() * (this.filas - (this.getFilaDisponible(columna) + 1)));
     }
-    cargarEnMatriz(ficha, posX) {
+    cargarEnMatriz(player, posX) {
         let columna = this.getColumnaExacta(posX);
         let fila = this.getFilaDisponible(columna);
         console.log('Cae en columna: ' + columna);
         console.log('Cae en fila: ' + fila);
-        this.matriz[[fila, columna]] = ficha.getPlayer();
+        this.matriz[[fila, columna]] = player;
         this.ultimaFilaAgregada = fila;
         this.ultimaColumnaAgregada = columna;
     }
