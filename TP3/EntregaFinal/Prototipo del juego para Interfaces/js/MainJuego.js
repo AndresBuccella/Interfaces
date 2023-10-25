@@ -238,7 +238,17 @@ function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
     if (lastClickedFigure != null) {
-        if ((e.layerY < spriteHeightTop) && (e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower))) {
+        if ((e.layerY < spriteHeightTop)&&((e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower)))) {
+            for (const ficha of arrFichas) {
+                if ((ficha.getEstado())&&(ficha.getPlayer() === 1)&&(!ficha.figuraColocada())) {
+                    ficha.setPosition(ficha.getPosIniX() + ficha.getRadius(), ficha.getPositionY());
+                }else{
+                    if ((ficha.getEstado())&&(ficha.getPlayer() === 2)&&(!ficha.figuraColocada())) {
+                        ficha.setPosition(ficha.getPosIniX() - ficha.getRadius(), ficha.getPositionY());
+                    }
+                }
+            }
+            drawAll();
             lastClickedFigure.colocada();
             let posX = correccionCaidaX(e);
             let columna = tablero.getColumnaExacta(posX);
@@ -251,8 +261,6 @@ function onMouseUp(e) {
         } else {
             lastClickedFigure.setPosition(lastClickedFigure.getPosIniX(), lastClickedFigure.getPosIniY());
             lastClickedFigure = null;
-            eventListenerOff();
-            eventListenerOn();
             drawAll();
         }
     }
