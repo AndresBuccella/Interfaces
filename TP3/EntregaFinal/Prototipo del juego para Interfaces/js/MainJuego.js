@@ -12,8 +12,8 @@ const pathCentral = 'casilla.png';
 const pathCentralInside = 'casilla-interior.png';
 const pathCentralBackground = 'casilla-relleno.png';
 const xEnLinea = 4;
-const columnas = 3;
-const filas = 3;
+const columnas = 7;
+const filas = 6;
 
 //Fonts
 var fontFile = 'mk2.ttf';
@@ -43,6 +43,8 @@ let elements = [];
 let arrTablero = [];
 let arrDeco = [];
 let arrFichas = [];
+let arrFichaScorpion = [];
+let arrFichaSubZero = [];
 
 let lastClickedFigure = null;
 let mouseDown = false;
@@ -73,16 +75,19 @@ let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeigh
 
 //Creacion de fichas jugador 1
 for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) {
-    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas / 2 - widthCanvas * 0.2) - fichaRadius * i, yFichas, fichaRadius, 20);
-    arrFichas.push(fichaScorpion);
+    const fichaScorpion = new Ficha(context, imagenScorpion, player1, (widthCanvas / 2 - widthCanvas * 0.4) - fichaRadius * i, yFichas, fichaRadius, 20);
+    arrFichaScorpion.push(fichaScorpion);
 }
 
 //Creacion de fichas jugador 2
 
 for (let i = cantFichas; i > 0; i--) {
-    const fichaSubZero = new Ficha(context, imagenSubZero, player2, (widthCanvas / 2 + widthCanvas * 0.2) + fichaRadius * i, yFichas, fichaRadius, 20);
-    arrFichas.push(fichaSubZero);
+    const fichaSubZero = new Ficha(context, imagenSubZero, player2, (widthCanvas / 2 + widthCanvas * 0.4) + fichaRadius * i, yFichas, fichaRadius, 20);
+    arrFichaSubZero.push(fichaSubZero);
 }
+
+arrFichas = arrFichas.concat(arrFichaScorpion);
+arrFichas = arrFichas.concat(arrFichaSubZero);
 
 arrTablero.push(tablero);
 arrTablero.push(pinchos);
@@ -97,7 +102,8 @@ customFont.load().then(
     });
 
 elements.push(arrDeco);
-elements.push(arrFichas);
+elements.push(arrFichaScorpion);
+elements.push(arrFichaSubZero);
 elements.push(arrTablero);
 
 function drawAll() {
@@ -119,8 +125,8 @@ function drawAll() {
 
 function clearCanvas() {
     let gradiente = context.createLinearGradient(100, 0, 0, canvas.clientHeight);
-    gradiente.addColorStop(0, '#FF8A00');
-    gradiente.addColorStop(1, '#FF0000');
+    gradiente.addColorStop(0, '#888888');
+    gradiente.addColorStop(1, '#555555');
     context.fillStyle = gradiente;
     context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 }
@@ -210,7 +216,7 @@ function gravedad() {
         if (lastClickedFigure.getPositionY() > tablero.getSuelo() - velocity) {
             if (lastClickedFigure.getBounces() > 0 && lastClickedFigure.getVelocity() > 0.6) {
                 lastClickedFigure.setBounces(lastClickedFigure.getBounces() - 1);
-                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.7); //Perdida de energia (?
+                lastClickedFigure.setVelocity(-lastClickedFigure.getVelocity() * 0.6); //Perdida de energia (?
                 lastClickedFigure.setPosition(lastClickedFigure.getPositionX(), tablero.getSuelo());
                 //aca podria ir la animacion de sangrado
             }
@@ -238,13 +244,13 @@ function onMouseUp(e) {
     mouseDown = false;
     //fichaCayendo = true;
     if (lastClickedFigure != null) {
-        if ((e.layerY < spriteHeightTop)&&((e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower)))) {
+        if ((e.layerY < spriteHeightTop-lastClickedFigure.getRadius()) && ((e.layerX > anchoTheTower) && (e.layerX < (canvas.clientWidth - anchoTheTower)))) {
             for (const ficha of arrFichas) {
-                if ((ficha.getEstado())&&(ficha.getPlayer() === 1)&&(!ficha.figuraColocada())) {
-                    ficha.setPosition(ficha.getPosIniX() + ficha.getRadius(), ficha.getPositionY());
-                }else{
-                    if ((ficha.getEstado())&&(ficha.getPlayer() === 2)&&(!ficha.figuraColocada())) {
-                        ficha.setPosition(ficha.getPosIniX() - ficha.getRadius(), ficha.getPositionY());
+                if ((ficha.getPlayer() === player1) && ((turno % 2) + 1 == player2) && (!ficha.getFiguraIsColocada())) {
+                    ficha.setPositionXOriginTo(ficha.getPosIniX() + ficha.getRadius());
+                } else {
+                    if ((ficha.getPlayer() === player2) && ((turno % 2) + 1 == player1) && (!ficha.getFiguraIsColocada())) {
+                        ficha.setPositionXOriginTo(ficha.getPosIniX() - ficha.getRadius());
                     }
                 }
             }
@@ -294,13 +300,28 @@ function prueba(e) {
     }
 }
 function cambioTurno() {
-    for (const ficha of arrFichas) {
-        if (((turno % 2) + 1) != ficha.getPlayer()) {
-            ficha.noSeleccionable();
-        } else {
-            ficha.esSeleccionable();
+    if ((turno % 2) + 1 == player1) {
+        for (let i = 0; i < arrFichaScorpion.length; i++) {
+            if (i == arrFichaScorpion.length - 1 && !arrFichaScorpion[i].getFiguraIsColocada()) {
+                arrFichaScorpion[i].esSeleccionable();
+            } else {
+                if (!arrFichaScorpion[i].getFiguraIsColocada() && arrFichaScorpion[i + 1].getFiguraIsColocada()) {
+                    arrFichaScorpion[i].esSeleccionable();
+                }
+            }
+        }
+    } else {
+        for (let i = 0; i < arrFichaSubZero.length; i++) {
+            if (i == arrFichaSubZero.length - 1 && !arrFichaSubZero[i].getFiguraIsColocada()) {
+                arrFichaSubZero[i].esSeleccionable();
+            } else {
+                if (!arrFichaSubZero[i].getFiguraIsColocada() && arrFichaSubZero[i + 1].getFiguraIsColocada()) {
+                    arrFichaSubZero[i].esSeleccionable();
+                }
+            }
         }
     }
+
     turno++;
 }
 let turno = 0;

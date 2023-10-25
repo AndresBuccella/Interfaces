@@ -1,27 +1,35 @@
 
-class Ficha  extends Pieza{
+class Ficha extends Pieza {
 
     constructor(context, path, player, posX, posY, radius, bounces) {
         super(context, path, posX, posY);
         this.path = path;
         this.posIniX = posX;
         this.posIniY = posY;
+        this.posIniXto = posX;
         this.player = player;
         this.radius = radius;
         this.velocity = 0;
-        this.seleccionable = true;
+        this.seleccionable = false;
         this.estaColocada = false;
         this.maxbounces = bounces;
         this.bounces = bounces;
+        setInterval(() => {
+            if (this.posIniX != this.posIniXto && !this.getFiguraIsColocada()) {
+                let orientacion = Math.sign(this.getPosIniXto() - this.getPosIniX());
+                this.setPosition(this.getPositionX() + Math.min(1, Math.abs(this.getPosIniXto() - this.getPosIniX())) * orientacion, this.getPositionY())
+                this.setPositionXOrigin(this.getPositionX());
+            }
+        }, 1000 / 60);
     }
-    
+
     //GETTERS
-    getNombre(){
+    getNombre() {
         //convierte un string en arreglo
         let arrNombre = [...this.path];
         let nombreFinal = '';
         for (let i = 0; i < arrNombre.length; i++) {
-            if(arrNombre[i] === '.'){
+            if (arrNombre[i] === '.') {
                 return nombreFinal;
             }
             /* if(arrNombre[i] === '-'){
@@ -30,27 +38,39 @@ class Ficha  extends Pieza{
             nombreFinal += arrNombre[i];
         }
     }
-    getPlayer(){
+    getPlayer() {
         return this.player;
     }
-    
+
     getRadius() {
         return this.radius;
     }
     getVelocity() {
         return this.velocity;
     }
-    getPosIniX(){
+    getPosIniX() {
         return this.posIniX;
     }
-    getPosIniY(){
+    getPosIniY() {
         return this.posIniY;
     }
+    getPosIniXto() {
+        return this.posIniXto;
+    }
+
+    getFiguraIsColocada() {
+        return this.estaColocada;
+    }
+
+    getEstado() {
+        return this.seleccionable;
+    }
+
     //Rebotes
     getMaxBounces() {
         return this.maxbounces;
     }
-    
+
     getBounces() {
         return this.bounces;
     }
@@ -62,54 +82,73 @@ class Ficha  extends Pieza{
     setHeight(height) {
         this.height = height;
     }
-    
+    setPositionXOrigin(posIniX) {
+        this.posIniX = posIniX;
+    }
+
+    setPositionXOriginTo(posIniXto) {
+        this.posIniXto = posIniXto;
+    }
+
     setVelocity(vel) {
         this.velocity = vel;
     }
-    
+
     setBounces(bounces) {
         this.bounces = bounces;
     }
-    colocada(){
+    colocada() {
         this.estaColocada = true;
         this.noSeleccionable();
     }
-    figuraColocada(){
-        return this.estaColocada;
-    }
-    getEstado(){
-        return this.seleccionable;
-    }
-    esSeleccionable(){
+    esSeleccionable() {
         this.seleccionable = true;
     }
-    noSeleccionable(){
+    noSeleccionable() {
         this.seleccionable = false;
     }
 
     //DEMAS METODOS    
     isSelected(posX, posY) {
-        if((!this.estaColocada)&&(this.seleccionable)){
+        if ((!this.getFiguraIsColocada()) && (this.seleccionable)) {
             let _x = this.posX - posX;
             let _y = this.posY - posY;
             return Math.sqrt(_x * _x + _y * _y) < this.radius;
         }
 
     }
-    volverAPosicionInicial(){
+    volverAPosicionInicial() {
         this.setPosition(this.posIniX, this.posIniY);
     }
-    
+
     draw() {
+        if (this.getEstado()) {
+
+            this.context.beginPath();
+
+            this.context.arc(this.posX, this.posY, this.radius + 4, 0, 2 * Math.PI);
+            this.context.fillStyle = "transparent";
+            this.context.fill();
+
+            var degradado = this.context.createRadialGradient(this.posX, this.posY, this.radius, this.posX, this.posY, this.radius + 4);
+            degradado.addColorStop(1, "#ff0000" + "00");
+            degradado.addColorStop(0, "#ff0000");
+            this.context.fillStyle = degradado;
+
+            this.context.arc(this.posX, this.posY, this.radius + 4, 0, 2 * Math.PI);
+            this.context.fill();
+
+            this.context.closePath();
+        }
         this.context.save();
-        
+
         this.context.beginPath();
         this.context.arc(this.getPositionX(), this.getPositionY(), this.radius, 0, Math.PI * 2, true);
         this.context.closePath();
 
         this.context.clip();
-        this.context.drawImage(this.getImage(), this.getPositionX() - this.radius,this.getPositionY() - this.radius, this.radius * 2, this.radius * 2);
-        
+        this.context.drawImage(this.getImage(), this.getPositionX() - this.radius, this.getPositionY() - this.radius, this.radius * 2, this.radius * 2);
+
         this.context.restore();
     }
 
