@@ -366,9 +366,9 @@ function acomodarFichasNoColocadas(arr, posFicha){
         if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {
             arr[i].setPositionXOriginTo(
                 arr[i].getPosIniX() + 
-                (arr[i].getRadius() * Math.sign(arr[0].getPosIniX() - arr[arr.length-1].getPosIniX()) * -1)
+                (arr[i].getRadius() * Math.sign(arr[arr.length-1].getPosIniX() - arr[0].getPosIniX())) //se multiplica por la diferencia entre las posiciones y de ahi se obtiene el signo para saber a que lado tiene que ir
             );
-            console.log(arr[0].getPosIniX());
+            
         }
     }
 }
