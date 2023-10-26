@@ -89,8 +89,6 @@ class Tablero {
     cargarEnMatriz(player, posX) {
         let columna = this.getColumnaExacta(posX);
         let fila = this.getFilaDisponible(columna);
-        console.log('Cae en columna: ' + columna);
-        console.log('Cae en fila: ' + fila);
         this.matriz[[fila, columna]] = player;
         this.winner(fila, columna, player);
     }
@@ -122,16 +120,14 @@ class Tablero {
     }
 
     winner(fila, columna, nombre) {
-        let posibleGanador = this.matriz[[fila, columna]];
-        //se puede hacer en un arreglo "mas mejor"
         let posibilidades = {
             'diagonalNormal': 1,
             'diagonalInvertida': 1,
             'vertical': 1,
             'horizontal': 1
         };
-        console.log("in winna: " + nombre);
-
+        
+        //COMPROBACION HORIZONTAL
         for (let i = 1; i < this.xEnLinea; i++) {
             if ((columna + i < this.getCantCol()) && this.matriz[[fila, columna + i]] == nombre) {
                 posibilidades.horizontal = posibilidades.horizontal + 1;
@@ -147,6 +143,7 @@ class Tablero {
             }
         }
 
+        //COMPROBACION EN UNA DIAGONAL
         for (let i = 1; i < this.xEnLinea; i++) {
             if ((columna + i < this.getCantCol()) && (fila + i < this.getCantFil()) &&
                 this.matriz[[fila + i, columna + i]] == nombre) {
@@ -163,18 +160,47 @@ class Tablero {
             }
         }
 
-        console.log(posibilidades.diagonalNormal);
-        console.log(posibilidades.diagonalInvertida);
-        console.log(posibilidades.vertical);
-        console.log(posibilidades.horizontal);
-        if (posibilidades.horizontal == this.xEnLinea) { console.log(nombre + " wins"); }
-        else {
-            posibilidades = {
-                'diagonalNormal': 0,
-                'diagonalInvertida': 0,
-                'vertical': 0,
-                'horizontal': 0
-            };
+        //COMPROBACION EN OTRA DIAGONAL
+
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna + i < this.getCantCol()) && (fila - i >= 0) &&
+                this.matriz[[fila - i, columna + i]] == nombre) {
+                posibilidades.diagonalInvertida = posibilidades.diagonalInvertida + 1;
+            } else {
+                break;
+            }
+        }
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna - i >= 0) && (fila - i < this.getCantFil()) && this.matriz[[fila + i, columna - i]] == nombre) {
+                posibilidades.diagonalInvertida = posibilidades.diagonalInvertida + 1;
+            } else {
+                break;
+            }
+        }
+
+        //COMPROBACION VERTICAL
+
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((fila + i < this.getCantFil()) &&
+                this.matriz[[fila + i, columna]] == nombre) {
+                posibilidades.vertical = posibilidades.vertical + 1;
+            } else {
+                break;
+            }
+        }
+
+        /* console.clear();
+        console.log("Jugó ficha: " + nombre);
+        console.log("diagonalNormal: " + posibilidades.diagonalNormal);
+        console.log("diagonalInvertida: " + posibilidades.diagonalInvertida);
+        console.log("vertical: " + posibilidades.vertical);
+        console.log("horizontal: " + posibilidades.horizontal); */
+        
+        if (posibilidades.diagonalNormal == this.xEnLinea || 
+            posibilidades.diagonalInvertida == this.xEnLinea || 
+            posibilidades.vertical == this.xEnLinea || 
+            posibilidades.horizontal == this.xEnLinea) { 
+                console.log(nombre + " wins"); 
         }
     }
 }

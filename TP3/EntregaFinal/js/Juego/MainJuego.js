@@ -143,12 +143,41 @@ arrTablero.push(pinchos);
 
 //Timer
 let timer = null;
-const timeMin = 5;
+//const timeMin = 5;
+const timeMin = 0.1;
 customFont.load().then(() => {
     timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
     arrDeco.push(timer);
+    let timerInterval = setInterval(() => {
+        let time = timer.getTime();
+        if (time <= 0) {
+            //se muestra una sola vez por si los jugadores quieren ver el estado ganador
+            drawDraw();
+            for (const ficha of arrFichas) {
+                ficha.colocada();
+            }
+            clearInterval(timerInterval);
+        }
+    }, 1000)
 });
+let fontSize = 90;
+function drawDraw() {
+    let gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fontSize / 2, 0, (canvas.clientHeight / 2) + fontSize / 2);
+    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
 
+    context.font = fontSize + 'px MKfont';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillStyle = gradient;
+
+    context.strokeStyle = 'black';
+    context.lineWidth = 3;
+    context.strokeText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+    context.fillText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+}
 elements.push(arrDeco);
 elements.push(arrFichaScorpion);
 elements.push(arrFichaSubZero);
@@ -263,8 +292,8 @@ function gravedad() {
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
-                tablero.winner(lastClickedFigure);
-                console.log(lastClickedFigure.getNombre());
+                /* tablero.winner(lastClickedFigure);
+                console.log(lastClickedFigure.getNombre()); */
                 lastClickedFigure = null;
                 velocity = 0;
                 tablero.resetSuelo();
@@ -389,3 +418,5 @@ setTimeout(function () {
     drawAll();
     cambioTurno();
 }, 100);
+
+
