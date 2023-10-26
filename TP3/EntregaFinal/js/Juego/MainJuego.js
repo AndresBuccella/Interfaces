@@ -12,8 +12,6 @@ const pathCentral = "../images/juegoMK/casilla.png";
 const pathCentralInside = "../images/juegoMK/casilla-interior.png";
 const pathCentralBackground = "../images/juegoMK/casilla-relleno.png";
 const xEnLinea = 4;
-const columnas = 7;
-const filas = 6;
 
 //Fonts
 let fontFile = "../css/fonts/mk2.ttf";
@@ -76,8 +74,6 @@ let tablero = new Tablero(
     canvas,
     context,
     xEnLinea,
-    filas,
-    columnas,
     pathCentral,
     pathCentralInside,
     pathCentralBackground,
@@ -144,18 +140,18 @@ arrTablero.push(pinchos);
 //Timer
 let timer = null;
 //const timeMin = 5;
-const timeMin = 0.1;
+const timeMin = 5;
 customFont.load().then(() => {
     timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
     arrDeco.push(timer);
     let timerInterval = setInterval(() => {
         let time = timer.getTime();
         if (time <= 0) {
-            //se muestra una sola vez por si los jugadores quieren ver el estado ganador
+            //se muestra una sola vez por si los jugadores quieren ver el estado del tablero
             drawDraw();
-            for (const ficha of arrFichas) {
+            /* for (const ficha of arrFichas) {
                 ficha.colocada();
-            }
+            } */
             clearInterval(timerInterval);
         }
     }, 1000)
@@ -325,7 +321,13 @@ function onMouseUp() {
                 correccionCaidaX();
 
                 lastClickedFigure.colocada();
-                for (const ficha of arrFichas) {
+
+                if ((turno % 2) == player1) {
+                    acomodarFichasNoColocadas(arrFichaScorpion,arrFichaScorpion.indexOf(lastClickedFigure));
+                }else{
+                    acomodarFichasNoColocadas(arrFichaSubZero,arrFichaSubZero.indexOf(lastClickedFigure));
+                }
+                /* for (const ficha of arrFichas) {
                     if (
                         ficha.getPlayer() === player1 &&
                         (turno % 2) + 1 == player2 &&
@@ -343,7 +345,7 @@ function onMouseUp() {
                             );
                         }
                     }
-                }
+                } */
                 tablero.calcularNuevoSuelo(columna);
                 tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), posX);
             } else {
@@ -355,6 +357,18 @@ function onMouseUp() {
             lastClickedFigure.volverAPosicionInicial();
             lastClickedFigure = null;
             drawAll();
+        }
+    }
+}
+
+function acomodarFichasNoColocadas(arr, posFicha){
+    for (let i = arr.length-1; i >= 0; i--) {
+        if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {
+            arr[i].setPositionXOriginTo(
+                arr[i].getPosIniX() + 
+                (arr[i].getRadius() * Math.sign(arr[0].getPosIniX() - arr[arr.length-1].getPosIniX()) * -1)
+            );
+            console.log(arr[0].getPosIniX());
         }
     }
 }
@@ -378,7 +392,13 @@ canvas.addEventListener("mousemove", onMouseMove, false);
 function cambioTurno() {
     if ((turno % 2) + 1 == player1) {
         for (let i = 0; i < arrFichaScorpion.length; i++) {
-            if (
+            if (!arrFichaScorpion[i].getFiguraIsColocada()) {
+                arrFichaScorpion[i].esSeleccionable();
+            }
+            if (!arrFichaSubZero[i].getFiguraIsColocada()) {
+                arrFichaSubZero[i].noSeleccionable();
+            }
+            /* if (
                 i == arrFichaScorpion.length - 1 &&
                 !arrFichaScorpion[i].getFiguraIsColocada()
             ) {
@@ -390,11 +410,18 @@ function cambioTurno() {
                 ) {
                     arrFichaScorpion[i].esSeleccionable();
                 }
-            }
+            } */
         }
     } else {
         for (let i = 0; i < arrFichaSubZero.length; i++) {
-            if (
+            
+            if (!arrFichaSubZero[i].getFiguraIsColocada()) {
+                arrFichaSubZero[i].esSeleccionable();
+            }
+            if (!arrFichaScorpion[i].getFiguraIsColocada()) {
+                arrFichaScorpion[i].noSeleccionable();
+            }
+            /* if (
                 i == arrFichaSubZero.length - 1 &&
                 !arrFichaSubZero[i].getFiguraIsColocada()
             ) {
@@ -406,7 +433,7 @@ function cambioTurno() {
                 ) {
                     arrFichaSubZero[i].esSeleccionable();
                 }
-            }
+            } */
         }
     }
 
