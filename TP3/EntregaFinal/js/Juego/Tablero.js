@@ -21,9 +21,6 @@ class Tablero {
         this.pathCentralBackground = new Image();
         this.pathCentralBackground.src = pathCentralBackground;
 
-        this.ultimaFilaAgregada;
-        this.ultimaColumnaAgregada;
-
         this.matriz = [[]];
         for (let fila = 0; fila < this.filas; fila++) {
             for (let columna = 0; columna < this.columnas; columna++) {
@@ -95,10 +92,8 @@ class Tablero {
         console.log('Cae en columna: ' + columna);
         console.log('Cae en fila: ' + fila);
         this.matriz[[fila, columna]] = player;
-        this.ultimaFilaAgregada = fila;
-        this.ultimaColumnaAgregada = columna;
+        this.winner(fila, columna, player);
     }
-
     draw() {
         //se calcula el espacio disponible para el tablero y se lo divide por la cantidad de columnas 
         //que va a tener
@@ -126,8 +121,8 @@ class Tablero {
         return false;
     }
 
-    winner(nombre) {
-        let posibleGanador = this.matriz[[this.ultimaFilaAgregada, this.ultimaColumnaAgregada]];
+    winner(fila, columna, nombre) {
+        let posibleGanador = this.matriz[[fila, columna]];
         //se puede hacer en un arreglo "mas mejor"
         let posibilidades = {
             'diagonalNormal': 1,
@@ -135,77 +130,51 @@ class Tablero {
             'vertical': 1,
             'horizontal': 1
         };
-        console.log("in winna: "+this.ultimaFilaAgregada);
+        console.log("in winna: " + nombre);
 
-        for (let i = 0; i < this.xEnLinea; i++) {
-            if (this.matriz[[this.ultimaFilaAgregada, (this.ultimaColumnaAgregada + (i * 2))]] ===
-                this.matriz[[this.ultimaFilaAgregada, (this.ultimaColumnaAgregada + (i * 2 + 1))]]) {
-
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna + i < this.getCantCol()) && this.matriz[[fila, columna + i]] == nombre) {
                 posibilidades.horizontal = posibilidades.horizontal + 1;
             } else {
-                i = this.xEnLinea;
+                break;
             }
         }
-        for (let i = 0; i < this.xEnLinea; i++) {
-            if (this.matriz[[this.ultimaFilaAgregada, (this.ultimaColumnaAgregada - (i * 2))]] ===
-                this.matriz[[this.ultimaFilaAgregada, (this.ultimaColumnaAgregada - (i * 2 + 1))]]) {
-
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna - i >= 0) && this.matriz[[fila, columna - i]] == nombre) {
                 posibilidades.horizontal = posibilidades.horizontal + 1;
             } else {
-                i = this.xEnLinea;
+                break;
             }
         }
+
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna + i < this.getCantCol()) && (fila + i < this.getCantFil()) &&
+                this.matriz[[fila + i, columna + i]] == nombre) {
+                posibilidades.diagonalNormal = posibilidades.diagonalNormal + 1;
+            } else {
+                break;
+            }
+        }
+        for (let i = 1; i < this.xEnLinea; i++) {
+            if ((columna - i >= 0) && (fila - i >= 0) && this.matriz[[fila - i, columna - i]] == nombre) {
+                posibilidades.diagonalNormal = posibilidades.diagonalNormal + 1;
+            } else {
+                break;
+            }
+        }
+
         console.log(posibilidades.diagonalNormal);
         console.log(posibilidades.diagonalInvertida);
         console.log(posibilidades.vertical);
         console.log(posibilidades.horizontal);
-        if(posibilidades.horizontal == this.xEnLinea) {console.log(nombre.getNombre() + " wins");}
-        else{
+        if (posibilidades.horizontal == this.xEnLinea) { console.log(nombre + " wins"); }
+        else {
             posibilidades = {
-            'diagonalNormal': 0,
-            'diagonalInvertida': 0,
-            'vertical': 0,
-            'horizontal': 0
-        };}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* if (this.matriz[[this.ultimaFilaAgregada + i, this.ultimaColumnaAgregada + i]] === ficha.getPlayer()) {
-            cantFichas++;
+                'diagonalNormal': 0,
+                'diagonalInvertida': 0,
+                'vertical': 0,
+                'horizontal': 0
+            };
         }
-        if (this.matriz[[this.ultimaFilaAgregada - i, this.ultimaColumnaAgregada - i]] === ficha.getPlayer()) {
-            cantFichas2++;
-        }
-        if (this.matriz[[this.ultimaFilaAgregada + i, this.ultimaColumnaAgregada - i]] === ficha.getPlayer()) {
-            cantFichas3++;
-        }
-        if (this.matriz[[this.ultimaFilaAgregada - i, this.ultimaColumnaAgregada + i]] === ficha.getPlayer()) {
-            cantFichas4++;
-        }
-        if (this.matriz[[this.ultimaFilaAgregada, this.ultimaColumnaAgregada + i]] === ficha.getPlayer()) {
-            cantFichas5++;
-        }
-        if (this.matriz[[this.ultimaFilaAgregada - i, this.ultimaColumnaAgregada]] === ficha.getPlayer()) {
-            cantFichas6++;
-        } */
-        /* for (let j = 0; j < xEnLinea-1; j++) { //las posibilidades en un sentido
-            
-        } */
-        //console.log(`Ganó: ${ficha.getNombre()}`);
     }
 }
