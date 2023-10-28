@@ -36,3 +36,6 @@ _X_Hay que dibujar:
 
 
 //SE DIBUJA POR UN SETTIMEOUT BUSCAR OTRA SOLUCION
+
+
+Cambiar layerX por problemas de compatibilidad

@@ -103,12 +103,12 @@ const cantFichas = Math.floor(
 let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeightCasilla() / 90);
 
 //Creacion de fichas jugador 1
-for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) {
+for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) { //Este calculo se usa para darle una ficha mas al jugador 1 si falta una ficha al final
     const fichaScorpion = new Ficha(
         context,
         imagenScorpion,
         player1,
-        widthCanvas / 2 - widthCanvas * 0.4 - fichaRadius * i,
+        widthCanvas / 2 - widthCanvas * 0.2 - fichaRadius * i,
         yFichas,
         fichaRadius,
         20
@@ -123,7 +123,7 @@ for (let i = cantFichas; i > 0; i--) {
         context,
         imagenSubZero,
         player2,
-        widthCanvas / 2 + widthCanvas * 0.4 + fichaRadius * i,
+        widthCanvas / 2 + widthCanvas * 0.2 + fichaRadius * i,
         yFichas,
         fichaRadius,
         20
