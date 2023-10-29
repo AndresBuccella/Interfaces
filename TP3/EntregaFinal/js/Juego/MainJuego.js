@@ -30,13 +30,37 @@ const player2 = 2;
 let menu = true
 
 const player_select = new Image();
-player_select.src = "../images/juegoMK/seleccion-jugador.jpg";
+player_select.src = "../images/juegoMK/seleccion-jugador.png";
 
 const player_selector_1 = new Image();
 player_selector_1.src = "../images/juegoMK/selector-jugador-1.png";
 
 const player_selector_2 = new Image();
 player_selector_2.src = "../images/juegoMK/selector-jugador-2.png";
+
+const charactersName = [
+    "Liu Kang",
+    "Kung Lao",
+    "Johnny Cage",
+    "Reptile",
+    "Sub-Zero",
+    "Shang Tsung",
+    "Kitana",
+    "Jax",
+    "Mileena",
+    "Baraka",
+    "Scorpion",
+    "Raiden"
+]
+const characters = [];
+for (let i = 0; i < 3; i++) {
+    characters[i] = [];
+    for (let j = 0; j < 4; j++) {
+        characters[i][j] = new Image();
+        characters[i][j].src = "../images/juegoMK/personajes/character-" + i + "-" + j + ".png";
+        characters[i][j].alt =charactersName[j+i*4]
+    }
+}
 
 let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
@@ -201,19 +225,23 @@ function generarJuego(sprJugador1, sprJugador2) {
 }
 function drawAll(mouseX, mouseY) {
     if (menu) {
-        context.drawImage(player_select, 0, 0);
-        context.fillStyle = "rgba(255, 255, 255, 0.5)"; // Color blanco con transparencia total
-        if (mouseX > 181 && mouseX < 618 && mouseY > 61 && mouseY < 533) {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
+            }
+        }
+        if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
-                    if ((mouseX > 181 + i * 113 && mouseX < 280 + i * 113) && (mouseY > 61 + 165 * j && mouseY < 210 + 165 * j)) {
+                    if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
-                            context.drawImage(player_selector_1, 172 + i * 113, 53 + 165 * j);
+                            context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
                         }
                     }
                 }
             }
         }
+        context.drawImage(player_select, 0, 0);
     } else {
         clearCanvas();
         for (const arreglos of elements) {
