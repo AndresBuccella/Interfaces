@@ -1,12 +1,10 @@
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
+
 const imagenLateral = "../images/juegoMK/the-tower.png";
 const imagenTop = "../images/juegoMK/imagenTop.png";
 const imagenPinchos = "../images/juegoMK/pinchos.png";
-
-const imagenSubZero = "../images/juegoMK/sub-zero.png";
-const imagenScorpion = "../images/juegoMK/scorpion.png";
 
 const pathCentral = "../images/juegoMK/casilla.png";
 const pathCentralInside = "../images/juegoMK/casilla-interior.png";
@@ -28,171 +26,204 @@ const spriteHeightPinchos = 45;
 const player1 = 1;
 const player2 = 2;
 
-// Obtén el offset del canvas
+//Menu
+let menu = true
+
+const player_select = new Image();
+player_select.src = "../images/juegoMK/seleccion-jugador.jpg";
+
+const player_selector_1 = new Image();
+player_selector_1.src = "../images/juegoMK/selector-jugador-1.png";
+
+const player_selector_2 = new Image();
+player_selector_2.src = "../images/juegoMK/selector-jugador-2.png";
+
 let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
 
-let elements = [];
-let arrTablero = [];
-let arrDeco = [];
-let arrFichas = [];
-let arrFichaScorpion = [];
-let arrFichaSubZero = [];
+// Obtén el offset del canvas
+function handleResize() {
+    offsetLeft = canvas.offsetLeft;
+    offsetTop = canvas.offsetTop;
+}
 
-let lastClickedFigure = null;
-let mouseDown = false;
-let widthCanvas = canvas.clientWidth;
+window.addEventListener('resize', handleResize);
 
-let elemTop = new PiezaDecorativa(
-    context,
-    imagenTop,
-    0,
-    0,
-    widthCanvas,
-    spriteHeightTop
-);
-arrDeco.push(elemTop);
+function generarJuego(sprJugador1, sprJugador2) {
+    cambioTurno();
+    let elements = [];
+    let arrTablero = [];
+    let arrDeco = [];
+    let arrFichas = [];
+    let arrFichaJugador1 = [];
+    let arrFichaJugador2 = [];
 
-let lateralIzquierdo = new PiezaDecorativa(
-    context,
-    imagenLateral,
-    0,
-    spriteHeightTop,
-    anchoTheTower,
-    canvas.clientHeight - spriteHeightTop
-);
-let lateralDerecho = new PiezaDecorativa(
-    context,
-    imagenLateral,
-    canvas.clientWidth - anchoTheTower,
-    spriteHeightTop,
-    anchoTheTower,
-    canvas.clientHeight - spriteHeightTop
-);
+    let lastClickedFigure = null;
+    let mouseDown = false;
+    let widthCanvas = canvas.clientWidth;
 
-let tablero = new Tablero(
-    canvas,
-    context,
-    xEnLinea,
-    pathCentral,
-    pathCentralInside,
-    pathCentralBackground,
-    spriteHeightTop,
-    spriteHeightBot,
-    lateralDerecho.getWidth(),
-    lateralIzquierdo.getWidth()
-);
-
-let pinchos = new PiezaDecorativa(
-    context,
-    imagenPinchos,
-    anchoTheTower,
-    canvas.clientHeight - spriteHeightPinchos,
-    canvas.clientWidth - anchoTheTower - anchoTheTower,
-    spriteHeightPinchos
-);
-
-arrDeco.push(lateralIzquierdo);
-arrDeco.push(lateralDerecho);
-
-//Fichas
-const yFichas = canvas.clientHeight / 7;
-const cantFichas = Math.floor(
-    (tablero.getCantFil() * tablero.getCantCol()) / 2
-);
-let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeightCasilla() / 90);
-
-//Creacion de fichas jugador 1
-for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) { //Este calculo se usa para darle una ficha mas al jugador 1 si falta una ficha al final
-    const fichaScorpion = new Ficha(
+    let elemTop = new PiezaDecorativa(
         context,
-        imagenScorpion,
-        player1,
-        widthCanvas / 2 - widthCanvas * 0.2 - fichaRadius * i,
-        yFichas,
-        fichaRadius,
-        20
+        imagenTop,
+        0,
+        0,
+        widthCanvas,
+        spriteHeightTop
     );
-    arrFichaScorpion.push(fichaScorpion);
-}
+    arrDeco.push(elemTop);
 
-//Creacion de fichas jugador 2
-
-for (let i = cantFichas; i > 0; i--) {
-    const fichaSubZero = new Ficha(
+    let lateralIzquierdo = new PiezaDecorativa(
         context,
-        imagenSubZero,
-        player2,
-        widthCanvas / 2 + widthCanvas * 0.2 + fichaRadius * i,
-        yFichas,
-        fichaRadius,
-        20
+        imagenLateral,
+        0,
+        spriteHeightTop,
+        anchoTheTower,
+        canvas.clientHeight - spriteHeightTop
     );
-    arrFichaSubZero.push(fichaSubZero);
-}
+    let lateralDerecho = new PiezaDecorativa(
+        context,
+        imagenLateral,
+        canvas.clientWidth - anchoTheTower,
+        spriteHeightTop,
+        anchoTheTower,
+        canvas.clientHeight - spriteHeightTop
+    );
 
-arrFichas = arrFichas.concat(arrFichaScorpion);
-arrFichas = arrFichas.concat(arrFichaSubZero);
+    let tablero = new Tablero(
+        canvas,
+        context,
+        xEnLinea,
+        pathCentral,
+        pathCentralInside,
+        pathCentralBackground,
+        spriteHeightTop,
+        spriteHeightBot,
+        lateralDerecho.getWidth(),
+        lateralIzquierdo.getWidth()
+    );
 
-arrTablero.push(tablero);
-arrTablero.push(pinchos);
+    let pinchos = new PiezaDecorativa(
+        context,
+        imagenPinchos,
+        anchoTheTower,
+        canvas.clientHeight - spriteHeightPinchos,
+        canvas.clientWidth - anchoTheTower - anchoTheTower,
+        spriteHeightPinchos
+    );
 
-//Timer
-let timer = null;
-//const timeMin = 5;
-const timeMin = 5;
-customFont.load().then(() => {
-    timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
-    arrDeco.push(timer);
-    let timerInterval = setInterval(() => {
-        let time = timer.getTime();
-        if (time <= 0) {
-            //se muestra una sola vez por si los jugadores quieren ver el estado del tablero
-            drawDraw();
-            /* for (const ficha of arrFichas) {
-                ficha.colocada();
-            } */
-            clearInterval(timerInterval);
-        }
-    }, 1000)
-});
-let fontSize = 90;
-function drawDraw() {
-    let gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fontSize / 2, 0, (canvas.clientHeight / 2) + fontSize / 2);
-    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+    arrDeco.push(lateralIzquierdo);
+    arrDeco.push(lateralDerecho);
 
-    context.font = fontSize + 'px MKfont';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillStyle = gradient;
+    //Fichas
+    const yFichas = canvas.clientHeight / 7;
+    const cantFichas = Math.floor(
+        (tablero.getCantFil() * tablero.getCantCol()) / 2
+    );
+    let fichaRadius = 32 * Math.min(tablero.getWidthCasilla() / 90, tablero.getHeightCasilla() / 90);
 
-    context.strokeStyle = 'black';
-    context.lineWidth = 3;
-    context.strokeText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
-
-    context.fillText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
-
-}
-elements.push(arrDeco);
-elements.push(arrFichaScorpion);
-elements.push(arrFichaSubZero);
-elements.push(arrTablero);
-
-function drawAll() {
-    clearCanvas();
-    /*
-      //no es buena fórmula pero es una idea para hacerlo responsive
-      let scale = (canvas.clientWidth) / (canvas.clientWidth + canvas.clientHeight)
-      */
-
-    for (const arreglos of elements) {
-        for (const elemento of arreglos) {
-            elemento.draw();
-        }
+    //Creacion de fichas jugador 1
+    for (let i = cantFichas + (tablero.getCantFil() * tablero.getCantCol() - cantFichas * 2); i > 0; i--) { //Este calculo se usa para darle una ficha mas al jugador 1 si falta una ficha al final
+        const fichaJugador1 = new Ficha(
+            context,
+            sprJugador1,
+            player1,
+            widthCanvas / 2 - widthCanvas * 0.2 - fichaRadius * i,
+            yFichas,
+            fichaRadius,
+            20
+        );
+        arrFichaJugador1.push(fichaJugador1);
     }
-    if (lastClickedFigure != null && mouseDown) {
-        lastClickedFigure.draw();
+
+    //Creacion de fichas jugador 2
+
+    for (let i = cantFichas; i > 0; i--) {
+        const fichaJugador2 = new Ficha(
+            context,
+            sprJugador2,
+            player2,
+            widthCanvas / 2 + widthCanvas * 0.2 + fichaRadius * i,
+            yFichas,
+            fichaRadius,
+            20
+        );
+        arrFichaJugador2.push(fichaJugador2);
+    }
+
+    arrFichas = arrFichas.concat(arrFichaJugador1);
+    arrFichas = arrFichas.concat(arrFichaJugador2);
+
+    arrTablero.push(tablero);
+    arrTablero.push(pinchos);
+
+    //Timer
+    let timer = null;
+    //const timeMin = 5;
+    const timeMin = 5;
+    customFont.load().then(() => {
+        timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
+        arrDeco.push(timer);
+        let timerInterval = setInterval(() => {
+            let time = timer.getTime();
+            if (time <= 0) {
+                //se muestra una sola vez por si los jugadores quieren ver el estado del tablero
+                drawDraw();
+                /* for (const ficha of arrFichas) {
+                    ficha.colocada();
+                } */
+                clearInterval(timerInterval);
+            }
+        }, 1000)
+    });
+    let fontSize = 90;
+    function drawDraw() {
+        let gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fontSize / 2, 0, (canvas.clientHeight / 2) + fontSize / 2);
+        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+        gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+        context.font = fontSize + 'px MKfont';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillStyle = gradient;
+
+        context.strokeStyle = 'black';
+        context.lineWidth = 3;
+        context.strokeText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+        context.fillText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+    }
+    elements.push(arrDeco);
+    elements.push(arrFichaJugador1);
+    elements.push(arrFichaJugador2);
+    elements.push(arrTablero);
+
+}
+function drawAll(mouseX, mouseY) {
+    if (menu) {
+        context.drawImage(player_select, 0, 0);
+        context.fillStyle = "rgba(255, 255, 255, 0.5)"; // Color blanco con transparencia total
+        if (mouseX > 181 && mouseX < 618 && mouseY > 61 && mouseY < 533) {
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if ((mouseX > 181 + i * 113 && mouseX < 280 + i * 113) && (mouseY > 61 + 165 * j && mouseY < 210 + 165 * j)) {
+                        if (turno == 0) {
+                            context.drawImage(player_selector_1, 172 + i * 113, 53 + 165 * j);
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        clearCanvas();
+        for (const arreglos of elements) {
+            for (const elemento of arreglos) {
+                elemento.draw();
+            }
+        }
+        if (lastClickedFigure != null && mouseDown) {
+            lastClickedFigure.draw();
+        }
     }
 }
 
@@ -217,28 +248,36 @@ function findClickedFigure(x, y) {
     }
 }
 function onMouseDown(e) {
-    if (lastClickedFigure == null) {
-        mouseDown = true;
+    if (menu) {
 
-        let clickFig = findClickedFigure(
-            e.layerX - offsetLeft,
-            e.layerY - offsetTop
-        );
+    } else {
+        if (lastClickedFigure == null) {
+            mouseDown = true;
 
-        if (clickFig != null) {
-            lastClickedFigure = clickFig;
-            lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+            let clickFig = findClickedFigure(
+                e.layerX - offsetLeft,
+                e.layerY - offsetTop
+            );
+
+            if (clickFig != null) {
+                lastClickedFigure = clickFig;
+                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+            }
+            drawAll();
         }
-        drawAll();
     }
 }
 
 function onMouseMove(e) {
-    if (mouseDown && lastClickedFigure != null) {
-        posX = e.layerX - offsetLeft;
-        posY = e.layerY - offsetTop;
-        lastClickedFigure.setPosition(posX, posY);
-        drawAll();
+    if (menu) {
+        drawAll(e.layerX - offsetLeft, e.layerY - offsetTop);
+    } else {
+        if (mouseDown && lastClickedFigure != null) {
+            posX = e.layerX - offsetLeft;
+            posY = e.layerY - offsetTop;
+            lastClickedFigure.setPosition(posX, posY);
+            drawAll(posX, posY);
+        }
     }
 }
 
@@ -301,74 +340,80 @@ function gravedad() {
 }
 
 setInterval(function () {
-    gravedad();
+    if (!menu) {
+        gravedad();
+    }
 }, 1000 / 60);
 
 function onMouseUp() {
-    //fichaCayendo = true;
-    if ((lastClickedFigure != null) && (mouseDown)) {
-        mouseDown = false;
-        //delimita la seccion en donde se puede tirar la ficha
-        if (
-            lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
-            lastClickedFigure.getPositionX() > anchoTheTower &&
-            lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
-        ) {
-            //Impide que se pueda tirar a los costados del tablero
+    if (menu) {
 
-            let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
-            if (tablero.getFilaDisponible(columna) != -1) {
-                correccionCaidaX();
+    } else {
+        //fichaCayendo = true;
+        if ((lastClickedFigure != null) && (mouseDown)) {
+            mouseDown = false;
+            //delimita la seccion en donde se puede tirar la ficha
+            if (
+                lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
+                lastClickedFigure.getPositionX() > anchoTheTower &&
+                lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
+            ) {
+                //Impide que se pueda tirar a los costados del tablero
 
-                lastClickedFigure.colocada();
+                let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
+                if (tablero.getFilaDisponible(columna) != -1) {
+                    correccionCaidaX();
 
-                if ((turno % 2) == player1) {
-                    acomodarFichasNoColocadas(arrFichaScorpion,arrFichaScorpion.indexOf(lastClickedFigure));
-                }else{
-                    acomodarFichasNoColocadas(arrFichaSubZero,arrFichaSubZero.indexOf(lastClickedFigure));
-                }
-                /* for (const ficha of arrFichas) {
-                    if (
-                        ficha.getPlayer() === player1 &&
-                        (turno % 2) + 1 == player2 &&
-                        !ficha.getFiguraIsColocada()
-                    ) {
-                        ficha.setPositionXOriginTo(ficha.getPosIniX() + ficha.getRadius());
+                    lastClickedFigure.colocada();
+
+                    if ((turno % 2) == player1) {
+                        acomodarFichasNoColocadas(arrFichaJugador1, arrFichaJugador1.indexOf(lastClickedFigure));
                     } else {
+                        acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
+                    }
+                    /* for (const ficha of arrFichas) {
                         if (
-                            ficha.getPlayer() === player2 &&
-                            (turno % 2) + 1 == player1 &&
+                            ficha.getPlayer() === player1 &&
+                            (turno % 2) + 1 == player2 &&
                             !ficha.getFiguraIsColocada()
                         ) {
-                            ficha.setPositionXOriginTo(
-                                ficha.getPosIniX() - ficha.getRadius()
-                            );
+                            ficha.setPositionXOriginTo(ficha.getPosIniX() + ficha.getRadius());
+                        } else {
+                            if (
+                                ficha.getPlayer() === player2 &&
+                                (turno % 2) + 1 == player1 &&
+                                !ficha.getFiguraIsColocada()
+                            ) {
+                                ficha.setPositionXOriginTo(
+                                    ficha.getPosIniX() - ficha.getRadius()
+                                );
+                            }
                         }
-                    }
-                } */
-                tablero.calcularNuevoSuelo(columna);
-                tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), posX);
+                    } */
+                    tablero.calcularNuevoSuelo(columna);
+                    tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), posX);
+                } else {
+                    lastClickedFigure.volverAPosicionInicial();
+                    lastClickedFigure = null;
+                    drawAll();
+                }
             } else {
                 lastClickedFigure.volverAPosicionInicial();
                 lastClickedFigure = null;
                 drawAll();
             }
-        } else {
-            lastClickedFigure.volverAPosicionInicial();
-            lastClickedFigure = null;
-            drawAll();
         }
     }
 }
 
-function acomodarFichasNoColocadas(arr, posFicha){
-    for (let i = arr.length-1; i >= 0; i--) {
+function acomodarFichasNoColocadas(arr, posFicha) {
+    for (let i = arr.length - 1; i >= 0; i--) {
         if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {
             arr[i].setPositionXOriginTo(
-                arr[i].getPosIniX() + 
-                (arr[i].getRadius() * Math.sign(arr[arr.length-1].getPosIniX() - arr[0].getPosIniX())) //se multiplica por la diferencia entre las posiciones y de ahi se obtiene el signo para saber a que lado tiene que ir
+                arr[i].getPosIniX() +
+                (arr[i].getRadius() * Math.sign(arr[arr.length - 1].getPosIniX() - arr[0].getPosIniX())) //se multiplica por la diferencia entre las posiciones y de ahi se obtiene el signo para saber a que lado tiene que ir
             );
-            
+
         }
     }
 }
@@ -391,47 +436,34 @@ canvas.addEventListener("mousemove", onMouseMove, false);
 
 function cambioTurno() {
     if ((turno % 2) + 1 == player1) {
-        for (let i = 0; i < arrFichaScorpion.length; i++) {
-            if (!arrFichaScorpion[i].getFiguraIsColocada()) {
-                arrFichaScorpion[i].esSeleccionable();
+        for (let i = 0; i < arrFichaJugador1.length; i++) {
+            if (!arrFichaJugador1[i].getFiguraIsColocada()) {
+                arrFichaJugador1[i].esSeleccionable();
             }
-            if (!arrFichaSubZero[i].getFiguraIsColocada()) {
-                arrFichaSubZero[i].noSeleccionable();
+            if (!arrFichaJugador2[i].getFiguraIsColocada()) {
+                arrFichaJugador2[i].noSeleccionable();
             }
-            /* if (
-                i == arrFichaScorpion.length - 1 &&
-                !arrFichaScorpion[i].getFiguraIsColocada()
-            ) {
-                arrFichaScorpion[i].esSeleccionable();
-            } else {
-                if (
-                    !arrFichaScorpion[i].getFiguraIsColocada() &&
-                    arrFichaScorpion[i + 1].getFiguraIsColocada()
-                ) {
-                    arrFichaScorpion[i].esSeleccionable();
-                }
-            } */
         }
     } else {
-        for (let i = 0; i < arrFichaSubZero.length; i++) {
-            
-            if (!arrFichaSubZero[i].getFiguraIsColocada()) {
-                arrFichaSubZero[i].esSeleccionable();
+        for (let i = 0; i < arrFichaJugador2.length; i++) {
+
+            if (!arrFichaJugador2[i].getFiguraIsColocada()) {
+                arrFichaJugador2[i].esSeleccionable();
             }
-            if (!arrFichaScorpion[i].getFiguraIsColocada()) {
-                arrFichaScorpion[i].noSeleccionable();
+            if (!arrFichaJugador1[i].getFiguraIsColocada()) {
+                arrFichaJugador1[i].noSeleccionable();
             }
             /* if (
-                i == arrFichaSubZero.length - 1 &&
-                !arrFichaSubZero[i].getFiguraIsColocada()
+                i == arrFichaJugador2.length - 1 &&
+                !arrFichaJugador2[i].getFiguraIsColocada()
             ) {
-                arrFichaSubZero[i].esSeleccionable();
+                arrFichaJugador2[i].esSeleccionable();
             } else {
                 if (
-                    !arrFichaSubZero[i].getFiguraIsColocada() &&
-                    arrFichaSubZero[i + 1].getFiguraIsColocada()
+                    !arrFichaJugador2[i].getFiguraIsColocada() &&
+                    arrFichaJugador2[i + 1].getFiguraIsColocada()
                 ) {
-                    arrFichaSubZero[i].esSeleccionable();
+                    arrFichaJugador2[i].esSeleccionable();
                 }
             } */
         }
@@ -443,7 +475,6 @@ let turno = 0;
 setTimeout(function () {
     //JUEGO
     drawAll();
-    cambioTurno();
 }, 100);
 
 
