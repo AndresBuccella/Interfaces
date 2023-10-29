@@ -31,9 +31,6 @@ class Timer {
     setTime(time) {
         this.timer = time;
     }
-    isSelected() {
-        return false;
-    }
 
     borrarIntervalo(){
         clearInterval(this.mostrar);

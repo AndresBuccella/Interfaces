@@ -16,6 +16,8 @@ let fontFile = "../css/fonts/mk2.ttf";
 // Cargar la fuente utilizando FontFace
 let customFont = new FontFace("MKfont", `url(${fontFile})`);
 
+customFont.load().then(() => {document.fonts.add(customFont);});
+
 const anchoTheTower = Math.floor(canvas.clientWidth / 10);
 //const spriteHeightTop = 126;
 const spriteHeightTop = canvas.clientHeight / 5 + 6;
@@ -27,7 +29,7 @@ const player1 = 1;
 const player2 = 2;
 
 //Menu
-let menu = true;
+let menu = false;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -334,7 +336,7 @@ function onMouseMove(e) {
             posX = e.layerX - offsetLeft;
             posY = e.layerY - offsetTop;
             lastClickedFigure.setPosition(posX, posY);
-            drawAll(posX, posY);
+            drawAll();
         }
     }
 }
@@ -520,7 +522,7 @@ function cambioTurno() {
     turno++;
 }
 
-//generarJuego(characters[2][2].src, characters[0][1].src)
+generarJuego(characters[2][2], characters[0][1])
 
 setTimeout(function () {
     //JUEGO

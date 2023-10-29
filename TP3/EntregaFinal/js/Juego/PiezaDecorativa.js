@@ -23,9 +23,6 @@ class PiezaDecorativa extends Pieza{
     }
     
     //DEMAS METODOS
-    isSelected(posX, posY){
-        return false;
-    }
     
     draw(){
         this.context.save();

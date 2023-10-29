@@ -2,8 +2,8 @@
 class Ficha extends Pieza {
 
     constructor(context, path, player, posX, posY, radius, bounces) {
-        super(context, path, posX, posY);
-        this.path = path;
+        super(context, path.src, posX, posY);
+        this.path = path.src;
         this.posIniX = posX;
         this.posIniY = posY;
         this.posIniXto = posX;

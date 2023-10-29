@@ -115,9 +115,6 @@ class Tablero {
         }
         this.context.restore();
     }
-    isSelected() {
-        return false;
-    }
 
     winner(fila, columna, jugador) {
         let posibilidades = {
