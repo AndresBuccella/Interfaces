@@ -27,7 +27,7 @@ const player1 = 1;
 const player2 = 2;
 
 //Menu
-let menu = false;
+let menu = true;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -88,7 +88,7 @@ let lateralDerecho;
 let tablero;
 let pinchos;
 let timer;
-let turno;
+let turno = 0;
 
 //Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2) {
@@ -519,7 +519,8 @@ function cambioTurno() {
 
     turno++;
 }
-generarJuego(characters[2][2].src, characters[0][1].src)
+
+//generarJuego(characters[2][2].src, characters[0][1].src)
 
 setTimeout(function () {
     //JUEGO
