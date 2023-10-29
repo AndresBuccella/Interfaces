@@ -104,20 +104,17 @@ class Ficha extends Pieza {
     setBounces(bounces) {
         this.bounces = bounces;
     }
+    setSeleccionable(bol) {
+        this.seleccionable = bol;
+    }
     colocada() {
         this.estaColocada = true;
-        this.noSeleccionable();
-    }
-    esSeleccionable() {
-        this.seleccionable = true;
-    }
-    noSeleccionable() {
-        this.seleccionable = false;
+        this.setSeleccionable(false);
     }
 
     //DEMAS METODOS    
     isSelected(posX, posY) {
-        if ((!this.getFiguraIsColocada()) && (this.seleccionable)) {
+        if ((!this.getFiguraIsColocada()) && (this.getEstado())) {
             let _x = this.posX - posX;
             let _y = this.posY - posY;
             return Math.sqrt(_x * _x + _y * _y) < this.radius;

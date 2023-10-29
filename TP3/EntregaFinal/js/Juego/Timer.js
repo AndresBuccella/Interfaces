@@ -13,7 +13,7 @@ class Timer {
                 timer.setTime(timer.getTime() - 1);
                 drawAll();
             } else if (timer.getTime() <= 0) {
-                clearInterval(this.mostrar);
+                borrarIntervalo();
             }
         }, 1000);
     }
@@ -33,6 +33,10 @@ class Timer {
     }
     isSelected() {
         return false;
+    }
+
+    borrarIntervalo(){
+        clearInterval(this.mostrar);
     }
     draw() {
         let gradient = context.createLinearGradient(0, this.posY - this.fontsize / 2, 0, this.posY + this.fontsize / 2);

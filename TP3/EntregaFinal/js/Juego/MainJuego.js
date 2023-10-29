@@ -27,7 +27,7 @@ const player1 = 1;
 const player2 = 2;
 
 //Menu
-let menu = true
+let menu = false;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -58,7 +58,7 @@ for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 4; j++) {
         characters[i][j] = new Image();
         characters[i][j].src = "../images/juegoMK/personajes/character-" + i + "-" + j + ".png";
-        characters[i][j].alt =charactersName[j+i*4]
+        characters[i][j].alt = charactersName[j + i * 4]
     }
 }
 
@@ -73,20 +73,37 @@ function handleResize() {
 
 window.addEventListener('resize', handleResize);
 
+let elements = [];
+let arrTablero = [];
+let arrDeco = [];
+let arrFichas = [];
+let arrFichaJugador1 = [];
+let arrFichaJugador2 = [];
+let lastClickedFigure = null;
+let mouseDown = false;
+let widthCanvas = canvas.clientWidth;
+let elemTop;
+let lateralIzquierdo;
+let lateralDerecho;
+let tablero;
+let pinchos;
+let timer;
+let turno;
+
+//Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2) {
-    cambioTurno();
-    let elements = [];
-    let arrTablero = [];
-    let arrDeco = [];
-    let arrFichas = [];
-    let arrFichaJugador1 = [];
-    let arrFichaJugador2 = [];
+    turno = 0
+    elements = [];
+    arrTablero = [];
+    arrDeco = [];
+    arrFichas = [];
+    arrFichaJugador1 = [];
+    arrFichaJugador2 = [];
+    lastClickedFigure = null;
+    mouseDown = false;
+    widthCanvas = canvas.clientWidth;
 
-    let lastClickedFigure = null;
-    let mouseDown = false;
-    let widthCanvas = canvas.clientWidth;
-
-    let elemTop = new PiezaDecorativa(
+    elemTop = new PiezaDecorativa(
         context,
         imagenTop,
         0,
@@ -96,7 +113,7 @@ function generarJuego(sprJugador1, sprJugador2) {
     );
     arrDeco.push(elemTop);
 
-    let lateralIzquierdo = new PiezaDecorativa(
+    lateralIzquierdo = new PiezaDecorativa(
         context,
         imagenLateral,
         0,
@@ -104,7 +121,7 @@ function generarJuego(sprJugador1, sprJugador2) {
         anchoTheTower,
         canvas.clientHeight - spriteHeightTop
     );
-    let lateralDerecho = new PiezaDecorativa(
+    lateralDerecho = new PiezaDecorativa(
         context,
         imagenLateral,
         canvas.clientWidth - anchoTheTower,
@@ -113,7 +130,7 @@ function generarJuego(sprJugador1, sprJugador2) {
         canvas.clientHeight - spriteHeightTop
     );
 
-    let tablero = new Tablero(
+    tablero = new Tablero(
         canvas,
         context,
         xEnLinea,
@@ -126,7 +143,7 @@ function generarJuego(sprJugador1, sprJugador2) {
         lateralIzquierdo.getWidth()
     );
 
-    let pinchos = new PiezaDecorativa(
+    pinchos = new PiezaDecorativa(
         context,
         imagenPinchos,
         anchoTheTower,
@@ -181,7 +198,7 @@ function generarJuego(sprJugador1, sprJugador2) {
     arrTablero.push(pinchos);
 
     //Timer
-    let timer = null;
+    if (timer != null) { timer.borrarIntervalo(); }
     //const timeMin = 5;
     const timeMin = 5;
     customFont.load().then(() => {
@@ -222,7 +239,9 @@ function generarJuego(sprJugador1, sprJugador2) {
     elements.push(arrFichaJugador2);
     elements.push(arrTablero);
 
+    cambioTurno();
 }
+
 function drawAll(mouseX, mouseY) {
     if (menu) {
         for (let i = 0; i < 3; i++) {
@@ -230,6 +249,7 @@ function drawAll(mouseX, mouseY) {
                 context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
             }
         }
+        context.drawImage(player_select, 0, 0);
         if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
@@ -237,11 +257,26 @@ function drawAll(mouseX, mouseY) {
                         if (turno == 0) {
                             context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
                         }
+                        let posX = canvas.clientWidth / 2;
+                        let posY = canvas.clientHeight - 36;
+                        let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
+                        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+                        gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+                        context.font = 36 + 'px MKfont';
+                        context.textAlign = 'center';
+                        context.textBaseline = 'middle';
+                        context.fillStyle = gradient;
+
+                        context.strokeStyle = 'black';
+                        context.lineWidth = 4;
+                        context.strokeText(characters[j][i].alt, posX, posY);
+
+                        context.fillText(characters[j][i].alt, posX, posY);
                     }
                 }
             }
         }
-        context.drawImage(player_select, 0, 0);
     } else {
         clearCanvas();
         for (const arreglos of elements) {
@@ -264,11 +299,6 @@ function clearCanvas() {
 }
 
 function findClickedFigure(x, y) {
-    /*  for (const ficha of arrFichas) {
-           if (ficha.isSelected(x, y)) {
-               return ficha;
-           }
-       } */
     for (let i = arrFichas.length - 1; i >= 0; i--) {
         if (arrFichas[i].isSelected(x, y)) {
             return arrFichas[i];
@@ -451,47 +481,37 @@ canvas.addEventListener("mousedown", onMouseDown, false);
 canvas.addEventListener("mouseup", onMouseUp, false);
 canvas.addEventListener("mousemove", onMouseMove, false);
 
-
-//function eventListenerOn() {
-//}
-//eventListenerOn();
-
-/* function eventListenerOff() {
-  canvas.removeEventListener("mousedown", onMouseDown, false);
-  canvas.removeEventListener("mouseup", onMouseUp, false);
-  canvas.removeEventListener("mousemove", onMouseMove, false);
-} */
-
+//Turno 
 function cambioTurno() {
     if ((turno % 2) + 1 == player1) {
         for (let i = 0; i < arrFichaJugador1.length; i++) {
             if (!arrFichaJugador1[i].getFiguraIsColocada()) {
-                arrFichaJugador1[i].esSeleccionable();
+                arrFichaJugador1[i].setSeleccionable(true);
             }
             if (!arrFichaJugador2[i].getFiguraIsColocada()) {
-                arrFichaJugador2[i].noSeleccionable();
+                arrFichaJugador2[i].setSeleccionable(false);
             }
         }
     } else {
         for (let i = 0; i < arrFichaJugador2.length; i++) {
 
             if (!arrFichaJugador2[i].getFiguraIsColocada()) {
-                arrFichaJugador2[i].esSeleccionable();
+                arrFichaJugador2[i].setSeleccionable(true);
             }
             if (!arrFichaJugador1[i].getFiguraIsColocada()) {
-                arrFichaJugador1[i].noSeleccionable();
+                arrFichaJugador1[i].setSeleccionable(false);
             }
             /* if (
                 i == arrFichaJugador2.length - 1 &&
                 !arrFichaJugador2[i].getFiguraIsColocada()
             ) {
-                arrFichaJugador2[i].esSeleccionable();
+                arrFichaJugador2[i].setSeleccionable(true);
             } else {
                 if (
                     !arrFichaJugador2[i].getFiguraIsColocada() &&
                     arrFichaJugador2[i + 1].getFiguraIsColocada()
                 ) {
-                    arrFichaJugador2[i].esSeleccionable();
+                    arrFichaJugador2[i].setSeleccionable(true);
                 }
             } */
         }
@@ -499,7 +519,8 @@ function cambioTurno() {
 
     turno++;
 }
-let turno = 0;
+generarJuego(characters[2][2].src, characters[0][1].src)
+
 setTimeout(function () {
     //JUEGO
     drawAll();
