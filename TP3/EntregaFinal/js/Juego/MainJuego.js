@@ -16,7 +16,7 @@ let fontFile = "../css/fonts/mk2.ttf";
 // Cargar la fuente utilizando FontFace
 let customFont = new FontFace("MKfont", `url(${fontFile})`);
 
-customFont.load().then(() => {document.fonts.add(customFont);});
+customFont.load().then(() => { document.fonts.add(customFont); });
 
 const anchoTheTower = Math.floor(canvas.clientWidth / 10);
 //const spriteHeightTop = 126;
@@ -91,6 +91,7 @@ let tablero;
 let pinchos;
 let timer;
 let turno = 0;
+let setTimeOutTiempoDeJuego = null;
 
 //Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2) {
@@ -199,49 +200,33 @@ function generarJuego(sprJugador1, sprJugador2) {
     arrTablero.push(tablero);
     arrTablero.push(pinchos);
 
+    elements = elements.concat(arrDeco);
+    elements = elements.concat(arrFichaJugador1);
+    elements = elements.concat(arrFichaJugador2);
+    elements = elements.concat(arrTablero);
     //Timer
-    if (timer != null) { timer.borrarIntervalo(); }
-    //const timeMin = 5;
-    const timeMin = 5;
-    customFont.load().then(() => {
-        timer = new Timer(timeMin * 60, widthCanvas / 2, 80, context, customFont);
-        arrDeco.push(timer);
-        let timerInterval = setInterval(() => {
-            let time = timer.getTime();
-            if (time <= 0) {
-                //se muestra una sola vez por si los jugadores quieren ver el estado del tablero
-                drawDraw();
-                /* for (const ficha of arrFichas) {
-                    ficha.colocada();
-                } */
-                clearInterval(timerInterval);
-            }
-        }, 1000)
-    });
-    let fontSize = 90;
-    function drawDraw() {
-        let gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fontSize / 2, 0, (canvas.clientHeight / 2) + fontSize / 2);
-        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-        gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
-
-        context.font = fontSize + 'px MKfont';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-        context.fillStyle = gradient;
-
-        context.strokeStyle = 'black';
-        context.lineWidth = 3;
-        context.strokeText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
-
-        context.fillText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
-
+    if (timer != null) {
+        timer.borrarIntervalo();
     }
-    elements.push(arrDeco);
-    elements.push(arrFichaJugador1);
-    elements.push(arrFichaJugador2);
-    elements.push(arrTablero);
+    const time = 5 * 60;
+    customFont.load().then(() => {
+        timer = new Timer(time, widthCanvas / 2, 80, context, customFont);
+        elements.push(timer);
 
+    });
+
+    if (setTimeOutTiempoDeJuego != null) {
+        clearInterval(setTimeOutTiempoDeJuego);
+    }
+    setTimeOutTiempoDeJuego = setTimeout(() => {
+        console.log("se acabo el tiempo");
+        for (const ficha of arrFichas) {
+            ficha.colocada();
+        }
+        clearInterval(setTimeOutTiempoDeJuego);
+    }, time * 1000)
     cambioTurno();
+
 }
 
 function drawAll(mouseX, mouseY) {
@@ -281,14 +266,13 @@ function drawAll(mouseX, mouseY) {
         }
     } else {
         clearCanvas();
-        for (const arreglos of elements) {
-            for (const elemento of arreglos) {
-                elemento.draw();
-            }
+        for (const element of elements) {
+            element.draw();
         }
         if (lastClickedFigure != null && mouseDown) {
             lastClickedFigure.draw();
         }
+        timer.draw();
     }
 }
 
@@ -324,6 +308,7 @@ function onMouseDown(e) {
             }
             drawAll();
         }
+
     }
 }
 
@@ -429,7 +414,11 @@ function onMouseUp() {
                         acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
                     }
                     tablero.calcularNuevoSuelo(columna);
-                    tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), lastClickedFigure.getPositionX());
+                    let ganador = tablero.cargarEnMatriz(lastClickedFigure);
+                    
+                    if(ganador != null){
+                        console.log(ganador);
+                    }
                 } else {
                     lastClickedFigure.volverAPosicionInicial();
                     lastClickedFigure = null;

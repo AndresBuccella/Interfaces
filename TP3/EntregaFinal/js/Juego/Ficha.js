@@ -1,9 +1,9 @@
 
 class Ficha extends Pieza {
 
-    constructor(context, path, player, posX, posY, radius, bounces) {
-        super(context, path.src, posX, posY);
-        this.path = path.src;
+    constructor(context, img, player, posX, posY, radius, bounces) {
+        super(context, img.src, posX, posY);
+        this.img = img;
         this.posIniX = posX;
         this.posIniY = posY;
         this.posIniXto = posX;
@@ -25,26 +25,9 @@ class Ficha extends Pieza {
     }
 
     //GETTERS
+    
     getNombre() {
-        //convierte un string en arreglo
-        let arrNombre = [...this.path];
-        let arrAux = [];
-
-        let nombreFinal = '';
-        for (let i = arrNombre.length - 1; i > 0; i--) {
-            if (arrNombre[i] === '.') {
-                for (let j = i - 1; j > 0; j--) {
-                    if (arrNombre[j] === '/') {
-                        arrAux.reverse();
-                        for (const letra of arrAux) {
-                            nombreFinal += letra;
-                        }
-                        return nombreFinal;
-                    }
-                    arrAux.push(arrNombre[j]);
-                }
-            }
-        }
+        return this.img.alt;
     }
     getPlayer() {
         return this.player;
@@ -105,8 +88,8 @@ class Ficha extends Pieza {
     setBounces(bounces) {
         this.bounces = bounces;
     }
-    setSeleccionable(bol) {
-        this.seleccionable = bol;
+    setSeleccionable(bool) {
+        this.seleccionable = bool;
     }
     colocada() {
         this.estaColocada = true;

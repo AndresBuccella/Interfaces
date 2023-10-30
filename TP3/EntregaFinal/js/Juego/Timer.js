@@ -7,6 +7,7 @@ class Timer {
         this.context = context
         this.font = document.fonts.add(font);
         this.fontsize = 46
+        this.fontSizeDraw = 90;
         this.pausa = false;
         this.mostrar = setInterval(() => {
             if (timer.getTime() > 0 && !this.pausa) {
@@ -50,5 +51,23 @@ class Timer {
         context.strokeText(this.timer, this.posX, this.posY);
 
         context.fillText(this.timer, this.posX, this.posY);
+        
+        if (this.getTime() <= 0) {
+            
+            gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - this.fontSizeDraw / 2, 0, (canvas.clientHeight / 2) + this.fontSizeDraw / 2);
+            gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+            gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+            this.context.font = this.fontSizeDraw + 'px MKfont';
+            this.context.textAlign = 'center';
+            this.context.textBaseline = 'middle';
+            this.context.fillStyle = gradient;
+
+            this.context.strokeStyle = 'black';
+            this.context.lineWidth = 3;
+            this.context.strokeText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+            this.context.fillText('DRAW', canvas.clientWidth / 2, canvas.clientHeight / 2);
+        }
     }
 }

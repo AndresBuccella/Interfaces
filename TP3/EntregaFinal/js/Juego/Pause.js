@@ -20,3 +20,22 @@ class Pause extends Pieza{
         this.context.restore();
     }
 }
+//convierte un string en arreglo
+let arrNombre = [...this.path];
+let arrAux = [];
+
+let nombreFinal = '';
+for (let i = arrNombre.length - 1; i > 0; i--) {
+    if (arrNombre[i] === '.') {
+        for (let j = i - 1; j > 0; j--) {
+            if (arrNombre[j] === '/') {
+                arrAux.reverse();
+                for (const letra of arrAux) {
+                    nombreFinal += letra;
+                }
+                return nombreFinal;
+            }
+            arrAux.push(arrNombre[j]);
+        }
+    }
+}

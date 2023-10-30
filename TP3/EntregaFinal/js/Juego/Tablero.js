@@ -21,10 +21,12 @@ class Tablero {
         this.pathCentralBackground = new Image();
         this.pathCentralBackground.src = pathCentralBackground;
 
+
+
         this.matriz = [[]];
         for (let fila = 0; fila < this.filas; fila++) {
             for (let columna = 0; columna < this.columnas; columna++) {
-                this.matriz[[fila, columna]] = 0;
+                this.matriz[[fila, columna]] = null;
             }
         }
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
@@ -67,16 +69,12 @@ class Tablero {
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
     getFilaDisponible(columna) {
-        for (let fila = 0; fila < this.filas; fila++) {
-            if ((this.matriz[[fila, columna]] == 0) && (this.matriz[[fila + 1, columna]] != 0)) {
-                return fila;
-            } else {
-                if (this.matriz[[fila, columna]] != 0) {
-                    return -1;
-                }
+        for (let fila = this.getCantFil() - 1; fila >= 0; fila--) {
+            if (this.matriz[[fila, columna]] == null) {
+                return fila
             }
-
         }
+        return -1;
     }
     getColumnaExacta(posX) {
         let columna = Math.floor((posX - this.marginLeft) / this.getWidthCasilla());
@@ -86,11 +84,11 @@ class Tablero {
     calcularNuevoSuelo(columna) {
         this.suelo = this.suelo - (this.getHeightCasilla() * (this.filas - (this.getFilaDisponible(columna) + 1)));
     }
-    cargarEnMatriz(player, posX) {
-        let columna = this.getColumnaExacta(posX);
+    cargarEnMatriz(ficha) {
+        let columna = this.getColumnaExacta(ficha.getPositionX());
         let fila = this.getFilaDisponible(columna);
-        this.matriz[[fila, columna]] = player;
-        this.winner(fila, columna, player);
+        this.matriz[[fila, columna]] = ficha;
+        return this.winner(fila, columna, ficha.getNombre());
     }
     draw() {
         //se calcula el espacio disponible para el tablero y se lo divide por la cantidad de columnas 
@@ -117,87 +115,96 @@ class Tablero {
     }
 
     winner(fila, columna, jugador) {
-        let coconut = 1;
+        let countFicha = 1;
 
         //COMPROBACION HORIZONTAL
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
-            if ((columna + i < this.getCantCol()) && this.matriz[[fila, columna + i]] == jugador) {
-                coconut++;
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
+            if ((columna + i < this.getCantCol()) &&
+                this.matriz[[fila, columna + i]] != null &&
+                this.matriz[[fila, columna + i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
-            if ((columna - i >= 0) && this.matriz[[fila, columna - i]] == jugador) {
-                coconut++;
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
+            if ((columna - i >= 0) &&
+                this.matriz[[fila, columna - i]] != null &&
+                this.matriz[[fila, columna - i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        if(coconut === this.xEnLinea){
-            return null;
+        if (countFicha === this.xEnLinea) {
+            return jugador;
         }
-        coconut = 1;
+        countFicha = 1;
 
         //COMPROBACION EN UNA DIAGONAL
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
             if ((columna + i < this.getCantCol()) && (fila + i < this.getCantFil()) &&
-                this.matriz[[fila + i, columna + i]] == jugador) {
-                    coconut++;
+                this.matriz[[fila + i, columna + i]] != null &&
+                this.matriz[[fila + i, columna + i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
-            if ((columna - i >= 0) && (fila - i >= 0) && this.matriz[[fila - i, columna - i]] == jugador) {
-                coconut++;
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
+            if ((columna - i >= 0) && (fila - i >= 0) &&
+                this.matriz[[fila - i, columna - i]] != null &&
+                this.matriz[[fila - i, columna - i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        if(coconut === this.xEnLinea){
-            return null;
+        if (countFicha === this.xEnLinea) {
+            return jugador;
         }
-        coconut = 1;
+        countFicha = 1;
 
         //COMPROBACION EN OTRA DIAGONAL
 
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
             if ((columna + i < this.getCantCol()) && (fila - i >= 0) &&
-                this.matriz[[fila - i, columna + i]] == jugador) {
-                    coconut++;
+                this.matriz[[fila - i, columna + i]] != null &&
+                this.matriz[[fila - i, columna + i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
-            if ((columna - i >= 0) && (fila - i < this.getCantFil()) && this.matriz[[fila + i, columna - i]] == jugador) {
-                coconut++;
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
+            if ((columna - i >= 0) && (fila - i < this.getCantFil()) &&
+                this.matriz[[fila + i, columna - i]] != null &&
+                this.matriz[[fila + i, columna - i]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        if(coconut === this.xEnLinea){
-            return null;
+        if (countFicha === this.xEnLinea) {
+            return jugador;
         }
-        coconut = 1;
+        countFicha = 1;
 
         //COMPROBACION VERTICAL
 
-        for (let i = 1; i < this.xEnLinea && coconut < this.xEnLinea; i++) {
+        for (let i = 1; i < this.xEnLinea && countFicha < this.xEnLinea; i++) {
             if ((fila + i < this.getCantFil()) &&
-                this.matriz[[fila + i, columna]] == jugador) {
-                    coconut++;
+                this.matriz[[fila + i, columna]] != null &&
+                this.matriz[[fila + i, columna]].getNombre() == jugador) {
+                countFicha++;
             } else {
                 break;
             }
         }
-        if(coconut === this.xEnLinea){
-            return null;
+        if (countFicha === this.xEnLinea) {
+            return jugador;
         }
-        coconut = 1;
-
+        
+        return null;
     }
-
-
 }
