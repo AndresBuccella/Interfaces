@@ -257,7 +257,7 @@ function drawAll(mouseX, mouseY) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
                             context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
-                        } else if (turno == 1) {
+                        } else if (turno == 1 && characters[j][i]!=player_selector_1.character) {
                             context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
                         }
                         let posX = canvas.clientWidth / 2;
