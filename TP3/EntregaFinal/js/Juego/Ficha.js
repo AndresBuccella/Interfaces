@@ -17,6 +17,7 @@ class Ficha extends Pieza {
         setInterval(() => {
             if (this.posIniX != this.posIniXto && !this.getFiguraIsColocada()) {
                 let orientacion = Math.sign(this.getPosIniXto() - this.getPosIniX());
+                //Posiciona
                 this.setPosition(this.getPositionX() + Math.min(1, Math.abs(this.getPosIniXto() - this.getPosIniX())) * orientacion, this.getPositionY())
                 this.setPositionXOrigin(this.getPositionX());
             }

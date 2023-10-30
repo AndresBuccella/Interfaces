@@ -13,7 +13,7 @@ class Timer {
                 timer.setTime(timer.getTime() - 1);
                 drawAll();
             } else if (timer.getTime() <= 0) {
-                borrarIntervalo();
+                this.borrarIntervalo();
             }
         }, 1000);
     }

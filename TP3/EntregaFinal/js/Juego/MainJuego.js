@@ -321,7 +321,6 @@ function onMouseDown(e) {
 
             if (clickFig != null) {
                 lastClickedFigure = clickFig;
-                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
             }
             drawAll();
         }
@@ -333,8 +332,8 @@ function onMouseMove(e) {
         drawAll(e.layerX - offsetLeft, e.layerY - offsetTop);
     } else {
         if (mouseDown && lastClickedFigure != null) {
-            posX = e.layerX - offsetLeft;
-            posY = e.layerY - offsetTop;
+            let posX = e.layerX - offsetLeft;
+            let posY = e.layerY - offsetTop;
             lastClickedFigure.setPosition(posX, posY);
             drawAll();
         }
@@ -387,8 +386,6 @@ function gravedad() {
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
-                /* tablero.winner(lastClickedFigure);
-                console.log(lastClickedFigure.getNombre()); */
                 lastClickedFigure = null;
                 velocity = 0;
                 tablero.resetSuelo();
@@ -431,27 +428,8 @@ function onMouseUp() {
                     } else {
                         acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
                     }
-                    /* for (const ficha of arrFichas) {
-                        if (
-                            ficha.getPlayer() === player1 &&
-                            (turno % 2) + 1 == player2 &&
-                            !ficha.getFiguraIsColocada()
-                        ) {
-                            ficha.setPositionXOriginTo(ficha.getPosIniX() + ficha.getRadius());
-                        } else {
-                            if (
-                                ficha.getPlayer() === player2 &&
-                                (turno % 2) + 1 == player1 &&
-                                !ficha.getFiguraIsColocada()
-                            ) {
-                                ficha.setPositionXOriginTo(
-                                    ficha.getPosIniX() - ficha.getRadius()
-                                );
-                            }
-                        }
-                    } */
                     tablero.calcularNuevoSuelo(columna);
-                    tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), posX);
+                    tablero.cargarEnMatriz(lastClickedFigure.getPlayer(), lastClickedFigure.getPositionX());
                 } else {
                     lastClickedFigure.volverAPosicionInicial();
                     lastClickedFigure = null;
@@ -473,7 +451,6 @@ function acomodarFichasNoColocadas(arr, posFicha) {
                 arr[i].getPosIniX() +
                 (arr[i].getRadius() * Math.sign(arr[arr.length - 1].getPosIniX() - arr[0].getPosIniX())) //se multiplica por la diferencia entre las posiciones y de ahi se obtiene el signo para saber a que lado tiene que ir
             );
-
         }
     }
 }
@@ -503,19 +480,6 @@ function cambioTurno() {
             if (!arrFichaJugador1[i].getFiguraIsColocada()) {
                 arrFichaJugador1[i].setSeleccionable(false);
             }
-            /* if (
-                i == arrFichaJugador2.length - 1 &&
-                !arrFichaJugador2[i].getFiguraIsColocada()
-            ) {
-                arrFichaJugador2[i].setSeleccionable(true);
-            } else {
-                if (
-                    !arrFichaJugador2[i].getFiguraIsColocada() &&
-                    arrFichaJugador2[i + 1].getFiguraIsColocada()
-                ) {
-                    arrFichaJugador2[i].setSeleccionable(true);
-                }
-            } */
         }
     }
 
