@@ -28,7 +28,7 @@ const spriteHeightPinchos = 45;
 const player1 = 1;
 const player2 = 2;
 
-//Menu
+// Menu
 let menu = true;
 
 const player_select = new Image();
@@ -36,9 +36,11 @@ player_select.src = "../images/juegoMK/seleccion-jugador.png";
 
 const player_selector_1 = new Image();
 player_selector_1.src = "../images/juegoMK/selector-jugador-1.png";
+player_selector_1.character = null;
 
 const player_selector_2 = new Image();
 player_selector_2.src = "../images/juegoMK/selector-jugador-2.png";
+player_selector_2.character = null;
 
 const charactersName = [
     "Liu Kang",
@@ -53,21 +55,25 @@ const charactersName = [
     "Baraka",
     "Scorpion",
     "Raiden"
-]
+];
+
 const characters = [];
+
 for (let i = 0; i < 3; i++) {
     characters[i] = [];
     for (let j = 0; j < 4; j++) {
-        characters[i][j] = new Image();
-        characters[i][j].src = "../images/juegoMK/personajes/character-" + i + "-" + j + ".png";
-        characters[i][j].alt = charactersName[j + i * 4]
+        const character = new Image();
+        character.src = `../images/juegoMK/personajes/character-${i}-${j}.png`;
+        character.alt = charactersName[j + i * 4];
+        characters[i][j] = character;
     }
 }
 
+
+// Obtén el offset del canvas
 let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
 
-// Obtén el offset del canvas
 function handleResize() {
     offsetLeft = canvas.offsetLeft;
     offsetTop = canvas.offsetTop;
@@ -235,18 +241,24 @@ function generarJuego(sprJugador1, sprJugador2) {
 
 function drawAll(mouseX, mouseY) {
     if (menu) {
+        //Dibuja los personajes disponibles
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 4; j++) {
                 context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
             }
         }
+        //Dibuja el marco del menu
         context.drawImage(player_select, 0, 0);
+
+        //Dibuja cual personaje va a ser seleccionado y su nombre
         if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
                             context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
+                        } else if (turno == 1) {
+                            context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
                         }
                         let posX = canvas.clientWidth / 2;
                         let posY = canvas.clientHeight - 36;
@@ -268,6 +280,13 @@ function drawAll(mouseX, mouseY) {
                 }
             }
         }
+        //Dibuja cual fichas fue seleccionada
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
+            }
+        }
+
     } else {
         clearCanvas();
         for (const element of elements) {
@@ -297,7 +316,6 @@ function findClickedFigure(x, y) {
 }
 function onMouseDown(e) {
     if (menu) {
-
     } else {
         if (lastClickedFigure == null) {
             mouseDown = true;
@@ -391,8 +409,26 @@ setInterval(function () {
     }
 }, 1000 / 60);
 
-function onMouseUp() {
+function onMouseUp(e) {
     if (menu) {
+        let mouseX = e.layerX - offsetLeft;
+        let mouseY = e.layerY - offsetTop;
+
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 3; j++) {
+                if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                    if (turno == 0) {
+                        player_selector_1.character = characters[j][i];
+                        turno++;
+                    } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
+                        player_selector_2.character = characters[j][i];
+                        turno=0;
+                        menu=false;
+                        generarJuego(player_selector_1.character, player_selector_2.character);
+                    }
+                }
+            }
+        }
 
     } else {
         //fichaCayendo = true;
@@ -478,8 +514,6 @@ function cambioTurno() {
 
     turno++;
 }
-
-//generarJuego(characters[2][2], characters[0][1])
 
 setTimeout(function () {
     //JUEGO
