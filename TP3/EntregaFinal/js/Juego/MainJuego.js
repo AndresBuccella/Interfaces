@@ -218,13 +218,17 @@ function generarJuego(sprJugador1, sprJugador2) {
     if (setTimeOutTiempoDeJuego != null) {
         clearInterval(setTimeOutTiempoDeJuego);
     }
-    setTimeOutTiempoDeJuego = setTimeout(() => {
-        console.log("se acabo el tiempo");
-        for (const ficha of arrFichas) {
-            ficha.colocada();
+
+    setTimeOutTiempoDeJuego = setInterval(() => {
+        if (timer.getTime() <= 0) {
+
+            console.log("a");
+            for (const ficha of arrFichas) {
+                ficha.colocada();
+            }
+            clearInterval(setTimeOutTiempoDeJuego);
         }
-        clearInterval(setTimeOutTiempoDeJuego);
-    }, time * 1000)
+    }, 100)
     cambioTurno();
 
 }
@@ -415,8 +419,8 @@ function onMouseUp() {
                     }
                     tablero.calcularNuevoSuelo(columna);
                     let ganador = tablero.cargarEnMatriz(lastClickedFigure);
-                    
-                    if(ganador != null){
+
+                    if (ganador != null) {
                         console.log(ganador);
                     }
                 } else {
