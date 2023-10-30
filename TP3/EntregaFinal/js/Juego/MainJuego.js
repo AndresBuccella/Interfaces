@@ -29,7 +29,7 @@ const player1 = 1;
 const player2 = 2;
 
 //Menu
-let menu = false;
+let menu = true;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -479,7 +479,7 @@ function cambioTurno() {
     turno++;
 }
 
-generarJuego(characters[2][2], characters[0][1])
+//generarJuego(characters[2][2], characters[0][1])
 
 setTimeout(function () {
     //JUEGO
