@@ -228,7 +228,7 @@ function generarJuego(sprJugador1, sprJugador2) {
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
 
-            console.log("a");
+            console.log("Se acabo el tiempo");
             for (const ficha of arrFichas) {
                 ficha.colocada();
             }
@@ -292,10 +292,10 @@ function drawAll(mouseX, mouseY) {
         for (const element of elements) {
             element.draw();
         }
+        timer.draw();
         if (lastClickedFigure != null && mouseDown) {
             lastClickedFigure.draw();
         }
-        timer.draw();
     }
 }
 
@@ -457,7 +457,11 @@ function onMouseUp(e) {
                     let ganador = tablero.cargarEnMatriz(lastClickedFigure);
 
                     if (ganador != null) {
-                        console.log(ganador);
+                        for (const ficha of arrFichas) {
+                            ficha.colocada();
+                        }
+                        tablero.resaltarFichas(ganador);
+                        clearInterval(setTimeOutTiempoDeJuego);
                     }
                 } else {
                     lastClickedFigure.volverAPosicionInicial();

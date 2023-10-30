@@ -27,6 +27,9 @@ class Pieza{
         this.posX = posX;
         this.posY = posY;
     }
+    setImage(img){
+        this.image=img
+    }
     
     //DEMAS METODOS
     isSelected(posX, posY){ };

@@ -22,6 +22,8 @@ class Tablero {
         this.pathCentralBackground.src = pathCentralBackground;
 
 
+        this.looserImg = new Image();
+        this.looserImg.src = "../images/juegoMK/personajes/looser.png";
 
         this.matriz = [[]];
         for (let fila = 0; fila < this.filas; fila++) {
@@ -88,8 +90,21 @@ class Tablero {
         let columna = this.getColumnaExacta(ficha.getPositionX());
         let fila = this.getFilaDisponible(columna);
         this.matriz[[fila, columna]] = ficha;
+
         return this.winner(fila, columna, ficha.getNombre());
     }
+
+    resaltarFichas(ganador) {
+        for (let i = 0; i < this.getCantFil(); i++) {
+            for (let j = 0; j < this.getCantCol(); j++) {
+                if (this.matriz[[i, j]] != null && this.matriz[[i, j]].getNombre() != ganador) {
+                    let element= this.matriz[[i, j]];
+                    element.setImage(this.looserImg);
+                }
+            }
+        }
+    }
+
     draw() {
         //se calcula el espacio disponible para el tablero y se lo divide por la cantidad de columnas 
         //que va a tener
@@ -204,7 +219,8 @@ class Tablero {
         if (countFicha === this.xEnLinea) {
             return jugador;
         }
-        
+
         return null;
     }
+
 }
