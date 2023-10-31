@@ -107,10 +107,6 @@ class Tablero {
                 if (this.matriz[[i, j]] != null && this.matriz[[i, j]].getNombre() != ganador) {
                     let element= this.matriz[[i, j]];
                     element.setImage(this.looserImg);
-                    /* this.suelo = this.resetSuelo() *2;
-                    gravedad(); */
-                    //Proyecto de tirar las fichas perdedoras
-                    //this.fichasPerdedoras.push(this.matriz[[i, j]]);
                 }
             }
         }

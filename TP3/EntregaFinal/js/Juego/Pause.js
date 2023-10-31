@@ -1,13 +1,38 @@
-class Pause extends Pieza{
+class Pause extends Pieza {
 
-    constructor(context, path, posX, posY, width, height){
-        super(context, path, posX, posY);
+    constructor(context, img, posX, posY, width, height) {
+        this.context = context;
+        this.img = img;
+        this.posX = posX;
+        this.posY = posY;
         this.width = width;
         this.height = height;
     }
 
-    draw(){
-        
+    //GETTERS
+    getPositionX() {
+        return this.posX;
+    }
+    getPositionY() {
+        return this.posY;
+    }
+    getPath() {
+        return this.img;
+    }
+    getImage() {
+        return this.image
+    }
+
+    //SETTERS
+    setPosition(posX, posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+    setImage(img) {
+        this.image = img
+    }
+    draw() {
+
         this.context.save();
 
         this.context.beginPath();
@@ -18,24 +43,5 @@ class Pause extends Pieza{
         this.context.drawImage(this.getImage(), this.getPositionX() - this.radius, this.getPositionY() - this.radius, this.radius * 2, this.radius * 2);
 
         this.context.restore();
-    }
-}
-//convierte un string en arreglo
-let arrNombre = [...this.path];
-let arrAux = [];
-
-let nombreFinal = '';
-for (let i = arrNombre.length - 1; i > 0; i--) {
-    if (arrNombre[i] === '.') {
-        for (let j = i - 1; j > 0; j--) {
-            if (arrNombre[j] === '/') {
-                arrAux.reverse();
-                for (const letra of arrAux) {
-                    nombreFinal += letra;
-                }
-                return nombreFinal;
-            }
-            arrAux.push(arrNombre[j]);
-        }
     }
 }

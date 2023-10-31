@@ -1,11 +1,6 @@
 class Pieza{
     
     constructor(context, path, posX, posY){
-        this.context = context;
-        this.image = new Image();
-        this.image.src = path;
-        this.posX = posX;
-        this.posY = posY;
     }
 
     //GETTERS

@@ -1,8 +1,10 @@
 
-class Ficha extends Pieza {
+class Ficha{
 
     constructor(context, img, player, posX, posY, radius, bounces) {
-        super(context, img.src, posX, posY);
+        this.context = context;
+        this.posX = posX;
+        this.posY = posY;
         this.img = img;
         this.posIniX = posX;
         this.posIniY = posY;
@@ -25,14 +27,18 @@ class Ficha extends Pieza {
     }
 
     //GETTERS
-    
+    getPositionX(){
+        return this.posX;
+    }
+    getPositionY(){
+        return this.posY;
+    }
     getNombre() {
         return this.img.alt;
     }
     getPlayer() {
         return this.player;
     }
-
     getRadius() {
         return this.radius;
     }
@@ -52,7 +58,6 @@ class Ficha extends Pieza {
     getFiguraIsColocada() {
         return this.estaColocada;
     }
-
     getEstado() {
         return this.seleccionable;
     }
@@ -61,12 +66,18 @@ class Ficha extends Pieza {
     getMaxBounces() {
         return this.maxbounces;
     }
-
     getBounces() {
         return this.bounces;
     }
 
     //SETTERS
+    setPosition(posX, posY){
+        this.posX = posX;
+        this.posY = posY;
+    }
+    setImage(img){
+        this.img=img
+    }
     setWidth(width) {
         this.width = width;
     }
@@ -76,15 +87,12 @@ class Ficha extends Pieza {
     setPositionXOrigin(posIniX) {
         this.posIniX = posIniX;
     }
-
     setPositionXOriginTo(posIniXto) {
         this.posIniXto = posIniXto;
     }
-
     setVelocity(vel) {
         this.velocity = vel;
     }
-
     setBounces(bounces) {
         this.bounces = bounces;
     }
@@ -135,7 +143,7 @@ class Ficha extends Pieza {
         this.context.closePath();
 
         this.context.clip();
-        this.context.drawImage(this.getImage(), this.getPositionX() - this.radius, this.getPositionY() - this.radius, this.radius * 2, this.radius * 2);
+        this.context.drawImage(this.img, this.getPositionX() - this.radius, this.getPositionY() - this.radius, this.radius * 2, this.radius * 2);
 
         this.context.restore();
     }

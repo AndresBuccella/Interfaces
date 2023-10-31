@@ -1,12 +1,22 @@
-class PiezaDecorativa extends Pieza{
+class PiezaDecorativa{
 
     constructor(context, path, posX, posY, width, height){
-        super(context, path, posX, posY);
+        this.context = context;
+        this.image = new Image();
+        this.image.src = path;
+        this.posX = posX;
+        this.posY = posY;
         this.width = width;
         this.height = height;
     }
     
-    // GETTERS
+    //GETTERS
+    getPositionX(){
+        return this.posX;
+    }
+    getPositionY(){
+        return this.posY;
+    }
     getWidth(){
         return this.width;
     }
@@ -15,6 +25,10 @@ class PiezaDecorativa extends Pieza{
     }
     
     //SETTERS
+    setPosition(posX, posY){
+        this.posX = posX;
+        this.posY = posY;
+    }
     setWidth(width){
         this.width = width;
     }
@@ -26,7 +40,7 @@ class PiezaDecorativa extends Pieza{
     
     draw(){
         this.context.save();
-        this.context.drawImage(this.getImage(), this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+        this.context.drawImage(this.image, this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
         this.context.restore();
     }
     

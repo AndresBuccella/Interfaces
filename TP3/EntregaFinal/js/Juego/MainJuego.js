@@ -29,7 +29,7 @@ const player1 = 1;
 const player2 = 2;
 
 // Menu
-let menu = true;
+let room = 1;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -76,10 +76,8 @@ let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
 
 function handleResize() {
-    console.log("a");
     offsetLeft = canvas.offsetLeft;
     offsetTop = canvas.offsetTop;
-    console.log(offsetLeft + "/" + offsetTop);
 }
 
 window.addEventListener('resize', handleResize);
@@ -206,7 +204,7 @@ function generarJuego(sprJugador1, sprJugador2) {
     elements = elements.concat(arrFichaJugador2);
     elements = elements.concat(arrTablero);
     //Timer
-    const time = 0.1 * 60;
+    const time = 5 * 60;
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 80, context, customFont);
         elements.push(timer);
@@ -252,68 +250,86 @@ function returnToMenu() {
     reiniciarVariablesJuego();
     player_selector_1.character = null;
     player_selector_2.character = null;
-    menu = true;
+    room = 1;
     turno = 0;
     drawAll();
 }
 
-function drawAll(mouseX, mouseY) {
-    if (menu) {
-        //Dibuja los personajes disponibles
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 4; j++) {
-                context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
-            }
+function drawCharacterSelector(mouseX, mouseY) {
+    //Dibuja los personajes disponibles
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 4; j++) {
+            context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
         }
-        //Dibuja el marco del menu
-        context.drawImage(player_select, 0, 0);
+    }
+    //Dibuja el marco del menu
+    context.drawImage(player_select, 0, 0);
 
-        //Dibuja cual personaje va a ser seleccionado y su nombre
-        if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
-                        if (turno == 0) {
-                            context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
-                        } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
-                            context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
-                        }
-                        let posX = canvas.clientWidth / 2;
-                        let posY = canvas.clientHeight - 36;
-                        let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
-                        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-                        gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
-
-                        context.font = 36 + 'px MKfont';
-                        context.textAlign = 'center';
-                        context.textBaseline = 'middle';
-                        context.fillStyle = gradient;
-
-                        context.strokeStyle = 'black';
-                        context.lineWidth = 4;
-                        context.strokeText(characters[j][i].alt, posX, posY);
-
-                        context.fillText(characters[j][i].alt, posX, posY);
+    //Dibuja cual personaje va a ser seleccionado y su nombre
+    if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 3; j++) {
+                if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                    if (turno == 0) {
+                        context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
+                    } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
+                        context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
                     }
+                    let posX = canvas.clientWidth / 2;
+                    let posY = canvas.clientHeight - 36;
+                    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
+                    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+                    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+                    context.font = 36 + 'px MKfont';
+                    context.textAlign = 'center';
+                    context.textBaseline = 'middle';
+                    context.fillStyle = gradient;
+
+                    context.strokeStyle = 'black';
+                    context.lineWidth = 4;
+                    context.strokeText(characters[j][i].alt, posX, posY);
+
+                    context.fillText(characters[j][i].alt, posX, posY);
                 }
             }
         }
-        //Dibuja cual fichas fue seleccionada
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
+    }
+    //Dibuja cual ficha fue seleccionada
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
+        }
+    }
+}
+function drawGame() {
+    
+}
+function drawAll(mouseX, mouseY) {
+    switch (room) {
+        case 0: //start
+        break;
+            
+        case 1: //seleccion
+            drawCharacterSelector(mouseX, mouseY);
+        break;
+        case 2: //modo
+        break;
+            
+        case 3: //juego
+            clearCanvas();
+            for (const element of elements) {
+                element.draw();
             }
-        }
-
-    } else {
-        clearCanvas();
-        for (const element of elements) {
-            element.draw();
-        }
-        timer.draw();
-        if (lastClickedFigure != null && mouseDown) {
-            lastClickedFigure.draw();
-        }
+            timer.draw();
+            if (lastClickedFigure != null && mouseDown) {
+                lastClickedFigure.draw();
+            }
+            
+        break;
+    
+        default:
+            break;
     }
 }
 
@@ -333,35 +349,76 @@ function findClickedFigure(x, y) {
     }
 }
 function onMouseDown(e) {
-    if (menu) {
-    } else {
-        if (lastClickedFigure == null) {
-            mouseDown = true;
-
-            let clickFig = findClickedFigure(
-                e.layerX - offsetLeft,
-                e.layerY - offsetTop
-            );
-
-            if (clickFig != null) {
-                lastClickedFigure = clickFig;
+    let mouseX = e.layerX - offsetLeft;
+    let mouseY = e.layerY - offsetTop;
+    switch (room) {
+        case 0: //start to play
+        break;
+    
+        case 1: //seleccion de personaje
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                        if (turno == 0) {
+                            player_selector_1.character = characters[j][i];
+                            turno++;
+                        } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
+                            player_selector_2.character = characters[j][i];
+                            turno = 0;
+                            room = 3;
+                            generarJuego(player_selector_1.character, player_selector_2.character);
+                        }
+                    }
+                }
             }
-            drawAll();
-        }
+        break;
+    
+        case 2: //seleccion de modo
+        break;
+    
+        case 3: //juego
+            if (lastClickedFigure == null) {
+                mouseDown = true;
 
+                let clickFig = findClickedFigure(
+                    mouseX,
+                    mouseY
+                );
+
+                if (clickFig != null) {
+                    lastClickedFigure = clickFig;
+                }
+                drawAll();
+            }
+    
+        break;
+        default:
+            break;
     }
 }
 
 function onMouseMove(e) {
-    if (menu) {
-        drawAll(e.layerX - offsetLeft, e.layerY - offsetTop);
-    } else {
-        if (mouseDown && lastClickedFigure != null) {
-            let posX = e.layerX - offsetLeft;
-            let posY = e.layerY - offsetTop;
-            lastClickedFigure.setPosition(posX, posY);
-            drawAll();
-        }
+    let mouseX = e.layerX - offsetLeft;
+    let mouseY = e.layerY - offsetTop;
+    switch (room) {
+        case 0: //start to play
+    
+        break;
+        case 1: //seleccion de personaje
+            drawAll(mouseX, mouseY);
+    
+            break;
+        case 2: //seleccion de modo
+    
+        break;
+        case 3: //juego
+            if (mouseDown && lastClickedFigure != null) {
+                lastClickedFigure.setPosition(mouseX, mouseY);
+                drawAll();
+            }
+        break;
+        default:
+            break;
     }
 }
 
@@ -411,6 +468,20 @@ function gravedad() {
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
+                let ganador = tablero.cargarEnMatriz(lastClickedFigure);
+
+                    if (ganador != null) {
+                        for (const ficha of arrFichas) {
+                            ficha.colocada();
+                        }
+                        console.log(ganador);
+                        tablero.resaltarFichas(ganador);
+                        timer.setPausa(true);
+                        clearInterval(setTimeOutTiempoDeJuego);
+                        setTimeout(() => {
+                            mostrarCartelGanador(ganador);
+                        }, 10);
+                    }
                 lastClickedFigure = null;
                 velocity = 0;
                 tablero.resetSuelo();
@@ -422,33 +493,24 @@ function gravedad() {
 }
 
 setInterval(function () {
-    if (!menu) {
+    if (room == 3) {
         gravedad();
     }
 }, 1000 / 60);
 
 function onMouseUp(e) {
-    if (menu) {
-        let mouseX = e.layerX - offsetLeft;
-        let mouseY = e.layerY - offsetTop;
+    switch (room) {
+        case 0: //start to play
+    
+        break;
 
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 3; j++) {
-                if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
-                    if (turno == 0) {
-                        player_selector_1.character = characters[j][i];
-                        turno++;
-                    } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
-                        player_selector_2.character = characters[j][i];
-                        turno = 0;
-                        menu = false;
-                        generarJuego(player_selector_1.character, player_selector_2.character);
-                    }
-                }
-            }
-        }
+        case 1: //seleccion de personaje
+        break;
 
-    } else {
+        case 2: //seleccion de modo
+
+        break;
+        case 3: //juego
         //fichaCayendo = true;
         if ((lastClickedFigure != null) && (mouseDown)) {
             mouseDown = false;
@@ -472,28 +534,7 @@ function onMouseUp(e) {
                         acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
                     }
                     tablero.calcularNuevoSuelo(columna);
-                    let ganador = tablero.cargarEnMatriz(lastClickedFigure);
-
-                    if (ganador != null) {
-                        for (const ficha of arrFichas) {
-                            ficha.colocada();
-                        }
-                        console.log(ganador);
-                        tablero.resaltarFichas(ganador);
-                        timer.setPausa(true);
-                        clearInterval(setTimeOutTiempoDeJuego);
-                        setTimeout(() => {
-                            mostrarCartelGanador(ganador);
-                        }, 1300);
-                        
-                        /*  Proyecto de tirar las fichas
-                        let arrFichasPerdedoras = tablero.getFichasPerdedoras();
-                        for (const ficha of arrFichasPerdedoras) {
-                            console.log(ficha);
-                            lastClickedFigure = ficha;
-                            tablero.caidaLibreDeFichas();
-                        } */
-                    }
+                    
                 } else {
                     lastClickedFigure.volverAPosicionInicial();
                     lastClickedFigure = null;
@@ -505,6 +546,10 @@ function onMouseUp(e) {
                 drawAll();
             }
         }
+
+        break;
+        default:
+            break;
     }
 }
 
@@ -568,7 +613,6 @@ function cambioTurno() {
 }
 
 setTimeout(function () {
-    //JUEGO
     drawAll();
 }, 100);
 
