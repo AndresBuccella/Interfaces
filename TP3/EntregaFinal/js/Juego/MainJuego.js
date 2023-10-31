@@ -71,15 +71,19 @@ for (let i = 0; i < 3; i++) {
 
 
 // Obtén el offset del canvas
+let pantalla = document.querySelector("#pantalla-juego")
 let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
 
 function handleResize() {
+    console.log("a");
     offsetLeft = canvas.offsetLeft;
     offsetTop = canvas.offsetTop;
+    console.log(offsetLeft + "/" + offsetTop);
 }
 
 window.addEventListener('resize', handleResize);
+document.querySelector("#menu-categorias").addEventListener("transitionend", handleResize);
 
 let elements = [];
 let arrTablero = [];
@@ -101,16 +105,7 @@ let setTimeOutTiempoDeJuego = null;
 
 //Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2) {
-    turno = 0
-    elements = [];
-    arrTablero = [];
-    arrDeco = [];
-    arrFichas = [];
-    arrFichaJugador1 = [];
-    arrFichaJugador2 = [];
-    lastClickedFigure = null;
-    mouseDown = false;
-    widthCanvas = canvas.clientWidth;
+    reiniciarVariablesJuego();
 
     elemTop = new PiezaDecorativa(
         context,
@@ -211,19 +206,12 @@ function generarJuego(sprJugador1, sprJugador2) {
     elements = elements.concat(arrFichaJugador2);
     elements = elements.concat(arrTablero);
     //Timer
-    if (timer != null) {
-        timer.borrarIntervalo();
-    }
-    const time = 5 * 60;
+    const time = 0.1 * 60;
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 80, context, customFont);
         elements.push(timer);
 
     });
-
-    if (setTimeOutTiempoDeJuego != null) {
-        clearInterval(setTimeOutTiempoDeJuego);
-    }
 
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
@@ -232,11 +220,41 @@ function generarJuego(sprJugador1, sprJugador2) {
             for (const ficha of arrFichas) {
                 ficha.colocada();
             }
+            drawAll();
             clearInterval(setTimeOutTiempoDeJuego);
         }
     }, 100)
     cambioTurno();
 
+}
+
+function reiniciarVariablesJuego() {
+    turno = 0
+    elements = [];
+    arrTablero = [];
+    arrDeco = [];
+    arrFichas = [];
+    arrFichaJugador1 = [];
+    arrFichaJugador2 = [];
+    lastClickedFigure = null;
+    mouseDown = false;
+    widthCanvas = canvas.clientWidth;
+
+    if (timer != null) { timer.borrarIntervalo(); }
+    timer = null;
+    if (setTimeOutTiempoDeJuego != null) { clearInterval(setTimeOutTiempoDeJuego); }
+    setTimeOutTiempoDeJuego = null;
+}
+
+//Volver Al menu
+
+function returnToMenu() {
+    reiniciarVariablesJuego();
+    player_selector_1.character = null;
+    player_selector_2.character = null;
+    menu = true;
+    turno = 0;
+    drawAll();
 }
 
 function drawAll(mouseX, mouseY) {
@@ -257,7 +275,7 @@ function drawAll(mouseX, mouseY) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
                             context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
-                        } else if (turno == 1 && characters[j][i]!=player_selector_1.character) {
+                        } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
                             context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
                         }
                         let posX = canvas.clientWidth / 2;
@@ -422,8 +440,8 @@ function onMouseUp(e) {
                         turno++;
                     } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
                         player_selector_2.character = characters[j][i];
-                        turno=0;
-                        menu=false;
+                        turno = 0;
+                        menu = false;
                         generarJuego(player_selector_1.character, player_selector_2.character);
                     }
                 }
