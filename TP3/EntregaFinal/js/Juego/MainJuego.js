@@ -460,8 +460,21 @@ function onMouseUp(e) {
                         for (const ficha of arrFichas) {
                             ficha.colocada();
                         }
+                        console.log(ganador);
                         tablero.resaltarFichas(ganador);
+                        timer.setPausa(true);
                         clearInterval(setTimeOutTiempoDeJuego);
+                        setTimeout(() => {
+                            mostrarCartelGanador(ganador);
+                        }, 1300);
+                        
+                        /*  Proyecto de tirar las fichas
+                        let arrFichasPerdedoras = tablero.getFichasPerdedoras();
+                        for (const ficha of arrFichasPerdedoras) {
+                            console.log(ficha);
+                            lastClickedFigure = ficha;
+                            tablero.caidaLibreDeFichas();
+                        } */
                     }
                 } else {
                     lastClickedFigure.volverAPosicionInicial();
@@ -477,6 +490,23 @@ function onMouseUp(e) {
     }
 }
 
+function mostrarCartelGanador(ganador) {
+    let fonsize = 90;
+    gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fonsize / 2, 0, (canvas.clientHeight / 2) + fonsize / 2);
+    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+    context.font = fonsize + 'px MKfont';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillStyle = gradient;
+
+    context.strokeStyle = 'black';
+    context.lineWidth = 3;
+    context.strokeText(`${ganador} wins`, canvas.clientWidth / 2, canvas.clientHeight / 2);
+
+    context.fillText(`${ganador} wins`, canvas.clientWidth / 2, canvas.clientHeight / 2);
+}
 function acomodarFichasNoColocadas(arr, posFicha) {
     for (let i = arr.length - 1; i >= 0; i--) {
         if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {

@@ -24,6 +24,7 @@ class Tablero {
 
         this.looserImg = new Image();
         this.looserImg.src = "../images/juegoMK/personajes/looser.png";
+        this.fichasPerdedoras = [];
 
         this.matriz = [[]];
         for (let fila = 0; fila < this.filas; fila++) {
@@ -66,7 +67,13 @@ class Tablero {
     getSuelo() {
         return this.suelo;
     }
-
+    getFichasPerdedoras(){
+        return this.fichasPerdedoras;
+    }
+/* Proyecto de tirar las fichas perdedoras
+    caidaLibreDeFichas(){
+        this.suelo = this.resetSuelo() * 2;
+    } */
     resetSuelo() {
         this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
     }
@@ -100,6 +107,10 @@ class Tablero {
                 if (this.matriz[[i, j]] != null && this.matriz[[i, j]].getNombre() != ganador) {
                     let element= this.matriz[[i, j]];
                     element.setImage(this.looserImg);
+                    /* this.suelo = this.resetSuelo() *2;
+                    gravedad(); */
+                    //Proyecto de tirar las fichas perdedoras
+                    //this.fichasPerdedoras.push(this.matriz[[i, j]]);
                 }
             }
         }
