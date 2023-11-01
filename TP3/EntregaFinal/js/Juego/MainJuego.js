@@ -617,3 +617,127 @@ setTimeout(function () {
 }, 100);
 
 
+
+/* let img = new Image();
+img.src = 'blood.png';
+img.addEventListener('load', startAnimation);
+let frame = 1;
+let totalFrame = 5;
+let ancho1 = 28;
+let ancho2 = 53;
+let ancho3 = 70;
+let ancho4 = 104.7; //no son pixeles
+let ancho5 = 138;
+
+let alto1 = 17;
+let alto2 = 29;
+let alto3 = 48;
+let alto4 = 66;
+let alto5 = 73;
+
+function startAnimation(e) {
+    context.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+
+     switch (frame) {
+        case 1:
+            context.drawImage(img, 0, 65, ancho1, alto1, ancho5 - ancho1 / 2, alto5-alto1, ancho1, alto1);
+            frame++;
+        break;
+        case 2:
+            context.drawImage(img, 30, 53, ancho2, alto2, ancho5 - ancho2/2, alto5-alto2, ancho2, alto2);  
+            frame++;  
+        break;
+        case 3:
+            context.drawImage(img, 85, 34, ancho3, alto3, ancho5-ancho3/2, alto5-alto3, ancho3, alto3);  
+            frame++;  
+        break;
+        case 4:
+            context.drawImage(img, 156, 18, ancho4, alto4, ancho5 - ancho4/2, alto5-alto4, ancho4, alto4);  
+            frame++;  
+        break;
+        case 5:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        
+        //hasta acá está hecho
+        
+        case 6:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 7:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 8:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 9:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 10:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 11:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 12:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 13:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 14:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 15:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 16:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 17:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 18:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 19:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 20:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 21:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        case 22:
+            context.drawImage(img, 261, 9, ancho5, alto5, ancho5/2, 0, ancho5, alto5);  
+            frame++;  
+        break;
+        
+    
+        default:
+            break;
+    }
+    if(frame == totalFrame) cancelAnimationFrame(startAnimation);
+
+    setTimeout(()=>{
+        requestAnimationFrame(startAnimation)
+        animation
+    },100)  */
