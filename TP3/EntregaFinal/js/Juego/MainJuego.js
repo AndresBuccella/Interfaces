@@ -296,12 +296,19 @@ function drawCharacterSelector(mouseX, mouseY) {
         }
     }
     //Dibuja cual ficha fue seleccionada
-    for (let i = 0; i < 4; i++) {
+    
+    /*for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
         }
+    }*/
+
+    if (player_selector_1.character != null) {
+        player_selector_1_anim.draw();
     }
+
 }
+
 function drawGame() {
     clearCanvas();
     for (const element of elements) {
@@ -313,24 +320,24 @@ function drawGame() {
     }
 }
 
-let prueba = new AnimatedPiece(context,'../images/juegoMK/animations/selector-jugador-1-anim.png',100,100,135,15);
+let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
+let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
 
 function drawAll(mouseX, mouseY) {
     switch (room) {
         case 0: //start
-        break;
-            
+            break;
+
         case 1: //seleccion
             drawCharacterSelector(mouseX, mouseY);
-            prueba.draw();
-        break;
+            break;
         case 2: //modo
-        break;
-            
+            break;
+
         case 3: //juego
             drawGame()
-        break;
-    
+            break;
+
         default:
             break;
     }
@@ -356,15 +363,18 @@ function onMouseDown(e) {
     let mouseY = e.layerY - offsetTop;
     switch (room) {
         case 0: //start to play
-        break;
-    
+            break;
+
         case 1: //seleccion de personaje
-            prueba.startAnimation();
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
                             player_selector_1.character = characters[j][i];
+                            player_selector_1_anim.setFrame(0);
+                            player_selector_1_anim.setPosX(116 + i * 144);
+                            player_selector_1_anim.setPosY(88 + 144 * j);
+                            player_selector_1_anim.startAnimation();
                             turno++;
                         } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
                             player_selector_2.character = characters[j][i];
@@ -375,11 +385,11 @@ function onMouseDown(e) {
                     }
                 }
             }
-        break;
-    
+            break;
+
         case 2: //seleccion de modo
-        break;
-    
+            break;
+
         case 3: //juego
             if (lastClickedFigure == null) {
                 mouseDown = true;
@@ -394,8 +404,8 @@ function onMouseDown(e) {
                 }
                 drawAll();
             }
-    
-        break;
+
+            break;
         default:
             break;
     }
@@ -406,21 +416,21 @@ function onMouseMove(e) {
     let mouseY = e.layerY - offsetTop;
     switch (room) {
         case 0: //start to play
-    
-        break;
+
+            break;
         case 1: //seleccion de personaje
             drawAll(mouseX, mouseY);
 
-        break;
+            break;
         case 2: //seleccion de modo
-    
-        break;
+
+            break;
         case 3: //juego
             if (mouseDown && lastClickedFigure != null) {
                 lastClickedFigure.setPosition(mouseX, mouseY);
                 drawAll();
             }
-        break;
+            break;
         default:
             break;
     }
@@ -474,18 +484,18 @@ function gravedad() {
                 );
                 let ganador = tablero.cargarEnMatriz(lastClickedFigure);
 
-                    if (ganador != null) {
-                        for (const ficha of arrFichas) {
-                            ficha.colocada();
-                        }
-                        console.log(ganador);
-                        tablero.resaltarFichas(ganador);
-                        timer.setPausa(true);
-                        clearInterval(setTimeOutTiempoDeJuego);
-                        setTimeout(() => {
-                            mostrarCartelGanador(ganador);
-                        }, 10);
+                if (ganador != null) {
+                    for (const ficha of arrFichas) {
+                        ficha.colocada();
                     }
+                    console.log(ganador);
+                    tablero.resaltarFichas(ganador);
+                    timer.setPausa(true);
+                    clearInterval(setTimeOutTiempoDeJuego);
+                    setTimeout(() => {
+                        mostrarCartelGanador(ganador);
+                    }, 10);
+                }
                 lastClickedFigure = null;
                 velocity = 0;
                 tablero.resetSuelo();
@@ -505,53 +515,53 @@ setInterval(function () {
 function onMouseUp(e) {
     switch (room) {
         case 0: //start to play
-    
-        break;
+
+            break;
 
         case 1: //seleccion de personaje
-        break;
+            break;
 
         case 2: //seleccion de modo
 
-        break;
+            break;
         case 3: //juego
-        //fichaCayendo = true;
-        if ((lastClickedFigure != null) && (mouseDown)) {
-            mouseDown = false;
-            //delimita la seccion en donde se puede tirar la ficha
-            if (
-                lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
-                lastClickedFigure.getPositionX() > anchoTheTower &&
-                lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
-            ) {
-                //Impide que se pueda tirar a los costados del tablero
+            //fichaCayendo = true;
+            if ((lastClickedFigure != null) && (mouseDown)) {
+                mouseDown = false;
+                //delimita la seccion en donde se puede tirar la ficha
+                if (
+                    lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
+                    lastClickedFigure.getPositionX() > anchoTheTower &&
+                    lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
+                ) {
+                    //Impide que se pueda tirar a los costados del tablero
 
-                let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
-                if (tablero.getFilaDisponible(columna) != -1) {
-                    correccionCaidaX();
+                    let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
+                    if (tablero.getFilaDisponible(columna) != -1) {
+                        correccionCaidaX();
 
-                    lastClickedFigure.colocada();
+                        lastClickedFigure.colocada();
 
-                    if ((turno % 2) == player1) {
-                        acomodarFichasNoColocadas(arrFichaJugador1, arrFichaJugador1.indexOf(lastClickedFigure));
+                        if ((turno % 2) == player1) {
+                            acomodarFichasNoColocadas(arrFichaJugador1, arrFichaJugador1.indexOf(lastClickedFigure));
+                        } else {
+                            acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
+                        }
+                        tablero.calcularNuevoSuelo(columna);
+
                     } else {
-                        acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
+                        lastClickedFigure.volverAPosicionInicial();
+                        lastClickedFigure = null;
+                        drawAll();
                     }
-                    tablero.calcularNuevoSuelo(columna);
-                    
                 } else {
                     lastClickedFigure.volverAPosicionInicial();
                     lastClickedFigure = null;
                     drawAll();
                 }
-            } else {
-                lastClickedFigure.volverAPosicionInicial();
-                lastClickedFigure = null;
-                drawAll();
             }
-        }
 
-        break;
+            break;
         default:
             break;
     }

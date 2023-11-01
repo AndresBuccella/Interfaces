@@ -39,8 +39,8 @@ class AnimatedPiece{
     startAnimation(){
         if (this.frame < this.totalFrame) {
             let timeOut = setTimeout(() => {
-                drawAll();
                 this.frame++;
+                drawAll();
                 this.startAnimation();
                 clearTimeout(timeOut);
             }, this.frameRate);
