@@ -2,29 +2,33 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d")
 
 let img = new Image();
-img.src = 'anim.png';
-img.addEventListener('load', draw);
+img.src = 'blood.png';
+let totalFrame;
+let frameWidth = 135;
 let frame = 0;
-let totalFrame = 14;
+img.addEventListener('load', () => {
+    totalFrame = img.width / frameWidth-1;
+    draw();
+});
 
 function draw() {
     context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
-    context.drawImage(img, 135 * frame, 0, 135, 135, 0, 0, 135, 135);
-    
+    context.drawImage(img, frameWidth * frame, 0, frameWidth, img.height, 0, 0, frameWidth, img.height);
+
     if (frame == totalFrame) {
         cancelAnimationFrame(draw);
-    }else{
+    } else {
         frame++;
     }
     let timeOut = setTimeout(() => {
         requestAnimationFrame(draw);
         clearTimeout(timeOut);
-    }, 20)
+    }, 80)
 }
 
 //mykreazion
-/* 
+/*
 let ancho1 = 28;
 let ancho2 = 53;
 let ancho3 = 70;
