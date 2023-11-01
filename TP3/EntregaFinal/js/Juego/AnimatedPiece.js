@@ -21,6 +21,12 @@ class AnimatedPiece{
     getPosY(){
         return this.posY;
     }
+    getFrameWidth(){
+        return this.frameWidth;
+    }
+    getFrameHight(){
+        return this.frameWidth;
+    }
     setPosX(posX){
         this.posX = posX;
     }

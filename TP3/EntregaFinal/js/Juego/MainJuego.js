@@ -277,6 +277,7 @@ function drawCharacterSelector(mouseX, mouseY) {
                     }
                     let posX = canvas.clientWidth / 2;
                     let posY = canvas.clientHeight - 36;
+                    //se podria modularizar
                     let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
                     gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
                     gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
@@ -318,6 +319,7 @@ function drawGame() {
     if (lastClickedFigure != null && mouseDown) {
         lastClickedFigure.draw();
     }
+    sangrado.draw();
 }
 
 let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
@@ -447,7 +449,7 @@ function correccionCaidaX() {
 }
 
 //Caida de la ficha
-
+let sangrado = new AnimatedPiece(context,'../images/juegoMK/animations/blood.png',-135,-135,135,200);
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
@@ -483,6 +485,14 @@ function gravedad() {
                     tablero.getSuelo()
                 );
                 let ganador = tablero.cargarEnMatriz(lastClickedFigure);
+
+                if(tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)){
+                    sangrado.setFrame(0);
+                    sangrado.setPosX(lastClickedFigure.getPositionX() - sangrado.getFrameWidth()/2);
+                    sangrado.setPosY(lastClickedFigure.getPositionY() - sangrado.getFrameHight()/2);
+                    sangrado.draw();
+                    sangrado.startAnimation();
+                }
 
                 if (ganador != null) {
                     for (const ficha of arrFichas) {
@@ -547,7 +557,12 @@ function onMouseUp(e) {
                         } else {
                             acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
                         }
+
                         tablero.calcularNuevoSuelo(columna);
+
+                        if(tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)){
+                            lastClickedFigure.setBounces(0);
+                        }
 
                     } else {
                         lastClickedFigure.volverAPosicionInicial();
