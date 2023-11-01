@@ -1,6 +1,7 @@
 class AnimatedPiece{
     
-    constructor(path, posX, posY, frameWidth, frameRate){
+    constructor(context, path, posX, posY, frameWidth, frameRate){
+        this.context = context;
         this.img = new Image();
         this.img.src = path;
         this.posX = posX;
@@ -10,8 +11,9 @@ class AnimatedPiece{
         this.frame = 0;
         this.frameRate = frameRate;
         this.img.addEventListener('load', () => {
-            totalFrame = img.width / frameWidth-1;
+            this.totalFrame = this.img.width / this.frameWidth-1;
         });
+        this.self = this;
     }
     getPosX(){
         return this.posX;
@@ -25,22 +27,23 @@ class AnimatedPiece{
     setPosY(posY){
         this.posY = posY;
     }
+    setFrame(nFrame){
+        this.frame = nFrame;
+    }
 
     draw() {
-        drawAll();
-
-        context.drawImage(img, frameWidth * frame, 0, frameWidth, img.height, 0, 0, frameWidth, img.height);
-
-        if (frame == totalFrame) {
-            cancelAnimationFrame(draw);
-            this.frame = 0;
-        } else {
-            frame++;
+        this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height, 
+                                this.getPosX(), this.getPosY(), this.frameWidth, this.img.height);
+    }
+    
+    startAnimation(){
+        if (this.frame < this.totalFrame) {
+            let timeOut = setTimeout(() => {
+                drawAll();
+                this.frame++;
+                this.startAnimation();
+                clearTimeout(timeOut);
+            }, this.frameRate);
         }
-
-        let timeOut = setTimeout(() => {
-            requestAnimationFrame(draw);
-            clearTimeout(timeOut);
-        }, this.frameRate)
     }
 }

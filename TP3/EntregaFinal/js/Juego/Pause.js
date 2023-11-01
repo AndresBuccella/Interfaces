@@ -1,4 +1,4 @@
-class Pause extends Pieza {
+class Pause{
 
     constructor(context, img, posX, posY, width, height) {
         this.context = context;
