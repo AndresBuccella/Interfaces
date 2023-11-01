@@ -1,6 +1,7 @@
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
+const titlePath = '../images/juegoMK/title.png'; 
 
 const imagenLateral = "../images/juegoMK/the-tower.png";
 const imagenTop = "../images/juegoMK/imagenTop.png";
@@ -28,8 +29,12 @@ const spriteHeightPinchos = 45;
 const player1 = 1;
 const player2 = 2;
 
+//Title page
+const titleImg = new Image();
+titleImg.src = titlePath;
+
 // Menu
-let room = 1;
+let room = 0;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -328,6 +333,7 @@ let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/anima
 function drawAll(mouseX, mouseY) {
     switch (room) {
         case 0: //start
+            context.drawImage(titleImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
             break;
 
         case 1: //seleccion
@@ -365,6 +371,7 @@ function onMouseDown(e) {
     let mouseY = e.layerY - offsetTop;
     switch (room) {
         case 0: //start to play
+            room = 1;
             break;
 
         case 1: //seleccion de personaje
@@ -418,7 +425,6 @@ function onMouseMove(e) {
     let mouseY = e.layerY - offsetTop;
     switch (room) {
         case 0: //start to play
-
             break;
         case 1: //seleccion de personaje
             drawAll(mouseX, mouseY);
