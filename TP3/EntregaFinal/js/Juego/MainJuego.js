@@ -1,7 +1,10 @@
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
-const titlePath = '../images/juegoMK/title.png'; 
+const titlePath = '../images/juegoMK/title.png';
+const modePath = '../images/juegoMK/mode-selection'
+const cuevaPath = '../images/juegoMK/cueva.png';
+const opcionesPath = '../images/juegoMK/menu-options.png'
 
 const imagenLateral = "../images/juegoMK/the-tower.png";
 const imagenTop = "../images/juegoMK/imagenTop.png";
@@ -32,6 +35,17 @@ const player2 = 2;
 //Title page
 const titleImg = new Image();
 titleImg.src = titlePath;
+
+//Mode selection page
+//Por alguna razón necesita el addEventListener y el resto no.
+const modeImg = new Image();
+modeImg.addEventListener('load', () => { modeImg.src = modePath; })
+
+//Mode config
+const imgCueva = new Image();
+imgCueva.src = cuevaPath;
+const imgOpciones = new Image();
+imgOpciones.src = opcionesPath;
 
 // Menu
 let room = 0;
@@ -302,7 +316,7 @@ function drawCharacterSelector(mouseX, mouseY) {
         }
     }
     //Dibuja cual ficha fue seleccionada
-    
+
     /*for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
@@ -329,7 +343,8 @@ function drawGame() {
 
 let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
 let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
-
+//let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
+let i = 0;
 function drawAll(mouseX, mouseY) {
     switch (room) {
         case 0: //start
@@ -340,6 +355,8 @@ function drawAll(mouseX, mouseY) {
             drawCharacterSelector(mouseX, mouseY);
             break;
         case 2: //modo
+            context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
+            context.drawImage(imgOpciones, 0, 0, canvas.clientWidth, canvas.clientHeight);
             break;
 
         case 3: //juego
@@ -388,7 +405,7 @@ function onMouseDown(e) {
                         } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
                             player_selector_2.character = characters[j][i];
                             turno = 0;
-                            room = 3;
+                            room = 2;
                             generarJuego(player_selector_1.character, player_selector_2.character);
                         }
                     }
@@ -397,6 +414,7 @@ function onMouseDown(e) {
             break;
 
         case 2: //seleccion de modo
+            room = 3;
             break;
 
         case 3: //juego
@@ -455,7 +473,7 @@ function correccionCaidaX() {
 }
 
 //Caida de la ficha
-let sangrado = new AnimatedPiece(context,'../images/juegoMK/animations/blood.png',-135,-135,135,200);
+let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 200);
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
@@ -492,10 +510,10 @@ function gravedad() {
                 );
                 let ganador = tablero.cargarEnMatriz(lastClickedFigure);
 
-                if(tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)){
+                if (tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)) {
                     sangrado.setFrame(0);
-                    sangrado.setPosX(lastClickedFigure.getPositionX() - sangrado.getFrameWidth()/2);
-                    sangrado.setPosY(lastClickedFigure.getPositionY() - sangrado.getFrameHight()/2);
+                    sangrado.setPosX(lastClickedFigure.getPositionX() - sangrado.getFrameWidth() / 2);
+                    sangrado.setPosY(lastClickedFigure.getPositionY() - sangrado.getFrameHight() / 2);
                     sangrado.draw();
                     sangrado.startAnimation();
                 }
@@ -566,7 +584,7 @@ function onMouseUp(e) {
 
                         tablero.calcularNuevoSuelo(columna);
 
-                        if(tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)){
+                        if (tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)) {
                             lastClickedFigure.setBounces(0);
                         }
 
