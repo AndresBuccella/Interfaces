@@ -13,7 +13,7 @@ const imagenPinchos = "../images/juegoMK/pinchos.png";
 const pathCentral = "../images/juegoMK/casilla.png";
 const pathCentralInside = "../images/juegoMK/casilla-interior.png";
 const pathCentralBackground = "../images/juegoMK/casilla-relleno.png";
-const xEnLinea = 4;
+//const xEnLinea = 4;
 
 //Fonts
 let fontFile = "../css/fonts/mk2.ttf";
@@ -121,7 +121,7 @@ let turno = 0;
 let setTimeOutTiempoDeJuego = null;
 
 //Genera el juego luego de la seleccion de personaje
-function generarJuego(sprJugador1, sprJugador2) {
+function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     reiniciarVariablesJuego();
 
     elemTop = new PiezaDecorativa(
@@ -406,7 +406,8 @@ function onMouseDown(e) {
                             player_selector_2.character = characters[j][i];
                             turno = 0;
                             room = 2;
-                            generarJuego(player_selector_1.character, player_selector_2.character);
+                            //generarJuego(player_selector_1.character, player_selector_2.character);
+                            drawAll()
                         }
                     }
                 }
@@ -414,7 +415,13 @@ function onMouseDown(e) {
             break;
 
         case 2: //seleccion de modo
-            room = 3;
+            for (let i = 0; i < 4; i++) {
+                if ((mouseX > 303 && mouseX < 496) && (mouseY > 55 + 54 * i && mouseY < 89 + 54 * i)) {
+                    room = 3;
+                    generarJuego(player_selector_1.character, player_selector_2.character, i+4);
+                    //drawAll();
+                }
+            }
             break;
 
         case 3: //juego
@@ -449,7 +456,7 @@ function onMouseMove(e) {
 
             break;
         case 2: //seleccion de modo
-
+            //drawAll(mouseX, mouseY);
             break;
         case 3: //juego
             if (mouseDown && lastClickedFigure != null) {
@@ -473,7 +480,7 @@ function correccionCaidaX() {
 }
 
 //Caida de la ficha
-let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 200);
+let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 70);
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
@@ -500,7 +507,6 @@ function gravedad() {
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
-                //aca podria ir la animacion de sangrado
             } else {
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
                 lastClickedFigure.setVelocity(0);
