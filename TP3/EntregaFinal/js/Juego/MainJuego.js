@@ -297,32 +297,30 @@ function drawCharacterSelector(mouseX, mouseY) {
     context.drawImage(player_select, 0, 0);
 
     //Dibuja cual personaje va a ser seleccionado y su nombre
-    if (mouseX > 116 && mouseX < 682 && mouseY > 88 && mouseY < 510) {
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 3; j++) {
-                if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
-                    if (turno == 0) {
-                        player_selector_1_anim.setPosX(116 + i * 144);
-                        player_selector_1_anim.setPosY(88 + 144 * j);
-                    } else if (turno == 1 && characters[j][i] != player_selector_1) {
-                        player_selector_2_anim.setPosX(116 + i * 144);
-                        player_selector_2_anim.setPosY(88 + 144 * j);
-                    }
-                    let posX = canvas.clientWidth / 2;
-                    let posY = canvas.clientHeight - 36;
-                    //se podria modularizar
-                    drawText(context, characters[j][i].alt, 36, posX, posY)
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                if (turno == 0) {
+                    player_selector_1_anim.setPosX(116 + i * 144);
+                    player_selector_1_anim.setPosY(88 + 144 * j);
+                } else if (turno == 1 && characters[j][i] != player_selector_1) {
+                    player_selector_2_anim.setPosX(116 + i * 144);
+                    player_selector_2_anim.setPosY(88 + 144 * j);
+                    player_selector_2_anim.draw();
+                }
+                player_selector_1_anim.draw();
+                let posX = canvas.clientWidth / 2;
+                let posY = canvas.clientHeight - 36;
+                //se podria modularizar
+                drawText(context, characters[j][i].alt, 36, posX, posY)
+            } else {
+                if (turno > 0) {
+                    player_selector_1_anim.draw();
+                }
+                if (turno > 1) {
+                    player_selector_2_anim.draw();
                 }
             }
-        }
-        player_selector_1_anim.draw();
-        if (turno != 0) { player_selector_2_anim.draw(); }
-    } else {
-        if (turno > 0) {
-            player_selector_1_anim.draw();
-        }
-        if (turno > 1) {
-            player_selector_2_anim.draw();
         }
     }
 }
