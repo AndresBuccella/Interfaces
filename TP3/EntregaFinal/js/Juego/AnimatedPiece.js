@@ -1,6 +1,6 @@
-class AnimatedPiece{
-    
-    constructor(context, path, posX, posY, frameWidth, frameRate){
+class AnimatedPiece {
+
+    constructor(context, path, posX, posY, frameWidth, duration, loop) {
         this.context = context;
         this.img = new Image();
         this.img.src = path;
@@ -9,30 +9,32 @@ class AnimatedPiece{
         this.totalFrame;
         this.frameWidth = frameWidth;
         this.frame = 0;
-        this.frameRate = frameRate;
+        this.duration = duration;
+        this.loop = loop;
         this.img.addEventListener('load', () => {
-            this.totalFrame = this.img.width / this.frameWidth-1;
+            this.totalFrame = this.img.width / this.frameWidth - 1;
+            this.duration = Math.floor(this.duration / this.totalFrame);
         });
     }
-    getPosX(){
+    getPosX() {
         return this.posX;
     }
-    getPosY(){
+    getPosY() {
         return this.posY;
     }
-    getFrameWidth(){
+    getFrameWidth() {
         return this.frameWidth;
     }
-    getFrameHight(){
+    getFrameHight() {
         return this.frameWidth;
     }
-    setPosX(posX){
+    setPosX(posX) {
         this.posX = posX;
     }
-    setPosY(posY){
+    setPosY(posY) {
         this.posY = posY;
     }
-    setFrame(nFrame){
+    setFrame(nFrame) {
         this.frame = nFrame;
     }
     /* infiniteAnimation(){
@@ -41,18 +43,24 @@ class AnimatedPiece{
     } */
 
     draw() {
-        this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height, 
-                                this.getPosX(), this.getPosY(), this.frameWidth, this.img.height);
+        this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height,
+            this.getPosX(), this.getPosY(), this.frameWidth, this.img.height);
     }
-    
-    startAnimation(){
+
+    startAnimation() {
         if (this.frame < this.totalFrame) {
             let timeOut = setTimeout(() => {
                 this.frame++;
-                drawAll();
+                drawAll(mouseX, mouseY);
                 this.startAnimation();
                 clearTimeout(timeOut);
-            }, this.frameRate);
+            }, this.duration);
+        } else if (this.loop > -1) {
+            let timeOut = setTimeout(() => {
+                this.setFrame(0);
+                this.startAnimation();
+                clearTimeout(timeOut);
+            }, this.loop);
         }
     }
 }

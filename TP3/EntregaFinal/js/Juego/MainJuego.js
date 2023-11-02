@@ -53,13 +53,8 @@ let room = 0;
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
 
-const player_selector_1 = new Image();
-player_selector_1.src = "../images/juegoMK/selector-jugador-1.png";
-player_selector_1.character = null;
-
-const player_selector_2 = new Image();
-player_selector_2.src = "../images/juegoMK/selector-jugador-2.png";
-player_selector_2.character = null;
+player_selector_1 = null;
+player_selector_2 = null;
 
 const charactersName = [
     "Liu Kang",
@@ -267,11 +262,28 @@ function reiniciarVariablesJuego() {
 
 function returnToMenu() {
     reiniciarVariablesJuego();
-    player_selector_1.character = null;
-    player_selector_2.character = null;
+    player_selector_1 = null;
+    player_selector_2 = null;
     room = 1;
     turno = 0;
     drawAll();
+}
+
+function drawText(context, text, fontSize, posX, posY) {
+    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
+    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
+
+    context.font = fontSize + 'px MKfont';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillStyle = gradient;
+
+    context.strokeStyle = 'black';
+    context.lineWidth = 4;
+    context.strokeText(text, posX, posY);
+
+    context.fillText(text, posX, posY);
 }
 
 function drawCharacterSelector(mouseX, mouseY) {
@@ -290,43 +302,29 @@ function drawCharacterSelector(mouseX, mouseY) {
             for (let j = 0; j < 3; j++) {
                 if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                     if (turno == 0) {
-                        context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j);
-                    } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
-                        context.drawImage(player_selector_2, 116 + i * 144, 88 + 144 * j);
+                        player_selector_1_anim.setPosX(116 + i * 144);
+                        player_selector_1_anim.setPosY(88 + 144 * j);
+                    } else if (turno == 1 && characters[j][i] != player_selector_1) {
+                        player_selector_2_anim.setPosX(116 + i * 144);
+                        player_selector_2_anim.setPosY(88 + 144 * j);
                     }
                     let posX = canvas.clientWidth / 2;
                     let posY = canvas.clientHeight - 36;
                     //se podria modularizar
-                    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
-                    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-                    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
-
-                    context.font = 36 + 'px MKfont';
-                    context.textAlign = 'center';
-                    context.textBaseline = 'middle';
-                    context.fillStyle = gradient;
-
-                    context.strokeStyle = 'black';
-                    context.lineWidth = 4;
-                    context.strokeText(characters[j][i].alt, posX, posY);
-
-                    context.fillText(characters[j][i].alt, posX, posY);
+                    drawText(context, characters[j][i].alt, 36, posX, posY)
                 }
             }
         }
-    }
-    //Dibuja cual ficha fue seleccionada
-
-    /*for (let i = 0; i < 4; i++) {
-        for (let j = 0; j < 3; j++) {
-            if (player_selector_1.character == characters[j][i]) { context.drawImage(player_selector_1, 116 + i * 144, 88 + 144 * j); }
-        }
-    }*/
-
-    if (player_selector_1.character != null) {
         player_selector_1_anim.draw();
+        if (turno != 0) { player_selector_2_anim.draw(); }
+    } else {
+        if (turno > 0) {
+            player_selector_1_anim.draw();
+        }
+        if (turno > 1) {
+            player_selector_2_anim.draw();
+        }
     }
-
 }
 
 function drawGame() {
@@ -341,10 +339,11 @@ function drawGame() {
     sangrado.draw();
 }
 
-let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
-let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', 100, 100, 135, 15);
+let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
+let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
 //let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
-let i = 0;
+let i = 0; //??????????????????
+
 function drawAll(mouseX, mouseY) {
     switch (room) {
         case 0: //start
@@ -389,6 +388,7 @@ function onMouseDown(e) {
     switch (room) {
         case 0: //start to play
             room = 1;
+            drawAll();
             break;
 
         case 1: //seleccion de personaje
@@ -396,18 +396,24 @@ function onMouseDown(e) {
                 for (let j = 0; j < 3; j++) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         if (turno == 0) {
-                            player_selector_1.character = characters[j][i];
+                            player_selector_1 = characters[j][i];
                             player_selector_1_anim.setFrame(0);
                             player_selector_1_anim.setPosX(116 + i * 144);
                             player_selector_1_anim.setPosY(88 + 144 * j);
                             player_selector_1_anim.startAnimation();
                             turno++;
-                        } else if (turno == 1 && characters[j][i] != player_selector_1.character) {
-                            player_selector_2.character = characters[j][i];
-                            turno = 0;
-                            room = 2;
-                            //generarJuego(player_selector_1.character, player_selector_2.character);
-                            drawAll()
+                        } else if (turno == 1 && characters[j][i] != player_selector_1) {
+                            player_selector_2 = characters[j][i];
+                            player_selector_2_anim.setFrame(0);
+                            player_selector_2_anim.setPosX(116 + i * 144);
+                            player_selector_2_anim.setPosY(88 + 144 * j);
+                            player_selector_2_anim.startAnimation();
+                            turno++;
+                            setTimeout(() => {
+                                turno = 0;
+                                room = 2;
+                                drawAll()
+                            }, 800);
                         }
                     }
                 }
@@ -418,7 +424,7 @@ function onMouseDown(e) {
             for (let i = 0; i < 4; i++) {
                 if ((mouseX > 303 && mouseX < 496) && (mouseY > 55 + 54 * i && mouseY < 89 + 54 * i)) {
                     room = 3;
-                    generarJuego(player_selector_1.character, player_selector_2.character, i+4);
+                    generarJuego(player_selector_1, player_selector_2, i + 4);
                     //drawAll();
                 }
             }
@@ -444,10 +450,11 @@ function onMouseDown(e) {
             break;
     }
 }
-
+let mouseX;
+let mouseY;
 function onMouseMove(e) {
-    let mouseX = e.layerX - offsetLeft;
-    let mouseY = e.layerY - offsetTop;
+    mouseX = e.layerX - offsetLeft;
+    mouseY = e.layerY - offsetTop;
     switch (room) {
         case 0: //start to play
             break;
@@ -480,7 +487,7 @@ function correccionCaidaX() {
 }
 
 //Caida de la ficha
-let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 70);
+let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 200, -1);
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
