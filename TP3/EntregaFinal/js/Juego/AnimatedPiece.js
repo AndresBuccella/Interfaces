@@ -37,11 +37,7 @@ class AnimatedPiece {
     setFrame(nFrame) {
         this.frame = nFrame;
     }
-    /* infiniteAnimation(){
-        this.startAnimation();
-        this.frame = 0;
-    } */
-
+    
     draw() {
         this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height,
             this.getPosX(), this.getPosY(), this.frameWidth, this.img.height);

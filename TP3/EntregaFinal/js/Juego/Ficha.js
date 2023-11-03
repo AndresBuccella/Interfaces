@@ -1,7 +1,7 @@
 
 class Ficha{
 
-    constructor(context, img, player, posX, posY, radius, bounces) {
+    constructor(context, img, player, posX, posY, radius, bounces, sndSkewered, sndDefenestrate) {
         this.context = context;
         this.posX = posX;
         this.posY = posY;
@@ -16,6 +16,8 @@ class Ficha{
         this.estaColocada = false;
         this.maxbounces = bounces;
         this.bounces = bounces;
+        this.sndSkewered = sndSkewered;
+        this.sndDefenestrate = sndDefenestrate;
         setInterval(() => {
             if (this.posIniX != this.posIniXto && !this.getFiguraIsColocada()) {
                 let orientacion = Math.sign(this.getPosIniXto() - this.getPosIniX());
@@ -102,6 +104,12 @@ class Ficha{
     colocada(bool) {
         this.estaColocada = bool;
         this.setSeleccionable(!bool);
+    }
+    playSkewered(){
+        this.sndSkewered.play();
+    }
+    playDefenestrate(){
+        this.sndDefenestrate.play();
     }
 
     //DEMAS METODOS    
