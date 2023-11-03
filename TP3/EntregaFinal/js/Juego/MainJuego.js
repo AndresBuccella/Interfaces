@@ -2,15 +2,56 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
 //Sounds
-const skeweredMalePath = '../sounds/skewered-male-2.mp3';
+const backgroundMusicRoom0Path = '../sounds/background-music-room-0.mp3';
+const sndBackgroundMusicRoom0 = new Audio(backgroundMusicRoom0Path);
+loopSoundOn(sndBackgroundMusicRoom0);
+
+const backgroundMusicRoom1Path = '../sounds/background-music-room-1.mp3';
+const sndBackgroundMusicRoom1 = new Audio(backgroundMusicRoom1Path);
+const backgroundMusicRoom2Path = '../sounds/background-music-room-2.mp3';
+const sndBackgroundMusicRoom2 = new Audio(backgroundMusicRoom2Path);
+const backgroundMusicRoom3Path = '../sounds/background-music-room-3.mp3';
+const sndBackgroundMusicRoom3 = new Audio(backgroundMusicRoom3Path);
+
+function loopSoundOn(snd) {
+    snd.play();
+    snd.addEventListener('ended', ()=>{
+        snd.currentTime = 0;
+        snd.play();
+    })
+}
+function loopSoundOff(snd) {
+    snd.pause();
+    snd.removeEventListener('ended',()=>{
+        snd.currentTime = 0;
+        snd.play();});
+}
+
+const skeweredMalePath = '../sounds/skewered-male.mp3';
 const sndSkeweredMale = new Audio(skeweredMalePath);
 const defenestrateMalePath = '../sounds/defenestrate-male.mp3';
 const sndDefenestrateMale = new Audio(defenestrateMalePath);
 
-const skeweredFemalePath = '../sounds/skewered-female-2.mp3';
+const skeweredFemalePath = '../sounds/skewered-female.mp3';
 const sndSkeweredFemale = new Audio(skeweredFemalePath);
 const defenestrateFemalePath = '../sounds/defenestrate-female.mp3';
 const sndDefenestrateFemale = new Audio(defenestrateFemalePath);
+
+const winSndPath = '../sounds/win.mp3';
+const sndWin = new Audio(winSndPath);
+const selectSndPath1 = '../sounds/select-player.mp3';
+//no me gusta y hay que sincronizarlo
+const sndSelectPlayer1 = new Audio(selectSndPath1);
+const selectSndPath2 = '../sounds/select-player.mp3';
+//no me gusta y hay que sincronizarlo
+const sndSelectPlayer2 = new Audio(selectSndPath2);
+//el 2 suena más a espada o pincho, peeero no sé, me gusta más el otro
+const skeweredPath = '../sounds/skewered-2.mp3'
+const sndSkewered = new Audio(skeweredPath);
+const openBattlePath = '../sounds/open-battle.mp3'
+const sndOpenBattle = new Audio(openBattlePath);
+const bounceOnTopPath = '../sounds/bounce-on-top.mp3';
+const sndBounceOnTop = new Audio(bounceOnTopPath);
 
 //Images
 const titlePath = '../images/juegoMK/title.png';
@@ -18,6 +59,7 @@ const modePath = '../images/juegoMK/mode-selection';
 const cuevaPath = '../images/juegoMK/cueva.png';
 const opcionesPath = '../images/juegoMK/menu-options.png';
 const pausePath = '../images/juegoMK/menu-pause.png';
+const drawPath = '../images/juegoMK/menu-draw.png';
 
 const imagenLateral = "../images/juegoMK/the-tower.png";
 const imagenTop = "../images/juegoMK/imagenTop.png";
@@ -61,11 +103,14 @@ const imgOpciones = new Image();
 imgOpciones.src = opcionesPath;
 
 // Menu
-let room = 1;
+let room = 0;
 
 //Game
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
+const drawMenuImg = new Image();
+drawMenuImg.src = drawPath;
+
 
 const player_select = new Image();
 player_select.src = player_select_path;
@@ -136,6 +181,7 @@ let turno = 0;
 let setTimeOutTiempoDeJuego = null;
 let xEnLinea = 0;
 let ganador = null;
+let draw = false;
 
 let mouseX; //por que son globales?
 let mouseY;
@@ -250,7 +296,8 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     elements = elements.concat(arrFichaJugador2);
     elements = elements.concat(arrTablero);
     //Timer
-    const time = 5 * 60; //el primer valor representa los minutos
+    //const time = 5 * 60; //el primer valor representa los minutos
+    const time = 200; //el primer valor representa los minutos
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
         elements.push(timer);
@@ -268,6 +315,9 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
         }
     }, 100)
     resaltarFichasEnJuego();
+    loopSoundOff(sndBackgroundMusicRoom2);
+    sndOpenBattle.play();
+    loopSoundOn(sndBackgroundMusicRoom3);
 }
 
 function assignVoice(name){
@@ -297,6 +347,7 @@ function reiniciarVariablesJuego() {
     mouseDown = false;
     widthCanvas = canvas.clientWidth;
     inPause = false;
+    draw = false;
 
     player_selector_1_anim.setFrame(0);
     player_selector_2_anim.setFrame(0);
@@ -397,6 +448,9 @@ function drawPause() {
     context.drawImage(pauseMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     drawText('Pause', 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
 }
+function drawDraw() {
+    console.log("1");
+}
 let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
 let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
 //let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
@@ -453,6 +507,8 @@ function onMouseDown(e) {
         case 0: //start to play
             room = 1;
             drawAll();
+            loopSoundOff(sndBackgroundMusicRoom0)
+            loopSoundOn(sndBackgroundMusicRoom1)
             break;
 
         case 1: //seleccion de personaje
@@ -467,6 +523,7 @@ function onMouseDown(e) {
                             player_selector_1_anim.setPosX(116 + i * 144);
                             player_selector_1_anim.setPosY(88 + 144 * j);
                             player_selector_1_anim.startAnimation();
+                            sndSelectPlayer1.play();
                             turno++;
                         } else if (((turno % 2) + 1) == player2 && characters[j][i] != player_selector_1) {
                             player_selector_2 = characters[j][i];
@@ -474,15 +531,21 @@ function onMouseDown(e) {
                             player_selector_2_anim.setPosX(116 + i * 144);
                             player_selector_2_anim.setPosY(88 + 144 * j);
                             player_selector_2_anim.startAnimation();
+                            sndSelectPlayer2.play();
+
                             turno++;
+                            loopSoundOff(sndBackgroundMusicRoom1);
+                            loopSoundOn(sndBackgroundMusicRoom2);
                             setTimeout(() => {
                                 //turno = 0;
                                 room = 2;
                                 drawAll()
                             }, 800);
                         }
+
                     }
                 }
+            }if (player_selector_1 != null && player_selector_2 != null) {
             }
             break;
 
@@ -568,7 +631,6 @@ function gravedad() {
             lastClickedFigure.getPositionX(),
             lastClickedFigure.getPositionY() + velocity
         );
-
         if (lastClickedFigure.getPositionY() > tablero.getSuelo() - velocity) {
             if (
                 lastClickedFigure.getBounces() > 0 &&
@@ -580,6 +642,9 @@ function gravedad() {
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
+                //Va en otro lugar para que se ejecute siempre que golpea la ficha?
+                //Está raro. A veces se ejecuta 2 veces y otras una sola
+                sndBounceOnTop.play();
             } else {
                 clearInterval(intervalGravity);
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
@@ -596,6 +661,7 @@ function gravedad() {
                     sangrado.setPosY(lastClickedFigure.getPositionY() - sangrado.getFrameHight() / 2);
                     sangrado.draw();
                     lastClickedFigure.playSkewered();
+                    sndSkewered.play();
                     sangrado.startAnimation();
                 }
                 
@@ -603,6 +669,7 @@ function gravedad() {
                     for (const ficha of arrFichas) {
                         ficha.colocada(true);
                     }
+                    sndWin.play();
                     tablero.resaltarFichas(ganador);
                     timer.setPausa(true);
                     clearInterval(setTimeOutTiempoDeJuego);
@@ -682,13 +749,14 @@ function onMouseUp(e) {
                 }
             } else {
                 mouseDown = false;
-                if (ganador == null) {
+                if (ganador == null && !draw) {
                     if (!inPause) {
                         if ((mouseX > (canvas.clientWidth - (radiusPause * 2)) && mouseX < canvas.clientWidth) &&
                         //en Y se puede sumar o restar el offset que no le importa mucho
                             (mouseY > 0 && mouseY < radiusPause * 2)) {
                             inPause = true;
                             timer.setPausa(true);
+                            loopSoundOff(sndBackgroundMusicRoom3);
                             for (let i = 0; i < arrFichas.length; i++) {
                                 arrFichas[i].setSeleccionable(false);
                             }
@@ -703,6 +771,7 @@ function onMouseUp(e) {
                                         resaltarFichasEnJuego();
                                         inPause = false;
                                         timer.setPausa(false);
+                                        loopSoundOn(sndBackgroundMusicRoom3);
                                         break;
 
                                     case 1:
@@ -711,6 +780,11 @@ function onMouseUp(e) {
 
                                     case 2:
                                         returnToMenu();
+                                        sndBackgroundMusicRoom1.play()
+                                        sndBackgroundMusicRoom1.addEventListener('ended', ()=>{
+                                            sndBackgroundMusicRoom1.currentTime = 0;
+                                            sndBackgroundMusicRoom1.play();
+                                        })
                                         break;
 
                                     default:
@@ -719,8 +793,27 @@ function onMouseUp(e) {
                             }
 
                         }
-                        drawAll();
+                        //drawAll();
                     }
+                }else if(draw){
+                    for (let i = 0; i < 3; i++) {
+                        if ((mouseX > 243 && mouseX < 556) &&
+                        (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
+                            switch (i) {
+                                case 0:
+                                    generarJuego(player_selector_1, player_selector_2, xEnLinea);
+                                    break;
+
+                                case 1:
+                                    returnToMenu();
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                    }
+                    drawAll();
                 }
             }
 

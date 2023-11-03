@@ -16,6 +16,7 @@ class Timer {
                 drawAll();
             } else if (timer.getTime() <= 0) {
                 this.borrarIntervalo();
+                draw = true; //empate
             }
         }, 1000);
     }
@@ -60,6 +61,7 @@ class Timer {
         
         if (this.getTime() <= 0) {
             drawText('DRAW', this.fontSizeDraw, canvas.clientWidth / 2, canvas.clientHeight / 3);
+            context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
         }
     }
 }
