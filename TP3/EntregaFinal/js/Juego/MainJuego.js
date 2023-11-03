@@ -2,9 +2,10 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
 const titlePath = '../images/juegoMK/title.png';
-const modePath = '../images/juegoMK/mode-selection'
+const modePath = '../images/juegoMK/mode-selection';
 const cuevaPath = '../images/juegoMK/cueva.png';
-const opcionesPath = '../images/juegoMK/menu-options.png'
+const opcionesPath = '../images/juegoMK/menu-options.png';
+const pausePath = '../images/juegoMK/menu-pause.png';
 
 const imagenLateral = "../images/juegoMK/the-tower.png";
 const imagenTop = "../images/juegoMK/imagenTop.png";
@@ -48,7 +49,11 @@ const imgOpciones = new Image();
 imgOpciones.src = opcionesPath;
 
 // Menu
-let room = 0;
+let room = 1;
+
+//Game
+const pauseMenuImg = new Image();
+pauseMenuImg.src = pausePath;
 
 const player_select = new Image();
 player_select.src = "../images/juegoMK/seleccion-jugador.png";
@@ -112,8 +117,13 @@ let lateralDerecho;
 let tablero;
 let pinchos;
 let timer;
+let pause;
+let radiusPause = 12;
+let inPause = false;
 let turno = 0;
 let setTimeOutTiempoDeJuego = null;
+let xEnLinea = 0;
+let ganador = null;
 
 //Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
@@ -225,12 +235,12 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
 
     });
 
+    pause = new Pause(context, canvas.clientWidth - radiusPause, radiusPause, radiusPause);
+
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
-
-            console.log("Se acabo el tiempo");
             for (const ficha of arrFichas) {
-                ficha.colocada();
+                ficha.colocada(true);
             }
             drawAll();
             clearInterval(setTimeOutTiempoDeJuego);
@@ -239,6 +249,10 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     cambioTurno();
 
 }
+
+//BORRAR
+//generarJuego(characters[1][2], characters[2][1], 4)
+//-----------------
 
 function reiniciarVariablesJuego() {
     turno = 0
@@ -265,12 +279,11 @@ function returnToMenu() {
     player_selector_1 = null;
     player_selector_2 = null;
     room = 1;
-    turno = 0;
     drawAll();
 }
 
-function drawText(context, text, fontSize, posX, posY) {
-    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);
+function drawText(text, fontSize, posX, posY) {
+    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);//el 36 sería el fontSize?
     gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
     gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
 
@@ -300,6 +313,7 @@ function drawCharacterSelector(mouseX, mouseY) {
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                //((turno % 2) + 1) == playerX
                 if (turno == 0) {
                     player_selector_1_anim.setPosX(116 + i * 144);
                     player_selector_1_anim.setPosY(88 + 144 * j);
@@ -312,8 +326,9 @@ function drawCharacterSelector(mouseX, mouseY) {
                 let posX = canvas.clientWidth / 2;
                 let posY = canvas.clientHeight - 36;
                 //se podria modularizar
-                drawText(context, characters[j][i].alt, 36, posX, posY)
+                drawText(characters[j][i].alt, 36, posX, posY)
             } else {
+                //((turno % 2) + 1) == playerX
                 if (turno > 0) {
                     player_selector_1_anim.draw();
                 }
@@ -334,14 +349,23 @@ function drawGame() {
     if (lastClickedFigure != null && mouseDown) {
         lastClickedFigure.draw();
     }
+    pause.draw();
     sangrado.draw();
 }
+function drawPause() {
+    context.beginPath();
+    context.fillStyle = 'rgba(0,0,0,0.2)';
+    context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    context.fill();
+    context.closePath();
 
+    context.drawImage(pauseMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    drawText('Pause', 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
+}
 let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
 let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
 //let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
 
-let i = 0; //??????????????????
 
 function drawAll(mouseX, mouseY) {
     switch (room) {
@@ -358,7 +382,13 @@ function drawAll(mouseX, mouseY) {
             break;
 
         case 3: //juego
-            drawGame()
+            drawGame();
+            if (inPause) {
+                drawPause();
+            }
+            if (ganador != null) {
+                drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3)
+            }
             break;
 
         default:
@@ -394,6 +424,7 @@ function onMouseDown(e) {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                        //((turno % 2) + 1) == playerX
                         if (turno == 0) {
                             player_selector_1 = characters[j][i];
                             player_selector_1_anim.setFrame(0);
@@ -423,7 +454,8 @@ function onMouseDown(e) {
             for (let i = 0; i < 4; i++) {
                 if ((mouseX > 303 && mouseX < 496) && (mouseY > 55 + 54 * i && mouseY < 89 + 54 * i)) {
                     room = 3;
-                    generarJuego(player_selector_1, player_selector_2, i + 4);
+                    xEnLinea = i + 4;
+                    generarJuego(player_selector_1, player_selector_2, xEnLinea);
                     //drawAll();
                 }
             }
@@ -449,7 +481,7 @@ function onMouseDown(e) {
             break;
     }
 }
-let mouseX;
+let mouseX; //por que son globales?
 let mouseY;
 function onMouseMove(e) {
     mouseX = e.layerX - offsetLeft;
@@ -514,13 +546,14 @@ function gravedad() {
                     tablero.getSuelo()
                 );
             } else {
+                clearInterval(intervalGravity);
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
                 lastClickedFigure.setVelocity(0);
                 lastClickedFigure.setPosition(
                     lastClickedFigure.getPositionX(),
                     tablero.getSuelo()
                 );
-                let ganador = tablero.cargarEnMatriz(lastClickedFigure);
+                ganador = tablero.cargarEnMatriz(lastClickedFigure);
 
                 if (tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)) {
                     sangrado.setFrame(0);
@@ -532,15 +565,11 @@ function gravedad() {
 
                 if (ganador != null) {
                     for (const ficha of arrFichas) {
-                        ficha.colocada();
+                        ficha.colocada(true);
                     }
-                    console.log(ganador);
                     tablero.resaltarFichas(ganador);
                     timer.setPausa(true);
                     clearInterval(setTimeOutTiempoDeJuego);
-                    setTimeout(() => {
-                        mostrarCartelGanador(ganador);
-                    }, 10);
                 }
                 lastClickedFigure = null;
                 velocity = 0;
@@ -552,12 +581,8 @@ function gravedad() {
     }
 }
 
-setInterval(function () {
-    if (room == 3) {
-        gravedad();
-    }
-}, 1000 / 60);
-
+//La gravedad está más abajo
+let intervalGravity;
 function onMouseUp(e) {
     switch (room) {
         case 0: //start to play
@@ -572,6 +597,8 @@ function onMouseUp(e) {
             break;
         case 3: //juego
             //fichaCayendo = true;
+            mouseX = e.layerX - offsetLeft;
+            mouseY = e.layerY - offsetTop;
             if ((lastClickedFigure != null) && (mouseDown)) {
                 mouseDown = false;
                 //delimita la seccion en donde se puede tirar la ficha
@@ -586,7 +613,7 @@ function onMouseUp(e) {
                     if (tablero.getFilaDisponible(columna) != -1) {
                         correccionCaidaX();
 
-                        lastClickedFigure.colocada();
+                        lastClickedFigure.colocada(true);
 
                         if ((turno % 2) == player1) {
                             acomodarFichasNoColocadas(arrFichaJugador1, arrFichaJugador1.indexOf(lastClickedFigure));
@@ -595,6 +622,11 @@ function onMouseUp(e) {
                         }
 
                         tablero.calcularNuevoSuelo(columna);
+
+                        //Solo se activa si es necesario
+                        intervalGravity = setInterval(function () {
+                            gravedad();
+                        }, 1000 / 60);
 
                         if (tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)) {
                             lastClickedFigure.setBounces(0);
@@ -610,30 +642,72 @@ function onMouseUp(e) {
                     lastClickedFigure = null;
                     drawAll();
                 }
+            } else {
+                mouseDown = false;
+                if (!inPause) {
+                    if ((mouseX > (canvas.clientWidth - (radiusPause * 2)) && mouseX < canvas.clientWidth) &&
+                        //Por que no necesita el offSet aca????
+                        (mouseY > 0 && mouseY < radiusPause * 2) && !inPause) {
+                        inPause = true;
+                        timer.setPausa(true);
+                        for (let i = 0; i < arrFichas.length; i++) {
+                            arrFichas[i].setSeleccionable(false);
+                        }
+                        drawAll();
+                    } else {
+                    }
+                } else {
+                    if (inPause) {
+                        console.log(turno % 2);
+                        for (let i = 0; i <= 3; i++) {
+                            /* context.beginPath();
+                            context.fillStyle = 'red';
+                            context.fillRect(243,289 + i * 85,313,67);
+                            context.fill();
+                            context.closePath(); */
+                            if ((mouseX > 243 && mouseX < 556) &&
+                                (mouseY > 289 + i * 85 && mouseY > 356 + i * 85)) {
+                                switch (i) {
+                                    case 0: //Resume game
+                                        if ((turno % 2) + 1 == player1) {
+                                            for (let j = 0; j < arrFichaJugador1.length; j++) {
+                                                console.log(arrFichaJugador1[j]);
+                                                arrFichaJugador1[j].setSeleccionable(true);
+                                            }
+                                        }
+                                        else {
+                                            for (let k = 0; k < arrFichaJugador2.length; k++) {
+                                                arrFichaJugador2[k].setSeleccionable(true);
+                                            }
+                                        }
+                                        inPause = false;
+                                        timer.setPausa(false);
+
+                                        break;
+
+                                    case 1:
+                                        generarJuego(player_selector_1, player_selector_2, xEnLinea);
+                                        break;
+
+                                    case 2:
+
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+
+                        }
+                        drawAll();
+                    }
+                }
             }
 
             break;
         default:
             break;
     }
-}
-
-function mostrarCartelGanador(ganador) {
-    let fonsize = 90;
-    gradient = context.createLinearGradient(0, (canvas.clientHeight / 2) - fonsize / 2, 0, (canvas.clientHeight / 2) + fonsize / 2);
-    gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-    gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
-
-    context.font = fonsize + 'px MKfont';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillStyle = gradient;
-
-    context.strokeStyle = 'black';
-    context.lineWidth = 3;
-    context.strokeText(`${ganador} wins`, canvas.clientWidth / 2, canvas.clientHeight / 2);
-
-    context.fillText(`${ganador} wins`, canvas.clientWidth / 2, canvas.clientHeight / 2);
 }
 function acomodarFichasNoColocadas(arr, posFicha) {
     for (let i = arr.length - 1; i >= 0; i--) {
@@ -653,7 +727,8 @@ canvas.addEventListener("mousemove", onMouseMove, false);
 
 //Turno 
 function cambioTurno() {
-    if ((turno % 2) + 1 == player1) {
+    turno++;
+    if ((turno % 2) == player1) {
         for (let i = 0; i < arrFichaJugador1.length; i++) {
             if (!arrFichaJugador1[i].getFiguraIsColocada()) {
                 arrFichaJugador1[i].setSeleccionable(true);
@@ -674,7 +749,6 @@ function cambioTurno() {
         }
     }
 
-    turno++;
 }
 
 setTimeout(function () {

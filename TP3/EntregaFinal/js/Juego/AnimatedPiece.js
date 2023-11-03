@@ -57,6 +57,7 @@ class AnimatedPiece {
             }, this.duration);
         } else if (this.loop > -1) {
             let timeOut = setTimeout(() => {
+                this.loop--;
                 this.setFrame(0);
                 this.startAnimation();
                 clearTimeout(timeOut);

@@ -26,7 +26,7 @@ class Timer {
         return this.pausa;
     }
     setPausa(pausa) {
-        this.pausa = pausa;
+        this.pausa = pausa; //bool
     }
 
     setTime(time) {

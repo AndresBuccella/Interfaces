@@ -99,9 +99,9 @@ class Ficha{
     setSeleccionable(bool) {
         this.seleccionable = bool;
     }
-    colocada() {
-        this.estaColocada = true;
-        this.setSeleccionable(false);
+    colocada(bool) {
+        this.estaColocada = bool;
+        this.setSeleccionable(!bool);
     }
 
     //DEMAS METODOS    
