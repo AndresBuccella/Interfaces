@@ -2,12 +2,12 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
 //Sounds
-const skeweredMalePath = '../sounds/skewered-male.mp3';
+const skeweredMalePath = '../sounds/skewered-male-2.mp3';
 const sndSkeweredMale = new Audio(skeweredMalePath);
 const defenestrateMalePath = '../sounds/defenestrate-male.mp3';
 const sndDefenestrateMale = new Audio(defenestrateMalePath);
 
-const skeweredFemalePath = '../sounds/skewered-female.mp3';
+const skeweredFemalePath = '../sounds/skewered-female-2.mp3';
 const sndSkeweredFemale = new Audio(skeweredFemalePath);
 const defenestrateFemalePath = '../sounds/defenestrate-female.mp3';
 const sndDefenestrateFemale = new Audio(defenestrateFemalePath);
