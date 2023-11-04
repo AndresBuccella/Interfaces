@@ -135,14 +135,17 @@ const charactersName = [
 ];
 
 const characters = [];
+const charactersSound = [];
 
 for (let i = 0; i < 3; i++) {
     characters[i] = [];
+    charactersSound[i] = [];
     for (let j = 0; j < 4; j++) {
         const character = new Image();
         character.src = `../images/juegoMK/personajes/character-${i}-${j}.png`;
         character.alt = charactersName[j + i * 4];
         characters[i][j] = character;
+        charactersSound[i][j]=new Audio("../sounds/personajes/"+character.alt+".mp3");
     }
 }
 
@@ -525,7 +528,8 @@ function onMouseDown(e) {
                             player_selector_1_anim.setPosX(116 + i * 144);
                             player_selector_1_anim.setPosY(88 + 144 * j);
                             player_selector_1_anim.startAnimation();
-                            sndSelectPlayer1.play();
+                            //sndSelectPlayer1.play();
+                            charactersSound[j][i].play();
                             turno++;
                         } else if (((turno % 2) + 1) == player2 && characters[j][i] != player_selector_1) {
                             player_selector_2 = characters[j][i];
@@ -533,7 +537,8 @@ function onMouseDown(e) {
                             player_selector_2_anim.setPosX(116 + i * 144);
                             player_selector_2_anim.setPosY(88 + 144 * j);
                             player_selector_2_anim.startAnimation();
-                            sndSelectPlayer2.play();
+                            //sndSelectPlayer2.play();
+                            charactersSound[j][i].play();
                             turno++;
                             setTimeout(() => {
                                 loopSoundOff(sndBackgroundMusicRoom1);
