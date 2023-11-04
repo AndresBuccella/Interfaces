@@ -6,7 +6,7 @@ const backgroundMusicRoom0Path = '../sounds/background-music-room-0.mp3';
 const sndBackgroundMusicRoom0 = new Audio(backgroundMusicRoom0Path);
 //loopSoundOn(sndBackgroundMusicRoom0); //No se puede reproducir sonidos sin autorizacion del usuario
 
-const backgroundMusicRoom1Path = '../sounds/background-music-room-1.wav';
+const backgroundMusicRoom1Path = '../sounds/background-music-room-1.mp3';
 const sndBackgroundMusicRoom1 = new Audio(backgroundMusicRoom1Path);
 const backgroundMusicRoom2Path = '../sounds/background-music-room-2.mp3';
 const sndBackgroundMusicRoom2 = new Audio(backgroundMusicRoom2Path);
