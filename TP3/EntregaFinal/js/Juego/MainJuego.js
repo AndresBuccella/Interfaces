@@ -301,7 +301,7 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     elements = elements.concat(arrTablero);
     //Timer
     //const time = 5 * 60; //el primer valor representa los minutos
-    const time = 200; //el primer valor representa los minutos
+    const time = 10; //el primer valor representa los minutos
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
         elements.push(timer);
@@ -314,6 +314,8 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
             for (const ficha of arrFichas) {
                 ficha.colocada(true);
             }
+            mouseDown = false;
+            lastClickedFigure = null;
             drawAll();
             clearInterval(setTimeOutTiempoDeJuego);
         }
@@ -321,9 +323,13 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     resaltarFichasEnJuego();
     loopSoundOff(sndBackgroundMusicRoom2);
     sndOpenBattle.play();
-    loopSoundOn(sndBackgroundMusicRoom3);
+    //loopSoundOn(sndBackgroundMusicRoom3);
 }
-
+/**
+ * 
+ * @param {*} name 
+ * @returns 
+ */
 function assignVoice(name) {
     if (name == 'Mileena' || name == 'Kitana') {
         return {
@@ -352,6 +358,10 @@ function reiniciarVariablesJuego() {
     widthCanvas = canvas.clientWidth;
     inPause = false;
     draw = false;
+
+    if (intervalGravity != null) {
+        clearInterval(intervalGravity);
+    }
 
     player_selector_1_anim.setFrame(0);
     player_selector_2_anim.setFrame(0);
@@ -448,7 +458,7 @@ function drawGame() {
         drawPause();
     }
     if (ganador != null) {
-        drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3)
+        drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     }
 }
