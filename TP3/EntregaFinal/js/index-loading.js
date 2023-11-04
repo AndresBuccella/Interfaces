@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let numero = 0;
 
     function contar() {
-        console.log("a");
         if (numero < 100) {
             numero++;
             numeroElemento.textContent = numero + "%";

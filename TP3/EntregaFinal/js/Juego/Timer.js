@@ -43,21 +43,6 @@ class Timer {
     }
     draw() {
         drawText(`${this.timer}`, this.fontsize,  canvas.clientWidth / 2, this.posY);
-
-        /* let gradient = context.createLinearGradient(0, this.posY - this.fontsize / 2, 0, this.posY + this.fontsize / 2);
-        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
-        gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
-
-        context.font = this.fontsize + 'px MKfont';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-        context.fillStyle = gradient;
-
-        context.strokeStyle = 'black';
-        context.lineWidth = 4;
-        context.strokeText(this.timer, this.posX, this.posY);
-
-        context.fillText(this.timer, this.posX, this.posY); */
         
         if (this.getTime() <= 0) {
             drawText('DRAW', this.fontSizeDraw, canvas.clientWidth / 2, canvas.clientHeight / 3);

@@ -15,16 +15,17 @@ const sndBackgroundMusicRoom3 = new Audio(backgroundMusicRoom3Path);
 
 function loopSoundOn(snd) {
     snd.play();
-    snd.addEventListener('ended', ()=>{
+    snd.addEventListener('ended', () => {
         snd.currentTime = 0;
         snd.play();
     })
 }
 function loopSoundOff(snd) {
     snd.pause();
-    snd.removeEventListener('ended',()=>{
+    snd.removeEventListener('ended', () => {
         snd.currentTime = 0;
-        snd.play();});
+        snd.play();
+    });
 }
 
 const skeweredMalePath = '../sounds/skewered-male.mp3';
@@ -183,7 +184,7 @@ let xEnLinea = 0;
 let ganador = null;
 let draw = false;
 
-let mouseX; 
+let mouseX;
 let mouseY;
 
 //Genera el juego luego de la seleccion de personaje
@@ -320,16 +321,16 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     loopSoundOn(sndBackgroundMusicRoom3);
 }
 
-function assignVoice(name){
-    if(name == 'Mileena' || name == 'Kitana'){
-        return{
-            'sndSk' : sndSkeweredFemale,
-            'sndDef' : sndDefenestrateFemale
+function assignVoice(name) {
+    if (name == 'Mileena' || name == 'Kitana') {
+        return {
+            'sndSk': sndSkeweredFemale,
+            'sndDef': sndDefenestrateFemale
         }
-    }else{
-        return{
-            'sndSk' : sndSkeweredMale,
-            'sndDef' : sndDefenestrateMale
+    } else {
+        return {
+            'sndSk': sndSkeweredMale,
+            'sndDef': sndDefenestrateMale
         }
     }
 }
@@ -352,8 +353,8 @@ function reiniciarVariablesJuego() {
     player_selector_1_anim.setFrame(0);
     player_selector_2_anim.setFrame(0);
 
-    if (timer != null) { 
-        timer.borrarIntervalo(); 
+    if (timer != null) {
+        timer.borrarIntervalo();
         timer.resetTimer()
     }
     //timer = null;
@@ -372,7 +373,7 @@ function returnToMenu() {
 }
 
 function drawText(text, fontSize, posX, posY) {
-    let gradient = context.createLinearGradient(0, posY - 36 / 2, 0, posY + 36 / 2);//el 36 sería el fontSize?
+    let gradient = context.createLinearGradient(0, posY - fontSize / 2, 0, posY + fontSize / 2);
     gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
     gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
 
@@ -412,7 +413,7 @@ function drawCharacterSelector(mouseX, mouseY) {
                 player_selector_1_anim.draw();
                 let posX = canvas.clientWidth / 2;
                 let posY = canvas.clientHeight - 36;
-                
+
                 drawText(characters[j][i].alt, 36, posX, posY)
             } else {
                 if (turno > 0) {
@@ -437,6 +438,13 @@ function drawGame() {
     }
     pause.draw();
     sangrado.draw();
+    if (inPause) {
+        drawPause();
+    }
+    if (ganador != null) {
+        drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3)
+        context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    }
 }
 function drawPause() {
     context.beginPath();
@@ -472,12 +480,6 @@ function drawAll() {
 
         case 3: //juego
             drawGame();
-            if (inPause) {
-                drawPause();
-            }
-            if (ganador != null) {
-                drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3)
-            }
             break;
 
         default:
@@ -532,11 +534,10 @@ function onMouseDown(e) {
                             player_selector_2_anim.setPosY(88 + 144 * j);
                             player_selector_2_anim.startAnimation();
                             sndSelectPlayer2.play();
-
                             turno++;
-                            loopSoundOff(sndBackgroundMusicRoom1);
-                            loopSoundOn(sndBackgroundMusicRoom2);
                             setTimeout(() => {
+                                loopSoundOff(sndBackgroundMusicRoom1);
+                                loopSoundOn(sndBackgroundMusicRoom2);
                                 player_selector_1_anim.setLoop(-1)
                                 room = 2;
                                 drawAll()
@@ -545,7 +546,7 @@ function onMouseDown(e) {
 
                     }
                 }
-            }if (player_selector_1 != null && player_selector_2 != null) {
+            } if (player_selector_1 != null && player_selector_2 != null) {
             }
             break;
 
@@ -664,7 +665,7 @@ function gravedad() {
                     sndSkewered.play();
                     sangrado.startAnimation();
                 }
-                
+
                 if (ganador != null) {
                     for (const ficha of arrFichas) {
                         ficha.colocada(true);
@@ -719,7 +720,7 @@ function onMouseUp(e) {
 
                         lastClickedFigure.colocada(true);
 
-                        if ((turno % 2)+1 == player1) {
+                        if ((turno % 2) + 1 == player1) {
                             acomodarFichasNoColocadas(arrFichaJugador1, arrFichaJugador1.indexOf(lastClickedFigure));
                         } else {
                             acomodarFichasNoColocadas(arrFichaJugador2, arrFichaJugador2.indexOf(lastClickedFigure));
@@ -751,9 +752,7 @@ function onMouseUp(e) {
                 mouseDown = false;
                 if (ganador == null && !draw) {
                     if (!inPause) {
-                        if ((mouseX > (canvas.clientWidth - (radiusPause * 2)) && mouseX < canvas.clientWidth) &&
-                        //en Y se puede sumar o restar el offset que no le importa mucho
-                            (mouseY > 0 && mouseY < radiusPause * 2)) {
+                        if (pause.isSelected(mouseX,mouseY)) {
                             inPause = true;
                             timer.setPausa(true);
                             loopSoundOff(sndBackgroundMusicRoom3);
@@ -765,28 +764,27 @@ function onMouseUp(e) {
                     } else {
                         for (let i = 0; i < 3; i++) {
                             if ((mouseX > 243 && mouseX < 556) &&
-                            (mouseY > 289 + i * 85 && mouseY < 356 + i * 85)) {
+                                (mouseY > 289 + i * 85 && mouseY < 356 + i * 85)) {
                                 switch (i) {
-                                    case 0:
+                                    case 0: //Resume
                                         resaltarFichasEnJuego();
                                         inPause = false;
                                         timer.setPausa(false);
                                         loopSoundOn(sndBackgroundMusicRoom3);
                                         break;
 
-                                    case 1:
+                                    case 1: //Restart
                                         generarJuego(player_selector_1, player_selector_2, xEnLinea);
                                         break;
 
-                                    case 2:
+                                    case 2: //Quit
                                         returnToMenu();
                                         sndBackgroundMusicRoom1.play()
-                                        sndBackgroundMusicRoom1.addEventListener('ended', ()=>{
+                                        sndBackgroundMusicRoom1.addEventListener('ended', () => {
                                             sndBackgroundMusicRoom1.currentTime = 0;
                                             sndBackgroundMusicRoom1.play();
                                         })
                                         break;
-
                                     default:
                                         break;
                                 }
@@ -795,10 +793,10 @@ function onMouseUp(e) {
                         }
                         //drawAll();
                     }
-                }else if(draw){
+                } else if (draw) {
                     for (let i = 0; i < 3; i++) {
                         if ((mouseX > 243 && mouseX < 556) &&
-                        (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
+                            (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
                             switch (i) {
                                 case 0:
                                     generarJuego(player_selector_1, player_selector_2, xEnLinea);
@@ -841,7 +839,7 @@ canvas.addEventListener("mousemove", onMouseMove, false);
 //Turno 
 function resaltarFichasEnJuego() {
     //le saque el turno++ porque daba errores al poner pausa
-    if ((turno % 2)+1 == player1) {
+    if ((turno % 2) + 1 == player1) {
         for (let i = 0; i < arrFichaJugador1.length; i++) {
             if (!arrFichaJugador1[i].getFiguraIsColocada()) {
                 arrFichaJugador1[i].setSeleccionable(true);
@@ -852,7 +850,7 @@ function resaltarFichasEnJuego() {
         }
     } else {
         for (let i = 0; i < arrFichaJugador2.length; i++) {
-            
+
             if (!arrFichaJugador2[i].getFiguraIsColocada()) {
                 arrFichaJugador2[i].setSeleccionable(true);
             }
