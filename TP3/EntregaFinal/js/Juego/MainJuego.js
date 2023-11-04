@@ -202,10 +202,11 @@ for (let i = 0; i < 3; i++) {
         charactersSound[i][j] = new Audio("../sounds/personajes/" + character.alt + ".mp3");
         totalRecursos++;
         charactersSound[i][j].addEventListener('canplaythrough', verificarCargaCompleta);
-
     }
 }
-
+let versus = new Audio("../sounds/versus.mp3");
+totalRecursos++;
+versus.addEventListener('canplaythrough', verificarCargaCompleta);
 
 // Obtén el offset del canvas
 let pantalla = document.querySelector("#pantalla-juego")
@@ -575,6 +576,7 @@ function findClickedFigure(x, y) {
         }
     }
 }
+let player1selectedCharacterSound;
 function onMouseDown(e) {
     mouseX = e.layerX - offsetLeft;
     mouseY = e.layerY - offsetTop;
@@ -597,26 +599,36 @@ function onMouseDown(e) {
                             player_selector_1_anim.setFrame(0);
                             player_selector_1_anim.setPosX(116 + i * 144);
                             player_selector_1_anim.setPosY(88 + 144 * j);
+                            sndSelectPlayer1.play();
+                            player_selector_1_anim.setDuration(sndSelectPlayer1.duration * 1000 - 200);
                             player_selector_1_anim.startAnimation();
-                            //sndSelectPlayer1.play();
-                            charactersSound[j][i].play();
+                            player1selectedCharacterSound = charactersSound[j][i];
                             turno++;
                         } else if (((turno % 2) + 1) == player2 && characters[j][i] != player_selector_1) {
                             player_selector_2 = characters[j][i];
                             player_selector_2_anim.setFrame(0);
                             player_selector_2_anim.setPosX(116 + i * 144);
                             player_selector_2_anim.setPosY(88 + 144 * j);
+                            sndSelectPlayer2.play();
+                            player_selector_2_anim.setDuration(sndSelectPlayer2.duration * 1000 - 200);
                             player_selector_2_anim.startAnimation();
-                            //sndSelectPlayer2.play();
-                            charactersSound[j][i].play();
-                            turno++;
                             setTimeout(() => {
-                                loopSoundOff(sndBackgroundMusicRoom1);
-                                loopSoundOn(sndBackgroundMusicRoom2);
-                                player_selector_1_anim.setLoop(-1)
-                                room = 2;
-                                drawAll()
-                            }, 800);
+                                player1selectedCharacterSound.play();
+                                setTimeout(() => {
+                                    versus.play();
+                                    setTimeout(() => {
+                                        charactersSound[j][i].play();
+                                        setTimeout(() => {
+                                            loopSoundOff(sndBackgroundMusicRoom1);
+                                            loopSoundOn(sndBackgroundMusicRoom2);
+                                            player_selector_1_anim.setLoop(-1)
+                                            room = 2;
+                                            drawAll()
+                                        }, charactersSound[j][i].duration * 1000 + 200);
+                                    }, versus.duration * 1000);
+                                }, player1selectedCharacterSound.duration * 1000);
+                            }, sndSelectPlayer2.duration * 1000);
+                            turno++;
                         }
 
                     }

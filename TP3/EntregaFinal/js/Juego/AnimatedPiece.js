@@ -40,6 +40,9 @@ class AnimatedPiece {
     setLoop(val){
         this.loop=val;
     }
+    setDuration(val){
+        this.duration = Math.floor(val / this.totalFrame);
+    }
     
     draw() {
         this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height,
