@@ -42,11 +42,11 @@ class Timer {
         clearInterval(this.mostrar);
     }
     draw() {
-        drawText(`${this.timer}`, this.fontsize,  canvas.clientWidth / 2, this.posY);
+        drawText(`${this.timer}`, this.fontsize,  800 / 2, this.posY);
         
         if (this.getTime() <= 0) {
-            drawText('DRAW', this.fontSizeDraw, canvas.clientWidth / 2, canvas.clientHeight / 3);
-            context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+            drawText('DRAW', this.fontSizeDraw, 800 / 2, 600 / 3);
+            context.drawImage(drawMenuImg, 0, 0, 800, 600);
         }
     }
 }

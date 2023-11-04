@@ -27,7 +27,8 @@ sndBackgroundMusicRoom1.addEventListener('canplaythrough', verificarCargaComplet
 const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-2.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
-const sndBackgroundMusicRoom3 = new Audio('../sounds/background-music-room-3.mp3');
+//const sndBackgroundMusicRoom3 = new Audio('../sounds/background-music-room-3.mp3');
+const sndBackgroundMusicRoom3 = new Audio('../sounds/Mortal-Kumbia.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom3.addEventListener('canplaythrough', verificarCargaCompleta);
 
@@ -66,14 +67,13 @@ sndDefenestrateFemale.addEventListener('canplaythrough', verificarCargaCompleta)
 const sndWin = new Audio('../sounds/win.mp3');
 totalRecursos++;
 sndWin.addEventListener('canplaythrough', verificarCargaCompleta);
-//no me gusta y hay que sincronizarlo
 const sndSelectPlayer1 = new Audio('../sounds/select-player.mp3');
 totalRecursos++;
 sndSelectPlayer1.addEventListener('canplaythrough', verificarCargaCompleta);
-//no me gusta y hay que sincronizarlo
 const sndSelectPlayer2 = new Audio('../sounds/select-player.mp3');
 totalRecursos++;
 sndSelectPlayer2.addEventListener('canplaythrough', verificarCargaCompleta);
+
 //el 2 suena más a espada o pincho, peeero no sé, me gusta más el otro
 const sndSkewered = new Audio('../sounds/skewered-2.mp3');
 totalRecursos++;
@@ -200,13 +200,18 @@ for (let i = 0; i < 3; i++) {
         characters[i][j] = character;
 
         charactersSound[i][j] = new Audio("../sounds/personajes/" + character.alt + ".mp3");
+        charactersSound[i][j].alt = charactersName[j + i * 4];
         totalRecursos++;
         charactersSound[i][j].addEventListener('canplaythrough', verificarCargaCompleta);
     }
 }
-let versus = new Audio("../sounds/versus.mp3");
+let versusSound = new Audio("../sounds/versus.mp3");
 totalRecursos++;
-versus.addEventListener('canplaythrough', verificarCargaCompleta);
+versusSound.addEventListener('canplaythrough', verificarCargaCompleta);
+
+let winsSound = new Audio("../sounds/personajes/wins.mp3");
+totalRecursos++;
+winsSound.addEventListener('canplaythrough', verificarCargaCompleta);
 
 // Obtén el offset del canvas
 let pantalla = document.querySelector("#pantalla-juego")
@@ -249,7 +254,7 @@ let mouseX;
 let mouseY;
 
 //Genera el juego luego de la seleccion de personaje
-function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
+function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     reiniciarVariablesJuego();
 
     elemTop = new PiezaDecorativa(
@@ -359,7 +364,7 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     elements = elements.concat(arrTablero);
     //Timer
     //const time = 5 * 60; //el primer valor representa los minutos
-    const time = 10; //el primer valor representa los minutos
+    //const time = 10; //el primer valor representa los minutos
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
         elements.push(timer);
@@ -381,13 +386,9 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea) {
     resaltarFichasEnJuego();
     loopSoundOff(sndBackgroundMusicRoom2);
     sndOpenBattle.play();
-    //loopSoundOn(sndBackgroundMusicRoom3);
+    loopSoundOn(sndBackgroundMusicRoom3);
 }
-/**
- * 
- * @param {*} name 
- * @returns 
- */
+
 function assignVoice(name) {
     if (name == 'Mileena' || name == 'Kitana') {
         return {
@@ -467,7 +468,7 @@ function drawCharacterSelector(mouseX, mouseY) {
         }
     }
     context.drawImage(player_select, 0, 0);
-
+    document.body.style.cursor = "default";
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
@@ -478,14 +479,16 @@ function drawCharacterSelector(mouseX, mouseY) {
                 if (turno == 0) {
                     player_selector_1_anim.setPosX(116 + i * 144);
                     player_selector_1_anim.setPosY(88 + 144 * j);
-                    drawText(characters[j][i].alt, 36, posX, posY)
+                    drawText(characters[j][i].alt, 36, posX, posY);
+                    document.body.style.cursor = "pointer";
                 } else if (turno == 1 && characters[j][i] != player_selector_1) {
                     player_selector_2_anim.setPosX(116 + i * 144);
                     player_selector_2_anim.setPosY(88 + 144 * j);
                     player_selector_2_anim.draw();
-                    drawText(player_selector_1.alt, 36, posX / 2, posY)
-                    drawText("VS", 36, posX, posY)
-                    drawText(characters[j][i].alt, 36, posX * 1.5, posY)
+                    drawText(player_selector_1.alt, 36, posX / 2, posY);
+                    drawText("VS", 36, posX, posY);
+                    drawText(characters[j][i].alt, 36, posX * 1.5, posY);
+                    document.body.style.cursor = "pointer";
                 }
                 player_selector_1_anim.draw();
 
@@ -542,6 +545,7 @@ function drawAll() {
     switch (room) {
         case 0: //start
             context.drawImage(titleImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+            drawText("HAZ CLIC PARA JUGAR", 36, canvas.clientWidth / 2, canvas.clientHeight * 5 / 6);
             break;
 
         case 1: //seleccion
@@ -549,7 +553,24 @@ function drawAll() {
             break;
         case 2: //modo
             context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
-            context.drawImage(imgOpciones, 0, 0, canvas.clientWidth, canvas.clientHeight);
+            document.body.style.cursor = "default";
+            let xLineaValue = 0
+            for (let i = 0; i < 2; i++) {
+                if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+                    context.drawImage(imgOpciones, 197 + i * 100, 266, 103, 99);
+                    document.body.style.cursor = "pointer";
+                    xLineaValue = i + 4;
+                }
+
+                if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+                    context.drawImage(imgOpciones, 504 + i * 100, 266, -103, 99);
+                    document.body.style.cursor = "pointer";
+                    xLineaValue = i + 6;
+                }
+            }
+            if (xLineaValue != 0) {
+                drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+            }
             break;
 
         case 3: //juego
@@ -615,7 +636,7 @@ function onMouseDown(e) {
                             setTimeout(() => {
                                 player1selectedCharacterSound.play();
                                 setTimeout(() => {
-                                    versus.play();
+                                    versusSound.play();
                                     setTimeout(() => {
                                         charactersSound[j][i].play();
                                         setTimeout(() => {
@@ -625,7 +646,7 @@ function onMouseDown(e) {
                                             room = 2;
                                             drawAll()
                                         }, charactersSound[j][i].duration * 1000 + 200);
-                                    }, versus.duration * 1000);
+                                    }, versusSound.duration * 1000);
                                 }, player1selectedCharacterSound.duration * 1000);
                             }, sndSelectPlayer2.duration * 1000);
                             turno++;
@@ -638,12 +659,19 @@ function onMouseDown(e) {
             break;
 
         case 2: //seleccion de modo
-            for (let i = 0; i < 4; i++) {
-                if ((mouseX > 303 && mouseX < 496) && (mouseY > 55 + 54 * i && mouseY < 89 + 54 * i)) {
+            for (let i = 0; i < 2; i++) {
+                if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
                     room = 3;
                     xEnLinea = i + 4;
-                    generarJuego(player_selector_1, player_selector_2, xEnLinea);
-                    //drawAll();
+                    document.body.style.cursor = "default";
+                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                }
+
+                if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+                    room = 3;
+                    xEnLinea = i + 6;
+                    document.body.style.cursor = "default";
+                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
                 }
             }
             break;
@@ -680,7 +708,7 @@ function onMouseMove(e) {
 
             break;
         case 2: //seleccion de modo
-            //drawAll(mouseX, mouseY);
+            drawAll(mouseX, mouseY);
             break;
         case 3: //juego
             if (mouseDown && lastClickedFigure != null) {
@@ -759,7 +787,27 @@ function gravedad() {
                     for (const ficha of arrFichas) {
                         ficha.colocada(true);
                     }
-                    sndWin.play();
+                    //sndWin.play();
+
+                    let filaEncontrada = -1;
+                    let columnaEncontrada = -1;
+                    for (var i = 0; i < charactersSound.length; i++) {
+                        for (var j = 0; j < charactersSound[i].length; j++) {
+                            if (charactersSound[i][j].alt === ganador) {
+                                filaEncontrada = i;
+                                columnaEncontrada = j;
+                                break; // Si ya encontraste el elemento, puedes salir de los bucles
+                            }
+                        }
+                    }
+
+                    if (filaEncontrada !== -1 && columnaEncontrada !== -1) {
+                        charactersSound[filaEncontrada][columnaEncontrada].play()
+                        setTimeout(() => {
+                            winsSound.play();
+                        }, charactersSound[filaEncontrada][columnaEncontrada].duration * 1000);
+                    }
+
                     tablero.resaltarFichas(ganador);
                     timer.setPausa(true);
                     clearInterval(setTimeOutTiempoDeJuego);
@@ -850,7 +898,7 @@ function onMouseUp(e) {
                             }
                             drawAll();
                         }
-                    } else {
+                    } else {//En pausa
                         for (let i = 0; i < 3; i++) {
                             if ((mouseX > 243 && mouseX < 556) &&
                                 (mouseY > 289 + i * 85 && mouseY < 356 + i * 85)) {
@@ -863,16 +911,17 @@ function onMouseUp(e) {
                                         break;
 
                                     case 1: //Restart
-                                        generarJuego(player_selector_1, player_selector_2, xEnLinea);
+                                        generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                                        sndBackgroundMusicRoom3.currentTime = 0;
                                         break;
 
                                     case 2: //Quit
                                         returnToMenu();
                                         sndBackgroundMusicRoom1.play()
                                         sndBackgroundMusicRoom1.addEventListener('ended', () => {
-                                            sndBackgroundMusicRoom1.currentTime = 0;
                                             sndBackgroundMusicRoom1.play();
                                         })
+                                        sndBackgroundMusicRoom3.currentTime = 0;
                                         break;
                                     default:
                                         break;
@@ -882,17 +931,21 @@ function onMouseUp(e) {
                         }
                         //drawAll();
                     }
-                } else {
+                } else {// En caso de ganador o empate
                     for (let i = 0; i < 3; i++) {
                         if ((mouseX > 243 && mouseX < 556) &&
                             (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
                             switch (i) {
-                                case 0:
-                                    generarJuego(player_selector_1, player_selector_2, xEnLinea);
+                                case 0://Restart
+                                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                                    sndBackgroundMusicRoom3.currentTime = 0;
                                     break;
 
-                                case 1:
+                                case 1://Menu
                                     returnToMenu();
+                                    loopSoundOff(sndBackgroundMusicRoom3);
+                                    loopSoundOn(sndBackgroundMusicRoom1);
+                                    sndBackgroundMusicRoom3.currentTime = 0;
                                     break;
                                 default:
                                     break;
@@ -948,7 +1001,3 @@ function resaltarFichasEnJuego() {
         }
     }
 }
-
-/*setTimeout(function () {
-    drawAll();
-}, 100);*/

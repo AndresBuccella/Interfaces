@@ -32,7 +32,7 @@ class Tablero {
                 this.matriz[[fila, columna]] = null;
             }
         }
-        this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
+        this.suelo = 600 - this.getHeightCasilla() / 2;
     }
 
     getMarginTop() {
@@ -47,10 +47,10 @@ class Tablero {
     }
 
     getWidth() {
-        return this.canvas.clientWidth - this.marginRight - this.marginLeft;
+        return 800 - this.marginRight - this.marginLeft;
     }
     getHeight() {
-        return this.canvas.clientHeight - this.marginTop - this.marginBottom;
+        return 600 - this.marginTop - this.marginBottom;
     }
     getOrigX() {
         return this.marginLeft;
@@ -75,7 +75,7 @@ class Tablero {
         this.suelo = this.resetSuelo() * 2;
     } */
     resetSuelo() {
-        this.suelo = canvas.clientHeight - this.getHeightCasilla() / 2;
+        this.suelo = 600 - this.getHeightCasilla() / 2;
     }
     getFilaDisponible(columna) {
         for (let fila = this.getCantFil() - 1; fila >= 0; fila--) {
