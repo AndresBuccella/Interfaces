@@ -405,19 +405,22 @@ function drawCharacterSelector(mouseX, mouseY) {
             if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                 //((turno % 2) + 1) == playerX no funciona porque es algo que se calcula constantemente
                 //mientras el mouse está en movimiento y el turno cambia al clickear. Lo anoto para mi
+                let posX = canvas.clientWidth / 2;
+                let posY = canvas.clientHeight - 36;
                 if (turno == 0) {
                     player_selector_1_anim.setPosX(116 + i * 144);
                     player_selector_1_anim.setPosY(88 + 144 * j);
+                    drawText(characters[j][i].alt, 36, posX, posY)
                 } else if (turno == 1 && characters[j][i] != player_selector_1) {
                     player_selector_2_anim.setPosX(116 + i * 144);
                     player_selector_2_anim.setPosY(88 + 144 * j);
                     player_selector_2_anim.draw();
+                    drawText(player_selector_1.alt,36, posX/2, posY)
+                    drawText("VS",36, posX, posY)
+                    drawText(characters[j][i].alt,36, posX*1.5, posY)
                 }
                 player_selector_1_anim.draw();
-                let posX = canvas.clientWidth / 2;
-                let posY = canvas.clientHeight - 36;
 
-                drawText(characters[j][i].alt, 36, posX, posY)
             } else {
                 if (turno > 0) {
                     player_selector_1_anim.draw();
