@@ -37,6 +37,9 @@ class AnimatedPiece {
     setFrame(nFrame) {
         this.frame = nFrame;
     }
+    setLoop(val){
+        this.loop=val;
+    }
     
     draw() {
         this.context.drawImage(this.img, this.frameWidth * this.frame, 0, this.frameWidth, this.img.height,
@@ -53,9 +56,9 @@ class AnimatedPiece {
             }, this.duration);
         } else if (this.loop > -1) {
             let timeOut = setTimeout(() => {
-                this.loop--;
                 this.setFrame(0);
                 this.startAnimation();
+                console.log("a");
                 clearTimeout(timeOut);
             }, this.loop);
         }

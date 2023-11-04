@@ -183,7 +183,7 @@ let xEnLinea = 0;
 let ganador = null;
 let draw = false;
 
-let mouseX; //por que son globales?
+let mouseX; 
 let mouseY;
 
 //Genera el juego luego de la seleccion de personaje
@@ -456,7 +456,7 @@ let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/anima
 //let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
 
 
-function drawAll(mouseX, mouseY) {
+function drawAll() {
     switch (room) {
         case 0: //start
             context.drawImage(titleImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
@@ -537,7 +537,7 @@ function onMouseDown(e) {
                             loopSoundOff(sndBackgroundMusicRoom1);
                             loopSoundOn(sndBackgroundMusicRoom2);
                             setTimeout(() => {
-                                //turno = 0;
+                                player_selector_1_anim.setLoop(-1)
                                 room = 2;
                                 drawAll()
                             }, 800);
