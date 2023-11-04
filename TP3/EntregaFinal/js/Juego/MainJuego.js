@@ -1,17 +1,35 @@
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 
+//Cargado multimedia
+let totalRecursos = 0;
+let recursosCargados = 0;
+
+function verificarCargaCompleta() {
+    recursosCargados++;
+    console.log();
+    if (recursosCargados === totalRecursos) {
+        // Todo está cargado, ejecuta tu código aquí
+        console.log("¡Todos los recursos se han cargado!");
+        drawAll();
+    }
+}
+
 //Sounds
-const backgroundMusicRoom0Path = '../sounds/background-music-room-0.mp3';
-const sndBackgroundMusicRoom0 = new Audio(backgroundMusicRoom0Path);
+const sndBackgroundMusicRoom0 = new Audio('../sounds/background-music-room-0.mp3');
+totalRecursos++;
+sndBackgroundMusicRoom0.addEventListener('canplaythrough', verificarCargaCompleta);
 //loopSoundOn(sndBackgroundMusicRoom0); //No se puede reproducir sonidos sin autorizacion del usuario
 
-const backgroundMusicRoom1Path = '../sounds/background-music-room-1.mp3';
-const sndBackgroundMusicRoom1 = new Audio(backgroundMusicRoom1Path);
-const backgroundMusicRoom2Path = '../sounds/background-music-room-2.mp3';
-const sndBackgroundMusicRoom2 = new Audio(backgroundMusicRoom2Path);
-const backgroundMusicRoom3Path = '../sounds/background-music-room-3.mp3';
-const sndBackgroundMusicRoom3 = new Audio(backgroundMusicRoom3Path);
+const sndBackgroundMusicRoom1 = new Audio('../sounds/background-music-room-1.mp3');
+totalRecursos++;
+sndBackgroundMusicRoom1.addEventListener('canplaythrough', verificarCargaCompleta);
+const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-2.mp3');
+totalRecursos++;
+sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
+const sndBackgroundMusicRoom3 = new Audio('../sounds/background-music-room-3.mp3');
+totalRecursos++;
+sndBackgroundMusicRoom3.addEventListener('canplaythrough', verificarCargaCompleta);
 
 function loopSoundOn(snd) {
     snd.play();
@@ -28,31 +46,45 @@ function loopSoundOff(snd) {
     });
 }
 
-const skeweredMalePath = '../sounds/skewered-male.mp3';
-const sndSkeweredMale = new Audio(skeweredMalePath);
-const defenestrateMalePath = '../sounds/defenestrate-male.mp3';
-const sndDefenestrateMale = new Audio(defenestrateMalePath);
+const sndSkeweredMale = new Audio('../sounds/skewered-male.mp3');
+totalRecursos++;
+sndSkeweredMale.addEventListener('canplaythrough', verificarCargaCompleta);
+const defenestrateMale = new Audio('../sounds/defenestrate-male.mp3');
+totalRecursos++;
+defenestrateMale.addEventListener('canplaythrough', verificarCargaCompleta);
+const sndDefenestrateMale = new Audio('../sounds/defenestrate-male.mp3');
+totalRecursos++;
+sndDefenestrateMale.addEventListener('canplaythrough', verificarCargaCompleta);
 
-const skeweredFemalePath = '../sounds/skewered-female.mp3';
-const sndSkeweredFemale = new Audio(skeweredFemalePath);
-const defenestrateFemalePath = '../sounds/defenestrate-female.mp3';
-const sndDefenestrateFemale = new Audio(defenestrateFemalePath);
+const sndSkeweredFemale = new Audio('../sounds/skewered-female.mp3');
+totalRecursos++;
+sndSkeweredFemale.addEventListener('canplaythrough', verificarCargaCompleta);
+const sndDefenestrateFemale = new Audio('../sounds/defenestrate-female.mp3');
+totalRecursos++;
+sndDefenestrateFemale.addEventListener('canplaythrough', verificarCargaCompleta);
 
-const winSndPath = '../sounds/win.mp3';
-const sndWin = new Audio(winSndPath);
-const selectSndPath1 = '../sounds/select-player.mp3';
+const sndWin = new Audio('../sounds/win.mp3');
+totalRecursos++;
+sndWin.addEventListener('canplaythrough', verificarCargaCompleta);
 //no me gusta y hay que sincronizarlo
-const sndSelectPlayer1 = new Audio(selectSndPath1);
-const selectSndPath2 = '../sounds/select-player.mp3';
+const sndSelectPlayer1 = new Audio('../sounds/select-player.mp3');
+totalRecursos++;
+sndSelectPlayer1.addEventListener('canplaythrough', verificarCargaCompleta);
 //no me gusta y hay que sincronizarlo
-const sndSelectPlayer2 = new Audio(selectSndPath2);
+const sndSelectPlayer2 = new Audio('../sounds/select-player.mp3');
+totalRecursos++;
+sndSelectPlayer2.addEventListener('canplaythrough', verificarCargaCompleta);
 //el 2 suena más a espada o pincho, peeero no sé, me gusta más el otro
-const skeweredPath = '../sounds/skewered-2.mp3'
-const sndSkewered = new Audio(skeweredPath);
-const openBattlePath = '../sounds/open-battle.mp3'
-const sndOpenBattle = new Audio(openBattlePath);
-const bounceOnTopPath = '../sounds/bounce-on-top.mp3';
-const sndBounceOnTop = new Audio(bounceOnTopPath);
+const sndSkewered = new Audio('../sounds/skewered-2.mp3');
+totalRecursos++;
+sndSkewered.addEventListener('canplaythrough', verificarCargaCompleta);
+const sndOpenBattle = new Audio('../sounds/open-battle.mp3');
+totalRecursos++;
+sndOpenBattle.addEventListener('canplaythrough', verificarCargaCompleta);
+
+const sndBounceOnTop = new Audio('../sounds/bounce-on-top.mp3');
+totalRecursos++;
+sndBounceOnTop.addEventListener('canplaythrough', verificarCargaCompleta);
 
 //Images
 const titlePath = '../images/juegoMK/title.png';
@@ -75,8 +107,11 @@ const player_select_path = "../images/juegoMK/seleccion-jugador.png";
 let fontFile = "../css/fonts/mk2.ttf";
 // Cargar la fuente utilizando FontFace
 let customFont = new FontFace("MKfont", `url(${fontFile})`);
-
-customFont.load().then(() => { document.fonts.add(customFont); });
+totalRecursos++;
+customFont.load().then(() => {
+    document.fonts.add(customFont);
+    verificarCargaCompleta();
+});
 
 const anchoTheTower = Math.floor(canvas.clientWidth / 10);
 //const spriteHeightTop = 126;
@@ -91,17 +126,26 @@ const player2 = 2;
 //Title page
 const titleImg = new Image();
 titleImg.src = titlePath;
+totalRecursos++;
+titleImg.onload = verificarCargaCompleta;
 
 //Mode selection page
 //Por alguna razón necesita el addEventListener y el resto no.
-const modeImg = new Image();
-modeImg.addEventListener('load', () => { modeImg.src = modePath; })
+//const modeImg = new Image();
+//modeImg.src = modePath;
+//totalRecursos++;
+//modeImg.onload = verificarCargaCompleta;
 
 //Mode config
 const imgCueva = new Image();
 imgCueva.src = cuevaPath;
+totalRecursos++;
+imgCueva.onload = verificarCargaCompleta;
+
 const imgOpciones = new Image();
 imgOpciones.src = opcionesPath;
+totalRecursos++;
+imgOpciones.onload = verificarCargaCompleta;
 
 // Menu
 let room = 0;
@@ -109,12 +153,19 @@ let room = 0;
 //Game
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
+totalRecursos++;
+pauseMenuImg.onload = verificarCargaCompleta;
+
 const drawMenuImg = new Image();
 drawMenuImg.src = drawPath;
+totalRecursos++;
+drawMenuImg.onload = verificarCargaCompleta;
 
 
 const player_select = new Image();
 player_select.src = player_select_path;
+totalRecursos++;
+player_select.onload = verificarCargaCompleta;
 
 player_selector_1 = null;
 player_selector_2 = null;
@@ -142,10 +193,16 @@ for (let i = 0; i < 3; i++) {
     charactersSound[i] = [];
     for (let j = 0; j < 4; j++) {
         const character = new Image();
+        totalRecursos++;
+        character.onload = verificarCargaCompleta;
         character.src = `../images/juegoMK/personajes/character-${i}-${j}.png`;
         character.alt = charactersName[j + i * 4];
         characters[i][j] = character;
-        charactersSound[i][j]=new Audio("../sounds/personajes/"+character.alt+".mp3");
+
+        charactersSound[i][j] = new Audio("../sounds/personajes/" + character.alt + ".mp3");
+        totalRecursos++;
+        charactersSound[i][j].addEventListener('canplaythrough', verificarCargaCompleta);
+
     }
 }
 
@@ -415,9 +472,9 @@ function drawCharacterSelector(mouseX, mouseY) {
                     player_selector_2_anim.setPosX(116 + i * 144);
                     player_selector_2_anim.setPosY(88 + 144 * j);
                     player_selector_2_anim.draw();
-                    drawText(player_selector_1.alt,36, posX/2, posY)
-                    drawText("VS",36, posX, posY)
-                    drawText(characters[j][i].alt,36, posX*1.5, posY)
+                    drawText(player_selector_1.alt, 36, posX / 2, posY)
+                    drawText("VS", 36, posX, posY)
+                    drawText(characters[j][i].alt, 36, posX * 1.5, posY)
                 }
                 player_selector_1_anim.draw();
 
@@ -760,7 +817,7 @@ function onMouseUp(e) {
                 mouseDown = false;
                 if (ganador == null && !draw) {
                     if (!inPause) {
-                        if (pause.isSelected(mouseX,mouseY)) {
+                        if (pause.isSelected(mouseX, mouseY)) {
                             inPause = true;
                             timer.setPausa(true);
                             loopSoundOff(sndBackgroundMusicRoom3);
@@ -869,6 +926,6 @@ function resaltarFichasEnJuego() {
     }
 }
 
-setTimeout(function () {
+/*setTimeout(function () {
     drawAll();
-}, 100);
+}, 100);*/
