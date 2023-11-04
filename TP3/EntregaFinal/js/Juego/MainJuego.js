@@ -653,7 +653,9 @@ function gravedad() {
                 );
                 //Va en otro lugar para que se ejecute siempre que golpea la ficha?
                 //Está raro. A veces se ejecuta 2 veces y otras una sola
-                sndBounceOnTop.play();
+                if (lastClickedFigure.getBounces() == lastClickedFigure.getMaxBounces() - 1) {
+                    sndBounceOnTop.play();
+                }
             } else {
                 clearInterval(intervalGravity);
                 lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
@@ -801,7 +803,7 @@ function onMouseUp(e) {
                         }
                         //drawAll();
                     }
-                } else if (draw) {
+                } else {
                     for (let i = 0; i < 3; i++) {
                         if ((mouseX > 243 && mouseX < 556) &&
                             (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
@@ -817,7 +819,6 @@ function onMouseUp(e) {
                                     break;
                             }
                         }
-
                     }
                     drawAll();
                 }
