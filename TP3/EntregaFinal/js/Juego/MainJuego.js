@@ -9,7 +9,6 @@ function verificarCargaCompleta() {
     recursosCargados++;
     console.log();
     if (recursosCargados === totalRecursos) {
-        // Todo está cargado, ejecuta tu código aquí
         console.log("¡Todos los recursos se han cargado!");
         drawAll();
     }
@@ -27,8 +26,13 @@ sndBackgroundMusicRoom1.addEventListener('canplaythrough', verificarCargaComplet
 const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-2.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
-//const sndBackgroundMusicRoom3 = new Audio('../sounds/background-music-room-3.mp3');
-const sndBackgroundMusicRoom3 = new Audio('../sounds/Mortal-Kumbia.mp3');
+let sndBackgroundMusicRoom3;
+if (Math.random() <= 0.2) {
+    sndBackgroundMusicRoom3 = new Audio('../sounds/Mortal-Kumbia.mp3');
+    console.log("Mortal Kumbia");
+} else {
+    sndBackgroundMusicRoom3 = new Audio('../sounds/background-music-room-3.mp3');
+}
 totalRecursos++;
 sndBackgroundMusicRoom3.addEventListener('canplaythrough', verificarCargaCompleta);
 
