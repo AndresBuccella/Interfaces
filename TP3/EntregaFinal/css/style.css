@@ -1477,7 +1477,6 @@ header>.mostrar-menu-carrito {
 #formulario-iniciar-sesion {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     margin-top: calc(var(--nav-height) + 10vh);
     margin-bottom: 10vh;
     background-color: var(--p-color-200);
@@ -1627,6 +1626,9 @@ header>.mostrar-menu-carrito {
         background-color: var(--s-color-800);
     }
 }
+#iniciar-sesion{
+    width: 120px;
+}
 
 .btn-registrarse .loader, .btn-iniciar-sesion .loader {
     display: none;
@@ -1635,7 +1637,6 @@ header>.mostrar-menu-carrito {
 }
 
 .cheking {
-    width: 110px !important;
     padding: 0px 4px !important;
 }
 
@@ -2486,14 +2487,6 @@ header>.mostrar-menu-carrito {
 
 }
 
-/* #pantalla-juego{
-    background-color: black;
-    width: 800px;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 canvas{
     user-select: none;
     background-color: #fafafa;
