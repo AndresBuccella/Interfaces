@@ -5,6 +5,10 @@ const context = canvas.getContext("2d");
 let totalRecursos = 0;
 let recursosCargados = 0;
 
+/**
+ * Check if all resources have been loaded.
+ * Verifica si todos los recursos se han cargado.
+ */
 function verificarCargaCompleta() {
     recursosCargados++;
     if (recursosCargados === totalRecursos) {
@@ -28,6 +32,7 @@ totalRecursos++;
 sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
 
 let sndBackgroundMusicRoom3;
+
 if (Math.random() <= 0.2) {
     sndBackgroundMusicRoom3 = new Audio('../sounds/Mortal-Kumbia.mp3');
     console.log("Mortal Kumbia");
@@ -271,10 +276,15 @@ let timeValMin = 120;   //Tiempo minimo de la partida
 let timeValSum = 30;    //Cuanto tiempo sumar al hacer clic
 let timeValMax = 600;   //Tiempo maximo de la partida
 
+let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
+let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
+
+let player1selectedCharacterSound;
+
 //Genera el juego luego de la seleccion de personaje
 
 function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
-    reiniciarVariablesJuego();
+    resetGameVariables();
 
     elemTop = new PiezaDecorativa(
         context,
@@ -387,7 +397,7 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
         elements.push(timer);
     });
 
-    pause = new Pause(context, canvas.clientWidth - radiusPause, radiusPause, radiusPause);
+    //pause = new Pause(context, canvas.clientWidth - radiusPause, radiusPause, radiusPause);
 
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
@@ -415,18 +425,38 @@ function assignVoice(name) {
     }
 }
 
+/**
+ * Handle a draw (tie) situation in the game.
+ * This function is called when the game ends in a draw, and it performs the necessary actions.
+ * Maneja una situación de empate en el juego.
+ * Se llama cuando el juego termina en empate y realiza las acciones necesarias.
+ */
 function gameIsDraw() {
+    // Mark all game pieces as placed (colocada) to indicate the game is a draw.
     for (const ficha of arrFichas) {
         ficha.colocada(true);
     }
+
+    // Reset mouse state and last clicked figure.
     mouseDown = false;
     lastClickedFigure = null;
+
+    // Redraw the game to reflect the draw.
     drawAll();
+
+    // Play a sound indicating the game ended in a draw.
     sndDraw.play();
 }
 
-function reiniciarVariablesJuego() {
-    turno = 0
+
+/**
+ * Se utiliza para restablecer el estado del juego cuando se inicia una nueva partida o se reinicia el juego.
+ * This function is used to reset the game state when starting a new game or restarting the game.
+ */
+function resetGameVariables() {
+    // Reiniciar variables de juego
+    // Reset game variables
+    turn = 0
     elements = [];
     arrTablero = [];
     arrDeco = [];
@@ -434,71 +464,125 @@ function reiniciarVariablesJuego() {
     arrFichaJugador1 = [];
     arrFichaJugador2 = [];
     lastClickedFigure = null;
-    ganador = null;
+    winner = null;
     mouseDown = false;
     widthCanvas = canvas.clientWidth;
     inPause = false;
     draw = false;
 
+    // Detener la gravedad si está en curso
+    // Stop gravity if it's in progress
     if (intervalGravity != null) {
         clearInterval(intervalGravity);
     }
 
+    // Reiniciar animaciones de selección de jugadores
+    // Reset player selection animations
     player_selector_1_anim.setFrame(0);
     player_selector_2_anim.setFrame(0);
 
+    // Detener y restablecer el temporizador, si está en uso
+    // Stop and reset the timer if it's in use
     if (timer != null) {
         timer.borrarIntervalo();
         timer.resetTimer()
     }
+
+    // Limpiar el temporizador de tiempo de juego si está en curso
+    // Clear the game time timeout if it's in progress
     if (setTimeOutTiempoDeJuego != null) { clearInterval(setTimeOutTiempoDeJuego); }
     setTimeOutTiempoDeJuego = null;
 }
 
 //Volver Al menu
-
+/**
+ * Return to the main menu of the game.
+ * This function resets game variables and navigates the player back to the main menu.
+ * Regresar al menú principal del juego.
+ * Esta función reinicia las variables del juego y redirige al jugador de vuelta al menú principal.
+ */
 function returnToMenu() {
-    reiniciarVariablesJuego();
+    // Reset game variables to their initial values.
+    resetGameVariables();
+
+    // Clear player selectors and set the room to 1 (mode selection).
     player_selector_1 = null;
     player_selector_2 = null;
     room = 1;
+
+    // Redraw the game to display the main menu.
     drawAll();
 }
 
+/**
+ * Draw text on the canvas with gradient effect.
+ * Dibuja texto en el lienzo con un efecto de degradado.
+*
+* @param {string} text - The text to be displayed.
+* @param {number} fontSize - The font size of the text.
+* @param {number} posX - The x-coordinate of the text.
+* @param {number} posY - The y-coordinate of the text.
+
+ * The text in posX and posY is always drawn centered
+ */
+
 function drawText(text, fontSize, posX, posY) {
+    // Create a gradient for the text.
     let gradient = context.createLinearGradient(0, posY - fontSize / 2, 0, posY + fontSize / 2);
     gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
     gradient.addColorStop(1, 'rgba(255, 0, 0, 1)');
 
+    // Set the font and text properties.
     context.font = fontSize + 'px MKfont';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillStyle = gradient;
 
+    // Apply a stroke effect to the text.
     context.strokeStyle = 'black';
     context.lineWidth = 4;
     context.strokeText(text, posX, posY);
 
+    // Draw the text with gradient fill.
     context.fillText(text, posX, posY);
+
+    // Reset the fill style to transparent.
     context.fillStyle = 'transparent';
 
 }
 
+/**
+ * Draw the character selection screen and handle character selection.
+ * Dibuja la pantalla de selección de personajes y maneja la selección de personajes.
+ */
 function drawCharacterSelector() {
+    // Draw the grid of character images.
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 4; j++) {
             context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
         }
     }
+
+    // Draw the player selection indicator.
     context.drawImage(player_select, 0, 0);
+
+    // Set the cursor style to default.
     document.body.style.cursor = "default";
+
+
+    //me parece que esto de abajo iria en onmousemove porque es logica de seleccion y no solo de dibujo
 
     let posX = canvas.clientWidth / 2;
     let posY = canvas.clientHeight - 36;
+
+    //colition is used to prevent character names from overlapping
     let colition = false;
+
+    // Check for mouse collision with character images.
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                //the turn change when the player select the character in onMouseUp()
                 if (turno == 0) {
                     player_selector_1_anim.setPosX(116 + i * 144);
                     player_selector_1_anim.setPosY(88 + 144 * j);
@@ -516,6 +600,9 @@ function drawCharacterSelector() {
                 player_selector_1_anim.draw();
 
             } else {
+                //The first time the turn is zero, so no animation is executed. 
+                //When the first character is selected, turn becomes 1 and the first animation begins. 
+                //After selecting the second, turn becomes 2 and the second animation is executed there.
                 if (turno > 0) {
                     player_selector_1_anim.draw();
                 }
@@ -525,6 +612,8 @@ function drawCharacterSelector() {
             }
         }
     }
+
+    // Display character names or selection indicator based on the current state.
     if (player_selector_1 != null && !colition) {
         if (player_selector_2 != null) {
             showCharactersName(player_selector_1.alt, player_selector_2.alt, posX, posY)
@@ -553,24 +642,38 @@ function drawCharacterSelector() {
     }
 }
 
+/**
+ * Display the names of two selected characters in a versus format.
+ * Muestra los nombres de dos personajes seleccionados en un formato de enfrentamiento.
+ *
+ * @param {string} character_1 - The name of the first character.
+ * @param {string} character_2 - The name of the second character.
+ * @param {number} posX - The x-coordinate for positioning.
+ * @param {number} posY - The y-coordinate for positioning.
+ */
 function showCharactersName(character_1, character_2, posX, posY) {
     drawText(character_1, 36, posX / 2, posY);
     drawText("VS", 36, posX, posY);
     drawText(character_2, 36, posX * 1.5, posY);
 }
 
+/**
+ * Draw the game mode selection screen and handle mode selection.
+ * Dibuja la pantalla de selección de modo de juego y maneja la selección del modo.
+ */
 function drawModeSelection() {
+    // Draw the background image for the mode selection screen.
     context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
     document.body.style.cursor = "default";
     let xLineaValue = 0;
     let clocSelected = false;
     for (let i = 0; i < 2; i++) {
+        //Two checks are generated since the skulls are not at the same distance
         if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
             context.drawImage(imgOpciones, 197 + i * 100, 266, 103, 99);
             document.body.style.cursor = "pointer";
             xLineaValue = i + 4;
         }
-
         if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
             context.drawImage(imgOpciones, 504 + i * 100, 266, -103, 99);
             document.body.style.cursor = "pointer";
@@ -598,19 +701,33 @@ function drawModeSelection() {
     }
 }
 
+/**
+ * Draw the game elements, UI, and handle user interactions.
+ * Dibuja los elementos del juego, la interfaz de usuario y maneja las interacciones del usuario.
+ */
 function drawGame() {
+    // Clear the canvas to prepare for drawing.
     clearCanvas();
+
+    // Draw all game basic elements.
     for (const element of elements) {
         element.draw();
     }
-    timer.draw();
+
+    timer.draw(); //no es mejor que se agregue a elements?
+
+    // If a game piece is clicked and being moved, draw it.
     if (lastClickedFigure != null && mouseDown) {
         lastClickedFigure.draw();
     }
-    pause.draw();
+
+    drawPauseBtn(canvas.clientWidth - radiusPause, radiusPause, radiusPause);
+
+    //Draw the blooding animation offscreen
     sangrado.draw();
+
     if (inPause) {
-        drawPause();
+        drawPauseMenu();
         document.body.style.cursor = "default";
         for (let i = 0; i < 3; i++) {
             if ((mouseX > 243 && mouseX < 556) &&
@@ -619,6 +736,7 @@ function drawGame() {
             }
         }
     }
+
     if (ganador != null) {
         document.body.style.cursor = "default";
         drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
@@ -644,7 +762,31 @@ function drawGame() {
         }
     }
 }
-function drawPause() {
+
+function drawPauseBtn(posX, posY, radius) {
+    context.save();
+
+    context.beginPath();
+    context.arc(posX, posY, radius-2, 0, Math.PI * 2, true);
+    context.lineWidth = 2;
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.lineWidth = 5;
+    context.moveTo(posX + radius / 4, posY - radius / 2);
+    context.lineTo(posX + radius / 4, posY + radius / 2)
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.lineWidth = 5;
+    context.moveTo(posX - radius / 4, posY - radius / 2);
+    context.lineTo(posX - radius / 4, posY + radius / 2)
+    context.stroke();
+    context.closePath();
+    context.restore();
+}
+
+function drawPauseMenu() {
     context.beginPath();
     context.fillStyle = 'rgba(0,0,0,0.2)';
     context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
@@ -654,11 +796,6 @@ function drawPause() {
     context.drawImage(pauseMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     drawText('Pause', 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
 }
-
-let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
-let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
-//let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
-
 
 function drawAll() {
     switch (room) {
@@ -699,7 +836,7 @@ function findClickedFigure(x, y) {
         }
     }
 }
-let player1selectedCharacterSound;
+
 function onMouseDown(e) {
     mouseX = e.layerX - offsetLeft;
     mouseY = e.layerY - offsetTop;
@@ -1053,7 +1190,9 @@ function onMouseUp(e) {
                 mouseDown = false;
                 if (ganador == null && !draw) {
                     if (!inPause) {
-                        if (pause.isSelected(mouseX, mouseY)) {
+                        let _x = canvas.clientWidth - radiusPause - mouseX;
+                        let _y = radiusPause - mouseY;
+                        if (Math.sqrt(_x * _x + _y * _y) < radiusPause) {
                             inPause = true;
                             timer.setPausa(true);
                             loopSoundOff(sndBackgroundMusicRoom3);
