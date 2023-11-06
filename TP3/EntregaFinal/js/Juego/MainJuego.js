@@ -899,7 +899,7 @@ function gravedad() {
                         }, charactersSound[filaEncontrada][columnaEncontrada].duration * 1000);
                     }
 
-                    tablero.resaltarFichas(ganador);
+                    tablero.killLoser(ganador);
                     timer.setPausa(true);
                     clearInterval(setTimeOutTiempoDeJuego);
                 } else if (turno + 1 == tablero.getCantFil() * tablero.getCantCol()) {
