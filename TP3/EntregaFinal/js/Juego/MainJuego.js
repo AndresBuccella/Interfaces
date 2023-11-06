@@ -480,6 +480,8 @@ function drawText(text, fontSize, posX, posY) {
     context.strokeText(text, posX, posY);
 
     context.fillText(text, posX, posY);
+    context.fillStyle = 'transparent';
+
 }
 
 function drawCharacterSelector(mouseX, mouseY) {
@@ -530,8 +532,21 @@ function drawCharacterSelector(mouseX, mouseY) {
             drawText(player_selector_1.alt, 36, posX, posY);
         }
     }
-}
+    //Boton para volver al modo
+    posX = 35;
+    posY = 35;
+    context.beginPath();
+    context.arc(posX, posY, 18, 0, Math.PI * 2, true);
+    context.lineWidth = 2;
+    context.fillStyle = '#FFFFFF25';
+    context.strokeStyle = '#FFFFFFA6';
+    context.fill();
+    context.stroke();
+    context.closePath();
+    drawText('<', 32, posX - 2, posY + 2);
+    context.strokeStyle = 'black';
 
+}
 
 function showCharactersName(character_1, character_2, posX, posY) {
     drawText(character_1, 36, posX / 2, posY);
@@ -720,18 +735,26 @@ function onMouseDown(e) {
                             player_selector_2_anim.setDuration(sndSelectPlayer2.duration * 1000 - 200);
                             player_selector_2_anim.startAnimation();
                             setTimeout(() => {
-                                player1selectedCharacterSound.play();
-                                setTimeout(() => {
-                                    versusSound.play();
+                                if (room == 2) {
+                                    player1selectedCharacterSound.play();
                                     setTimeout(() => {
-                                        charactersSound[j][i].play();
-                                        setTimeout(() => {
-                                            player_selector_1_anim.setLoop(-1)
-                                            room = 3;
-                                            generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
-                                        }, charactersSound[j][i].duration * 1000 + 200);
-                                    }, versusSound.duration * 1000);
-                                }, player1selectedCharacterSound.duration * 1000);
+                                        if (room == 2) {
+                                            versusSound.play();
+                                            setTimeout(() => {
+                                                if (room == 2) {
+                                                    charactersSound[j][i].play();
+                                                    setTimeout(() => {
+                                                        if (room == 2) { //para darle la posibilidad de volver en cualquier momento
+                                                            player_selector_1_anim.setLoop(-1)
+                                                            room = 3;
+                                                            generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
+                                                        }
+                                                    }, charactersSound[j][i].duration * 1000 + 200);
+                                                }
+                                            }, versusSound.duration * 1000);
+                                        }
+                                    }, player1selectedCharacterSound.duration * 1000);
+                                }
                             }, sndSelectPlayer2.duration * 1000);
                             turno++;
                         }
@@ -907,12 +930,21 @@ function onMouseUp(e) {
             break;
 
         case 2: //seleccion de modo
-
+            let positionBtnX = 35;
+            let positionBtnY = 35;
+            let radiusBtnBack = 18;
+            let _x = positionBtnX - mouseX;
+            let _y = positionBtnY - mouseY;
+            if (Math.sqrt(_x * _x + _y * _y) < radiusBtnBack) {
+                player_selector_1 = null;
+                player_selector_2 = null;
+                player_selector_1_anim.setFrame(0);
+                player_selector_2_anim.setFrame(0);
+                turno = 0;
+                room = 1;
+            }
             break;
         case 3: //juego
-            //fichaCayendo = true;
-            mouseX = e.layerX - offsetLeft;
-            mouseY = e.layerY - offsetTop;
             if ((lastClickedFigure != null) && (mouseDown)) {
                 mouseDown = false;
                 //delimita la seccion en donde se puede tirar la ficha

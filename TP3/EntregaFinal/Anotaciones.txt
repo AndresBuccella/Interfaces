@@ -6,11 +6,12 @@
     (un jugador por vez).
 7_X_Las fichas deben elegirse con click de mouse, y el usuario debe poder arrastrar 
     la ficha y soltarla donde quiere.
-9_X_Integrar el juego en la página web presentada en el TPE2, el mismo debe poder 
-    ejecutarse desde la web. 
 6_X_El juego termina cuando un jugador consigue ubicar cuatro fichas en línea 
     (Vertical, horizontal o diagonal). Indicar el ganador.
+8_X_Se debe poder reiniciar el juego, 
 8.1_X_Colocar un timer con el límite el tiempo del juego.
+9_X_Integrar el juego en la página web presentada en el TPE2, el mismo debe poder 
+    ejecutarse desde la web. 
 10_X_Implementar las mejoras del TPE1 y TPE2 en cuanto a UX de la pagina del juego, etc. agregar login to home
 11_X_Poder establecer la dimensión del tablero “X en línea”. Basta con tener al 
     menos 3 opciones más (Ej: 5 en línea, 6 en línea, 7 en línea). Se debe agrandar 
@@ -27,7 +28,6 @@ _X_Hay que dibujar:
 
 
 
-8__Se debe poder reiniciar el juego, 
 9.1__Debe contener las ayudas de cómo jugar y la descripción completa e imágenes del mismo.
 
 

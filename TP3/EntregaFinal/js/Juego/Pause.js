@@ -57,10 +57,6 @@ class Pause {
         this.context.stroke();
         this.context.closePath();
         
-        //this.context.fillStyle = 'red';
-        //this.context.fill();
-        
-        
         this.context.restore();
     }
 }

@@ -101,7 +101,7 @@ class Tablero {
         return this.winner(fila, columna, ficha.getNombre());
     }
 
-    resaltarFichas(ganador) {
+    killLoser(ganador) {
         for (let i = 0; i < this.getCantFil(); i++) {
             for (let j = 0; j < this.getCantCol(); j++) {
                 if (this.matriz[[i, j]] != null && this.matriz[[i, j]].getNombre() != ganador) {
