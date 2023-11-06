@@ -7,8 +7,6 @@ let recursosCargados = 0;
 
 function verificarCargaCompleta() {
     recursosCargados++;
-    console.clear();
-    console.log(recursosCargados/totalRecursos*100+"%");
     if (recursosCargados === totalRecursos) {
         console.log("¡Todos los recursos se han cargado!");
         drawAll();
@@ -384,8 +382,6 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     elements = elements.concat(arrFichaJugador2);
     elements = elements.concat(arrTablero);
     //Timer
-    //const time = 5 * 60; //el primer valor representa los minutos
-    //const time = 10; //el primer valor representa los minutos
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
         elements.push(timer);
@@ -454,7 +450,6 @@ function reiniciarVariablesJuego() {
         timer.borrarIntervalo();
         timer.resetTimer()
     }
-    //timer = null;
     if (setTimeOutTiempoDeJuego != null) { clearInterval(setTimeOutTiempoDeJuego); }
     setTimeOutTiempoDeJuego = null;
 }
@@ -675,6 +670,7 @@ function onMouseDown(e) {
                     document.body.style.cursor = "default";
                     loopSoundOff(sndBackgroundMusicRoom1);
                     loopSoundOn(sndBackgroundMusicRoom2);
+                    drawAll();
                 }
 
                 if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
@@ -683,6 +679,7 @@ function onMouseDown(e) {
                     document.body.style.cursor = "default";
                     loopSoundOff(sndBackgroundMusicRoom1);
                     loopSoundOn(sndBackgroundMusicRoom2);
+                    drawAll();
                 }
             }
             if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
