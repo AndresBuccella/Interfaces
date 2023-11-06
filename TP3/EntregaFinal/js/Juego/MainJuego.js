@@ -94,7 +94,6 @@ sndBounceOnTop.addEventListener('canplaythrough', verificarCargaCompleta);
 const titlePath = '../images/juegoMK/title.png';
 const modePath = '../images/juegoMK/mode-selection';
 const cuevaPath = '../images/juegoMK/cueva.png';
-const opcionesPath = '../images/juegoMK/menu-options.png';
 const pausePath = '../images/juegoMK/menu-pause.png';
 const drawPath = '../images/juegoMK/menu-draw.png';
 
@@ -147,9 +146,14 @@ totalRecursos++;
 imgCueva.onload = verificarCargaCompleta;
 
 const imgOpciones = new Image();
-imgOpciones.src = opcionesPath;
+imgOpciones.src = '../images/juegoMK/menu-options.png';
 totalRecursos++;
 imgOpciones.onload = verificarCargaCompleta;
+
+const imgOpcionesTime = new Image();
+imgOpcionesTime.src = '../images/juegoMK/menu-options-time.png';
+totalRecursos++;
+imgOpcionesTime.onload = verificarCargaCompleta;
 
 // Menu
 let room = 0;
@@ -256,6 +260,9 @@ let draw = false;
 
 let mouseX;
 let mouseY;
+
+let timeVal = 300;
+let timeValMax = 600;
 
 //Genera el juego luego de la seleccion de personaje
 function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
@@ -572,6 +579,12 @@ function drawAll() {
                     xLineaValue = i + 6;
                 }
             }
+            if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
+                context.drawImage(imgOpcionesTime, 229, 124, 67, 82);
+                document.body.style.cursor = "pointer";
+                drawText(`${timeVal}`, 24, 229 + 85, 124 + 41);
+                drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+            }
             if (xLineaValue != 0) {
                 drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
             }
@@ -668,15 +681,20 @@ function onMouseDown(e) {
                     room = 3;
                     xEnLinea = i + 4;
                     document.body.style.cursor = "default";
-                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                    generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                 }
 
                 if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
                     room = 3;
                     xEnLinea = i + 6;
                     document.body.style.cursor = "default";
-                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                    generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                 }
+            }
+            if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
+                timeVal += 30;
+                if (timeVal > timeValMax) { timeVal = 120; }
+                drawAll();
             }
             break;
 
@@ -915,7 +933,7 @@ function onMouseUp(e) {
                                         break;
 
                                     case 1: //Restart
-                                        generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                                        generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                                         sndBackgroundMusicRoom3.currentTime = 0;
                                         break;
 
@@ -941,7 +959,7 @@ function onMouseUp(e) {
                             (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
                             switch (i) {
                                 case 0://Restart
-                                    generarJuego(player_selector_1, player_selector_2, xEnLinea, 300);
+                                    generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                                     sndBackgroundMusicRoom3.currentTime = 0;
                                     break;
 
