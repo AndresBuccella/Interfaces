@@ -34,16 +34,22 @@ class Timer {
     setTime(time) {
         this.timer = time;
     }
-    resetTimer(){
+    resetTimer() {
         this.timer = this.timerOrig;
     }
 
-    borrarIntervalo(){
+    borrarIntervalo() {
         clearInterval(this.mostrar);
     }
     draw() {
-        drawText(`${this.timer}`, this.fontsize,  800 / 2, this.posY);
-        
+        if (this.timer != Infinity) {
+            drawText(`${this.timer}`, this.fontsize, 800 / 2, this.posY);
+        } else {
+            context.imageSmoothingEnabled = false;
+            context.drawImage(imgInfinito, 800 / 2 - 45, this.posY - 45, 90, 90);
+            context.imageSmoothingEnabled = true;
+        }
+
         if (this.getTime() <= 0) {
             drawText('DRAW', this.fontSizeDraw, 800 / 2, 600 / 3);
             context.drawImage(drawMenuImg, 0, 0, 800, 600);

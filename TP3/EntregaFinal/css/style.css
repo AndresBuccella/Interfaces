@@ -2495,6 +2495,7 @@ header>.mostrar-menu-carrito {
     align-items: center;
 } */
 canvas{
+    user-select: none;
     background-color: #fafafa;
     width: auto;
     height: 100%;

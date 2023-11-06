@@ -15,10 +15,10 @@ function verificarCargaCompleta() {
 }
 
 //Sounds
-const sndBackgroundMusicRoom0 = new Audio('../sounds/background-music-room-0.mp3');
+
+const startRoom0 = new Audio('../sounds/open-battle.mp3');
 totalRecursos++;
-sndBackgroundMusicRoom0.addEventListener('canplaythrough', verificarCargaCompleta);
-//loopSoundOn(sndBackgroundMusicRoom0); //No se puede reproducir sonidos sin autorizacion del usuario
+startRoom0.addEventListener('canplaythrough', verificarCargaCompleta);
 
 const sndBackgroundMusicRoom1 = new Audio('../sounds/background-music-room-1.mp3');
 totalRecursos++;
@@ -71,6 +71,11 @@ sndDefenestrateFemale.addEventListener('canplaythrough', verificarCargaCompleta)
 const sndWin = new Audio('../sounds/win.mp3');
 totalRecursos++;
 sndWin.addEventListener('canplaythrough', verificarCargaCompleta);
+
+const sndDraw = new Audio('../sounds/draw.mp3');
+totalRecursos++;
+sndDraw.addEventListener('canplaythrough', verificarCargaCompleta);
+
 const sndSelectPlayer1 = new Audio('../sounds/select-player.mp3');
 totalRecursos++;
 sndSelectPlayer1.addEventListener('canplaythrough', verificarCargaCompleta);
@@ -78,11 +83,10 @@ const sndSelectPlayer2 = new Audio('../sounds/select-player.mp3');
 totalRecursos++;
 sndSelectPlayer2.addEventListener('canplaythrough', verificarCargaCompleta);
 
-//el 2 suena más a espada o pincho, peeero no sé, me gusta más el otro
 const sndSkewered = new Audio('../sounds/skewered-2.mp3');
 totalRecursos++;
 sndSkewered.addEventListener('canplaythrough', verificarCargaCompleta);
-const sndOpenBattle = new Audio('../sounds/open-battle.mp3');
+const sndOpenBattle = new Audio('../sounds/fight.mp3');
 totalRecursos++;
 sndOpenBattle.addEventListener('canplaythrough', verificarCargaCompleta);
 
@@ -132,13 +136,6 @@ titleImg.src = titlePath;
 totalRecursos++;
 titleImg.onload = verificarCargaCompleta;
 
-//Mode selection page
-//Por alguna razón necesita el addEventListener y el resto no.
-//const modeImg = new Image();
-//modeImg.src = modePath;
-//totalRecursos++;
-//modeImg.onload = verificarCargaCompleta;
-
 //Mode config
 const imgCueva = new Image();
 imgCueva.src = cuevaPath;
@@ -154,6 +151,12 @@ const imgOpcionesTime = new Image();
 imgOpcionesTime.src = '../images/juegoMK/menu-options-time.png';
 totalRecursos++;
 imgOpcionesTime.onload = verificarCargaCompleta;
+
+//Infinito
+const imgInfinito = new Image();
+imgInfinito.src = '../images/juegoMK/infinito.png';
+totalRecursos++;
+imgInfinito.onload = verificarCargaCompleta;
 
 // Menu
 let room = 0;
@@ -234,37 +237,42 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 document.querySelector("#menu-categorias").addEventListener("transitionend", handleResize);
 
-let elements = [];
-let arrTablero = [];
-let arrDeco = [];
-let arrFichas = [];
-let arrFichaJugador1 = [];
-let arrFichaJugador2 = [];
-let lastClickedFigure = null;
-let mouseDown = false;
-let widthCanvas = canvas.clientWidth;
-let elemTop;
-let lateralIzquierdo;
-let lateralDerecho;
-let tablero;
-let pinchos;
-let timer;
-let pause;
+//--------Variables del juego--------
+
+let elements = [];                      //Contiene todos los objetos que componen el juego (arrTablero,arrDeco,arrFichas)
+let arrTablero = [];                    //Contiene el tablero y los pinchos
+let arrDeco = [];                       //Contiene todas las decoraciones
+let arrFichas = [];                     //Contiene todas las fichas
+let arrFichaJugador1 = [];              //Fichas del jugador 1
+let arrFichaJugador2 = [];              //Fichas del jugador 2
+let lastClickedFigure = null;           //Contiene el ultimo objeto de tipo Ficha
+let mouseDown = false;                  //Dectar si se clickeo el mouse
+let widthCanvas = canvas.clientWidth;   //Ancho del canvas
+let elemTop;                            //Contiene el objeto pieza decorativa
+let lateralIzquierdo;                   //Contiene el objeto pieza decorativa 
+let lateralDerecho;                     //Contiene el objeto pieza decorativa
+let tablero;                            //Contiene el objeto tablero
+let pinchos;                            //Contiene el objeto pieza decorativo con img de pinchos
+let timer;                              //Contiene el objeto timer
+let pause;                              //Contiene el objeto pausa
 const radiusPause = 12;
-let inPause = false;
-let turno = 0;
-let setTimeOutTiempoDeJuego = null;
-let xEnLinea = 0;
-let ganador = null;
-let draw = false;
+let inPause = false;                    //El juego esta pausado
+let turno = 0;                          //Contador de los turnos
+let setTimeOutTiempoDeJuego = null;     //Intervalo que detecta si se acabo el tiempo
+let xEnLinea = 0;                       //Modo de juego
+let ganador = null;                     //Hubo ganador
+let draw = false;                       //Hubo empate
 
-let mouseX;
-let mouseY;
+let mouseX; //Posicion del mouse en la coordinada x
+let mouseY; //Posicion del mouse en la coordinada y
 
-let timeVal = 300;
-let timeValMax = 600;
+let timeVal = 300;       //Tiempo de la partida default
+let timeValMin = 120;   //Tiempo minimo de la partida
+let timeValSum = 30;    //Cuanto tiempo sumar al hacer clic
+let timeValMax = 600;   //Tiempo maximo de la partida
 
 //Genera el juego luego de la seleccion de personaje
+
 function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     reiniciarVariablesJuego();
 
@@ -391,6 +399,7 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
             mouseDown = false;
             lastClickedFigure = null;
             drawAll();
+            sndDraw.play()
             clearInterval(setTimeOutTiempoDeJuego);
         }
     }, 100)
@@ -584,13 +593,20 @@ function drawAll() {
                 context.drawImage(imgOpcionesTime, 229, 124, 67, 82);
                 clocSelected = true;
                 document.body.style.cursor = "pointer";
-                drawText(`${timeVal}`, 24, 229 + 85, 124 + 41);
-                drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+                if (timeVal != Infinity) {
+                    drawText(`${timeVal}`, 24, 314, 165);
+                    drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+                } else {
+                    context.imageSmoothingEnabled = false;
+                    context.drawImage(imgInfinito, 314 - 22, 165 - 22, 45, 45)
+                    context.imageSmoothingEnabled = true;
+                    drawText(`TIEMPO DE JUEGO: Infinito`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+                }
             }
             if (xLineaValue != 0) {
                 drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
-            }else if (!clocSelected){
-                drawText(`HAZ CLIC EN EL CRANEO DEL MODO DE JUEGO QUE QUIERAS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+            } else if (!clocSelected) {
+                drawText(`HAZ CLIC EN UN CRANEO PARA SELECCIONAR EL MODO DE JUEGO`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
             }
             break;
 
@@ -626,7 +642,7 @@ function onMouseDown(e) {
         case 0: //start to play
             room = 1;
             drawAll();
-            loopSoundOff(sndBackgroundMusicRoom0)
+            startRoom0.play();
             loopSoundOn(sndBackgroundMusicRoom1)
             break;
 
@@ -696,8 +712,13 @@ function onMouseDown(e) {
                 }
             }
             if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
-                timeVal += 30;
-                if (timeVal > timeValMax) { timeVal = 120; }
+                timeVal += timeValSum;
+                if (timeVal > timeValMax && timeVal != Infinity) {
+                    timeVal = Infinity;
+                }
+                else if (timeVal == Infinity) {
+                    timeVal = timeValMin;
+                }
                 drawAll();
             }
             break;
