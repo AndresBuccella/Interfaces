@@ -940,6 +940,8 @@ function onMouseUp(e) {
                 player_selector_2 = null;
                 player_selector_1_anim.setFrame(0);
                 player_selector_2_anim.setFrame(0);
+                loopSoundOff(sndBackgroundMusicRoom2);
+                loopSoundOn(sndBackgroundMusicRoom1);
                 turno = 0;
                 room = 1;
             }
