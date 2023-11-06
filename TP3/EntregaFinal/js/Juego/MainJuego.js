@@ -484,7 +484,7 @@ function drawText(text, fontSize, posX, posY) {
 
 }
 
-function drawCharacterSelector(mouseX, mouseY) {
+function drawCharacterSelector() {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 4; j++) {
             context.drawImage(characters[i][j], 116 + j * 144, 88 + 144 * i);
@@ -504,14 +504,14 @@ function drawCharacterSelector(mouseX, mouseY) {
                     player_selector_1_anim.setPosY(88 + 144 * j);
                     drawText(characters[j][i].alt, 36, posX, posY);
                     document.body.style.cursor = "pointer";
-                    colition=true;
+                    colition = true;
                 } else if (turno == 1 && characters[j][i] != player_selector_1) {
                     player_selector_2_anim.setPosX(116 + i * 144);
                     player_selector_2_anim.setPosY(88 + 144 * j);
                     player_selector_2_anim.draw();
                     showCharactersName(player_selector_1.alt, characters[j][i].alt, posX, posY);
                     document.body.style.cursor = "pointer";
-                    colition=true;
+                    colition = true;
                 }
                 player_selector_1_anim.draw();
 
@@ -546,6 +546,11 @@ function drawCharacterSelector(mouseX, mouseY) {
     drawText('<', 32, posX - 2, posY + 2);
     context.strokeStyle = 'black';
 
+    let _x = posX - mouseX;
+    let _y = posY - mouseY;
+    if (Math.sqrt(_x * _x + _y * _y) < 18) {
+        document.body.style.cursor = "pointer";
+    }
 }
 
 function showCharactersName(character_1, character_2, posX, posY) {
@@ -567,13 +572,37 @@ function drawGame() {
     sangrado.draw();
     if (inPause) {
         drawPause();
+        document.body.style.cursor = "default";
+        for (let i = 0; i < 3; i++) {
+            if ((mouseX > 243 && mouseX < 556) &&
+                (mouseY > 289 + i * 85 && mouseY < 356 + i * 85)) {
+                document.body.style.cursor = "pointer";
+            }
+        }
     }
     if (ganador != null) {
+        document.body.style.cursor = "default";
         drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+
+        for (let i = 0; i < 2; i++) {
+            if ((mouseX > 243 && mouseX < 556) &&
+                (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
+                document.body.style.cursor = "pointer";
+            }
+        }
+
     } else if (draw) {
+        document.body.style.cursor = "default";
         drawText(`DRAW`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+
+        for (let i = 0; i < 2; i++) {
+            if ((mouseX > 243 && mouseX < 556) &&
+                (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
+                document.body.style.cursor = "pointer";
+            }
+        }
     }
 }
 function drawPause() {
@@ -639,7 +668,7 @@ function drawAll() {
             break;
 
         case 2: //seleccion
-            drawCharacterSelector(mouseX, mouseY);
+            drawCharacterSelector();
             break;
 
         case 3: //juego
@@ -747,6 +776,7 @@ function onMouseDown(e) {
                                                         if (room == 2) { //para darle la posibilidad de volver en cualquier momento
                                                             player_selector_1_anim.setLoop(-1)
                                                             room = 3;
+                                                            document.body.style.cursor = "default";
                                                             generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                                                         }
                                                     }, charactersSound[j][i].duration * 1000 + 200);
@@ -804,6 +834,9 @@ function onMouseMove(e) {
         case 3: //juego
             if (mouseDown && lastClickedFigure != null) {
                 lastClickedFigure.setPosition(mouseX, mouseY);
+                drawAll();
+
+            } else if (inPause || draw || ganador != null) {
                 drawAll();
             }
             break;
@@ -992,6 +1025,7 @@ function onMouseUp(e) {
                     drawAll();
                 }
             } else {
+                document.body.style.cursor = "default";
                 mouseDown = false;
                 if (ganador == null && !draw) {
                     if (!inPause) {
@@ -1038,7 +1072,7 @@ function onMouseUp(e) {
                         //drawAll();
                     }
                 } else {// En caso de ganador o empate
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i < 2; i++) {
                         if ((mouseX > 243 && mouseX < 556) &&
                             (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
                             switch (i) {
