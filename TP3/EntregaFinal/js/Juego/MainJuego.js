@@ -134,29 +134,29 @@ const player2 = 2;
 const titleImg = new Image();
 titleImg.src = titlePath;
 totalRecursos++;
-titleImg.onload = verificarCargaCompleta;
+titleImg.addEventListener('load', verificarCargaCompleta);
 
 //Mode config
 const imgCueva = new Image();
 imgCueva.src = cuevaPath;
 totalRecursos++;
-imgCueva.onload = verificarCargaCompleta;
+imgCueva.addEventListener('load', verificarCargaCompleta);
 
 const imgOpciones = new Image();
 imgOpciones.src = '../images/juegoMK/menu-options.png';
 totalRecursos++;
-imgOpciones.onload = verificarCargaCompleta;
+imgOpciones.addEventListener('load', verificarCargaCompleta);
 
 const imgOpcionesTime = new Image();
 imgOpcionesTime.src = '../images/juegoMK/menu-options-time.png';
 totalRecursos++;
-imgOpcionesTime.onload = verificarCargaCompleta;
+imgOpcionesTime.addEventListener('load', verificarCargaCompleta);
 
 //Infinito
 const imgInfinito = new Image();
 imgInfinito.src = '../images/juegoMK/infinito.png';
 totalRecursos++;
-imgInfinito.onload = verificarCargaCompleta;
+imgInfinito.addEventListener('load', verificarCargaCompleta);
 
 // Menu
 let room = 0;
@@ -165,18 +165,18 @@ let room = 0;
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
 totalRecursos++;
-pauseMenuImg.onload = verificarCargaCompleta;
+pauseMenuImg.addEventListener('load', verificarCargaCompleta);
 
 const drawMenuImg = new Image();
 drawMenuImg.src = drawPath;
 totalRecursos++;
-drawMenuImg.onload = verificarCargaCompleta;
+drawMenuImg.addEventListener('load', verificarCargaCompleta);
 
 
 const player_select = new Image();
 player_select.src = player_select_path;
 totalRecursos++;
-player_select.onload = verificarCargaCompleta;
+player_select.addEventListener('load', verificarCargaCompleta);
 
 player_selector_1 = null;
 player_selector_2 = null;
@@ -205,12 +205,12 @@ for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 4; j++) {
         const character = new Image();
         totalRecursos++;
-        character.onload = verificarCargaCompleta;
+        character.addEventListener('load', verificarCargaCompleta);
         character.src = `../images/juegoMK/personajes/character-${i}-${j}.png`;
         character.alt = charactersName[j + i * 4];
         characters[i][j] = character;
 
-        charactersSound[i][j] = new Audio("../sounds/personajes/" + character.alt + ".mp3");
+        charactersSound[i][j] = new Audio(`../sounds/personajes/${character.alt}.mp3`);
         charactersSound[i][j].alt = charactersName[j + i * 4];
         totalRecursos++;
         charactersSound[i][j].addEventListener('canplaythrough', verificarCargaCompleta);
@@ -416,7 +416,7 @@ function assignVoice(name) {
         }
     }
 }
-function gameIsDraw(){
+function gameIsDraw() {
     for (const ficha of arrFichas) {
         ficha.colocada(true);
     }
@@ -543,7 +543,7 @@ function drawGame() {
     if (ganador != null) {
         drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
-    }else if (draw){
+    } else if (draw) {
         drawText(`DRAW`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     }
@@ -571,10 +571,7 @@ function drawAll() {
             drawText("HAZ CLIC PARA JUGAR", 36, canvas.clientWidth / 2, canvas.clientHeight * 5 / 6);
             break;
 
-        case 1: //seleccion
-            drawCharacterSelector(mouseX, mouseY);
-            break;
-        case 2: //modo
+        case 1: //modo
             context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
             document.body.style.cursor = "default";
             let xLineaValue = 0;
@@ -613,6 +610,10 @@ function drawAll() {
             }
             break;
 
+        case 2: //seleccion
+            drawCharacterSelector(mouseX, mouseY);
+            break;
+
         case 3: //juego
             drawGame();
             break;
@@ -649,7 +650,33 @@ function onMouseDown(e) {
             loopSoundOn(sndBackgroundMusicRoom1)
             break;
 
-        case 1: //seleccion de personaje
+        case 1: //seleccion de modo
+            for (let i = 0; i < 2; i++) {
+                if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+                    room = 2;
+                    xEnLinea = i + 4;
+                    document.body.style.cursor = "default";
+                }
+
+                if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+                    room = 2;
+                    xEnLinea = i + 6;
+                    document.body.style.cursor = "default";
+                }
+            }
+            if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
+                timeVal += timeValSum;
+                if (timeVal > timeValMax && timeVal != Infinity) {
+                    timeVal = Infinity;
+                }
+                else if (timeVal == Infinity) {
+                    timeVal = timeValMin;
+                }
+                drawAll();
+            }
+            break;
+
+        case 2: //seleccion de personaje
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 3; j++) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
@@ -683,8 +710,8 @@ function onMouseDown(e) {
                                             loopSoundOff(sndBackgroundMusicRoom1);
                                             loopSoundOn(sndBackgroundMusicRoom2);
                                             player_selector_1_anim.setLoop(-1)
-                                            room = 2;
-                                            drawAll()
+                                            room = 3;
+                                            generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
                                         }, charactersSound[j][i].duration * 1000 + 200);
                                     }, versusSound.duration * 1000);
                                 }, player1selectedCharacterSound.duration * 1000);
@@ -695,34 +722,6 @@ function onMouseDown(e) {
                     }
                 }
             } if (player_selector_1 != null && player_selector_2 != null) {
-            }
-            break;
-
-        case 2: //seleccion de modo
-            for (let i = 0; i < 2; i++) {
-                if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
-                    room = 3;
-                    xEnLinea = i + 4;
-                    document.body.style.cursor = "default";
-                    generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
-                }
-
-                if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
-                    room = 3;
-                    xEnLinea = i + 6;
-                    document.body.style.cursor = "default";
-                    generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
-                }
-            }
-            if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
-                timeVal += timeValSum;
-                if (timeVal > timeValMax && timeVal != Infinity) {
-                    timeVal = Infinity;
-                }
-                else if (timeVal == Infinity) {
-                    timeVal = timeValMin;
-                }
-                drawAll();
             }
             break;
 
