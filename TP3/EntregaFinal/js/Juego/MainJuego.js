@@ -559,6 +559,45 @@ function showCharactersName(character_1, character_2, posX, posY) {
     drawText(character_2, 36, posX * 1.5, posY);
 }
 
+function drawModeSelection() {
+    context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    document.body.style.cursor = "default";
+    let xLineaValue = 0;
+    let clocSelected = false;
+    for (let i = 0; i < 2; i++) {
+        if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+            context.drawImage(imgOpciones, 197 + i * 100, 266, 103, 99);
+            document.body.style.cursor = "pointer";
+            xLineaValue = i + 4;
+        }
+
+        if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
+            context.drawImage(imgOpciones, 504 + i * 100, 266, -103, 99);
+            document.body.style.cursor = "pointer";
+            xLineaValue = i + 6;
+        }
+    }
+    if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
+        context.drawImage(imgOpcionesTime, 229, 124, 67, 82);
+        clocSelected = true;
+        document.body.style.cursor = "pointer";
+        if (timeVal != Infinity) {
+            drawText(`${timeVal}`, 24, 314, 165);
+            drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+        } else {
+            context.imageSmoothingEnabled = false;
+            context.drawImage(imgInfinito, 314 - 22, 165 - 22, 45, 45)
+            context.imageSmoothingEnabled = true;
+            drawText(`TIEMPO DE JUEGO: Infinito`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+        }
+    }
+    if (xLineaValue != 0) {
+        drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+    } else if (!clocSelected) {
+        drawText(`HAZ CLIC EN UN CRANEO PARA SELECCIONAR EL MODO DE JUEGO`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+    }
+}
+
 function drawGame() {
     clearCanvas();
     for (const element of elements) {
@@ -629,42 +668,7 @@ function drawAll() {
             break;
 
         case 1: //modo
-            context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
-            document.body.style.cursor = "default";
-            let xLineaValue = 0;
-            let clocSelected = false;
-            for (let i = 0; i < 2; i++) {
-                if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
-                    context.drawImage(imgOpciones, 197 + i * 100, 266, 103, 99);
-                    document.body.style.cursor = "pointer";
-                    xLineaValue = i + 4;
-                }
-
-                if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
-                    context.drawImage(imgOpciones, 504 + i * 100, 266, -103, 99);
-                    document.body.style.cursor = "pointer";
-                    xLineaValue = i + 6;
-                }
-            }
-            if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
-                context.drawImage(imgOpcionesTime, 229, 124, 67, 82);
-                clocSelected = true;
-                document.body.style.cursor = "pointer";
-                if (timeVal != Infinity) {
-                    drawText(`${timeVal}`, 24, 314, 165);
-                    drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
-                } else {
-                    context.imageSmoothingEnabled = false;
-                    context.drawImage(imgInfinito, 314 - 22, 165 - 22, 45, 45)
-                    context.imageSmoothingEnabled = true;
-                    drawText(`TIEMPO DE JUEGO: Infinito`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
-                }
-            }
-            if (xLineaValue != 0) {
-                drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
-            } else if (!clocSelected) {
-                drawText(`HAZ CLIC EN UN CRANEO PARA SELECCIONAR EL MODO DE JUEGO`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
-            }
+            drawModeSelection()
             break;
 
         case 2: //seleccion
@@ -816,6 +820,8 @@ function onMouseDown(e) {
     }
 }
 
+let room2slot = -1;
+
 function onMouseMove(e) {
     mouseX = e.layerX - offsetLeft;
     mouseY = e.layerY - offsetTop;
@@ -828,7 +834,23 @@ function onMouseMove(e) {
             break;
 
         case 2: //seleccion de personaje
-            drawAll(mouseX, mouseY);
+            let isInSlot = false;
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
+                        isInSlot = true;
+                        if (room2slot != i + j * 4) {
+                            room2slot = i + j * 4;
+                            drawAll(mouseX, mouseY);
+                            break
+                        }
+                    }
+                }
+            }
+            if (!isInSlot) {
+                drawAll(mouseX, mouseY);
+                room2slot=-1;
+            }
             break;
 
         case 3: //juego
@@ -977,6 +999,8 @@ function onMouseUp(e) {
                 loopSoundOn(sndBackgroundMusicRoom1);
                 turno = 0;
                 room = 1;
+                document.body.style.cursor = "default";
+                drawAll();
             }
             break;
         case 3: //juego
