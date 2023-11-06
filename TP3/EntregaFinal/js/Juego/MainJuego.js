@@ -7,7 +7,8 @@ let recursosCargados = 0;
 
 function verificarCargaCompleta() {
     recursosCargados++;
-    console.log();
+    console.clear();
+    console.log(recursosCargados/totalRecursos*100+"%");
     if (recursosCargados === totalRecursos) {
         console.log("¡Todos los recursos se han cargado!");
         drawAll();
@@ -27,6 +28,7 @@ sndBackgroundMusicRoom1.addEventListener('canplaythrough', verificarCargaComplet
 const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-1.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
+
 let sndBackgroundMusicRoom3;
 if (Math.random() <= 0.2) {
     sndBackgroundMusicRoom3 = new Audio('../sounds/Mortal-Kumbia.mp3');
