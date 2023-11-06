@@ -11,7 +11,7 @@ class Timer {
         this.fontSizeDraw = 90;
         this.pausa = false;
         this.mostrar = setInterval(() => {
-            if (timer.getTime() > 0 && !this.pausa) {
+            if (timer.getTime() > 0 && !this.pausa && !draw) {
                 timer.setTime(timer.getTime() - 1);
                 drawAll();
             } else if (timer.getTime() <= 0) {

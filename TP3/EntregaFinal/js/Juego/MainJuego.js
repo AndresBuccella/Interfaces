@@ -393,13 +393,7 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
 
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
-            for (const ficha of arrFichas) {
-                ficha.colocada(true);
-            }
-            mouseDown = false;
-            lastClickedFigure = null;
-            drawAll();
-            sndDraw.play()
+            gameIsDraw();
             clearInterval(setTimeOutTiempoDeJuego);
         }
     }, 100)
@@ -422,7 +416,15 @@ function assignVoice(name) {
         }
     }
 }
-
+function gameIsDraw(){
+    for (const ficha of arrFichas) {
+        ficha.colocada(true);
+    }
+    mouseDown = false;
+    lastClickedFigure = null;
+    drawAll();
+    sndDraw.play()
+}
 function reiniciarVariablesJuego() {
     turno = 0
     elements = [];
@@ -541,6 +543,9 @@ function drawGame() {
     if (ganador != null) {
         drawText(`${ganador} wins`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
         context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    }else if (draw){
+        drawText(`DRAW`, 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
+        context.drawImage(drawMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     }
 }
 function drawPause() {
@@ -553,9 +558,7 @@ function drawPause() {
     context.drawImage(pauseMenuImg, 0, 0, canvas.clientWidth, canvas.clientHeight);
     drawText('Pause', 90, canvas.clientWidth / 2, canvas.clientHeight / 3);
 }
-function drawDraw() {
-    console.log("1");
-}
+
 let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
 let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
 //let cueva_anim = new AnimatedPiece(context, '../images/juegoMK/cueva-interior.png', 0, 0, 800, 300);
@@ -858,6 +861,10 @@ function gravedad() {
                     tablero.resaltarFichas(ganador);
                     timer.setPausa(true);
                     clearInterval(setTimeOutTiempoDeJuego);
+                } else if (turno + 1 == tablero.getCantFil() * tablero.getCantCol()) {
+                    draw = true;
+                    gameIsDraw();
+                    drawAll();
                 }
                 lastClickedFigure = null;
                 velocity = 0;
