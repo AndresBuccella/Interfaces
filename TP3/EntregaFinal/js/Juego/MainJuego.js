@@ -422,8 +422,9 @@ function gameIsDraw() {
     mouseDown = false;
     lastClickedFigure = null;
     drawAll();
-    sndDraw.play()
+    sndDraw.play();
 }
+
 function reiniciarVariablesJuego() {
     turno = 0
     elements = [];
@@ -1032,6 +1033,7 @@ function onMouseUp(e) {
             break;
     }
 }
+
 function acomodarFichasNoColocadas(arr, posFicha) {
     for (let i = arr.length - 1; i >= 0; i--) {
         if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {
