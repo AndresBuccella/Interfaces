@@ -565,7 +565,8 @@ function drawAll() {
         case 2: //modo
             context.drawImage(imgCueva, 0, 0, canvas.clientWidth, canvas.clientHeight);
             document.body.style.cursor = "default";
-            let xLineaValue = 0
+            let xLineaValue = 0;
+            let clocSelected = false;
             for (let i = 0; i < 2; i++) {
                 if ((mouseX > 216 + i * 100 && mouseX < 280 + i * 100) && (mouseY > 270 && mouseY < 345)) {
                     context.drawImage(imgOpciones, 197 + i * 100, 266, 103, 99);
@@ -581,12 +582,15 @@ function drawAll() {
             }
             if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
                 context.drawImage(imgOpcionesTime, 229, 124, 67, 82);
+                clocSelected = true;
                 document.body.style.cursor = "pointer";
                 drawText(`${timeVal}`, 24, 229 + 85, 124 + 41);
                 drawText(`TIEMPO DE JUEGO: ${timeVal} SEGUNDOS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
             }
             if (xLineaValue != 0) {
                 drawText(`${xLineaValue} EN LINEA`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
+            }else if (!clocSelected){
+                drawText(`HAZ CLIC EN EL CRANEO DEL MODO DE JUEGO QUE QUIERAS`, 24, canvas.clientWidth / 2, canvas.clientHeight - 16);
             }
             break;
 
