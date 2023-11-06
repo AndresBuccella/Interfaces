@@ -20,10 +20,11 @@ const startRoom0 = new Audio('../sounds/open-battle.mp3');
 totalRecursos++;
 startRoom0.addEventListener('canplaythrough', verificarCargaCompleta);
 
-const sndBackgroundMusicRoom1 = new Audio('../sounds/background-music-room-1.mp3');
+const sndBackgroundMusicRoom1 = new Audio('../sounds/background-music-room-2.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom1.addEventListener('canplaythrough', verificarCargaCompleta);
-const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-2.mp3');
+
+const sndBackgroundMusicRoom2 = new Audio('../sounds/background-music-room-1.mp3');
 totalRecursos++;
 sndBackgroundMusicRoom2.addEventListener('canplaythrough', verificarCargaCompleta);
 let sndBackgroundMusicRoom3;
@@ -225,7 +226,6 @@ totalRecursos++;
 winsSound.addEventListener('canplaythrough', verificarCargaCompleta);
 
 // Obtén el offset del canvas
-let pantalla = document.querySelector("#pantalla-juego")
 let offsetLeft = canvas.offsetLeft;
 let offsetTop = canvas.offsetTop;
 
@@ -416,6 +416,7 @@ function assignVoice(name) {
         }
     }
 }
+
 function gameIsDraw() {
     for (const ficha of arrFichas) {
         ficha.colocada(true);
@@ -491,26 +492,26 @@ function drawCharacterSelector(mouseX, mouseY) {
     }
     context.drawImage(player_select, 0, 0);
     document.body.style.cursor = "default";
+
+    let posX = canvas.clientWidth / 2;
+    let posY = canvas.clientHeight - 36;
+    let colition = false;
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
-                //((turno % 2) + 1) == playerX no funciona porque es algo que se calcula constantemente
-                //mientras el mouse está en movimiento y el turno cambia al clickear. Lo anoto para mi
-                let posX = canvas.clientWidth / 2;
-                let posY = canvas.clientHeight - 36;
                 if (turno == 0) {
                     player_selector_1_anim.setPosX(116 + i * 144);
                     player_selector_1_anim.setPosY(88 + 144 * j);
                     drawText(characters[j][i].alt, 36, posX, posY);
                     document.body.style.cursor = "pointer";
+                    colition=true;
                 } else if (turno == 1 && characters[j][i] != player_selector_1) {
                     player_selector_2_anim.setPosX(116 + i * 144);
                     player_selector_2_anim.setPosY(88 + 144 * j);
                     player_selector_2_anim.draw();
-                    drawText(player_selector_1.alt, 36, posX / 2, posY);
-                    drawText("VS", 36, posX, posY);
-                    drawText(characters[j][i].alt, 36, posX * 1.5, posY);
+                    showCharactersName(player_selector_1.alt, characters[j][i].alt, posX, posY);
                     document.body.style.cursor = "pointer";
+                    colition=true;
                 }
                 player_selector_1_anim.draw();
 
@@ -524,6 +525,20 @@ function drawCharacterSelector(mouseX, mouseY) {
             }
         }
     }
+    if (player_selector_1 != null && !colition) {
+        if (player_selector_2 != null) {
+            showCharactersName(player_selector_1.alt, player_selector_2.alt, posX, posY)
+        } else {
+            drawText(player_selector_1.alt, 36, posX, posY);
+        }
+    }
+}
+
+
+function showCharactersName(character_1, character_2, posX, posY) {
+    drawText(character_1, 36, posX / 2, posY);
+    drawText("VS", 36, posX, posY);
+    drawText(character_2, 36, posX * 1.5, posY);
 }
 
 function drawGame() {
@@ -656,12 +671,16 @@ function onMouseDown(e) {
                     room = 2;
                     xEnLinea = i + 4;
                     document.body.style.cursor = "default";
+                    loopSoundOff(sndBackgroundMusicRoom1);
+                    loopSoundOn(sndBackgroundMusicRoom2);
                 }
 
                 if ((mouseX > 419 + i * 100 && mouseX < 483 + i * 100) && (mouseY > 270 && mouseY < 345)) {
                     room = 2;
                     xEnLinea = i + 6;
                     document.body.style.cursor = "default";
+                    loopSoundOff(sndBackgroundMusicRoom1);
+                    loopSoundOn(sndBackgroundMusicRoom2);
                 }
             }
             if ((mouseX > 236 && mouseX < 289) && (mouseY > 131 && mouseY < 199)) {
@@ -707,8 +726,6 @@ function onMouseDown(e) {
                                     setTimeout(() => {
                                         charactersSound[j][i].play();
                                         setTimeout(() => {
-                                            loopSoundOff(sndBackgroundMusicRoom1);
-                                            loopSoundOn(sndBackgroundMusicRoom2);
                                             player_selector_1_anim.setLoop(-1)
                                             room = 3;
                                             generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
@@ -752,13 +769,15 @@ function onMouseMove(e) {
     switch (room) {
         case 0: //start to play
             break;
-        case 1: //seleccion de personaje
-            drawAll(mouseX, mouseY);
 
-            break;
-        case 2: //seleccion de modo
+        case 1: //seleccion de modo
             drawAll(mouseX, mouseY);
             break;
+
+        case 2: //seleccion de personaje
+            drawAll(mouseX, mouseY);
+            break;
+
         case 3: //juego
             if (mouseDown && lastClickedFigure != null) {
                 lastClickedFigure.setPosition(mouseX, mouseY);
