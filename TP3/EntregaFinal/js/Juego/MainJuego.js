@@ -749,7 +749,7 @@ function onMouseDown(e) {
                     if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
                         //((turno % 2) + 1) == playerX y no hace falta el turno = 0
                         //estaba como turno == 0 y turno == 1
-                        if (((turno % 2) + 1) == player1) {
+                        if (turno + 1 == player1) {
                             player_selector_1 = characters[j][i];
                             player_selector_1_anim.setFrame(0);
                             player_selector_1_anim.setPosX(116 + i * 144);
@@ -759,7 +759,7 @@ function onMouseDown(e) {
                             player_selector_1_anim.startAnimation();
                             player1selectedCharacterSound = charactersSound[j][i];
                             turno++;
-                        } else if (((turno % 2) + 1) == player2 && characters[j][i] != player_selector_1) {
+                        } else if (turno + 1 == player2 && characters[j][i] != player_selector_1) {
                             player_selector_2 = characters[j][i];
                             player_selector_2_anim.setFrame(0);
                             player_selector_2_anim.setPosX(116 + i * 144);
@@ -849,7 +849,7 @@ function onMouseMove(e) {
             }
             if (!isInSlot) {
                 drawAll(mouseX, mouseY);
-                room2slot=-1;
+                room2slot = -1;
             }
             break;
 
