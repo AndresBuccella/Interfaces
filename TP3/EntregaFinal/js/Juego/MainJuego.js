@@ -92,7 +92,7 @@ sndSelectPlayer2.addEventListener('canplaythrough', verificarCargaCompleta);
 const sndSkewered = new Audio('../sounds/skewered-2.mp3');
 totalRecursos++;
 sndSkewered.addEventListener('canplaythrough', verificarCargaCompleta);
-const sndOpenBattle = new Audio('../sounds/fight.mp3');
+const sndOpenBattle = new Audio('../sounds/Fight.mp3');
 totalRecursos++;
 sndOpenBattle.addEventListener('canplaythrough', verificarCargaCompleta);
 
