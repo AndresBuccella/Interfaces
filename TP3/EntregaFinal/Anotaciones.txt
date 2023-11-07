@@ -1,0 +1,41 @@
+1_X_Mostrar un tablero vacío (imagen de fondo).
+2_X_Mostrar dos grupos de fichas (uno para el jugador 1 y otro para jugador 2).
+3_X_Las piezas de cada jugador se dibujan con una imagen en lugar de un color sólido.
+4_X_Cada jugador va seleccionando sus fichas y las ubica en una de las columnas del tablero.
+5_X_Se debe implementar la lógica del juego, teniendo en cuenta los turnos de jugador 
+    (un jugador por vez).
+7_X_Las fichas deben elegirse con click de mouse, y el usuario debe poder arrastrar 
+    la ficha y soltarla donde quiere.
+6_X_El juego termina cuando un jugador consigue ubicar cuatro fichas en línea 
+    (Vertical, horizontal o diagonal). Indicar el ganador.
+8_X_Se debe poder reiniciar el juego, 
+8.1_X_Colocar un timer con el límite el tiempo del juego.
+9_X_Integrar el juego en la página web presentada en el TPE2, el mismo debe poder 
+    ejecutarse desde la web. 
+10_X_Implementar las mejoras del TPE1 y TPE2 en cuanto a UX de la pagina del juego, etc. agregar login to home
+11_X_Poder establecer la dimensión del tablero “X en línea”. Basta con tener al 
+    menos 3 opciones más (Ej: 5 en línea, 6 en línea, 7 en línea). Se debe agrandar 
+    el tablero según lo seleccionado. Aclaración: Cuando se agranda el tablero por 
+    ejemplo “5 en línea” se debe verificar que el ganador tenga 5 fichas alineadas. 
+    De forma similar con 7 y 8 en línea.
+
+12_X_Agregar diferentes tipos de fichas (colores o formatos)
+_X_Hay que dibujar:
+    1__fondo en degradé
+    2__fichas
+    3__tablero
+
+
+
+
+9.1__Debe contener las ayudas de cómo jugar y la descripción completa e imágenes del mismo.
+
+__Rever fondo del tablero (clearCanvas)
+
+__room2slot no hace nada
+
+__Rever nombres.
+
+
+
+Cambiar layerX por problemas de compatibilidad
