@@ -287,6 +287,7 @@ let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.pn
 let velocity = 0;
 let gravity = 1;
 let velocityLimit = 20;
+let intervalGravity;
 
 //Genera el juego luego de la seleccion de personaje
 
@@ -1083,15 +1084,19 @@ function gravedad(posX) {
                     sndBounceOnTop.play();
                 }
             } else {
+                //when the token finishes bouncing
                 clearInterval(intervalGravity);
-                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces());
+                lastClickedFigure.setBounces(lastClickedFigure.getMaxBounces()); // ???? why
                 lastClickedFigure.setVelocity(0);
                 lastClickedFigure.setPosition(
                     posX,
                     tablero.getSuelo()
                 );
+
+                //The token is added to the matrix and the winner is verified
                 ganador = tablero.cargarEnMatriz(lastClickedFigure);
 
+                //the first token is skewered, screams and bleeds
                 if (tablero.getSuelo() == (canvas.clientHeight - tablero.getHeightCasilla() / 2)) {
                     sangrado.setFrame(0);
                     sangrado.setPosX(posX - sangrado.getFrameWidth() / 2);
@@ -1102,6 +1107,8 @@ function gravedad(posX) {
                     sangrado.startAnimation();
                 }
 
+                //When there is a winner, the tokens become inaccessible, the winner is named, 
+                //the loser is marked with skulls, time is paused
                 if (ganador != null) {
                     for (const ficha of arrFichas) {
                         ficha.colocada(true);
@@ -1146,18 +1153,22 @@ function gravedad(posX) {
     }
 }
 
-//La gravedad está más abajo
-let intervalGravity;
-function onMouseUp(e) {
+/**
+ * This function handles mouse release events and controls different actions based on the current game state, 
+ * including mode selection, character selection, and gameplay. It allows players to place tokens on the game board, 
+ * manage pause, and make choices when a game is won or drawn.
+ */
+function onMouseUp() {
     switch (room) {
         case 0: //start to play
 
             break;
 
-        case 1: //seleccion de personaje
+        case 1: //mode selector
             break;
 
-        case 2: //seleccion de modo
+        case 2: //character selector
+            //when the backBtn is selected, back to mode selector
             let positionBtnX = 35;
             let positionBtnY = 35;
             let radiusBtnBack = 18;
@@ -1174,15 +1185,15 @@ function onMouseUp(e) {
         case 3: //juego
             if ((lastClickedFigure != null) && (mouseDown)) {
                 mouseDown = false;
-                //delimita la seccion en donde se puede tirar la ficha
                 if (
                     lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
                     lastClickedFigure.getPositionX() > anchoTheTower &&
                     lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
-                ) {
-                    //Impide que se pueda tirar a los costados del tablero
+                    ) {
+                    //Delimits the section where the token can be thrown
 
                     let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
+
                     if (tablero.getFilaDisponible(columna) != -1) {
                         correccionCaidaX();
 
@@ -1195,8 +1206,9 @@ function onMouseUp(e) {
                         }
 
                         tablero.calcularNuevoSuelo(columna);
+
                         let auxPosx = lastClickedFigure.getPositionX();
-                        //Solo se activa si es necesario
+
                         intervalGravity = setInterval(function () {
                             gravedad(auxPosx);
                         }, 1000 / 60);
@@ -1263,7 +1275,7 @@ function onMouseUp(e) {
                         }
                         //drawAll();
                     }
-                } else {// En caso de ganador o empate
+                } else {// In the event that there is a winner or there is a draw
                     for (let i = 0; i < 2; i++) {
                         if ((mouseX > 243 && mouseX < 556) &&
                             (mouseY > 374 + i * 85 && mouseY < 441 + i * 85)) {
@@ -1294,6 +1306,12 @@ function onMouseUp(e) {
     }
 }
 
+/**
+ * Adjusts the positions of non-placed game tokens within the provided array.
+ *
+ * @param {Array} arr - The array of game tokens to adjust positions within.
+ * @param {number} posFicha - The position of the token to be placed.
+ */
 function acomodarFichasNoColocadas(arr, posFicha) {
     for (let i = arr.length - 1; i >= 0; i--) {
         if ((!arr[i].getFiguraIsColocada()) && (posFicha > i)) {
@@ -1311,6 +1329,10 @@ canvas.addEventListener("mouseup", onMouseUp, false);
 canvas.addEventListener("mousemove", onMouseMove, false);
 
 //Turn
+/**
+ * Highlights the game tokens that can be played based on the current player's turn.
+ * Enables or disables the ability to select specific tokens for the active player.
+ */
 function resaltarFichasEnJuego() {
     //le saque el turn++ porque daba errores al poner pausa
     if ((turn % 2) + 1 == player1) {
