@@ -1,10 +1,9 @@
 class Tablero {
 
-    constructor(canvas, context, xEnLinea, pathCenter, pathCentralInside, pathCentralBackground,
+    constructor(context, xEnLinea, pathCenter, pathCentralInside, pathCentralBackground,
         marginTop, marginBottom, marginRight, marginLeft) {
         //Optimizable
         this.context = context;
-        this.canvas = canvas;
         this.xEnLinea = xEnLinea;
         this.filas = this.xEnLinea + 2;
         this.columnas = this.xEnLinea + 3;
@@ -92,7 +91,7 @@ class Tablero {
     calcularNuevoSuelo(columna) {
         this.suelo = this.suelo - (this.getHeightCasilla() * (this.filas - (this.getFilaDisponible(columna) + 1)));
     }
-    
+
     cargarEnMatriz(ficha) {
         let columna = this.getColumnaExacta(ficha.getPositionX());
         let fila = this.getFilaDisponible(columna);

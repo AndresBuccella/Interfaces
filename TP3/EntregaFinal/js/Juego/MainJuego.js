@@ -110,11 +110,20 @@ const drawPath = '../images/juegoMK/menu-draw.png';
 const imagenLateralPath = "../images/juegoMK/the-tower.png";
 const imagenTopPath = "../images/juegoMK/imagenTop.png";
 const imagenPinchosPath = "../images/juegoMK/pinchos.png";
+const bgTableroPath = "../images/juegoMK/bg-tablero.png"
 
 const pathCentral = "../images/juegoMK/casilla.png";
 const pathCentralInside = "../images/juegoMK/casilla-interior.png";
 const pathCentralBackground = "../images/juegoMK/casilla-relleno.png";
 const player_select_path = "../images/juegoMK/seleccion-jugador.png";
+
+const imgOpcionesPath = '../images/juegoMK/menu-options.png';
+const imgOpcionesTimePath = '../images/juegoMK/menu-options-time.png';
+const imgInfinitoPath = '../images/juegoMK/infinito.png';
+
+const jailAnimatedPlayer1Path = '../images/juegoMK/animations/selector-jugador-1-anim.png';
+const jailAnimatedPlayer2Path = '../images/juegoMK/animations/selector-jugador-2-anim.png';
+const bloodPath = '../images/juegoMK/animations/blood.png';
 
 //Fonts
 let fontFile = "../css/fonts/mk2.ttf";
@@ -149,18 +158,18 @@ totalRecursos++;
 imgCueva.addEventListener('load', verificarCargaCompleta);
 
 const imgOpciones = new Image();
-imgOpciones.src = '../images/juegoMK/menu-options.png';
+imgOpciones.src = imgOpcionesPath;
 totalRecursos++;
 imgOpciones.addEventListener('load', verificarCargaCompleta);
 
 const imgOpcionesTime = new Image();
-imgOpcionesTime.src = '../images/juegoMK/menu-options-time.png';
+imgOpcionesTime.src = imgOpcionesTimePath;
 totalRecursos++;
 imgOpcionesTime.addEventListener('load', verificarCargaCompleta);
 
 //Infinito
 const imgInfinito = new Image();
-imgInfinito.src = '../images/juegoMK/infinito.png';
+imgInfinito.src = imgInfinitoPath;
 totalRecursos++;
 imgInfinito.addEventListener('load', verificarCargaCompleta);
 
@@ -168,6 +177,11 @@ imgInfinito.addEventListener('load', verificarCargaCompleta);
 let room = 0;
 
 //Game
+const bgGameImage = new Image();
+bgGameImage.src = bgTableroPath;
+totalRecursos++;
+bgGameImage.addEventListener('load', verificarCargaCompleta);
+
 const theTower = new Image();
 theTower.src = imagenLateralPath;
 totalRecursos++;
@@ -181,7 +195,7 @@ imagenTop.addEventListener('load', verificarCargaCompleta);
 const imagenPinchos = new Image();
 imagenPinchos.src = imagenPinchosPath;
 totalRecursos++;
-imagenPinchos.addEventListener('load', verificarCargaCompleta); 
+imagenPinchos.addEventListener('load', verificarCargaCompleta);
 
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
@@ -283,12 +297,12 @@ let timeValMin = 120;   //Tiempo minimo de la partida
 let timeValSum = 30;    //Cuanto tiempo sumar al hacer clic
 let timeValMax = 600;   //Tiempo maximo de la partida
 
-let player_selector_1_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-1-anim.png', -200, -200, 135, 400, -1);
-let player_selector_2_anim = new AnimatedPiece(context, '../images/juegoMK/animations/selector-jugador-2-anim.png', -200, -200, 135, 400, -1);
-
 let player1selectedCharacterSound;
 
-let sangrado = new AnimatedPiece(context, '../images/juegoMK/animations/blood.png', -135, -135, 135, 200, -1);
+let player_selector_1_anim = new AnimatedPiece(context, jailAnimatedPlayer1Path, -200, -200, 135, 400, -1);
+let player_selector_2_anim = new AnimatedPiece(context, jailAnimatedPlayer2Path, -200, -200, 135, 400, -1);
+
+let sangrado = new AnimatedPiece(context, bloodPath, -135, -135, 135, 200, -1);
 
 //Caida de la ficha
 let velocity = 0;
@@ -303,7 +317,6 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     resetGameVariables();
 
     tablero = new Tablero(
-        canvas,
         context,
         xEnLinea,
         pathCentral,
@@ -527,14 +540,11 @@ function drawCharacterSelector() {
         }
     }
 
-    // Draw the player selection indicator.
+    // Draw the player selection grid.
     context.drawImage(player_select, 0, 0);
 
     // Set the cursor style to default.
     document.body.style.cursor = "default";
-
-
-    //me parece que esto de abajo iria en onmousemove porque es logica de seleccion y no solo de dibujo
 
     let posX = canvas.clientWidth / 2;
     let posY = canvas.clientHeight - 36;
@@ -665,7 +675,7 @@ function drawModeSelection() {
     }
 }
 
-function drawDecorativePictures(image, posX, posY, width, height){
+function drawDecorativePictures(image, posX, posY, width, height) {
     context.save();
     context.drawImage(image, posX, posY, width, height);
     context.restore();
@@ -682,7 +692,7 @@ function drawGame() {
     drawDecorativePictures(imagenTop, 0, 0, widthCanvas, spriteHeightTop);
     drawDecorativePictures(theTower, 0, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
     drawDecorativePictures(theTower, canvas.clientWidth - anchoTheTower, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
-    
+
     // Draw Tablero and arrFichas.
     for (const ficha of arrFichas) {
         ficha.draw();
@@ -690,7 +700,7 @@ function drawGame() {
 
     tablero.draw();
     drawDecorativePictures(imagenPinchos, anchoTheTower, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - anchoTheTower - anchoTheTower, spriteHeightPinchos);
-    
+
     timer.draw();
 
     // If a game piece is clicked and being moved, draw it.
@@ -744,7 +754,7 @@ function drawPauseBtn(posX, posY, radius) {
     context.save();
 
     context.beginPath();
-    context.arc(posX, posY, radius-2, 0, Math.PI * 2, true);
+    context.arc(posX, posY, radius - 2, 0, Math.PI * 2, true);
     context.lineWidth = 2;
     context.stroke();
     context.closePath();
@@ -799,11 +809,11 @@ function drawAll() {
 }
 
 function clearCanvas() {
-    let gradiente = context.createLinearGradient(100, 0, 0, canvas.clientHeight);
-    gradiente.addColorStop(0, "#888888");
-    gradiente.addColorStop(1, "#555555");
-    context.fillStyle = gradiente;
-    context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    let pattern = context.createPattern(bgGameImage, 'repeat');
+
+    // Dibuja un rectángulo en el canvas con el patrón de la imagen
+    context.fillStyle = pattern;
+    context.fillRect(0, 0, 800, 600);
 }
 
 /**
@@ -911,7 +921,7 @@ function onMouseDown(e) {
                                                 if (room == 2) {
                                                     charactersSound[j][i].play();
                                                     setTimeout(() => {
-                                                        if (room == 2) {
+                                                        if (room == 2  && player_selector_1 != null  && player_selector_2 != null) {
                                                             player_selector_1_anim.setLoop(-1)
                                                             room = 3;
                                                             document.body.style.cursor = "default";
@@ -928,8 +938,6 @@ function onMouseDown(e) {
                         }
                     }
                 }
-            } if (player_selector_1 != null && player_selector_2 != null) {
-                //???
             }
             break;
 
@@ -968,6 +976,7 @@ function onMouseMove(e) {
             break;
 
         case 2: //character selection
+            drawAll();
             break;
 
         case 3: //juego
@@ -1140,7 +1149,7 @@ function onMouseUp() {
                     lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
                     lastClickedFigure.getPositionX() > anchoTheTower &&
                     lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
-                    ) {
+                ) {
                     //Delimits the section where the token can be thrown
 
                     let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
