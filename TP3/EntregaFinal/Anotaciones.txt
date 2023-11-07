@@ -30,9 +30,7 @@ _X_Hay que dibujar:
 
 9.1__Debe contener las ayudas de cómo jugar y la descripción completa e imágenes del mismo.
 
-__Rever fondo del tablero (clearCanvas)
-
-__room2slot no hace nada
+_X_Rever fondo del tablero (clearCanvas)
 
 __Rever nombres.
 
