@@ -107,9 +107,9 @@ const cuevaPath = '../images/juegoMK/cueva.png';
 const pausePath = '../images/juegoMK/menu-pause.png';
 const drawPath = '../images/juegoMK/menu-draw.png';
 
-const imagenLateral = "../images/juegoMK/the-tower.png";
-const imagenTop = "../images/juegoMK/imagenTop.png";
-const imagenPinchos = "../images/juegoMK/pinchos.png";
+const imagenLateralPath = "../images/juegoMK/the-tower.png";
+const imagenTopPath = "../images/juegoMK/imagenTop.png";
+const imagenPinchosPath = "../images/juegoMK/pinchos.png";
 
 const pathCentral = "../images/juegoMK/casilla.png";
 const pathCentralInside = "../images/juegoMK/casilla-interior.png";
@@ -168,6 +168,21 @@ imgInfinito.addEventListener('load', verificarCargaCompleta);
 let room = 0;
 
 //Game
+const theTower = new Image();
+theTower.src = imagenLateralPath;
+totalRecursos++;
+theTower.addEventListener('load', verificarCargaCompleta);
+
+const imagenTop = new Image();
+imagenTop.src = imagenTopPath;
+totalRecursos++;
+imagenTop.addEventListener('load', verificarCargaCompleta);
+
+const imagenPinchos = new Image();
+imagenPinchos.src = imagenPinchosPath;
+totalRecursos++;
+imagenPinchos.addEventListener('load', verificarCargaCompleta); 
+
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
 totalRecursos++;
@@ -244,22 +259,14 @@ document.querySelector("#menu-categorias").addEventListener("transitionend", han
 
 //--------Variables del juego--------
 
-let elements = [];                      //Contiene todos los objetos que componen el juego (arrTablero,arrDeco,arrFichas)
-let arrTablero = [];                    //Contiene el tablero y los pinchos
-let arrDeco = [];                       //Contiene todas las decoraciones
 let arrFichas = [];                     //Contiene todas las fichas
 let arrFichaJugador1 = [];              //Fichas del jugador 1
 let arrFichaJugador2 = [];              //Fichas del jugador 2
 let lastClickedFigure = null;           //Contiene el ultimo objeto de tipo Ficha
 let mouseDown = false;                  //Dectar si se clickeo el mouse
 let widthCanvas = canvas.clientWidth;   //Ancho del canvas
-let elemTop;                            //Contiene el objeto pieza decorativa
-let lateralIzquierdo;                   //Contiene el objeto pieza decorativa 
-let lateralDerecho;                     //Contiene el objeto pieza decorativa
 let tablero;                            //Contiene el objeto tablero
-let pinchos;                            //Contiene el objeto pieza decorativo con img de pinchos
 let timer;                              //Contiene el objeto timer
-let pause;                              //Contiene el objeto pausa
 const radiusPause = 12;
 let inPause = false;                    //El juego esta pausado
 let turn = 0;                          //Contador de los turnos
@@ -289,37 +296,11 @@ let gravity = 1;
 let velocityLimit = 20;
 let intervalGravity;
 
+
 //Genera el juego luego de la seleccion de personaje
 
 function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     resetGameVariables();
-
-    elemTop = new PiezaDecorativa(
-        context,
-        imagenTop,
-        0,
-        0,
-        widthCanvas,
-        spriteHeightTop
-    );
-    arrDeco.push(elemTop);
-
-    lateralIzquierdo = new PiezaDecorativa(
-        context,
-        imagenLateral,
-        0,
-        spriteHeightTop,
-        anchoTheTower,
-        canvas.clientHeight - spriteHeightTop
-    );
-    lateralDerecho = new PiezaDecorativa(
-        context,
-        imagenLateral,
-        canvas.clientWidth - anchoTheTower,
-        spriteHeightTop,
-        anchoTheTower,
-        canvas.clientHeight - spriteHeightTop
-    );
 
     tablero = new Tablero(
         canvas,
@@ -330,21 +311,9 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
         pathCentralBackground,
         spriteHeightTop,
         spriteHeightBot,
-        lateralDerecho.getWidth(),
-        lateralIzquierdo.getWidth()
-    );
-
-    pinchos = new PiezaDecorativa(
-        context,
-        imagenPinchos,
         anchoTheTower,
-        canvas.clientHeight - spriteHeightPinchos,
-        canvas.clientWidth - anchoTheTower - anchoTheTower,
-        spriteHeightPinchos
+        anchoTheTower
     );
-
-    arrDeco.push(lateralIzquierdo);
-    arrDeco.push(lateralDerecho);
 
     //Fichas
     const yFichas = canvas.clientHeight / 7;
@@ -392,18 +361,9 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     arrFichas = arrFichas.concat(arrFichaJugador1);
     arrFichas = arrFichas.concat(arrFichaJugador2);
 
-    arrTablero.push(tablero);
-    arrTablero.push(pinchos);
-
-    elements = elements.concat(arrDeco);
-    elements = elements.concat(arrFichaJugador1);
-    elements = elements.concat(arrFichaJugador2);
-    elements = elements.concat(arrTablero);
-    
     //Timer
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
-        elements.push(timer);
     });
 
     setTimeOutTiempoDeJuego = setInterval(() => {
@@ -464,9 +424,6 @@ function resetGameVariables() {
     // Reiniciar variables de juego
     // Reset game variables
     turn = 0
-    elements = [];
-    arrTablero = [];
-    arrDeco = [];
     arrFichas = [];
     arrFichaJugador1 = [];
     arrFichaJugador2 = [];
@@ -708,6 +665,12 @@ function drawModeSelection() {
     }
 }
 
+function drawDecorativePictures(image, posX, posY, width, height){
+    context.save();
+    context.drawImage(image, posX, posY, width, height);
+    context.restore();
+}
+
 /**
  * Draw the game elements, UI, and handle user interactions.
  * Dibuja los elementos del juego, la interfaz de usuario y maneja las interacciones del usuario.
@@ -716,12 +679,19 @@ function drawGame() {
     // Clear the canvas to prepare for drawing.
     clearCanvas();
 
-    // Draw all game basic elements.
-    for (const element of elements) {
-        element.draw();
+    drawDecorativePictures(imagenTop, 0, 0, widthCanvas, spriteHeightTop);
+    drawDecorativePictures(theTower, 0, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
+    drawDecorativePictures(theTower, canvas.clientWidth - anchoTheTower, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
+    
+    // Draw Tablero and arrFichas.
+    for (const ficha of arrFichas) {
+        ficha.draw();
     }
-
-    timer.draw(); //no es mejor que se agregue a elements?
+    
+    tablero.draw();
+    drawDecorativePictures(imagenPinchos, anchoTheTower, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - anchoTheTower - anchoTheTower, spriteHeightPinchos);
+    
+    timer.draw();
 
     // If a game piece is clicked and being moved, draw it.
     if (lastClickedFigure != null && mouseDown) {
