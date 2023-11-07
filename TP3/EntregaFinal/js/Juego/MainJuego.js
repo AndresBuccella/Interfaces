@@ -687,7 +687,7 @@ function drawGame() {
     for (const ficha of arrFichas) {
         ficha.draw();
     }
-    
+
     tablero.draw();
     drawDecorativePictures(imagenPinchos, anchoTheTower, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - anchoTheTower - anchoTheTower, spriteHeightPinchos);
     
@@ -912,7 +912,7 @@ function onMouseDown(e) {
                                                     charactersSound[j][i].play();
                                                     setTimeout(() => {
                                                         if (room == 2) {
-                                                            player_selector_1_anim.setLoop(-1)//Era para probar?
+                                                            player_selector_1_anim.setLoop(-1)
                                                             room = 3;
                                                             document.body.style.cursor = "default";
                                                             generarJuego(player_selector_1, player_selector_2, xEnLinea, timeVal);
@@ -968,24 +968,6 @@ function onMouseMove(e) {
             break;
 
         case 2: //character selection
-            // Check if the mouse cursor is inside a slot in the grid
-            let isInSlot = false;
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if ((mouseX > 116 + i * 144 && mouseX < 250 + i * 144) && (mouseY > 88 + 144 * j && mouseY < 222 + 144 * j)) {
-                        isInSlot = true;
-                        if (room2slot != i + j * 4) {
-                            room2slot = i + j * 4; //Falta algo acá
-                            drawAll();
-                            break
-                        }
-                    }
-                }
-            }
-            if (!isInSlot) {
-                drawAll();
-                room2slot = -1;
-            }
             break;
 
         case 3: //juego
