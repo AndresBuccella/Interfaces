@@ -399,13 +399,12 @@ function generarJuego(sprJugador1, sprJugador2, xEnLinea, time) {
     elements = elements.concat(arrFichaJugador1);
     elements = elements.concat(arrFichaJugador2);
     elements = elements.concat(arrTablero);
+    
     //Timer
     customFont.load().then(() => {
         timer = new Timer(time, widthCanvas / 2, 70, context, customFont);
         elements.push(timer);
     });
-
-    //pause = new Pause(context, canvas.clientWidth - radiusPause, radiusPause, radiusPause);
 
     setTimeOutTiempoDeJuego = setInterval(() => {
         if (timer.getTime() <= 0) {
@@ -472,7 +471,7 @@ function resetGameVariables() {
     arrFichaJugador1 = [];
     arrFichaJugador2 = [];
     lastClickedFigure = null;
-    winner = null;
+    ganador = null;
     mouseDown = false;
     widthCanvas = canvas.clientWidth;
     inPause = false;

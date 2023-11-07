@@ -70,13 +70,11 @@ class Tablero {
     getFichasPerdedoras(){
         return this.fichasPerdedoras;
     }
-/* Proyecto de tirar las fichas perdedoras
-    caidaLibreDeFichas(){
-        this.suelo = this.resetSuelo() * 2;
-    } */
+    
     resetSuelo() {
         this.suelo = 600 - this.getHeightCasilla() / 2;
     }
+
     getFilaDisponible(columna) {
         for (let fila = this.getCantFil() - 1; fila >= 0; fila--) {
             if (this.matriz[[fila, columna]] == null) {
@@ -85,6 +83,7 @@ class Tablero {
         }
         return -1;
     }
+
     getColumnaExacta(posX) {
         let columna = Math.floor((posX - this.marginLeft) / this.getWidthCasilla());
         return columna;
@@ -93,6 +92,7 @@ class Tablero {
     calcularNuevoSuelo(columna) {
         this.suelo = this.suelo - (this.getHeightCasilla() * (this.filas - (this.getFilaDisponible(columna) + 1)));
     }
+    
     cargarEnMatriz(ficha) {
         let columna = this.getColumnaExacta(ficha.getPositionX());
         let fila = this.getFilaDisponible(columna);
