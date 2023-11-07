@@ -181,7 +181,7 @@ imagenTop.addEventListener('load', verificarCargaCompleta);
 const imagenPinchos = new Image();
 imagenPinchos.src = imagenPinchosPath;
 totalRecursos++;
-imagenPinchos.addEventListener('load', verificarCargaCompleta); 
+imagenPinchos.addEventListener('load', verificarCargaCompleta);
 
 const pauseMenuImg = new Image();
 pauseMenuImg.src = pausePath;
@@ -665,7 +665,7 @@ function drawModeSelection() {
     }
 }
 
-function drawDecorativePictures(image, posX, posY, width, height){
+function drawDecorativePictures(image, posX, posY, width, height) {
     context.save();
     context.drawImage(image, posX, posY, width, height);
     context.restore();
@@ -682,7 +682,7 @@ function drawGame() {
     drawDecorativePictures(imagenTop, 0, 0, widthCanvas, spriteHeightTop);
     drawDecorativePictures(theTower, 0, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
     drawDecorativePictures(theTower, canvas.clientWidth - anchoTheTower, spriteHeightTop, anchoTheTower, canvas.clientHeight - spriteHeightTop);
-    
+
     // Draw Tablero and arrFichas.
     for (const ficha of arrFichas) {
         ficha.draw();
@@ -690,7 +690,7 @@ function drawGame() {
 
     tablero.draw();
     drawDecorativePictures(imagenPinchos, anchoTheTower, canvas.clientHeight - spriteHeightPinchos, canvas.clientWidth - anchoTheTower - anchoTheTower, spriteHeightPinchos);
-    
+
     timer.draw();
 
     // If a game piece is clicked and being moved, draw it.
@@ -744,7 +744,7 @@ function drawPauseBtn(posX, posY, radius) {
     context.save();
 
     context.beginPath();
-    context.arc(posX, posY, radius-2, 0, Math.PI * 2, true);
+    context.arc(posX, posY, radius - 2, 0, Math.PI * 2, true);
     context.lineWidth = 2;
     context.stroke();
     context.closePath();
@@ -968,6 +968,7 @@ function onMouseMove(e) {
             break;
 
         case 2: //character selection
+            drawAll();
             break;
 
         case 3: //juego
@@ -1140,7 +1141,7 @@ function onMouseUp() {
                     lastClickedFigure.getPositionY() < spriteHeightTop - lastClickedFigure.getRadius() && //impide que se pueda tirar por debajo del limite superior del tablero
                     lastClickedFigure.getPositionX() > anchoTheTower &&
                     lastClickedFigure.getPositionX() < canvas.clientWidth - anchoTheTower
-                    ) {
+                ) {
                     //Delimits the section where the token can be thrown
 
                     let columna = tablero.getColumnaExacta(lastClickedFigure.getPositionX());
