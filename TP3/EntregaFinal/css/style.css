@@ -2126,6 +2126,11 @@ header>.mostrar-menu-carrito {
     width: 100%;
     justify-content: center;
 }
+#caja-video-como-jugar > video{
+    margin-top: 22px;
+    border-radius: 17px;
+    box-shadow: 0 0 14px #ff00ea;
+}
 .publicidad {
     display: flex;
     flex-flow: column;
