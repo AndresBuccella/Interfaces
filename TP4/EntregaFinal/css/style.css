@@ -69,15 +69,12 @@ nav {
 }
 
 #comprar {
+    display: block;
+    box-sizing: unset;
     width: 200px;
     height: 50px;
-    min-width: 200px;
-    min-height: 50px;
-
-    max-width: 200px;
-    max-height: 50px;
     border-radius: 111px;
-    border: 8px solid var(--2982-ff, #2982FF);
+    border: 8px solid #2982FF;
     background: #FFE901;
     margin-right: 100px;
 
@@ -170,20 +167,9 @@ nav {
     bottom: 1.09%;
     z-index: var(--z-index-personajes);
     opacity: 0;
-    animation: aparecer 0s 1 forwards;
-    animation-delay: 0s;
+    animation: aparecer 1s 1 forwards;
+    animation-delay: 0.5s;
 
-}
-
-#primera-parte #spider-rojo {
-    width: 36.32%;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -3.04%;
-    z-index: var(--z-index-personajes);
-    opacity: 0;
-    animation: aparecer 0s 1 forwards;
-    animation-delay: 0s;
 }
 
 #primera-parte #spider-negro {
@@ -193,7 +179,18 @@ nav {
     z-index: var(--z-index-personajes);
     opacity: 0;
     animation: aparecer 1s 1 forwards;
-    animation-delay: 0s;
+    animation-delay: 1s;
+}
+
+#primera-parte #spider-rojo {
+    width: 36.32%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -3.04%;
+    z-index: var(--z-index-personajes);
+    opacity: 0;
+    animation: aparecer 1s 1 forwards;
+    animation-delay: 1.5s;
 }
 
 #primera-parte #tela-arania-izquierda {
@@ -213,7 +210,24 @@ nav {
 }
 
 #segunda-parte {
-    position: absolute;
-    top: 720px;
+    position: relative;
+    top: -45px;
+    width: 1280px;
+    height: 845px;
     z-index: var(--z-index-contenido);
+    
+    perspective: 100px;
+    overflow-x: clip;
+    overflow-y: visible;
+}
+
+#segunda-parte div {
+    width: 110%;
+    height: 100%;
+    background-color: #8F6AA6;
+
+    transform: rotateY(179deg);
+    position: absolute;
+    left: -100px;
+    left: -85px;
 }

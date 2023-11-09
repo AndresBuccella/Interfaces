@@ -1,27 +1,26 @@
-let scrollPosition;
-getScrollPosition();
+let scrollPosition = getScrollPosition();
 function getScrollPosition() {
     return window.scrollY || window.pageYOffset;
 }
 
 window.addEventListener('scroll', function () {
     scrollPosition = getScrollPosition();
-    console.log('Posición de scroll:', scrollPosition);
+    //console.log('Posición de scroll:', scrollPosition);
     nav(scrollPosition);
-});
-
-window.addEventListener('resize', function () {
-    navWidth = navTitle.width;
-    scrollVarTitle = 300 * ( navTitle.height/301);
-    nav(scrollPosition);
-    getScrollPosition();
 });
 
 
 //Navegador
 let navTitle = document.querySelector("#titulo");
 let navWidth = navTitle.width;
-let scrollVarTitle = 300 * (navTitle.height/301);
+let scrollVarTitle = 300 * (navTitle.height / 301);
+
+window.addEventListener('resize', function () {
+    navWidth = navTitle.width;
+    scrollVarTitle = 300 * (navTitle.height / 301);
+    scrollPosition = getScrollPosition();
+    nav(scrollPosition);
+});
 
 nav(scrollPosition);
 function nav(scroll) {
