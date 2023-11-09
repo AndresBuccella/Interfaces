@@ -55,15 +55,17 @@ nav {
     border-radius: 111px;
     transition: transform 0.5s, opacity 0.5s, width 0.5s;
 }
-#menu div:nth-child(2){
+
+#menu div:nth-child(2) {
     left: 50%;
     transform: translateX(-50%);
 }
-#menu div:nth-child(4){
+
+#menu div:nth-child(4) {
     position: absolute;
     top: 4px;
     left: 4px;
-    border: 0px ;
+    border: 0px;
 }
 
 #comprar {
@@ -96,8 +98,8 @@ nav {
     flex-direction: column;
     align-items: center;
     position: relative;
-    width: 1280px;
-    height: 720px;
+    width: 100%;
+    height: 57vw;
     overflow-x: clip;
     margin-top: 108px;
 }
@@ -109,6 +111,7 @@ nav {
 }
 
 #titulo {
+    position: absolute;
     width: 590px;
     height: 301px;
     z-index: var(--z-index-titulo);
@@ -119,34 +122,29 @@ nav {
 #fondo-nubes {
     position: absolute;
     z-index: var(--z-index-fondo);
-    width: 1280px;
-    height: 720px;
-
+    width: 100%;
 }
 
 #edificios-izquierda {
+    width: 35.31%;
     position: absolute;
     left: -53px;
-    top: 0;
+    bottom: 10px;
     z-index: var(--z-index-entremedio);
-    width: 452px;
-    height: 720px;
 }
 
 #edificios-centro {
-    /* width: 543px; */
-    width: 586px;
-    height: 213px;
+    width: 45.78%;
     position: absolute;
-    left: 369px;
+    left: 50%;
     bottom: 16px;
     z-index: var(--z-index-entremedio);
+    transform: translateX(-50%);
 
 }
 
 #edificios-derecha {
-    width: 374px;
-    height: 727px;
+    width: 29.21%;
     position: absolute;
     right: -5px;
     bottom: 10px;
@@ -178,7 +176,9 @@ nav {
 }
 
 #primera-parte #spider-rojo {
-    left: 393px;
+    left: 50%;
+    width: 36.32%;
+    transform: translateX(-50%);
     bottom: -39px;
     z-index: var(--z-index-personajes);
     opacity: 0;
