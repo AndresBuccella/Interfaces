@@ -212,7 +212,7 @@ nav {
 #segunda-parte {
     position: relative;
     top: -45px;
-    width: 1280px;
+    width: 100%;
     height: 845px;
     z-index: var(--z-index-contenido);
     
@@ -227,7 +227,6 @@ nav {
     background-color: #8F6AA6;
 
     transform: rotateY(179deg);
-    position: absolute;
-    left: -100px;
-    left: -85px;
+    position: absolute; 
+    left: -10%;
 }
