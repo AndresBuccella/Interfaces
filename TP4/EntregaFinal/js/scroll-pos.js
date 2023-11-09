@@ -11,6 +11,7 @@ window.addEventListener('scroll', function () {
 });
 
 
+//Navegador
 let navTitle = document.querySelector("#titulo");
 nav(scrollPosition);
 function nav(scroll) {
@@ -26,3 +27,5 @@ function nav(scroll) {
         navTitle.style.transform = `translateY(${-210}px) scale(+${0.3})`
     }
 }
+
+//Pesonajes 1
