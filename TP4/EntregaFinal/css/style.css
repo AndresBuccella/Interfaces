@@ -112,8 +112,7 @@ nav {
 
 #titulo {
     position: absolute;
-    width: 590px;
-    height: 301px;
+    width: 46%;
     z-index: var(--z-index-titulo);
     opacity: 0;
     animation: aparecer 1s 1 forwards;
@@ -128,7 +127,7 @@ nav {
 #edificios-izquierda {
     width: 35.31%;
     position: absolute;
-    left: -53px;
+    left: -5px;
     bottom: 10px;
     z-index: var(--z-index-entremedio);
 }
@@ -166,45 +165,49 @@ nav {
 }
 
 #primera-parte #spider-blanco {
-    left: 90px;
-    bottom: 14px;
+    width: 28.12%;
+    left: 7%;
+    bottom: 1.09%;
     z-index: var(--z-index-personajes);
     opacity: 0;
-    animation: aparecer 1s 1 forwards;
-    animation-delay: 1s;
+    animation: aparecer 0s 1 forwards;
+    animation-delay: 0s;
 
 }
 
 #primera-parte #spider-rojo {
-    left: 50%;
     width: 36.32%;
+    left: 50%;
     transform: translateX(-50%);
-    bottom: -39px;
+    bottom: -3.04%;
     z-index: var(--z-index-personajes);
     opacity: 0;
-    animation: aparecer 1s 1 forwards;
-    animation-delay: 3s;
+    animation: aparecer 0s 1 forwards;
+    animation-delay: 0s;
 }
 
 #primera-parte #spider-negro {
-    left: 695px;
-    bottom: 118px;
+    width: 30.7%;
+    right: 15%;
+    bottom: 9.21%;
     z-index: var(--z-index-personajes);
     opacity: 0;
     animation: aparecer 1s 1 forwards;
-    animation-delay: 2s;
+    animation-delay: 0s;
 }
 
 #primera-parte #tela-arania-izquierda {
-    left: -200px;
-    bottom: -220px;
+    left: -14.62%;
+    bottom: -28.18%;
+    width: 59.22%;
     z-index: var(--z-index-telaraña);
 
 }
 
 #primera-parte #tela-arania-derecha {
-    left: 975px;
-    bottom: 75px;
+    width: 34.84%;
+    left: 76.17%;
+    bottom: 2.86%;
     z-index: var(--z-index-telaraña);
 
 }
