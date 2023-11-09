@@ -1,5 +1,5 @@
 :root {
-    --z-index-titulo: 999;
+    --z-index-titulo: 9999;
     --z-index-fondo: 0;
     --z-index-entremedio: 50;
     --z-index-personajes: 100;
@@ -23,18 +23,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #4F96F6;
 }
 
 nav {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: calc(var(--z-index-titulo) - 1);
+    z-index: calc(var(--z-index-entremedio) - 1);
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 103px;
+    height: 227px;
     background: linear-gradient(180deg, #5499F8 0%, #5499F8 87.91%, rgba(84, 153, 248, 0.00) 100%);
 }
 
@@ -87,7 +88,15 @@ nav {
     /* Drop Shadow */
     box-shadow: 4px 5px 0px 0px #02187E;
 
-    text-shadow: 0px 1px 0px #02187e, 0px -1px 0px #02187e, -1px 0px 0px #02187e, 1px 0px 0px #02187e, 1px -1px 0px #02187e, 1px 1px 0px #02187e, -1px 1px 0px #02187e, -1px -1px 0px #02187e;
+    text-shadow:
+        0px 1px 0px #02187e,
+        0px -1px 0px #02187e,
+        -1px 0px 0px #02187e,
+        1px 0px 0px #02187e,
+        1px -1px 0px #02187e,
+        1px 1px 0px #02187e,
+        -1px 1px 0px #02187e,
+        -1px -1px 0px #02187e;
 }
 
 #primera-parte {
@@ -96,7 +105,7 @@ nav {
     align-items: center;
     position: relative;
     width: 100%;
-    height: 57vw;
+    height: 60vw;
     overflow-x: clip;
     margin-top: 108px;
 }
@@ -211,22 +220,11 @@ nav {
 
 #segunda-parte {
     position: relative;
-    top: -1.58vw;
+    top: -5.58vw;
     width: 100%;
     height: 845px;
     z-index: var(--z-index-contenido);
-
-    perspective: 100px;
-    overflow-x: clip;
-    overflow-y: visible;
 }
-
-#segunda-parte div {
-    width: 110%;
-    height: 100%;
-    background-color: #8F6AA6;
-
-    transform: rotateY(179deg);
-    position: absolute;
-    left: -10%;
+#segunda-parte img{
+    width: 100%;
 }
