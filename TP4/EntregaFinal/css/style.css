@@ -232,11 +232,12 @@ nav {
     animation-delay: 1s;
 }
 
-#segunda-parte {
+#segunda-parte { /*Tiene que ser responsive, pero no encuentro que le da el ángulo*/
     position: relative;
     top: -5.58vw;
-    width: 1280px;
-    height: 845px;
+    /* width: 1280px;
+    height: 845px; */
+    width: 100%;
     z-index: var(--z-index-contenido);
 
     background-image: url("../images/fondo-duende-verde.svg");
@@ -297,8 +298,33 @@ nav {
 
 
 #duende-verde {
+    /*Por qué no queda donde debería??*/
+    width: 43.2%;
     position: absolute;
     top: 132.5px;
     right: 15px;
     transform: scaleX(-1);
+}
+
+#personajes-segunda-parte{
+    display: flex;
+    width: 84.37%;
+}
+#peter-parte-2 p,
+#miles-parte-2 p,
+#gwen-parte-2 p{
+    margin-top: 1.79%;
+    color: black;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+#miles-parte-2{
+    margin: 0 3.12% 0 3.12%;
+}
+
+#fondo-parte-3{
+    background-image: url('../images/fondo-parte-3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
