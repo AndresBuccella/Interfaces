@@ -11,6 +11,8 @@
     --width-spider-rojo: 465px;
     --width-spider-negro: 393px;
 
+    --font: 'Lato', sans-serif;
+
 }
 
 * {
@@ -23,7 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #4F96F6;
+    color: white;
 }
 
 nav {
@@ -79,10 +81,13 @@ nav {
     background: #FFE901;
     margin-right: 100px;
 
-    font-family: 'Lato', sans-serif;
+    font-family: var(--font);
     color: #02187E;
     font-size: 20px;
+    font-style: normal;
     font-weight: 900;
+    line-height: 94.5%;
+    /* 18.9px */
     letter-spacing: 2.2px;
 
     /* Drop Shadow */
@@ -105,9 +110,8 @@ nav {
     align-items: center;
     position: relative;
     width: 100%;
-    height: 60vw;
+    height: 56.25vw;
     overflow-x: clip;
-    margin-top: 108px;
 }
 
 @keyframes aparecer {
@@ -136,6 +140,8 @@ nav {
     left: -5px;
     bottom: 0.78%;
     z-index: var(--z-index-entremedio);
+    transform: translateX(-100px);
+    filter: blur(3.5px);
 }
 
 #edificios-centro {
@@ -144,7 +150,8 @@ nav {
     left: 50%;
     bottom: 1.25%;
     z-index: var(--z-index-entremedio);
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(50px);
+    filter: blur(3.5px);
 
 }
 
@@ -154,6 +161,8 @@ nav {
     right: -5px;
     bottom: 0.78%;
     z-index: var(--z-index-entremedio);
+    transform: translateX(100px);
+    filter: blur(3.5px);
 }
 
 #personajes {
@@ -207,6 +216,9 @@ nav {
     bottom: -28.18%;
     width: 59.22%;
     z-index: var(--z-index-telaraña);
+    opacity: 0;
+    animation: aparecer 1s 1 forwards;
+    animation-delay: 1.5s;
 
 }
 
@@ -215,16 +227,78 @@ nav {
     left: 78.17%;
     bottom: 8.86%;
     z-index: var(--z-index-telaraña);
-
+    opacity: 0;
+    animation: aparecer 1s 1 forwards;
+    animation-delay: 1s;
 }
 
 #segunda-parte {
     position: relative;
     top: -5.58vw;
-    width: 100%;
+    width: 1280px;
     height: 845px;
     z-index: var(--z-index-contenido);
+
+    background-image: url("../images/fondo-duende-verde.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-#segunda-parte img{
-    width: 100%;
+
+#segunda-parte h1 {
+    width: 646px;
+    margin-top: 219.5px;
+    margin-left: 95px;
+
+    color: #FFF;
+
+    font-family: var(--font);
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 94.5%;
+}
+
+#segunda-parte p {
+    width: 586px;
+    height: 154px;
+    flex-shrink: 0;
+
+    margin-top: 24px;
+    margin-left: 95px;
+
+    color: #FFF;
+    font-family: var(--font);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#segunda-parte div {
+    width: 751.649px;
+    height: 413.131px;
+    transform: rotate(-2.222deg);
+    flex-shrink: 0;
+
+    margin-top: 11.19px;
+
+    border-radius: 26px;
+    border: 9px solid #FFF;
+    
+    background: url("../images/image\ 16.png"), lightgray 0px -47.53px / 100% 118.165% no-repeat;
+    
+    background-size: cover;
+    background-position: center;
+
+    /* Drop Shadow */
+    box-shadow: 3px 6px 8px 4px rgba(0, 0, 0, 0.15);
+}
+
+
+#duende-verde {
+    position: absolute;
+    top: 132.5px;
+    right: 15px;
+    transform: scaleX(-1);
 }
