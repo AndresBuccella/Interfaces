@@ -322,9 +322,51 @@ nav {
     margin: 0 3.12% 0 3.12%;
 }
 
-#fondo-parte-3{
+#parte-3{
+    position: relative;
+    width: 100%;
+    margin-top: 250px;
+}
+#parte-3 div{
+    width: 100%;
+    height: 566px;
     background-image: url('../images/fondo-parte-3.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+#parte-3 img{
+    position: absolute;
+    left: 10px;
+}
+#parte-3 img:nth-child(1){
+    top: -28.26%;
+    transform: rotate(-13.078deg);
+    z-index: var(--z-index-contenido);
+
+    &:hover{
+        border: 1px solid blue;
+        z-index: 9000;
+        transform: rotate(0deg);
+        transform: rotateY(355deg);/*Tienen que estar planas para que funcione, no?*/
+    }
+}
+#parte-3 img:nth-child(2){
+    top: -3.53%;
+    transform: rotate(-26.474deg);
+    z-index: var(--z-index-contenido);
+
+    &:hover{
+        border: 1px solid blue;
+        z-index: 9000;
+    }
+}
+#parte-3 img:nth-child(3){
+    top: 28.26%;
+    transform: rotate(-36.016deg);
+
+    &:hover{
+        border: 1px solid blue;
+        z-index: 9000;
+    }
 }
