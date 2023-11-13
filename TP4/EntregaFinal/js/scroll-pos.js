@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener('resize', function () {
         navWidth = navTitle.width;
-        scrollVarTitle = 300 * (navTitle.height / 301); //por que esta cuenta?
+        scrollVarTitle = 300 * (navTitle.height / 301); //301 porque es la altura maxima en res 1280
         scroll(getScrollPosition());
     });
 
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let milesSpiderWeb = divHeroes.querySelector("#tela-arania-derecha");
 
     divHeroes.addEventListener("mousemove", function mover(e) {
-                                                                                            //Aiura
         const offset1 = {
             x: (e.pageX - divHeroes.clientWidth / 2) / (divHeroes.clientWidth / 16),
             y: (e.pageY - divHeroes.clientHeight / 2) / (divHeroes.clientHeight / 16)
@@ -129,11 +128,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function moverDuendeVerde(scroll) {
         let duendeVerde = document.querySelector("#duende-verde");
-        if (scroll > 800 && scroll < 1600) {
-            duendeVerde.style.transform = `translateY(${(scroll - 800) / 30}px) scaleX(-1)`;
-            console.log("duende");
+        if (scroll > 600 && scroll < 1000) {
+            duendeVerde.style.transform = `translateY(${(scroll - 600) / 5}px) scaleX(-1)`;
         } else {
-            duendeVerde.style.transform = `translateY(${(1600 - 800) / 30}) scaleX(-1)`;
+            duendeVerde.style.transform = `translateY(${(1000 - 600) / 5}) scaleX(-1)`;
         }
         /* if (scroll > 150 && scroll < 1600) {
             duendeVerde.style.transform = `translateY(${(scroll - 150) / 30}px) scaleX(-1)`;
