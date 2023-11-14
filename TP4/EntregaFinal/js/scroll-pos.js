@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nav(scroll);
         edificios(scroll);
         moverDuendeVerde(scroll);
+        aparecerCartas(scroll);
     }
 
     scroll(getScrollPosition());
@@ -141,4 +142,42 @@ document.addEventListener("DOMContentLoaded", function () {
         } */
     }
 
+    function aparecerCartas(scroll){
+        let peter = document.querySelector("#peter-parte-2");
+        let miles = document.querySelector("#miles-parte-2");
+        let gwen = document.querySelector("#gwen-parte-2");
+
+        if (scroll > 1100 && scroll <= 1700) {
+            //peter.style.opacity = Math.min(1, scrollPos / 1500); //no me sale fluido desde 0
+            //tiene bugs que no sé solucionar :'D
+            //haciendolo con opacity y transition también tiene bugs
+            //Casi seguro que son los setTimeout
+            peter.classList.remove('desaparecer');
+            miles.classList.remove('desaparecer');
+            gwen.classList.remove('desaparecer');
+            peter.classList.add('aparecer');
+            let st1=setTimeout(()=>{
+                miles.classList.add('aparecer');
+                clearTimeout(st1);
+            },100);
+            let st2=setTimeout(()=>{
+                gwen.classList.add('aparecer');
+                clearTimeout(st2);
+            },200);
+        }else{ 
+            peter.classList.remove('aparecer');
+            miles.classList.remove('aparecer');
+            gwen.classList.remove('aparecer');
+            peter.classList.add('desaparecer');
+            let st1=setTimeout(()=>{
+                miles.classList.add('desaparecer');
+                clearTimeout(st1);
+            },100);
+            let st2=setTimeout(()=>{
+                gwen.classList.add('desaparecer');
+                clearTimeout(st2);
+            },200);
+            
+        }
+    }
 })
