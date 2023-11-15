@@ -252,9 +252,8 @@ nav {
 #segunda-parte { /*Tiene que ser responsive, pero no encuentro que le da el ángulo*/
     position: absolute;
     top: 30px;
-    /* width: 1280px;
-    height: 845px; */
-    width: 100%;
+    width: 1080px;
+    /* height: 845px; */
     z-index: var(--z-index-contenido);
 
     background-image: url("../images/fondo-duende-verde.svg");
@@ -351,7 +350,7 @@ nav {
 #parte-3{
     position: relative;
     width: 100%;
-    margin-top: 250px;
+    margin-top: -100px;
     perspective: 1000px;
 }
 #parte-3 div{
@@ -422,6 +421,7 @@ nav {
     background: linear-gradient(180deg, #8FBEFC 21.2%,  #F7E3D8 81.48%);;
     color: #000;
     font-family: var(--font);
+    z-index: 0; /*???? por que no aparece por debajo, por el relative?*/
 
     & h1{
         margin: 152px auto 46px;

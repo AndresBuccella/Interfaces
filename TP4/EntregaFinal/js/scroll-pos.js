@@ -52,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //transparencia del navegador. A medida que aumenta el color se hace más sólido
             navegador.style.background = `linear-gradient(180deg, rgba(84, 153, 248,${scroll / scrollVarTitle}) 0%, rgba(84, 153, 248,${scroll / scrollVarTitle}) 87.91%, rgba(84, 153, 248, 0) 100%)`;
-            
+
             navTitle.style.position = "fixed";
             //Transporta el titulo hacia arriba poco a poco al principio a cada vez más
             // ya que scroll / scrollVarTitle va de 0 a casi 1
             navTitle.style.transform = `translateY(${-91 * scroll / scrollVarTitle}px)`;
-            
+
             //Cambia el ancho del titulo desde su ancho máximo navWidth hasta 175.
             //Al principio no tiene reduccion ya que scroll y scrollVarTitle tienden a 0, pero a medida que crece (baja el scroll) 
             //se va acercando a la diferencia entre el ancho del navegador y el ancho al que se desea llegar
@@ -130,54 +130,34 @@ document.addEventListener("DOMContentLoaded", function () {
     function moverDuendeVerde(scroll) {
         let duendeVerde = document.querySelector("#duende-verde");
         if (scroll > 600 && scroll < 1000) {
-            duendeVerde.style.transform = `translateY(${(scroll - 600) / 5}px) scaleX(-1)`;
+            duendeVerde.style.transform = `translateY(${(scroll - 600) / 8}px) scaleX(-1)`;
         } else {
-            duendeVerde.style.transform = `translateY(${(1000 - 600) / 5}) scaleX(-1)`;
+            duendeVerde.style.transform = `translateY(${(1000 - 600) / 8}) scaleX(-1)`;
         }
-        /* if (scroll > 150 && scroll < 1600) {
-            duendeVerde.style.transform = `translateY(${(scroll - 150) / 30}px) scaleX(-1)`;
-            console.log("duende");
-        } else {
-            duendeVerde.style.transform = `translateY(${(1600 - 150) / 30}) scaleX(-1)`;
-        } */
     }
 
-    function aparecerCartas(scroll){
+    function aparecerCartas(scroll) {
+
+        let cajaPersonajes = document.querySelector("#personajes-segunda-parte");
+        let heightPersonajes = cajaPersonajes.getBoundingClientRect().height;
+        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height + 80;
+        console.log("height: " + navegador.style.height);
+        console.log("alto: " + heightPersonajes);
+        console.log("pos: " + posPersonajes);
         let peter = document.querySelector("#peter-parte-2");
         let miles = document.querySelector("#miles-parte-2");
         let gwen = document.querySelector("#gwen-parte-2");
 
-        if (scroll > 1100 && scroll <= 1700) {
-            //peter.style.opacity = Math.min(1, scrollPos / 1500); //no me sale fluido desde 0
-            //tiene bugs que no sé solucionar :'D
-            //haciendolo con opacity y transition también tiene bugs
-            //Casi seguro que son los setTimeout
-            peter.classList.remove('desaparecer');
-            miles.classList.remove('desaparecer');
-            gwen.classList.remove('desaparecer');
-            peter.classList.add('aparecer');
-            let st1=setTimeout(()=>{
-                miles.classList.add('aparecer');
-                clearTimeout(st1);
-            },100);
-            let st2=setTimeout(()=>{
-                gwen.classList.add('aparecer');
-                clearTimeout(st2);
-            },200);
-        }else{ 
-            peter.classList.remove('aparecer');
-            miles.classList.remove('aparecer');
-            gwen.classList.remove('aparecer');
-            peter.classList.add('desaparecer');
-            let st1=setTimeout(()=>{
-                miles.classList.add('desaparecer');
-                clearTimeout(st1);
-            },100);
-            let st2=setTimeout(()=>{
-                gwen.classList.add('desaparecer');
-                clearTimeout(st2);
-            },200);
-            
-        }
+        if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
+            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * (Math.PI * 2));
+            peter.style.opacity = calculoAuxiliar;
+            miles.style.opacity = calculoAuxiliar;
+            gwen.style.opacity = calculoAuxiliar;
+        } /* else if (scroll > posPersonajes + (heightPersonajes / 2)) {
+            let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
+            peter.style.opacity = calculoAuxiliar;
+            miles.style.opacity = calculoAuxiliar;
+            gwen.style.opacity = calculoAuxiliar;
+        } */
     }
 })
