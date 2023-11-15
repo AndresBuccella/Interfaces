@@ -116,13 +116,13 @@ document.addEventListener("DOMContentLoaded", function () {
             x: (e.pageX - divHeroes.clientWidth / 2) / (divHeroes.clientWidth / 6),
             y: (e.pageY - divHeroes.clientHeight / 2) / (divHeroes.clientHeight / 6)
         };
-        peter.style.transform = `translate(calc(-50% + ${offset1.x}px), ${offset1.y}px)`;
-        peterSpiderWeb.style.transform = `translate(${offset1.x}px, ${offset1.y}px)`;
+        peter.style.transform = `translate(calc(-50% + ${-offset1.x}px), ${-offset1.y}px)`;
+        peterSpiderWeb.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
 
-        miles.style.transform = `translate( ${offset2.x}px, ${offset2.y}px)`;
-        milesSpiderWeb.style.transform = `translate(${offset2.x}px, ${offset2.y}px)`;
+        miles.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
+        milesSpiderWeb.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`;
 
-        gwen.style.transform = `translate( ${offset3.x}px, ${offset3.y}px)`;
+        gwen.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
     })
 
     //Segunda parte
