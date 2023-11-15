@@ -96,11 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Spidermans mouse move
-    let divHeroes = document.querySelector("#primera-parte");
-    let peter = divHeroes.querySelector("#spider-rojo");
+    let divHeroes = document.querySelector("#primera-seccion");
+    let peter = divHeroes.querySelector("#primera-seccion-peter");
     let peterSpiderWeb = divHeroes.querySelector("#tela-arania-izquierda");
-    let gwen = divHeroes.querySelector("#spider-blanco");
-    let miles = divHeroes.querySelector("#spider-negro");
+    let gwen = divHeroes.querySelector("#primera-seccion-gwen");
+    let miles = divHeroes.querySelector("#primera-seccion-miles");
     let milesSpiderWeb = divHeroes.querySelector("#tela-arania-derecha");
 
     divHeroes.addEventListener("mousemove", function mover(e) {
@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gwen.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
     })
 
+
     //Segunda parte
 
     function moverDuendeVerde(scroll) {
@@ -138,26 +139,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function aparecerCartas(scroll) {
 
-        let cajaPersonajes = document.querySelector("#personajes-segunda-parte");
+        let cajaPersonajes = document.querySelector("#personajes-segunda-seccion");
         let heightPersonajes = cajaPersonajes.getBoundingClientRect().height;
-        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height + 80;
-        console.log("height: " + navegador.style.height);
+        let escala = window.innerHeight / 6;
+        //Creo que le indicas la parte de la pantalla en la que querés que se muestre al 100%. Si no me expliqué mañana sale discord
+        //No desaparece por completo, por ahí es mejor dejarlo a math.pi solo
+        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height + escala;
+        /* console.log("height: " + navegador.style.height);
         console.log("alto: " + heightPersonajes);
-        console.log("pos: " + posPersonajes);
-        let peter = document.querySelector("#peter-parte-2");
-        let miles = document.querySelector("#miles-parte-2");
-        let gwen = document.querySelector("#gwen-parte-2");
+        console.log("pos: " + posPersonajes); */
+        let peter = document.querySelector("#peter-segunda-seccion");
+        let miles = document.querySelector("#miles-segunda-seccion");
+        let gwen = document.querySelector("#gwen-segunda-seccion");
 
         if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
-            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * (Math.PI * 2));
+            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
             peter.style.opacity = calculoAuxiliar;
             miles.style.opacity = calculoAuxiliar;
             gwen.style.opacity = calculoAuxiliar;
-        } /* else if (scroll > posPersonajes + (heightPersonajes / 2)) {
-            let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
-            peter.style.opacity = calculoAuxiliar;
-            miles.style.opacity = calculoAuxiliar;
-            gwen.style.opacity = calculoAuxiliar;
-        } */
+        } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
+            //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
+            peter.style.opacity = 1;
+            miles.style.opacity = 1;
+            gwen.style.opacity = 1;
+        }
     }
+    
+    //Vengadores mouse move
+    let divVengadores = document.querySelector("#contenedor-vengadores");
+    let blackPanther = divVengadores.querySelector("#seccion-vengadores-black-panther");
+    let msMarvel = divVengadores.querySelector("#seccion-vengadores-ms-marvel");
+    let hulk = divVengadores.querySelector("#seccion-vengadores-hulk");
+    let arboles = divVengadores.querySelector("#seccion-vengadores-arboles");
+    let pasto = divVengadores.querySelector("#seccion-vengadores-pasto");
+
+    divVengadores.addEventListener("mousemove", function move(e) {
+        console.log("a");
+        const offset1 = {
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 16),
+            y: (e.pageY - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 16)
+        };
+        const offset2 = {
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 8),
+            y: (e.pageY - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 8)
+        };
+        const offset3 = {
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 6),
+            y: (e.pageY - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 6)
+        };
+        
+        blackPanther.style.transform = `translate(calc(${-offset1.x}px), ${-offset1.y}px)`;
+        msMarvel.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
+        hulk.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`; 
+        
+        /* arboles.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
+        pasto.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`; */
+    })
 })

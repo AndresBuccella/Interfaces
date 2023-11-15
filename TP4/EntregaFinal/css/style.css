@@ -7,9 +7,9 @@
 
     --z-index-contenido: 75;
 
-    --width-spider-blanco: 360px;
-    --width-spider-rojo: 465px;
-    --width-spider-negro: 393px;
+    --width-primera-seccion-gwen: 360px;
+    --width-primera-seccion-peter: 465px;
+    --width-primera-seccion-miles: 393px;
 
     --font: 'Lato', sans-serif;
 
@@ -21,14 +21,14 @@
     border: 0;
 }
 
-body {
+body { /*esto esta mal?*/
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: black;
 }
 
-nav {
+#nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -104,7 +104,7 @@ nav {
         -1px -1px 0px #02187e;
 }
 
-#primera-parte {
+#primera-seccion {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -166,11 +166,11 @@ nav {
     border: 1px solid black;
 }
 
-#primera-parte #spider-blanco,
-#primera-parte #spider-rojo,
-#primera-parte #spider-negro,
-#primera-parte #tela-arania-izquierda,
-#primera-parte #tela-arania-derecha {
+#primera-seccion-gwen,
+#primera-seccion-peter,
+#primera-seccion-miles,
+#tela-arania-izquierda,
+#tela-arania-derecha {
     position: absolute;
 }
 
@@ -189,7 +189,7 @@ nav {
 .desaparecer{
     animation: desaparecer 500ms 1 forwards;
 }
-#primera-parte #spider-blanco {
+#primera-seccion-gwen {
     width: 28.12%;
     left: 7%;
     bottom: 1.09%;
@@ -200,7 +200,7 @@ nav {
 
 }
 
-#primera-parte #spider-negro {
+#primera-seccion-miles {
     width: 30.7%;
     right: 13%;
     bottom: 15.21%;
@@ -210,7 +210,7 @@ nav {
     animation-delay: 1s;
 }
 
-#primera-parte #spider-rojo {
+#primera-seccion-peter {
     width: 36.32%;
     left: 50%;
     transform: translateX(-50%);
@@ -221,7 +221,7 @@ nav {
     animation-delay: 1.5s;
 }
 
-#primera-parte #tela-arania-izquierda {
+#tela-arania-izquierda {
     left: -14.62%;
     bottom: -28.18%;
     width: 59.22%;
@@ -232,7 +232,7 @@ nav {
 
 }
 
-#primera-parte #tela-arania-derecha {
+#tela-arania-derecha {
     width: 34.84%;
     left: 78.17%;
     bottom: 8.86%;
@@ -248,8 +248,10 @@ nav {
     width: 100%;
     height: 1929px;
     margin-top: -10%;
+    display: flex;
+    justify-content: center; /*Si ponés el column se rompe*/
 }
-#segunda-parte { /*Tiene que ser responsive, pero no encuentro que le da el ángulo*/
+#segunda-seccion-primera-parte { /*Tiene que ser responsive, pero no encuentro que le da el ángulo*/
     position: absolute;
     top: 30px;
     width: 1080px;
@@ -262,7 +264,7 @@ nav {
     background-repeat: no-repeat;
 }
 
-#segunda-parte h1 {
+#segunda-seccion-primera-parte h1 {
     width: 646px;
     margin-top: 219.5px;
     margin-left: 95px;
@@ -276,7 +278,7 @@ nav {
     line-height: 94.5%;
 }
 
-#segunda-parte p {
+#segunda-seccion-primera-parte p {
     width: 586px;
     height: 154px;
     flex-shrink: 0;
@@ -292,7 +294,7 @@ nav {
     line-height: normal;
 }
 
-#segunda-parte div {
+#segunda-seccion-primera-parte div {
     width: 751.649px;
     height: 413.131px;
     transform: rotate(-2.222deg);
@@ -303,7 +305,7 @@ nav {
     border-radius: 26px;
     border: 9px solid #FFF;
     
-    background: url("../images/image\ 16.png"), lightgray 0px -47.53px / 100% 118.165% no-repeat;
+    background: url("../images/gameplay.png"), lightgray 0px -47.53px / 100% 118.165% no-repeat;
     
     background-size: cover;
     background-position: center;
@@ -321,39 +323,39 @@ nav {
     transform: scaleX(-1);
 }
 
-#personajes-segunda-parte{
+#personajes-segunda-seccion{
     position: absolute;
     bottom: 370px;
-    left: 7.81%;
     display: flex;
-    width: 84.37%;
+    width: 1080px;
     background-color: #FFF;
 }
 
-#peter-parte-2,
-#miles-parte-2,
-#gwen-parte-2{
+#peter-segunda-seccion,
+#miles-segunda-seccion,
+#gwen-segunda-seccion{
     opacity: 0;
 }
-#peter-parte-2 p,
-#miles-parte-2 p,
-#gwen-parte-2 p{
+#peter-segunda-seccion p,
+#miles-segunda-seccion p,
+#gwen-segunda-seccion p{
     margin-top: 1.79%;
     color: black;
     font-size: 20px;
     font-family: var(--font);
 }
-#miles-parte-2{
+#miles-segunda-seccion{
     margin: 0 3.12% 0 3.12%;
 }
 
-#parte-3{
+#tercera-seccion{
     position: relative;
     width: 100%;
     margin-top: -100px;
     perspective: 1000px;
+    z-index: 9000;
 }
-#parte-3 div{
+#tercera-seccion div{
     width: 100%;
     height: 566px;
     background-image: url('../images/fondo-parte-3.png');
@@ -361,11 +363,11 @@ nav {
     background-position: center;
     background-repeat: no-repeat;
 }
-#parte-3 img{
+#tercera-seccion img{
     position: absolute;
     left: 10px;
 }
-#parte-3 img:nth-child(1){
+#tercera-seccion img:nth-child(1){
     top: -17.26%;
     left: 5.93%;
     transform: rotate3d(1, 1, 1, 45deg);
@@ -379,7 +381,7 @@ nav {
         transform: rotate(0deg);
     }
 }
-#parte-3 img:nth-child(2){
+#tercera-seccion img:nth-child(2){
     top: 17.77%;
     left: 6.5%;
     transform: rotate(-26.474deg);
@@ -392,7 +394,7 @@ nav {
         transform: rotate(0deg);
     }
 }
-#parte-3 img:nth-child(3){
+#tercera-seccion img:nth-child(3){
     top: 56.36%;
     left: 9.4%;
     transform: rotate(-36.016deg);
@@ -404,14 +406,60 @@ nav {
         transform: rotate(0deg);
     }
 }
-/* 
-#los-vengadores{
-    background-color: black;
-    width: 100%;
-    height: 986px;
-    transform: rotate(10deg);
-} */
 
+#seccion-vengadores{
+    margin-top: 294px;
+    width: 1080px;
+    height: 986px;
+}
+#seccion-vengadores h1{
+    display: block;
+    margin-bottom: 55px;
+    width: 667px;
+    font-family: var(--font);
+    font-size: 60px;
+    color: #FFFFFF;
+}
+#contenedor-vengadores{
+    position: relative;
+
+    width: 100%;
+    height: 528px;/*alto de los 3 fondos*/
+}
+#seccion-vengadores-cielo,
+#seccion-vengadores-arboles,
+#seccion-vengadores-hulk,
+#seccion-vengadores-ms-marvel,
+#seccion-vengadores-black-panther,
+#seccion-vengadores-pasto{
+    position: absolute;
+}
+#seccion-vengadores-cielo{
+    z-index: 3;
+    opacity: 0.7;
+}
+#seccion-vengadores-arboles{
+    z-index: 5;
+    opacity: 0.8;
+}
+#seccion-vengadores-hulk{ 
+    bottom: -66px;
+    right: -54px;
+    z-index: 7;
+}
+#seccion-vengadores-ms-marvel{  /*TODOS LOS VALORES A OJO*/
+    bottom: -58px;
+    left: 22px;
+    z-index: 7;
+}
+#seccion-vengadores-black-panther{ /*Le agregué los dedos al personaje*/
+    top: -256px;
+    right: 84px;
+    z-index: 7;
+}
+#seccion-vengadores-pasto{
+    z-index: 9;
+}
 
 /* SECCION SUSCRIPCION*/
 #seccion-suscripcion{
