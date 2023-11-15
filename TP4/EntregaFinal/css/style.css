@@ -425,6 +425,7 @@ body { /*esto esta mal?*/
 
     width: 100%;
     height: 528px;/*alto de los 3 fondos*/
+    box-shadow: 0px 10px 10px 10px black;
 }
 #seccion-vengadores-cielo,
 #seccion-vengadores-arboles,
@@ -433,6 +434,7 @@ body { /*esto esta mal?*/
 #seccion-vengadores-black-panther,
 #seccion-vengadores-pasto{
     position: absolute;
+    transition: transform 100ms;
 }
 #seccion-vengadores-cielo{
     z-index: 3;
@@ -459,6 +461,37 @@ body { /*esto esta mal?*/
 }
 #seccion-vengadores-pasto{
     z-index: 9;
+}
+
+/*SECCION MAS AMIGOS*/
+
+#seccion-mas-amigos{
+    background-color: #FFF;
+    z-index: -1;
+    width: 150%;
+    height: 2195px;
+    transform: rotateZ(5deg);
+    margin-top: -300px;
+}
+#div-seccion-mas-amigos{
+    width: 1080px;
+    height: auto;
+    margin: 300px auto;
+    transform: rotateZ(-5deg);
+
+    & h1{
+        font-family: var(--font);
+        font-size: 60px;
+    }
+}
+#div-seccion-mas-amigos-hijo-1,
+#div-seccion-mas-amigos-hijo-2,
+#div-seccion-mas-amigos-hijo-3,
+#div-seccion-mas-amigos-hijo-4{
+    display: flex;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
 }
 
 /* SECCION SUSCRIPCION*/
