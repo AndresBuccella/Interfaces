@@ -21,7 +21,8 @@
     border: 0;
 }
 
-body { /*esto esta mal?*/
+body {
+    /*esto esta mal?*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,16 +180,25 @@ body { /*esto esta mal?*/
         opacity: 1;
     }
 }
-@keyframes desaparecer{
-    0%{opacity: 1;}
-    100% {opacity: 0;}
+
+@keyframes desaparecer {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
-.aparecer{
+
+.aparecer {
     animation: aparecer 500ms 1 forwards;
 }
-.desaparecer{
+
+.desaparecer {
     animation: desaparecer 500ms 1 forwards;
 }
+
 #primera-seccion-gwen {
     width: 28.12%;
     left: 7%;
@@ -242,21 +252,24 @@ body { /*esto esta mal?*/
     animation-delay: 1s;
 }
 
-#segunda-seccion{
+#segunda-seccion {
     position: relative;
     background-color: #FFF;
     width: 100%;
     margin-top: -7.5%;
     display: flex;
-    justify-content: center; /*Si ponés el column se rompe*/
+    justify-content: center;
+    /*Si ponés el column se rompe*/
     flex-direction: column;
     align-items: center;
 }
-#fondo-duende-verde{
-    /* position: absolute; */
+
+#fondo-duende-verde {
+    height: 845px;
     width: 100%;
 }
-#segunda-seccion-primera-parte{
+
+#segunda-seccion-primera-parte {
     z-index: var(--z-index-entremedio);
     display: flex;
     justify-content: center;
@@ -266,7 +279,7 @@ body { /*esto esta mal?*/
 
 #segunda-seccion-primera-parte-contenido {
     position: absolute;
-    top: 30px;
+    top: 0px;
     width: 1080px;
     /* height: 845px; */
     z-index: var(--z-index-contenido);
@@ -311,9 +324,9 @@ body { /*esto esta mal?*/
 
     border-radius: 26px;
     border: 9px solid #FFF;
-    
+
     background: url("../images/gameplay.png"), lightgray 0px -47.53px / 100% 118.165% no-repeat;
-    
+
     background-size: cover;
     background-position: center;
 
@@ -323,14 +336,14 @@ body { /*esto esta mal?*/
 
 
 #duende-verde {
-    width: 43.2%;
+    width: 553px;
+    height: 921px;
     position: absolute;
-    top: 200px;
-    right: -55px;
-    transform: scaleX(-1);
+    top: 82.5px;
+    right: -103px;
 }
 
-#personajes-segunda-seccion{
+#personajes-segunda-seccion {
     /* position: absolute; */
     margin-top: 221px;
     display: flex;
@@ -340,84 +353,95 @@ body { /*esto esta mal?*/
 
 #peter-segunda-seccion,
 #miles-segunda-seccion,
-#gwen-segunda-seccion{
+#gwen-segunda-seccion {
     opacity: 0;
 }
+
 #peter-segunda-seccion p,
 #miles-segunda-seccion p,
-#gwen-segunda-seccion p{
+#gwen-segunda-seccion p {
     margin-top: 1.79%;
     color: black;
     font-size: 20px;
     font-family: var(--font);
 }
-#miles-segunda-seccion{
+
+#miles-segunda-seccion {
     margin: 0 3.12% 0 3.12%;
 }
 
 /* TERCERA SECCION */
 
-#tercera-seccion{
+#tercera-seccion {
     width: 100%;
     height: 566px;
     margin-top: -100px;
 }
-#tercera-seccion-contenedor{
+
+#tercera-seccion-contenedor {
     position: relative;
     width: 1080px;
     height: 566px;
     perspective: 1000px;
     z-index: 9000;
 }
+
 #tercera-seccion-contenedor img,
-#tercera-seccion-fondo{
+#tercera-seccion-fondo {
     position: absolute;
 }
-#tercera-seccion-fondo{
+
+#tercera-seccion-fondo {
     width: 100%;
 }
-#tercera-seccion-contenedor img:nth-child(1){
+
+#tercera-seccion-contenedor img:nth-child(1) {
     top: 0px;
     left: 0px;
     z-index: var(--z-index-contenido);
     transform: rotate(0deg);
     transition: transform 200ms ease;
     z-index: 7000;
-    
-    &:hover{
+
+    &:hover {
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
-#tercera-seccion-contenedor img:nth-child(2){
+
+#tercera-seccion-contenedor img:nth-child(2) {
     top: 0px;
     left: 0px;
     z-index: var(--z-index-contenido);
     transition: transform 300ms ease;
     z-index: 8000;
-    &:hover{
+
+    &:hover {
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
-#tercera-seccion-contenedor img:nth-child(3){
+
+#tercera-seccion-contenedor img:nth-child(3) {
     top: 0px;
     left: 0px;
     transition: transform 400ms ease;
     z-index: 8000;
-    &:hover{
+
+    &:hover {
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
 
 /* SECCION VENGADORES */
-#seccion-vengadores{
+#seccion-vengadores {
     margin-top: 294px;
     width: 1080px;
     height: 986px;
 }
-#seccion-vengadores h1{
+
+#seccion-vengadores h1 {
     display: block;
     margin-bottom: 55px;
     width: 667px;
@@ -425,75 +449,86 @@ body { /*esto esta mal?*/
     font-size: 60px;
     color: #FFFFFF;
 }
-#contenedor-vengadores{
+
+#contenedor-vengadores {
     position: relative;
     overflow-x: clip;
 
     width: 100%;
-    height: 528px;/*alto de los 3 fondos*/
+    height: 528px;
+    /*alto de los 3 fondos*/
     box-shadow: 0px 10px 10px 10px black;
 }
+
 #seccion-vengadores-cielo,
 #seccion-vengadores-arboles,
 #seccion-vengadores-hulk,
 #seccion-vengadores-ms-marvel,
 #seccion-vengadores-black-panther,
-#seccion-vengadores-pasto{
+#seccion-vengadores-pasto {
     position: absolute;
     transition: transform 100ms;
 }
-#seccion-vengadores-cielo{
+
+#seccion-vengadores-cielo {
     z-index: 3;
     opacity: 0.7;
 }
-#seccion-vengadores-arboles{
+
+#seccion-vengadores-arboles {
     z-index: 5;
     opacity: 0.8;
 }
-#seccion-vengadores-hulk{ 
+
+#seccion-vengadores-hulk {
     bottom: -66px;
     right: -54px;
     z-index: 7;
 }
-#seccion-vengadores-ms-marvel{  /*TODOS LOS VALORES A OJO*/
+
+#seccion-vengadores-ms-marvel {
+    /*TODOS LOS VALORES A OJO*/
     bottom: -58px;
     left: 22px;
     z-index: 7;
 }
-#seccion-vengadores-black-panther{ /*Le agregué los dedos al personaje*/
+
+#seccion-vengadores-black-panther {
+    /*Le agregué los dedos al personaje*/
     top: -256px;
     right: 84px;
     z-index: 7;
 }
-#seccion-vengadores-pasto{
+
+#seccion-vengadores-pasto {
     z-index: 9;
 }
 
 /*SECCION MAS AMIGOS*/
 
-#seccion-mas-amigos{
+#seccion-mas-amigos {
     background-color: #FFF;
     z-index: -1;
-    width: 150%;
+    width: 100%;
     height: 2195px;
-    transform: rotateZ(5deg);
     margin-top: -300px;
 }
-#div-seccion-mas-amigos{
+
+#div-seccion-mas-amigos {
     width: 1080px;
     height: auto;
     margin: 300px auto;
-    transform: rotateZ(-5deg);
 
-    & h1{
+    & h1 {
         font-family: var(--font);
         font-size: 60px;
     }
 }
+
 #div-seccion-mas-amigos-hijo-1,
 #div-seccion-mas-amigos-hijo-2,
 #div-seccion-mas-amigos-hijo-3,
-#div-seccion-mas-amigos-hijo-4{
+#div-seccion-mas-amigos-hijo-4 {
     display: flex;
     align-items: start;
     width: 100%;
@@ -501,26 +536,29 @@ body { /*esto esta mal?*/
 }
 
 /* SECCION SUSCRIPCION*/
-#seccion-suscripcion{
+#seccion-suscripcion {
     position: relative;
     width: 100%;
     height: 1296px;
-    background: linear-gradient(180deg, #8FBEFC 21.2%,  #F7E3D8 81.48%);;
+    background: linear-gradient(180deg, #8FBEFC 21.2%, #F7E3D8 81.48%);
+    ;
     color: #000;
     font-family: var(--font);
-    z-index: 0; /*???? por que no aparece por debajo, por el relative?*/
+    z-index: 0;
+    /*???? por que no aparece por debajo, por el relative?*/
 
-    & h1{
+    & h1 {
         margin: 152px auto 46px;
         font-size: 60px;
         width: 63.75%;
-        
+
         font-weight: 600;
         line-height: 94.5%;
         text-align: center;
         font-style: normal;
     }
-    & span{
+
+    & span {
         display: block;
         width: 45.15%;
         height: 95px;
@@ -530,16 +568,18 @@ body { /*esto esta mal?*/
         font-weight: 400;
         line-height: 94.5%;
 
-        & a{
+        & a {
             color: #000;
         }
     }
-    & img{
+
+    & img {
         margin-top: 17px;
         margin-left: 23.59%;
     }
 }
-#contenedor-input-correo-btn-suscribirse{
+
+#contenedor-input-correo-btn-suscribirse {
     width: 60.93%;
     height: 100px;
     margin: 0 auto;
@@ -547,7 +587,8 @@ body { /*esto esta mal?*/
     align-items: center;
 
 }
-#input-correo{
+
+#input-correo {
     padding-left: 43px;
     font-size: 20px;
     font-family: var(--font);
@@ -565,7 +606,8 @@ body { /*esto esta mal?*/
     box-shadow: 4px 5px 0px 0px #02187E;
 
 }
-#input-btn-suscribirse{
+
+#input-btn-suscribirse {
     color: #02187E;
     background-color: #FFE901;
     font-size: 20px;
@@ -580,18 +622,19 @@ body { /*esto esta mal?*/
     box-shadow: 4px 5px 0px 0px #02187E;
     border-radius: 0px 500px 500px 0px;
     font-family: var(--font);
-    text-shadow: 
-        -1px -1px 0 #02187E,  
+    text-shadow:
+        -1px -1px 0 #02187E,
         1px -1px 0 #02187E,
         -1px 1px 0 #02187E,
         1px 1px 0 #02187E;
-    &:hover{
+
+    &:hover {
         background-color: #bbac03;
     }
 }
 
 
-#fondo-seccion-suscripcion-animacion{
+#fondo-seccion-suscripcion-animacion {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -605,36 +648,37 @@ body { /*esto esta mal?*/
 
 
 /* FOOTER */
-#footer{
+#footer {
     background-color: #5E5E5D;
     width: 100%;
     height: 598px;
     display: flex;
     flex-direction: column;
 
-    & span{
+    & span {
         color: #FFF;
         margin-left: 7.81%;
         margin-top: 2.96%;
         max-width: 64.06%;
-    
-        & a{
+
+        & a {
             color: #FFF;
         }
-        
+
     }
 }
 
-#plataformas{
+#plataformas {
     background-color: #242424;
     width: 100%;
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
-#redes-sociales{
+
+#redes-sociales {
     list-style: none;
     background-color: black;
     display: flex;
@@ -642,11 +686,11 @@ body { /*esto esta mal?*/
     justify-content: space-between;
     margin-left: 7.81%;
 
-    & li{
-       
+    & li {
+
         display: flex;
 
-        & a{
+        & a {
             margin: 2px 0 1px;
             height: 39px;
         }

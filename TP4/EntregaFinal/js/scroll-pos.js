@@ -131,9 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function moverDuendeVerde(scroll) {
         let duendeVerde = document.querySelector("#duende-verde");
         if (scroll > 600 && scroll < 1000) {
-            duendeVerde.style.transform = `translateY(${(scroll - 600) / 8}px) scaleX(-1)`;
-        } else {
-            duendeVerde.style.transform = `translateY(${(1000 - 600) / 8}) scaleX(-1)`;
+            duendeVerde.style.transform = `translateY(${(scroll - 600) / 8}px)`;
+        } else if (scroll >= 1000) {
+            duendeVerde.style.transform = `translateY(${(1000 - 600) / 8}px)`;
         }
     }
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
             gwen.style.opacity = 1;
         }
     }
-    
+
     //Vengadores mouse move
     let divVengadores = document.querySelector("#contenedor-vengadores");
     let blackPanther = divVengadores.querySelector("#seccion-vengadores-black-panther");
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let arboles = divVengadores.querySelector("#seccion-vengadores-arboles");
     let pasto = divVengadores.querySelector("#seccion-vengadores-pasto");
 
-     divVengadores.addEventListener("mousemove", function(e) {
+    divVengadores.addEventListener("mousemove", function (e) {
         const offset1 = {
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 16),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 16)
@@ -186,12 +186,12 @@ document.addEventListener("DOMContentLoaded", function () {
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 6),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 6)
         };
-        
+
         blackPanther.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
         msMarvel.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
-        hulk.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`; 
-        
-      /*  arboles.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
-        pasto.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`;*/
-    }) 
+        hulk.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
+
+        /*  arboles.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
+          pasto.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`;*/
+    })
 })
