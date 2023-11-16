@@ -3,7 +3,7 @@
     --z-index-fondo: 0;
     --z-index-entremedio: 50;
     --z-index-personajes: 100;
-    --z-index-telaraña: 200;
+    --z-index-telaraÃ±a: 200;
 
     --z-index-contenido: 75;
 
@@ -235,7 +235,7 @@ body {
     left: -14.62%;
     bottom: -28.18%;
     width: 59.22%;
-    z-index: var(--z-index-telaraña);
+    z-index: var(--z-index-telaraÃ±a);
     opacity: 0;
     animation: aparecer 1s 1 forwards;
     animation-delay: 1.5s;
@@ -246,7 +246,7 @@ body {
     width: 34.84%;
     left: 78.17%;
     bottom: 8.86%;
-    z-index: var(--z-index-telaraña);
+    z-index: var(--z-index-telaraÃ±a);
     opacity: 0;
     animation: aparecer 1s 1 forwards;
     animation-delay: 1s;
@@ -259,9 +259,10 @@ body {
     margin-top: -7.5%;
     display: flex;
     justify-content: center;
-    /*Si ponés el column se rompe*/
+    /*Si ponÃ©s el column se rompe*/
     flex-direction: column;
     align-items: center;
+    padding-bottom: 173px;
 }
 
 #fondo-duende-verde {
@@ -363,6 +364,7 @@ body {
     margin-top: 1.79%;
     color: black;
     font-size: 20px;
+    height: 218px;
     font-family: var(--font);
 }
 
@@ -373,9 +375,13 @@ body {
 /* TERCERA SECCION */
 
 #tercera-seccion {
+    display: flex;
+    position: relative;
     width: 100%;
     height: 566px;
-    margin-top: -100px;
+    margin-top: -60px;
+    flex-direction: column;
+    align-items: center;
 }
 
 #tercera-seccion-contenedor {
@@ -392,14 +398,19 @@ body {
 }
 
 #tercera-seccion-fondo {
+    position: absolute;
     width: 100%;
+    height: 566px;
+    top: 0;
 }
 
 #tercera-seccion-contenedor img:nth-child(1) {
-    top: 0px;
-    left: 0px;
+    top: -99.45px;
+    left: -15px;
     z-index: var(--z-index-contenido);
-    transform: rotate(0deg);
+    width: 546.108px;
+    height: 326.509px;
+    transform: rotate(-13.078deg);
     transition: transform 200ms ease;
     z-index: 7000;
 
@@ -410,9 +421,12 @@ body {
 }
 
 #tercera-seccion-contenedor img:nth-child(2) {
-    top: 0px;
-    left: 0px;
+    top: 84.4px;
+    left: -18px;
     z-index: var(--z-index-contenido);
+    width: 543.218px;
+    height: 325.787px;
+    transform: rotate(-26.474deg);
     transition: transform 300ms ease;
     z-index: 8000;
 
@@ -423,8 +437,11 @@ body {
 }
 
 #tercera-seccion-contenedor img:nth-child(3) {
-    top: 0px;
-    left: 0px;
+    top: 298.38px;
+    left: 12px;
+    width: 546.108px;
+    height: 326.509px;
+    transform: rotate(-36.016deg);
     transition: transform 400ms ease;
     z-index: 8000;
 
@@ -436,7 +453,7 @@ body {
 
 /* SECCION VENGADORES */
 #seccion-vengadores {
-    margin-top: 294px;
+    margin-top: 163px;
     width: 1080px;
     height: 986px;
 }
@@ -449,7 +466,8 @@ body {
     font-size: 60px;
     color: #FFFFFF;
 }
-#contenedor-vengadores-decoracion{
+
+#contenedor-vengadores-decoracion {
     position: relative;
     overflow: hidden;
     width: 1080px;
@@ -481,7 +499,7 @@ body {
 #seccion-vengadores-cielo,
 #seccion-vengadores-arboles,
 #seccion-vengadores-pasto {
-    width: 102%;
+    width: 105%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -509,7 +527,7 @@ body {
 }
 
 #seccion-vengadores-black-panther {
-    /*Le agregué los dedos al personaje*/
+    /*Le agreguÃ© los dedos al personaje*/
     top: -256px;
     right: 84px;
     z-index: 7;

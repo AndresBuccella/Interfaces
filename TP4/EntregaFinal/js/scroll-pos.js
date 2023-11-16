@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Spidermans mouse move
-    let divHeroes = document.querySelector("#primera-seccion");
+    /* let divHeroes = document.querySelector("#primera-seccion");
     let peter = divHeroes.querySelector("#primera-seccion-peter");
     let peterSpiderWeb = divHeroes.querySelector("#tela-arania-izquierda");
     let gwen = divHeroes.querySelector("#primera-seccion-gwen");
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         milesSpiderWeb.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`;
 
         gwen.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
-    })
+    }) */
 
 
     //Segunda parte
