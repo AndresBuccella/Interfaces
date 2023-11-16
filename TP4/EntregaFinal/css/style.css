@@ -247,27 +247,33 @@ body { /*esto esta mal?*/
     background-color: #FFF;
     width: 100%;
     height: 1929px;
-    margin-top: -10%;
+    margin-top: -7.5%;
     display: flex;
     justify-content: center; /*Si ponés el column se rompe*/
+    
 }
-#segunda-seccion-primera-parte { /*Tiene que ser responsive, pero no encuentro que le da el ángulo*/
+#fondo-duende-verde{
+    position: absolute;
+    width: 100%;
+}
+#segunda-seccion-primera-parte{
+    z-index: var(--z-index-entremedio);
+    display: flex;
+    justify-content: center;
+}
+
+#segunda-seccion-primera-parte-contenido {
     position: absolute;
     top: 30px;
     width: 1080px;
     /* height: 845px; */
     z-index: var(--z-index-contenido);
 
-    background-image: url("../images/fondo-duende-verde.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
-#segunda-seccion-primera-parte h1 {
+#segunda-seccion-primera-parte-contenido h1 {
     width: 646px;
     margin-top: 219.5px;
-    margin-left: 95px;
 
     color: #FFF;
 
@@ -278,13 +284,12 @@ body { /*esto esta mal?*/
     line-height: 94.5%;
 }
 
-#segunda-seccion-primera-parte p {
+#segunda-seccion-primera-parte-contenido p {
     width: 586px;
     height: 154px;
     flex-shrink: 0;
 
     margin-top: 24px;
-    margin-left: 95px;
 
     color: #FFF;
     font-family: var(--font);
@@ -294,7 +299,7 @@ body { /*esto esta mal?*/
     line-height: normal;
 }
 
-#segunda-seccion-primera-parte div {
+#segunda-seccion-primera-parte-contenido div {
     width: 751.649px;
     height: 413.131px;
     transform: rotate(-2.222deg);
@@ -318,8 +323,8 @@ body { /*esto esta mal?*/
 #duende-verde {
     width: 43.2%;
     position: absolute;
-    top: 90px;
-    right: 15px;
+    top: 200px;
+    right: -55px;
     transform: scaleX(-1);
 }
 
@@ -348,65 +353,63 @@ body { /*esto esta mal?*/
     margin: 0 3.12% 0 3.12%;
 }
 
+/* TERCERA SECCION */
+
 #tercera-seccion{
-    position: relative;
     width: 100%;
+    height: 566px;
     margin-top: -100px;
+}
+#tercera-seccion-contenedor{
+    position: relative;
+    width: 1080px;
+    height: 566px;
     perspective: 1000px;
     z-index: 9000;
 }
-#tercera-seccion div{
-    width: 100%;
-    height: 566px;
-    background-image: url('../images/fondo-parte-3.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-#tercera-seccion img{
+#tercera-seccion-contenedor img,
+#tercera-seccion-fondo{
     position: absolute;
-    left: 10px;
 }
-#tercera-seccion img:nth-child(1){
-    top: -17.26%;
-    left: 5.93%;
-    transform: rotate3d(1, 1, 1, 45deg);
+#tercera-seccion-fondo{
+    width: 100%;
+}
+#tercera-seccion-contenedor img:nth-child(1){
+    top: 0px;
+    left: 0px;
     z-index: var(--z-index-contenido);
+    transform: rotate(0deg);
     transition: transform 200ms ease;
     z-index: 7000;
     
     &:hover{
-        border: 1px solid blue;
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
-#tercera-seccion img:nth-child(2){
-    top: 17.77%;
-    left: 6.5%;
-    transform: rotate(-26.474deg);
+#tercera-seccion-contenedor img:nth-child(2){
+    top: 0px;
+    left: 0px;
     z-index: var(--z-index-contenido);
     transition: transform 300ms ease;
     z-index: 8000;
     &:hover{
-        border: 1px solid blue;
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
-#tercera-seccion img:nth-child(3){
-    top: 56.36%;
-    left: 9.4%;
-    transform: rotate(-36.016deg);
+#tercera-seccion-contenedor img:nth-child(3){
+    top: 0px;
+    left: 0px;
     transition: transform 400ms ease;
     z-index: 8000;
     &:hover{
-        border: 1px solid blue;
         z-index: 9000;
         transform: rotate(0deg);
     }
 }
 
+/* SECCION VENGADORES */
 #seccion-vengadores{
     margin-top: 294px;
     width: 1080px;
