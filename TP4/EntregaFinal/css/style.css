@@ -450,19 +450,23 @@ body {
     color: #FFFFFF;
 }
 #contenedor-vengadores-decoracion{
+    position: relative;
     overflow: hidden;
     width: 1080px;
     height: 528px;
 }
 
 #contenedor-vengadores-personajes {
-    position: absolute;
+    position: relative;
     overflow-x: clip;
     top: 0;
     width: 1080px;
     height: 528px;
     /*alto de los 3 fondos*/
     box-shadow: 26px 29px 41px 14px rgba(0, 0, 0, 0.15);
+
+    transform: translateY(-528px);
+    z-index: 5;
 }
 
 #seccion-vengadores-cielo,
@@ -472,7 +476,6 @@ body {
 #seccion-vengadores-black-panther,
 #seccion-vengadores-pasto {
     position: absolute;
-    transition: transform 100ms;
 }
 
 #seccion-vengadores-cielo,

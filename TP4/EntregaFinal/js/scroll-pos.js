@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Vengadores mouse move
-    let divVengadores = document.querySelector("#contenedor-vengadores");
+    let divVengadores = document.querySelector("#seccion-vengadores");
     let blackPanther = divVengadores.querySelector("#seccion-vengadores-black-panther");
     let msMarvel = divVengadores.querySelector("#seccion-vengadores-ms-marvel");
     let hulk = divVengadores.querySelector("#seccion-vengadores-hulk");
