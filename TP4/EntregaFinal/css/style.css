@@ -246,20 +246,22 @@ body { /*esto esta mal?*/
     position: relative;
     background-color: #FFF;
     width: 100%;
-    height: 1929px;
     margin-top: -7.5%;
     display: flex;
     justify-content: center; /*Si ponés el column se rompe*/
-    
+    flex-direction: column;
+    align-items: center;
 }
 #fondo-duende-verde{
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
 }
 #segunda-seccion-primera-parte{
     z-index: var(--z-index-entremedio);
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: fit-content;
 }
 
 #segunda-seccion-primera-parte-contenido {
@@ -329,8 +331,8 @@ body { /*esto esta mal?*/
 }
 
 #personajes-segunda-seccion{
-    position: absolute;
-    bottom: 370px;
+    /* position: absolute; */
+    margin-top: 221px;
     display: flex;
     width: 1080px;
     background-color: #FFF;
