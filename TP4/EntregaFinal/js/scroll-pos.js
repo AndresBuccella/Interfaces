@@ -174,24 +174,33 @@ document.addEventListener("DOMContentLoaded", function () {
     let pasto = divVengadores.querySelector("#seccion-vengadores-pasto");
 
     divVengadores.addEventListener("mousemove", function (e) {
-        const offset1 = {
+        const offset1 = { // black panther
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 16),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 16)
         };
-        const offset2 = {
+        const offset2 = { // ms. marvel
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 8),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 8)
         };
-        const offset3 = {
+        const offset3 = { //hulk
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 6),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 6)
         };
+        const offset4 = { // arboles-edificios
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 4),
+            y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 4)
+        };
+        const offset5 = { // pasto
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 20),
+            y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 20)
+        };
+        
 
         blackPanther.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
         msMarvel.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
         hulk.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
 
-        /*  arboles.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
-          pasto.style.transform = `translate(${-offset2.x}px, ${-offset2.y}px)`;*/
+        arboles.style.transform = `translate(calc(${-offset4.x}px - 50%), calc(${-offset4.y}px - 50%))`;
+        pasto.style.transform = `translate(calc(${-offset5.x}px - 50%), calc(${-offset5.y}px - 50%))`;
     })
 })
