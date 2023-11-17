@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener('scroll', function () {
-        console.log('Posición de scroll:', getScrollPosition());
+        //console.log('Posición de scroll:', getScrollPosition());
         scroll(getScrollPosition())
     });
 
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         edificios(scroll);
         moverDuendeVerde(scroll);
         aparecerCartas(scroll);
+        showMasAmigos(scroll)
     }
 
     scroll(getScrollPosition());
@@ -142,12 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let cajaPersonajes = document.querySelector("#personajes-segunda-seccion");
         let heightPersonajes = cajaPersonajes.getBoundingClientRect().height;
         let escala = window.innerWidth / 1000;
-        //Creo que le indicas la parte de la pantalla en la que querés que se muestre al 100%. Si no me expliqué mañana sale discord
-        //No desaparece por completo, por ahí es mejor dejarlo a math.pi solo
         let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height - 100 * escala;
-        /* console.log("height: " + navegador.style.height);
-        console.log("alto: " + heightPersonajes);
-        console.log("pos: " + posPersonajes); */
+
         let peter = document.querySelector("#peter-segunda-seccion");
         let miles = document.querySelector("#miles-segunda-seccion");
         let gwen = document.querySelector("#gwen-segunda-seccion");
@@ -205,35 +202,41 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
-    function masAmigos(scroll) {
-        //imagen 1 = 4036
-        //imagen 2 = 4466
-        //imagen 3 = 4900
-        //imagen 4 = 5400
-        
-        
-        let cajaImagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
-        let heightImagenes = cajaImagenesMasAmigos.getBoundingClientRect().height;
-        let escala = window.innerHeight / 6;
+    function showMasAmigos(scroll) {
 
-        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height;
-        /* console.log("height: " + navegador.style.height);
-        console.log("alto: " + heightPersonajes);
-        console.log("pos: " + posPersonajes); */
-        let peter = document.querySelector("#peter-segunda-seccion");
-        let miles = document.querySelector("#miles-segunda-seccion");
-        let gwen = document.querySelector("#gwen-segunda-seccion");
+        let imagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
 
-        if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
-            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
-            peter.style.opacity = calculoAuxiliar;
-            miles.style.opacity = calculoAuxiliar;
-            gwen.style.opacity = calculoAuxiliar;
-        } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
-            //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
-            peter.style.opacity = 1;
-            miles.style.opacity = 1;
-            gwen.style.opacity = 1;
+        let imagen1 = document.querySelector("#mas-amigos-1");
+        let imagen2 = document.querySelector("#mas-amigos-2");
+        let imagen3 = document.querySelector("#mas-amigos-3");
+        let imagen4 = document.querySelector("#mas-amigos-4");
+
+        let delay = window.innerWidth * 4 / 100;
+
+        if (scroll < 4000) {
+            imagen1.style.opacity = 1;
+            console.log();
+        } else if (scroll >= 4000 && scroll < 4412) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen1.style.opacity = Math.cos(((scroll - (4000 + delay)) / (4000 + delay)) * Math.PI * 5);
+            imagen2.style.opacity = Math.sin(((scroll - (4000 + delay)) / 2 / (4000 + delay)) * Math.PI * 10);
+            // el 5 y el 10 son numeros que fui probando para la velocidad de transicion
+            // coseno para que desaparezca y seno para que aparezca
+            // el delay son los pixeles que tarda en base al ancho de la pantalla, no sé que te parece
+        } else if (scroll >= 4412 && scroll < 4846) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen1.style.opacity = 0;
+            imagen3.style.opacity = Math.sin((scroll - (4412 + delay)) / 2 / (4412 + delay) * Math.PI * 10);
+            imagen2.style.opacity = Math.cos((scroll - (4412 + delay)) / (4412 + delay) * Math.PI * 5);
+        } else if (scroll >= 4846 && scroll < 5375) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen2.style.opacity = 0;
+            imagen4.style.opacity = Math.sin((scroll - (4846 + delay)) / 2 / (4846 + delay) * Math.PI * 10);
+            imagen3.style.opacity = Math.cos((scroll - (4846 + delay)) / (4846 + delay) * Math.PI * 5);
+        } else if (scroll >= 5375) {
+            imagen3.style.opacity = 0;
+            imagen4.style.opacity = 1;
+
         }
     }
 })

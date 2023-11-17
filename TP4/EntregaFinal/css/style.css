@@ -569,6 +569,7 @@ body {
     & img{
         opacity: 0;
         position: absolute;
+        width: 552px;
     }
 }
 
