@@ -12,6 +12,9 @@
     --width-primera-seccion-miles: 393px;
 
     --font: 'Lato', sans-serif;
+    --fontSize-h1: 60px;
+    --fontSize-h2: 40px;
+    --fontSize-content: 20px;
 
 }
 
@@ -294,7 +297,7 @@ body {
     color: #FFF;
 
     font-family: var(--font);
-    font-size: 60px;
+    font-size: var(--fontSize-h1);
     font-style: normal;
     font-weight: 600;
     line-height: 94.5%;
@@ -309,7 +312,7 @@ body {
 
     color: #FFF;
     font-family: var(--font);
-    font-size: 20px;
+    font-size: var(--fontSize-content);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -363,7 +366,7 @@ body {
 #gwen-segunda-seccion p {
     margin-top: 1.79%;
     color: black;
-    font-size: 20px;
+    font-size: var(--fontSize-content);
     height: 218px;
     font-family: var(--font);
 }
@@ -463,7 +466,7 @@ body {
     margin-bottom: 55px;
     width: 667px;
     font-family: var(--font);
-    font-size: 60px;
+    font-size: var(--fontSize-h1);
     color: #FFFFFF;
 }
 
@@ -539,13 +542,19 @@ body {
 /*SECCION MAS AMIGOS*/
 
 #seccion-mas-amigos {
-    background-image: url(../images/fondo-seccion-mas-amigos.png);
     width: 100%;
-    height: 2195px;
+    position: relative;
     margin-top: -333px;
-    
-}
+    height: 2195px;
 
+}
+#seccion-mas-amigos-fondo{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
 #div-seccion-mas-amigos {
     width: 1080px;
     height: auto;
@@ -557,8 +566,12 @@ body {
     & h1 {
         flex-flow: column; /*para que ocupe el ancho de la pantalla*/
         font-family: var(--font);
-        font-size: 60px;
+        font-size: var(--fontSize-h1);
         margin-bottom: 69px;
+        
+        font-style: normal;
+        font-weight: 600;
+        line-height: 57px;
     }
 }
 #seccion-mas-amigos-imagenes{
@@ -585,30 +598,62 @@ body {
     }
 
     & div h2{
-        font-size: 40px;
+        font-size: var(--fontSize-h2);
         margin-bottom: 25px;
         line-height: 38px;
     }
+
     & div span{
-        font-size: 20px;
-        line-height: 19px;
+        font-size: var(--fontSize-content);
         margin-bottom: 150px;
+        line-height: 19px;
     }
 }
-/* #div-seccion-mas-amigos-hijo-1,
-#div-seccion-mas-amigos-hijo-2,
-#div-seccion-mas-amigos-hijo-3,
-#div-seccion-mas-amigos-hijo-4 {
-    display: flex;
-    align-items: start;
-    width: 100%;
-    height: fit-content;
 
-    & img{
-        margin-right: 57px;
+#nosequenombreponerle{
+    position: relative;
+
+    width: 1080px;
+    height: 248px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    & h1{
+        position: absolute;
+        top: 25px;
+        left: 0;
+        width: 826px;
+        font-family: var(--font);
+        font-size: var(--fontSize-h1);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
     }
+}
+#btn-comprar-ahora{
+    position: absolute;
+    top: 215px;
+    left: 0;
+    width: 292px;
+    height: 50px;
+    flex-shrink: 0;
 
-} */
+    
+    color: #02187E;
+    
+    font-size: 20px;
+    font-family: var(--font);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 19px;
+    letter-spacing: 2.2px;
+
+    border-radius: 111px;
+    border: 8px solid var(--2982-ff, #2982FF);
+    background: #FFE901;
+
+    /* Drop Shadow */
+    box-shadow: 4px 5px 0px 0px #02187E;
+}
 
 /* SECCION SUSCRIPCION*/
 #seccion-suscripcion {
@@ -623,7 +668,7 @@ body {
 
     & h1 {
         margin: 152px auto 46px;
-        font-size: 60px;
+        font-size: var(--fontSize-h1);
         width: 63.75%;
 
         font-weight: 600;
@@ -636,7 +681,7 @@ body {
         display: block;
         width: 45.15%;
         height: 95px;
-        font-size: 20px;
+        font-size: var(--fontSize-content);
         margin-top: 39px;
         margin-left: 23.59%;
         font-weight: 400;
@@ -664,7 +709,7 @@ body {
 
 #input-correo {
     padding-left: 43px;
-    font-size: 20px;
+    font-size: var(--fontSize-content);
     font-family: var(--font);
     width: 72.05%;
     height: 100px;
