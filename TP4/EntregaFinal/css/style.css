@@ -514,13 +514,12 @@ body {
 }
 
 #seccion-vengadores-hulk {
-    bottom: -66px;
-    right: -54px;
+    bottom: -76px;
+    right: -74px;
     z-index: 7;
 }
 
 #seccion-vengadores-ms-marvel {
-    /*TODOS LOS VALORES A OJO*/
     bottom: -58px;
     left: 22px;
     z-index: 7;
@@ -540,25 +539,62 @@ body {
 /*SECCION MAS AMIGOS*/
 
 #seccion-mas-amigos {
-    background-color: #FFF;
-    z-index: -1;
+    background-image: url(../images/fondo-seccion-mas-amigos.png);
     width: 100%;
     height: 2195px;
-    margin-top: -300px;
+    margin-top: -333px;
+    
 }
 
 #div-seccion-mas-amigos {
     width: 1080px;
     height: auto;
-    margin: 300px auto;
-
+    margin: 254px auto;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;/*para que vuelva estén uno al lado del otro*/
+    
     & h1 {
+        flex-flow: column; /*para que ocupe el ancho de la pantalla*/
         font-family: var(--font);
         font-size: 60px;
+        margin-bottom: 69px;
+    }
+}
+#seccion-mas-amigos-imagenes{
+    position: relative;
+    opacity: 1;
+    width: 552px;
+
+    & img{
+        opacity: 0;
+        position: absolute;
     }
 }
 
-#div-seccion-mas-amigos-hijo-1,
+.texto-mas-amigos{
+    font-family: var(--font);
+    width: 467px;
+    margin-left: 57px;
+    font-style: normal;
+    font-weight: 400;
+
+    & div{
+        margin-bottom: 150px;
+    }
+
+    & div h2{
+        font-size: 40px;
+        margin-bottom: 25px;
+        line-height: 38px;
+    }
+    & div span{
+        font-size: 20px;
+        line-height: 19px;
+        margin-bottom: 150px;
+    }
+}
+/* #div-seccion-mas-amigos-hijo-1,
 #div-seccion-mas-amigos-hijo-2,
 #div-seccion-mas-amigos-hijo-3,
 #div-seccion-mas-amigos-hijo-4 {
@@ -566,7 +602,12 @@ body {
     align-items: start;
     width: 100%;
     height: fit-content;
-}
+
+    & img{
+        margin-right: 57px;
+    }
+
+} */
 
 /* SECCION SUSCRIPCION*/
 #seccion-suscripcion {
@@ -578,7 +619,6 @@ body {
     color: #000;
     font-family: var(--font);
     z-index: 0;
-    /*???? por que no aparece por debajo, por el relative?*/
 
     & h1 {
         margin: 152px auto 46px;

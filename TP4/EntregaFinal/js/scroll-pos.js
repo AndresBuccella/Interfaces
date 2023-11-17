@@ -203,4 +203,37 @@ document.addEventListener("DOMContentLoaded", function () {
         arboles.style.transform = `translate(calc(${-offset4.x}px - 50%), calc(${-offset4.y}px - 50%))`;
         pasto.style.transform = `translate(calc(${-offset5.x}px - 50%), calc(${-offset5.y}px - 50%))`;
     })
+
+
+    function masAmigos(scroll) {
+        //imagen 1 = 4036
+        //imagen 2 = 4466
+        //imagen 3 = 4900
+        //imagen 4 = 5400
+        
+        
+        let cajaImagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
+        let heightImagenes = cajaImagenesMasAmigos.getBoundingClientRect().height;
+        let escala = window.innerHeight / 6;
+
+        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height;
+        /* console.log("height: " + navegador.style.height);
+        console.log("alto: " + heightPersonajes);
+        console.log("pos: " + posPersonajes); */
+        let peter = document.querySelector("#peter-segunda-seccion");
+        let miles = document.querySelector("#miles-segunda-seccion");
+        let gwen = document.querySelector("#gwen-segunda-seccion");
+
+        if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
+            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
+            peter.style.opacity = calculoAuxiliar;
+            miles.style.opacity = calculoAuxiliar;
+            gwen.style.opacity = calculoAuxiliar;
+        } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
+            //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
+            peter.style.opacity = 1;
+            miles.style.opacity = 1;
+            gwen.style.opacity = 1;
+        }
+    }
 })
