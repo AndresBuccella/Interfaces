@@ -636,6 +636,7 @@ body {
     width: 292px;
     height: 50px;
     flex-shrink: 0;
+    z-index: 9000;
 
     
     color: #02187E;
@@ -653,6 +654,112 @@ body {
 
     /* Drop Shadow */
     box-shadow: 4px 5px 0px 0px #02187E;
+}
+
+#seccion-about-spiders{
+    position: relative;
+    width: 100%;
+    height: 720px;
+}
+
+#seccion-about-spiders-fondo{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#seccion-about-spiders-fondo-color{
+    position: absolute;
+    width: 100%;
+    height: 842px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+#seccion-about-spiders-personajes{
+    position: relative;
+    width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+}
+#gwen-seccion-about,
+#peter-seccion-about,
+#miles-seccion-about{
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#gwen-seccion-about{
+    top: 171px;
+    left: 90px;
+    width: 268px;
+    height: 417px;
+}
+#peter-seccion-about{
+    top: 180px;
+    left: 293px;
+    width: 417px;
+    height: 458px;
+}
+#miles-seccion-about{
+    top: 180px;
+    right: 88px;
+    width: 314px;
+    height: 399px;
+}
+
+#pop-up{
+    /* top: 0;
+    left: 0; */
+    position: absolute;
+    width: 100%;
+    height: 832px;
+    z-index: 100;
+    background-color: black;
+    color: #FFF;
+    transition: opacity 0.3s;
+    
+}
+#texto-about-spiders{
+    
+    & h1{
+        margin-top: 4.53%;
+        margin-left: 31.09%;
+        width: 724px;
+        font-family: var(--font);
+        font-size: var(--fontSize-h1);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    & p, ol {
+        margin-left: 31.56%;
+        width: 724px;
+        font-family: var(--font);
+        font-size: var(--fontSize-content);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+#heroe{
+    position: absolute;
+    width: 284px;
+    height: 715px;
+    top: 4.53%;
+    left: 4.76%;
+}
+#btn-cruz{
+    position: absolute;
+    width: 89px;
+    height: 89px;
+    top: 2.18%;
+    right: 2.73%;
 }
 
 /* SECCION SUSCRIPCION*/
