@@ -141,10 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let cajaPersonajes = document.querySelector("#personajes-segunda-seccion");
         let heightPersonajes = cajaPersonajes.getBoundingClientRect().height;
-        let escala = window.innerHeight / 6;
+        let escala = window.innerWidth / 1000;
         //Creo que le indicas la parte de la pantalla en la que querés que se muestre al 100%. Si no me expliqué mañana sale discord
         //No desaparece por completo, por ahí es mejor dejarlo a math.pi solo
-        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height + escala;
+        let posPersonajes = cajaPersonajes.getBoundingClientRect().top + scroll - window.innerHeight + navegador.getBoundingClientRect().height - 100 * escala;
         /* console.log("height: " + navegador.style.height);
         console.log("alto: " + heightPersonajes);
         console.log("pos: " + posPersonajes); */
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 20),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 20)
         };
-        
+
 
         blackPanther.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
         msMarvel.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
