@@ -210,14 +210,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     gwen.addEventListener('click', () => {
+        reset();
         loadGwen();
         showPopUp();
     })
     peter.addEventListener('click', () => {
+        reset();
         loadPeter();
         showPopUp();
     })
     miles.addEventListener('click', () => {
+        reset();
         loadMiles();
         showPopUp();
     })

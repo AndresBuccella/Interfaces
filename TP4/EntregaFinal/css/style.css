@@ -51,6 +51,7 @@ body {
     height: fit-content;
     margin-left: 100px;
     filter: drop-shadow(4px 5px 0px #02187E);
+    cursor: pointer;
 }
 
 #menu div {
