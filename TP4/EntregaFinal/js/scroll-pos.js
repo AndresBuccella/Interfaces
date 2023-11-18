@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    /**
+     * Retrieves the current scroll position of the window.
+     *
+     * @return {number} The current scroll position.
+     */
     function getScrollPosition() {
         return window.scrollY;
     }
