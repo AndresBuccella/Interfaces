@@ -36,3 +36,5 @@ achicando, cambiar el color del fondo.
 
 Preguntas:
 En el punto 12 se puede poner una imagen encima en vez de cambiar el color?
+
+----------------------

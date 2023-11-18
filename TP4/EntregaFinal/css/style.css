@@ -540,9 +540,18 @@ body {
 
 #seccion-vengadores-black-panther {
     /*Le agreguÃ© los dedos al personaje*/
-    top: -256px;
+    /*imagen terminada en -hd*/
+    /* top: -256px;
     right: 84px;
+    z-index: 7; */
+    
+    /*otra imagen con mejor calidad*/
+    top: -233px;
+    right: 152px;
     z-index: 7;
+    width: 420px;
+    height: 553px;
+    transform: rotate(16deg);
 }
 
 #seccion-vengadores-pasto {
