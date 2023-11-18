@@ -235,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // el 5 y el 10 son numeros que fui probando para la velocidad de transicion
             // coseno para que desaparezca y seno para que aparezca
             // el delay son los pixeles que tarda en base al ancho de la pantalla, no sé que te parece
+            // como el numero resultante de scroll - (4000 + delay) < 0, la opacity es 0
         } else if (scroll >= 4412 && scroll < 4846) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
             imagen1.style.opacity = 0;
