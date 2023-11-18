@@ -714,16 +714,16 @@ body {
 }
 
 #pop-up{
-    /* top: 0;
-    left: 0; */
+    top: 0;
+    left: 0;
     position: absolute;
     width: 100%;
     height: 832px;
-    z-index: 100;
+    z-index: 0;
     background-color: black;
     color: #FFF;
     transition: opacity 0.3s;
-    
+    opacity: 0;
 }
 #texto-about-spiders{
     
@@ -746,8 +746,11 @@ body {
         font-weight: 400;
         line-height: normal;
     }
+    & ol{
+        margin-left: 33%;
+    }
 }
-#heroe{
+#img-heroe{
     position: absolute;
     width: 284px;
     height: 715px;
@@ -760,6 +763,7 @@ body {
     height: 89px;
     top: 2.18%;
     right: 2.73%;
+    cursor: pointer;
 }
 
 /* SECCION SUSCRIPCION*/
