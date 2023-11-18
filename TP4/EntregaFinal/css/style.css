@@ -85,6 +85,8 @@ body {
     border: 8px solid #2982FF;
     background: #FFE901;
     margin-right: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 
     font-family: var(--font);
     color: #02187E;
@@ -107,6 +109,10 @@ body {
         1px 1px 0px #02187e,
         -1px 1px 0px #02187e,
         -1px -1px 0px #02187e;
+
+    &:hover {
+        background-color: #bbac03;
+    }
 }
 
 #primera-seccion {
@@ -641,6 +647,7 @@ body {
     height: 50px;
     flex-shrink: 0;
     z-index: 9000;
+    cursor: pointer;
 
     
     color: #02187E;
@@ -655,9 +662,14 @@ body {
     border-radius: 111px;
     border: 8px solid var(--2982-ff, #2982FF);
     background: #FFE901;
+    transition: background-color 0.3s;
 
     /* Drop Shadow */
     box-shadow: 4px 5px 0px 0px #02187E;
+
+    &:hover{
+        background-color: #bbac03;
+    }
 }
 
 #seccion-about-spiders{

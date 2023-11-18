@@ -17,6 +17,9 @@ reaccionar al movimiento del mouse.
 9_X_En la sección de los cards de los 3 personajes, los cards deben aparecer flotados con fade-in, es decir, no se 
 ven inicialmente, y cuando se scrollea hasta dejar la sección visible, aparecen sutilmente (a diferentes velocidades) 
 los tres cards desde abajo desde un estado transparente.  
+11_X_En la sección Ghost Spider, los 3 cards (en 3D) deben desplazarse a destiempo en el scroll, y on hover deben 
+cambiar la perspectiva sutilmente.
+10_X_Animar botones COMPRAR minimamente con un hover con cambio de color.
 
 
 
@@ -24,12 +27,6 @@ los tres cards desde abajo desde un estado transparente.
 
 3__Opcional 3: Los ítems del menú tienen que aparecer desde un costado de la pantalla e ir cargándose uno por uno. 
 Los ítems no están en Figma, poner mínimo 3 a gusto.
-
-
-10__Animar botones COMPRAR minimamente con un hover con cambio de color.
-
-11__En la sección Ghost Spider, los 3 cards (en 3D) deben desplazarse a destiempo en el scroll, y on hover deben 
-cambiar la perspectiva sutilmente.
 
 12__Opcional 5: En la sección de los tres personajes, debe animarse on hover el personaje, agrandando la figura del hover, 
 achicando, cambiar el color del fondo.
