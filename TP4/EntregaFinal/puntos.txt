@@ -1,0 +1,41 @@
+2_X_Opcional 2: El menú Hamburguesa de la página cuando se despliega se debe transformar las 3 líneas en una Cruz, 
+utilizando una animación. (no debe cambiar directamente sino vía una transición) Aclaración: al pedir una transición 
+se entiende que debe ser una animación keyframe y que pase menú hamburguesa a cruz progresivamente.Si ya lo tenian hecho 
+lo pueden reutilizar pero verifiquen que cumpla con todo lo que se pide.
+4_X_En la sección de “Más amigos, más diversión!” Se debe tener 2 columnas en la cual la parte izquierda es una 
+imagen y sobre la derecha está el texto descriptivo. A modo de ejemplo ver en  https://growproexperience.com/ 
+(Te acompañamos en tu viaje de principio a fin). La imagen de la izquierda que fija, Sticky, y va cambiando 
+(con una transición suave) a medida que se prolonga el texto de la derecha.
+5_X_Al hacer scroll el Header debe ser sticky y achicarse, de tal manera que además el logo debe achicarse. 
+En caso de ser necesario cambiar el fondo a un color plano (recomendado) 
+6_X_En la sección "Conoce a Spidey y sus sorprendentes amigos", el duende verde debe moverse más lento que la velocidad de scroll.
+7_X_El héroe debe tener efecto parallax, utilizando las capas de la composición de la imagen, moverlas según el scroll, 
+a diferentes velocidades, dando sensación de profundidad.
+Animar también la entrada de los elementos a pantalla.
+8_X_Opcional 4: Lo mismo para la sección "Los vengadores acompañando tu aventura". En este caso, el movimiento debe 
+reaccionar al movimiento del mouse. 
+9_X_En la sección de los cards de los 3 personajes, los cards deben aparecer flotados con fade-in, es decir, no se 
+ven inicialmente, y cuando se scrollea hasta dejar la sección visible, aparecen sutilmente (a diferentes velocidades) 
+los tres cards desde abajo desde un estado transparente.  
+
+
+
+1__Opcional 1: La página deberá tener un loader acorde a la temática propuesta. Igual al que hicieron en el TPE 2
+
+3__Opcional 3: Los ítems del menú tienen que aparecer desde un costado de la pantalla e ir cargándose uno por uno. 
+Los ítems no están en Figma, poner mínimo 3 a gusto.
+
+
+10__Animar botones COMPRAR minimamente con un hover con cambio de color.
+
+11__En la sección Ghost Spider, los 3 cards (en 3D) deben desplazarse a destiempo en el scroll, y on hover deben 
+cambiar la perspectiva sutilmente.
+
+12__Opcional 5: En la sección de los tres personajes, debe animarse on hover el personaje, agrandando la figura del hover, 
+achicando, cambiar el color del fondo.
+
+13__Cerca del footer, animar utilizando un spritesheet un personaje del juego en lanzamiento.
+
+
+Preguntas:
+En el punto 12 se puede poner una imagen encima en vez de cambiar el color?

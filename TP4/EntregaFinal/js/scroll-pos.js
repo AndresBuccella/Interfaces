@@ -150,10 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let gwen = document.querySelector("#gwen-segunda-seccion");
 
         if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
-            let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
-            peter.style.opacity = calculoAuxiliar;
-            miles.style.opacity = calculoAuxiliar;
-            gwen.style.opacity = calculoAuxiliar;
+            //let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
+            peter.style.opacity = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
+            //se elevan al cuadrado y al cubo para retrasar la aparicion
+            miles.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 2) * Math.PI/2);
+            gwen.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes,3) * Math.PI/3);
         } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
             //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
             peter.style.opacity = 1;
