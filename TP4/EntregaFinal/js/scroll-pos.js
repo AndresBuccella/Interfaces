@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener('scroll', function () {
-        //console.log('Posición de scroll:', getScrollPosition());
+        console.log('Posición de scroll:', getScrollPosition());
         scroll(getScrollPosition())
     });
 
@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
         edificios(scroll);
         moverDuendeVerde(scroll);
         aparecerCartas(scroll);
-        showMasAmigos(scroll)
+        showMasAmigos(scroll);
+        moverTarjetasGhostSpider(scroll);
     }
 
     scroll(getScrollPosition());
@@ -153,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
             //let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
             peter.style.opacity = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
             //se elevan al cuadrado y al cubo para retrasar la aparicion
+            //se divide PI para que llegue mas rapido a 1 una vez que empieza a aparecer
             miles.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 2) * Math.PI/2);
             gwen.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes,3) * Math.PI/3);
         } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
@@ -160,6 +162,15 @@ document.addEventListener("DOMContentLoaded", function () {
             peter.style.opacity = 1;
             miles.style.opacity = 1;
             gwen.style.opacity = 1;
+        }
+    }
+
+    function moverTarjetasGhostSpider(scroll) {
+        let contenedorTarjetas = document.querySelector("#tercera-seccion-contenedor");
+        if (scroll > 1620 && scroll < 2226) {
+            contenedorTarjetas.style.transform = `translateY(${(scroll - 1620) / 16}px)`;
+        } else if (scroll >= 2226) {
+            contenedorTarjetas.style.transform = `translateY(${(2226 - 1620) / 16}px)`;
         }
     }
 
