@@ -717,6 +717,7 @@ body {
     position: absolute;
     z-index: 10;
     cursor: pointer;
+    transition: top 800ms, left 800ms, width 800ms, height 800ms, filter 800ms;
 }
 
 #gwen-seccion-about{

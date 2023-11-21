@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fondoColor.src = '';
         fondoColor.style.opacity = '0';
-        fondo.src = '../images/seccion-about-spiders.png';
+        fondo.src = 'images/seccion-about-spiders.png';
         fondo.style.zIndex = '-1';
         popup.style.zIndex = -1;
         popup.style.opacity = 0;
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         miles.style.height = '309px';
         miles.style.filter = 'blur(5px)';
 
-        fondoColor.src = '../images/fondo-gwen-about.png';
+        fondoColor.src = 'images/fondo-gwen-about.png';
         fondoColor.style.opacity = 1;
         fondoColor.style.zIndex = 2;
         fondo.style.zIndex = 1;
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         miles.style.height = '327px';
         miles.style.filter = 'blur(5px)';
 
-        fondoColor.src = '../images/fondo-peter-about.png';
+        fondoColor.src = 'images/fondo-peter-about.png';
         fondoColor.style.opacity = 1;
         fondoColor.style.zIndex = 2;
         fondo.style.zIndex = 1;
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
         peter.style.height = '387px';
         peter.style.filter = 'blur(5px)';
 
-        fondoColor.src = '../images/fondo-miles-about.png';
+        fondoColor.src = 'images/fondo-miles-about.png';
         fondoColor.style.opacity = 1;
         fondoColor.style.zIndex = 2;
         fondo.style.zIndex = 1;
