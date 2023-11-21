@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         fondo.src = 'images/seccion-about-spiders.png';
         fondo.style.zIndex = '-1';
         popup.style.zIndex = -1;
-        popup.style.opacity = 0;
+        //popup.style.opacity = 0;
+        popup.style.height= "0px";
     }
     gwen.addEventListener('mouseenter', function () {
         gwen.style.top = '114px';
@@ -206,7 +207,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function showPopUp() {
         onPopUp = true;
         popup.style.zIndex = 100;
-        popup.style.opacity = 1;
+        //popup.style.opacity = 1;
+        popup.style.height= "832px";
     }
     
     gwen.addEventListener('click', () => {
