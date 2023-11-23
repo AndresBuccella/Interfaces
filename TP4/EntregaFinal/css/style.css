@@ -999,7 +999,7 @@ body {
 	position: absolute;
 	background-color: white;
 	height: 0px;
-	width: 8px;
+	width: 4px;
 	background-image: url(../images/spider-web.png);
 	background-repeat: repeat;
 	transform: rotateZ(130deg);
