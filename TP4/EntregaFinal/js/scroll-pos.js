@@ -221,56 +221,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showMasAmigos(scroll) {
 
-        let imagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
+        let seccionMasAmigosPosy = document.querySelector("#seccion-mas-amigos").getBoundingClientRect().top + scroll + 50;
 
+        let imagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
         let tituloMasAmigos = document.querySelector("#div-seccion-mas-amigos").querySelector("h1");
         let imagen1 = document.querySelector("#mas-amigos-1");
         let imagen2 = document.querySelector("#mas-amigos-2");
         let imagen3 = document.querySelector("#mas-amigos-3");
         let imagen4 = document.querySelector("#mas-amigos-4");
         let textoMasAmigos = document.querySelector(".texto-mas-amigos").querySelectorAll("div");
-
-        let delay = window.innerWidth * 4 / 100;
-
-        if (scroll < 4000) {
+        let visibilidad = 80;
+        console.log(scroll - seccionMasAmigosPosy);
+        if (scroll < seccionMasAmigosPosy) {
+            imagenesMasAmigos.style.transform = ``;
+            tituloMasAmigos.style.transform = ``;
             imagen1.style.opacity = 1;
+            imagen2.style.opacity = 0;
+            imagen3.style.opacity = 0;
+            imagen4.style.opacity = 0;
 
             textoMasAmigos[0].style.opacity = 1;
             textoMasAmigos[1].style.opacity = 0;
             textoMasAmigos[2].style.opacity = 0;
             textoMasAmigos[3].style.opacity = 0;
-        } else if (scroll >= 4000 && scroll < 4412) {
-            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+        } else if (scroll >= seccionMasAmigosPosy && scroll < seccionMasAmigosPosy + 416) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen1.style.opacity = 1;
-            imagen2.style.opacity = Math.sin(((scroll - (4000 + delay)) / 2 / (4000 + delay)) * Math.PI * 10);
+            imagen2.style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
+            imagen3.style.opacity = 0;
+            imagen4.style.opacity = 0;
 
-            textoMasAmigos[0].style.opacity = 1 - Math.sin(((scroll - 4000) / 412) * (Math.PI / 2));
-            textoMasAmigos[1].style.opacity = Math.sin(((scroll - 4000) / 412) * (Math.PI / 2));
+            textoMasAmigos[0].style.opacity = 1 - Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
+            textoMasAmigos[1].style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
             textoMasAmigos[2].style.opacity = 0;
             textoMasAmigos[3].style.opacity = 0;
-        } else if (scroll >= 4412 && scroll < 4846) {
-            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+        } else if (scroll >= seccionMasAmigosPosy + 416 && scroll < seccionMasAmigosPosy + 850) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen2.style.opacity = 1;
-            imagen3.style.opacity = Math.sin((scroll - (4412 + delay)) / 2 / (4412 + delay) * Math.PI * 10);
+            imagen3.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
+            imagen4.style.opacity = 0;
 
             textoMasAmigos[0].style.opacity = 0;
-            textoMasAmigos[1].style.opacity = 1 - Math.sin(((scroll - 4412) / (4846 - 4412)) * (Math.PI / 2));
-            textoMasAmigos[2].style.opacity = Math.sin(((scroll - 4412) / (4846 - 4412)) * (Math.PI / 2));
+            textoMasAmigos[1].style.opacity = 1 - Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
+            textoMasAmigos[2].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
             textoMasAmigos[3].style.opacity = 0;
-        } else if (scroll >= 4846 && scroll < 5375) {
-            imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+        } else if (scroll >= seccionMasAmigosPosy + 850 && scroll < seccionMasAmigosPosy + 1375) {
+            imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen3.style.opacity = 1;
-            imagen4.style.opacity = Math.sin((scroll - (4846 + delay)) / 2 / (4846 + delay) * Math.PI * 10);
+            imagen4.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
 
             textoMasAmigos[0].style.opacity = 0;
             textoMasAmigos[1].style.opacity = 0;
-            textoMasAmigos[2].style.opacity = 1 - Math.sin(((scroll - 4846) / (5375 - 4846)) * (Math.PI / 2));
-            textoMasAmigos[3].style.opacity = Math.sin(((scroll - 4846) / (5375 - 4846)) * (Math.PI / 2));
-        } else if (scroll >= 5375) {
-            imagenesMasAmigos.style.transform = `translateY(1375px)`;
+            textoMasAmigos[2].style.opacity = 1 - Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
+            textoMasAmigos[3].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
+        } else {
+            imagenesMasAmigos.style.transform = `translateY(${1375}px)`;
+            tituloMasAmigos.style.transform = `translateY(${1375}px)`;
             imagen4.style.opacity = 1;
 
             textoMasAmigos[0].style.opacity = 0;
