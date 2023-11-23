@@ -159,7 +159,7 @@ body {
 	/* Drop Shadow */
 	box-shadow: 4px 5px 0px 0px #02187e;
 
-	text-shadow: 0px 1px 0px #02187e, 0px -1px 0px #02187e, -1px 0px 0px #02187e, 1px 0px 0px #02187e, 1px -1px 0px #02187e, 1px 1px 0px #02187e, -1px 1px 0px #02187e, -1px -1px 0px #02187e;
+	-webkit-text-stroke: 2px #02187e;
 
 	&:hover {
 		background-color: #bbac03;
@@ -401,7 +401,6 @@ body {
 }
 
 #personajes-segunda-seccion {
-	/* position: absolute; */
 	margin-top: 221px;
 	display: flex;
 	width: 1080px;
@@ -417,15 +416,32 @@ body {
 #peter-segunda-seccion p,
 #miles-segunda-seccion p,
 #gwen-segunda-seccion p {
-	margin-top: 1.79%;
+	margin-top: 23.31px;
 	color: black;
 	font-size: var(--fontSize-content);
+
 	height: 218px;
 	font-family: var(--font);
 }
 
+#peter-segunda-seccion img,
+#miles-segunda-seccion img,
+#gwen-segunda-seccion img {
+	width: 332.96px;
+	height: 302.691px;
+}
+
+#peter-segunda-seccion p,
+#gwen-segunda-seccion p {
+	width: 333px;
+}
+
+#miles-segunda-seccion p {
+	width: 332px;
+}
+
 #miles-segunda-seccion {
-	margin: 0 3.12% 0 3.12%;
+	margin: 0 40.56px;
 }
 
 /* TERCERA SECCION */
@@ -726,6 +742,8 @@ body {
 	line-height: 19px;
 	letter-spacing: 2.2px;
 
+	-webkit-text-stroke: 2px #02187e;
+
 	border-radius: 111px;
 	border: 8px solid var(--2982-ff, #2982ff);
 	background: #ffe901;
@@ -863,6 +881,7 @@ body {
 /* SECCION SUSCRIPCION*/
 #seccion-suscripcion {
 	position: relative;
+	overflow: hidden;
 	width: 100%;
 	height: 1296px;
 	background: linear-gradient(180deg, #8fbefc 21.2%, #f7e3d8 81.48%);
@@ -899,6 +918,8 @@ body {
 }
 
 #esrb-t {
+	position: relative;
+	z-index: 5;
 	margin-top: 17px;
 	margin-left: 23.59%;
 }
@@ -947,14 +968,15 @@ body {
 	font-family: var(--font);
 	cursor: pointer;
 	transition: background-color 0.2s;
-	text-shadow: -1px -1px 0 #02187e, 1px -1px 0 #02187e, -1px 1px 0 #02187e, 1px 1px 0 #02187e;
+	-webkit-text-stroke: 2px #02187e;
 
 	&:hover {
 		background-color: #bbac03;
 	}
 }
 
-#fondo-seccion-suscripcion-animacion {
+#fondo-seccion-suscripcion-animacion,
+#fondo-seccion-suscripcion-animacion-der {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -962,14 +984,198 @@ body {
 	z-index: -1;
 }
 
+#fondo-seccion-suscripcion-animacion-der {
+	z-index: 5;
+}
+
 /*Spiderman animado*/
 #spiderman-anim {
 	position: relative;
-	top: 0px;
-	left: 0px;
+}
+
+#spider-web {
+	position: absolute;
+	background-color: white;
+	height: 0px;
+	width: 8px;
+	background-image: url(../images/spider-web.png);
+	background-repeat: repeat;
+	transform: rotateZ(130deg);
+	transform-origin: 50% 0;
+	animation: anim-spider-web 10s linear infinite;
+}
+
+@keyframes anim-spider-web {
+	0% {
+		height: 0px;
+	}
+
+	20% {
+		height: 0px;
+	}
+
+	25% {
+		height: 500px;
+	}
+
+	42% {
+		height: 500px;
+		transform: rotateZ(130deg) translateY(0);
+		opacity: 1;
+	}
+
+	48% {
+		opacity: 0;
+	}
+
+	55% {
+		height: 0;
+		transform: rotateZ(130deg) translateY(500px);
+		opacity: 0;
+	}
+
+	100% {
+		height: 0px;
+		transform: rotateZ(130deg) translateY(500px);
+		opacity: 0;
+	}
+}
+
+#spider-perter {
+	position: absolute;
+	top: 530px;
+	left: 894px;
 	width: 32px;
 	height: 32px;
-	background-color: #bbac03;
+	transform-origin: -370px -320px;
+	z-index: 4;
+	animation: anim-spider-perter 10s ease-in-out infinite;
+}
+
+@keyframes anim-spider-perter {
+	0% {
+		top: 530px;
+	}
+
+	20% {
+		top: 310px;
+	}
+
+	25% {
+		transform: rotateZ(0deg);
+	}
+
+	50% {
+		transform: rotateZ(140deg);
+	}
+
+	100% {
+		top: 310px;
+		transform: rotateZ(140deg);
+	}
+}
+
+#spider-man-sprite-contenedor {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 37px;
+	height: 74px;
+	animation: anim-spider-man-sprite-contenedor 10s ease-in-out infinite;
+}
+
+@keyframes anim-spider-man-sprite-contenedor {
+	0% {
+		transform: rotateZ(0deg);
+	}
+
+	40% {
+		transform: rotateZ(0deg);
+	}
+
+	50% {
+		transform: rotateZ(-140deg);
+	}
+
+	100% {
+		transform: rotateZ(-140deg);
+	}
+}
+
+#spider-man-sprite {
+	width: 37px;
+	height: 74px;
+	background-image: url(../images/spider-man-escalando.png);
+	animation: anim-spider-man-sprite 10s ease-in-out infinite;
+	animation-timing-function: steps(6);
+}
+
+@keyframes anim-spider-man-sprite {
+
+	/*Escalando*/
+	0% {
+		background-position: 0px;
+	}
+
+	10% {
+		background-position: -222px;
+	}
+
+	10.01% {
+		background-position: 0px;
+	}
+
+	20% {
+		width: 37px;
+		height: 74px;
+		background-position: -222px;
+		background-image: url(../images/spider-man-escalando.png);
+	}
+
+	/*Lanzando telaraña*/
+	20.01% {
+		width: 40px;
+		height: 71px;
+		background-position: 0px;
+		background-image: url(../images/spider-man-web-shoot.png);
+	}
+
+	25% {
+		width: 40px;
+		height: 71px;
+		transform: translate(0, 0);
+		background-position: 0px;
+		background-image: url(../images/spider-man-web-shoot.png);
+		animation-timing-function: steps(6);
+	}
+
+	/*Columpiarse*/
+	25.01% {
+		transform: translate(-7px, -12px);
+		width: 48px;
+		height: 73px;
+		background-position: 0px;
+		animation-timing-function: steps(3);
+		background-image: url(../images/spider-man-columpiando.png);
+	}
+
+	50% {
+		transform: translate(-7px, -12px);
+		width: 48px;
+		height: 73px;
+		background-position: -144px;
+		animation-timing-function: steps(3);
+		background-image: url(../images/spider-man-columpiando.png);
+	}
+
+	100% {
+		transform: translate(-7px, -12px);
+		width: 48px;
+		height: 73px;
+		background-position: -144px;
+		animation-timing-function: steps(3);
+		background-image: url(../images/spider-man-columpiando.png);
+	}
 }
 
 
