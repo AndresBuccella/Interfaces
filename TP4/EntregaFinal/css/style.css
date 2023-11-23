@@ -1051,19 +1051,22 @@ body {
 	height: 32px;
 	transform-origin: -370px -320px;
 	z-index: 4;
-	animation: anim-spider-perter var(--animation-time) ease-in-out infinite;
+	animation: anim-spider-perter var(--animation-time) linear infinite;
 }
 
 @keyframes anim-spider-perter {
 	0% {
 		top: 530px;
+		animation-timing-function: linear;
 	}
 
 	20% {
 		top: 310px;
+		animation-timing-function: linear;
 	}
 
 	25% {
+		animation-timing-function: ease-in-out;
 		transform: rotateZ(0deg);
 	}
 
@@ -1072,6 +1075,7 @@ body {
 	}
 
 	100% {
+		animation-timing-function: ease-in-out;
 		top: 310px;
 		transform: rotateZ(140deg);
 	}
@@ -1108,7 +1112,7 @@ body {
 	width: 37px;
 	height: 74px;
 	background-image: url(../images/spider-man-escalando.png);
-	animation: anim-spider-man-sprite var(--animation-time) ease-in-out infinite;
+	animation: anim-spider-man-sprite var(--animation-time) linear infinite;
 	animation-timing-function: steps(6);
 }
 
