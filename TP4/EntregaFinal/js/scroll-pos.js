@@ -160,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
             peter.style.opacity = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
             //se elevan al cuadrado y al cubo para retrasar la aparicion
             //se divide PI para que llegue mas rapido a 1 una vez que empieza a aparecer
-            miles.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 2) * Math.PI/2);
-            gwen.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes,3) * Math.PI/3);
+            miles.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 2) * Math.PI / 2);
+            gwen.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 3) * Math.PI / 3);
         } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
             //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
             peter.style.opacity = 1;
@@ -223,38 +223,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let imagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
 
+        let tituloMasAmigos = document.querySelector("#div-seccion-mas-amigos").querySelector("h1");
         let imagen1 = document.querySelector("#mas-amigos-1");
         let imagen2 = document.querySelector("#mas-amigos-2");
         let imagen3 = document.querySelector("#mas-amigos-3");
         let imagen4 = document.querySelector("#mas-amigos-4");
+        let textoMasAmigos = document.querySelector(".texto-mas-amigos").querySelectorAll("div");
 
         let delay = window.innerWidth * 4 / 100;
 
         if (scroll < 4000) {
             imagen1.style.opacity = 1;
-            console.log();
+
+            textoMasAmigos[0].style.opacity = 1;
+            textoMasAmigos[1].style.opacity = 0;
+            textoMasAmigos[2].style.opacity = 0;
+            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= 4000 && scroll < 4412) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            imagen1.style.opacity = Math.cos(((scroll - (4000 + delay)) / (4000 + delay)) * Math.PI * 5);
+            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen1.style.opacity = 1;
             imagen2.style.opacity = Math.sin(((scroll - (4000 + delay)) / 2 / (4000 + delay)) * Math.PI * 10);
-            // el 5 y el 10 son numeros que fui probando para la velocidad de transicion
-            // coseno para que desaparezca y seno para que aparezca
-            // el delay son los pixeles que tarda en base al ancho de la pantalla, no sé que te parece
-            // como el numero resultante de scroll - (4000 + delay) < 0, la opacity es 0
+
+            textoMasAmigos[0].style.opacity = 1 - Math.sin(((scroll - 4000) / 412) * (Math.PI / 2));
+            textoMasAmigos[1].style.opacity = Math.sin(((scroll - 4000) / 412) * (Math.PI / 2));
+            textoMasAmigos[2].style.opacity = 0;
+            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= 4412 && scroll < 4846) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            imagen1.style.opacity = 0;
+            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen2.style.opacity = 1;
             imagen3.style.opacity = Math.sin((scroll - (4412 + delay)) / 2 / (4412 + delay) * Math.PI * 10);
-            imagen2.style.opacity = Math.cos((scroll - (4412 + delay)) / (4412 + delay) * Math.PI * 5);
+
+            textoMasAmigos[0].style.opacity = 0;
+            textoMasAmigos[1].style.opacity = 1 - Math.sin(((scroll - 4412) / (4846 - 4412)) * (Math.PI / 2));
+            textoMasAmigos[2].style.opacity = Math.sin(((scroll - 4412) / (4846 - 4412)) * (Math.PI / 2));
+            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= 4846 && scroll < 5375) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
-            imagen2.style.opacity = 0;
+            tituloMasAmigos.style.transform = `translateY(${scroll - 4000}px)`;
+            imagen3.style.opacity = 1;
             imagen4.style.opacity = Math.sin((scroll - (4846 + delay)) / 2 / (4846 + delay) * Math.PI * 10);
-            imagen3.style.opacity = Math.cos((scroll - (4846 + delay)) / (4846 + delay) * Math.PI * 5);
+
+            textoMasAmigos[0].style.opacity = 0;
+            textoMasAmigos[1].style.opacity = 0;
+            textoMasAmigos[2].style.opacity = 1 - Math.sin(((scroll - 4846) / (5375 - 4846)) * (Math.PI / 2));
+            textoMasAmigos[3].style.opacity = Math.sin(((scroll - 4846) / (5375 - 4846)) * (Math.PI / 2));
         } else if (scroll >= 5375) {
-            imagen3.style.opacity = 0;
+            imagenesMasAmigos.style.transform = `translateY(1375px)`;
             imagen4.style.opacity = 1;
 
+            textoMasAmigos[0].style.opacity = 0;
+            textoMasAmigos[1].style.opacity = 0;
+            textoMasAmigos[2].style.opacity = 0;
+            textoMasAmigos[3].style.opacity = 1;
         }
     }
 })

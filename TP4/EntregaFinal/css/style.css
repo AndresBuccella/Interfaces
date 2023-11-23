@@ -635,6 +635,13 @@ body {
 		line-height: 57px;
 	}
 }
+
+#div-seccion-mas-amigos h1{
+	width: 100%;
+	background-color: white;
+	text-align: center;
+}
+
 #seccion-mas-amigos-imagenes {
 	position: relative;
 	opacity: 1;
@@ -644,9 +651,9 @@ body {
 		opacity: 0;
 		position: absolute;
 		width: 552px;
+		height: 310px;
 	}
 }
-
 .texto-mas-amigos {
 	font-family: var(--font);
 	width: 467px;
