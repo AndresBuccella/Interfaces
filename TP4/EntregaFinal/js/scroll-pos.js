@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-        blackPanther.style.transform = `translate(${-offset1.x}px, ${-offset1.y}px)`;
+        blackPanther.style.transform = `rotate(16deg) translate(${-offset1.x}px, ${-offset1.y}px)`;
         msMarvel.style.transform = `translate( ${-offset2.x}px, ${-offset2.y}px)`;
         hulk.style.transform = `translate( ${-offset3.x}px, ${-offset3.y}px)`;
 
@@ -232,59 +232,52 @@ document.addEventListener("DOMContentLoaded", function () {
         let textoMasAmigos = document.querySelector(".texto-mas-amigos").querySelectorAll("div");
         let visibilidad = 80;
         console.log(scroll - seccionMasAmigosPosy);
+
+        imagen1.style.opacity = 0;
+        imagen2.style.opacity = 0;
+        imagen3.style.opacity = 0;
+        imagen4.style.opacity = 0;
+
+        textoMasAmigos[0].style.opacity = 0;
+        textoMasAmigos[1].style.opacity = 0;
+        textoMasAmigos[2].style.opacity = 0;
+        textoMasAmigos[3].style.opacity = 0;
+
         if (scroll < seccionMasAmigosPosy) {
             imagenesMasAmigos.style.transform = ``;
             tituloMasAmigos.style.transform = ``;
             imagen1.style.opacity = 1;
-            imagen2.style.opacity = 0;
-            imagen3.style.opacity = 0;
-            imagen4.style.opacity = 0;
 
             textoMasAmigos[0].style.opacity = 1;
-            textoMasAmigos[1].style.opacity = 0;
-            textoMasAmigos[2].style.opacity = 0;
-            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= seccionMasAmigosPosy && scroll < seccionMasAmigosPosy + 416) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen1.style.opacity = 1;
             imagen2.style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
-            imagen3.style.opacity = 0;
-            imagen4.style.opacity = 0;
 
             textoMasAmigos[0].style.opacity = 1 - Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
             textoMasAmigos[1].style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
-            textoMasAmigos[2].style.opacity = 0;
-            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= seccionMasAmigosPosy + 416 && scroll < seccionMasAmigosPosy + 850) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen2.style.opacity = 1;
             imagen3.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
-            imagen4.style.opacity = 0;
 
-            textoMasAmigos[0].style.opacity = 0;
             textoMasAmigos[1].style.opacity = 1 - Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
             textoMasAmigos[2].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
-            textoMasAmigos[3].style.opacity = 0;
         } else if (scroll >= seccionMasAmigosPosy + 850 && scroll < seccionMasAmigosPosy + 1375) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen3.style.opacity = 1;
             imagen4.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
 
-            textoMasAmigos[0].style.opacity = 0;
-            textoMasAmigos[1].style.opacity = 0;
             textoMasAmigos[2].style.opacity = 1 - Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
             textoMasAmigos[3].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
         } else {
             imagenesMasAmigos.style.transform = `translateY(${1375}px)`;
             tituloMasAmigos.style.transform = `translateY(${1375}px)`;
             imagen4.style.opacity = 1;
-
-            textoMasAmigos[0].style.opacity = 0;
-            textoMasAmigos[1].style.opacity = 0;
-            textoMasAmigos[2].style.opacity = 0;
+            
             textoMasAmigos[3].style.opacity = 1;
         }
     }
