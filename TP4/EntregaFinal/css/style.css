@@ -15,6 +15,8 @@
 	--fontSize-h1: 60px;
 	--fontSize-h2: 40px;
 	--fontSize-content: 20px;
+
+	--animation-time: 8s;
 }
 
 * {
@@ -1002,7 +1004,7 @@ body {
 	background-repeat: repeat;
 	transform: rotateZ(130deg);
 	transform-origin: 50% 0;
-	animation: anim-spider-web 10s linear infinite;
+	animation: anim-spider-web var(--animation-time) linear infinite;
 }
 
 @keyframes anim-spider-web {
@@ -1049,7 +1051,7 @@ body {
 	height: 32px;
 	transform-origin: -370px -320px;
 	z-index: 4;
-	animation: anim-spider-perter 10s ease-in-out infinite;
+	animation: anim-spider-perter var(--animation-time) ease-in-out infinite;
 }
 
 @keyframes anim-spider-perter {
@@ -1081,7 +1083,7 @@ body {
 	left: 0;
 	width: 37px;
 	height: 74px;
-	animation: anim-spider-man-sprite-contenedor 10s ease-in-out infinite;
+	animation: anim-spider-man-sprite-contenedor var(--animation-time) ease-in-out infinite;
 }
 
 @keyframes anim-spider-man-sprite-contenedor {
@@ -1106,7 +1108,7 @@ body {
 	width: 37px;
 	height: 74px;
 	background-image: url(../images/spider-man-escalando.png);
-	animation: anim-spider-man-sprite 10s ease-in-out infinite;
+	animation: anim-spider-man-sprite var(--animation-time) ease-in-out infinite;
 	animation-timing-function: steps(6);
 }
 
