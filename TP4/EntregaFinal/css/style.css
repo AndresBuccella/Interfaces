@@ -809,7 +809,7 @@ body {
 	overflow: hidden;
 	width: 100%;
 	height: 0px;
-	z-index: 0;
+	z-index: 100;
 	background-color: black;
 	color: #fff;
 	transition: height 0.3s;
