@@ -40,3 +40,4 @@ En el punto 12 se puede poner una imagen encima en vez de cambiar el color?
 Acomodar:
 __z-index
 __nombres
+__Pantera negra está torcido

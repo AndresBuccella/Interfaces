@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let hulk = divVengadores.querySelector("#seccion-vengadores-hulk");
     let arboles = divVengadores.querySelector("#seccion-vengadores-arboles");
     let pasto = divVengadores.querySelector("#seccion-vengadores-pasto");
+    let cielo = divVengadores.querySelector("#seccion-vengadores-cielo");
 
     divVengadores.addEventListener("mousemove", function (e) {
         const offset1 = { // black panther
@@ -208,6 +209,10 @@ document.addEventListener("DOMContentLoaded", function () {
             x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 20),
             y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 20)
         };
+        const offset6 = { // cielo
+            x: (e.pageX - divVengadores.clientWidth / 2) / (divVengadores.clientWidth / 2),
+            y: ((e.pageY - (divVengadores.getBoundingClientRect().y + getScrollPosition())) - divVengadores.clientHeight / 2) / (divVengadores.clientHeight / 2)
+        };
 
 
         blackPanther.style.transform = `rotate(16deg) translate(${-offset1.x}px, ${-offset1.y}px)`;
@@ -216,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         arboles.style.transform = `translate(calc(${-offset4.x}px - 50%), calc(${-offset4.y}px - 50%))`;
         pasto.style.transform = `translate(calc(${-offset5.x}px - 50%), calc(${-offset5.y}px - 50%))`;
+        cielo.style.transform = `translate(calc(${-offset6.x}px - 50%), calc(${-offset6.y}px - 50%))`;
     })
 
 
