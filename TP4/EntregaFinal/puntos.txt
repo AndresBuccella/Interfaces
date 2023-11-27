@@ -24,12 +24,12 @@ cambiar la perspectiva sutilmente.
 achicando, cambiar el color del fondo.
 3_X_Opcional 3: Los ítems del menú tienen que aparecer desde un costado de la pantalla e ir cargándose uno por uno. 
 Los ítems no están en Figma, poner mínimo 3 a gusto.
+13_X_Cerca del footer, animar utilizando un spritesheet un personaje del juego en lanzamiento.
+1_X_Opcional 1: La página deberá tener un loader acorde a la temática propuesta. Igual al que hicieron en el TPE 2
 
 
 
-1__Opcional 1: La página deberá tener un loader acorde a la temática propuesta. Igual al que hicieron en el TPE 2
 
-13__Cerca del footer, animar utilizando un spritesheet un personaje del juego en lanzamiento.
 
 
 Preguntas:
@@ -40,4 +40,3 @@ En el punto 12 se puede poner una imagen encima en vez de cambiar el color?
 Acomodar:
 __z-index
 __nombres
-__Pantera negra está torcido

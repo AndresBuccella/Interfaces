@@ -311,8 +311,8 @@ body {
     width: 170px;
     justify-content: space-between;
     font-family: var(--font);
+    font-size: 20px;
 }
-
 #primera-seccion {
 	display: flex;
 	flex-direction: column;

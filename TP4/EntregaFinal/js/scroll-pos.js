@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return window.scrollY;
     }
 
+    
     window.addEventListener('scroll', function () {
-        console.log('Posición de scroll:', getScrollPosition());
+        //console.log('Posición de scroll:', getScrollPosition());
         scroll(getScrollPosition())
     });
 
@@ -40,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /**
-     * Se encarga de controlar el tamanio del titulo, color del fondo del nav y tamanio del mismo con respecto al scroll realizado
+     * It is responsible for controlling the size of the title, color of the background of 
+     * the nav and its size with respect to the scroll made.
      * @param {number} scroll 
      */
     function nav(scroll) {
@@ -51,13 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
             navTitle.style.position = "";
             navTitle.style.transform = "";
             navTitle.style.width = "";
-            //no veo diferencia con y sin este bloque, que cambia?
         }
         else if (scroll > 0 && scroll <= scrollVarTitle) {
             navegador.style.height = `${227 - 124 * scroll / scrollVarTitle}px`;
             navegador.style.zIndex = "9998";
 
-            //transparencia del navegador. A medida que aumenta el color se hace más sólido
+            //browser transparency. As the color increases it becomes more solid
             navegador.style.background = `linear-gradient(180deg, rgba(84, 153, 248,${scroll / scrollVarTitle}) 0%, rgba(84, 153, 248,${scroll / scrollVarTitle}) 87.91%, rgba(84, 153, 248, 0) 100%)`;
 
             navTitle.style.position = "fixed";
@@ -65,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // ya que scroll / scrollVarTitle va de 0 a casi 1
             navTitle.style.transform = `translateY(${-91 * scroll / scrollVarTitle}px)`;
 
-            //Cambia el ancho del titulo desde su ancho máximo navWidth hasta 175.
-            //Al principio no tiene reduccion ya que scroll y scrollVarTitle tienden a 0, pero a medida que crece (baja el scroll) 
-            //se va acercando a la diferencia entre el ancho del navegador y el ancho al que se desea llegar
+            //Change the width of the title from its maximum width navWidth to 175.
+            //At first there is no reduction since scroll and scrollVarTitle tend to 0, but as it grows (the scroll goes down)
+            //approaches the difference between the width of the browser and the width you want to reach
             navTitle.style.width = `${navWidth - ((navWidth - 175) * (scroll / scrollVarTitle))}px`;
         } else if (scroll > 300) {
-            //una vez que el scroll supera un determinado valor se setean valores fijos para que quede en el título
+            //once the scroll exceeds a certain value, fixed values are set so that it remains in the title
             navegador.style.height = "103px"
             navegador.style.zIndex = "9998";
             navegador.style.background = "";
@@ -81,7 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Edificios
-
+/**
+ * Move the buildings of the first section closer together as you scroll down
+ */
     function edificios(scroll) {
         let towerLeft = document.querySelector("#edificios-izquierda");
         let towerCenter = document.querySelector("#edificios-centro");
@@ -134,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     //Segunda parte
-
+    /**
+     * Moves the Duende Verde element based on the scroll position.
+     */
     function moverDuendeVerde(scroll) {
         let duendeVerde = document.querySelector("#duende-verde");
         if (scroll > 600 && scroll < 1000) {
@@ -144,6 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /**
+     * The cards appear as you scroll down
+     */
     function aparecerCartas(scroll) {
 
         let cajaPersonajes = document.querySelector("#personajes-segunda-seccion");
@@ -156,14 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let gwen = document.querySelector("#gwen-segunda-seccion");
 
         if (scroll > posPersonajes && scroll <= posPersonajes + heightPersonajes) {
-            //let calculoAuxiliar = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
             peter.style.opacity = Math.sin(((scroll - posPersonajes) / 2 / heightPersonajes) * Math.PI);
-            //se elevan al cuadrado y al cubo para retrasar la aparicion
-            //se divide PI para que llegue mas rapido a 1 una vez que empieza a aparecer
+            //they are squared and cubed to delay the appearance
+            //PI is divided so that it reaches 1 faster once it starts appearing
             miles.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 2) * Math.PI / 2);
             gwen.style.opacity = Math.sin(Math.pow((scroll - posPersonajes) / heightPersonajes, 3) * Math.PI / 3);
         } else if (scroll > posPersonajes + (heightPersonajes / 2)) {
-            //let calculoAuxiliar = Math.sin(((scroll - (posPersonajes + (heightPersonajes / 2))) / (heightPersonajes / 2)) * (Math.PI / 2) + Math.PI / 2);
             peter.style.opacity = 1;
             miles.style.opacity = 1;
             gwen.style.opacity = 1;
@@ -219,19 +225,23 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
+    /**
+     * controls the appearance and disappearance of images and text as they pass through the section, 
+     * moving the image container down and changing the image depending on the text in focus
+     * @param {number} scroll 
+     */
     function showMasAmigos(scroll) {
 
         let seccionMasAmigosPosy = document.querySelector("#seccion-mas-amigos").getBoundingClientRect().top + scroll + 50;
 
         let imagenesMasAmigos = document.querySelector("#seccion-mas-amigos-imagenes");
-        let tituloMasAmigos = document.querySelector("#div-seccion-mas-amigos").querySelector("h1");
+        //let tituloMasAmigos = document.querySelector("#div-seccion-mas-amigos").querySelector("h1");
         let imagen1 = document.querySelector("#mas-amigos-1");
         let imagen2 = document.querySelector("#mas-amigos-2");
         let imagen3 = document.querySelector("#mas-amigos-3");
         let imagen4 = document.querySelector("#mas-amigos-4");
         let textoMasAmigos = document.querySelector(".texto-mas-amigos").querySelectorAll("div");
-        let visibilidad = 80;
-        console.log(scroll - seccionMasAmigosPosy);
+        //let visibilidad = 80;
 
         imagen1.style.opacity = 0;
         imagen2.style.opacity = 0;
@@ -245,13 +255,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (scroll < seccionMasAmigosPosy) {
             imagenesMasAmigos.style.transform = ``;
-            tituloMasAmigos.style.transform = ``;
+            //tituloMasAmigos.style.transform = ``;
             imagen1.style.opacity = 1;
 
             textoMasAmigos[0].style.opacity = 1;
         } else if (scroll >= seccionMasAmigosPosy && scroll < seccionMasAmigosPosy + 416) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            //tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen1.style.opacity = 1;
             imagen2.style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
 
@@ -259,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
             textoMasAmigos[1].style.opacity = Math.sin(((scroll - seccionMasAmigosPosy) / 416) * (Math.PI / 2));
         } else if (scroll >= seccionMasAmigosPosy + 416 && scroll < seccionMasAmigosPosy + 850) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            //tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen2.style.opacity = 1;
             imagen3.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
 
@@ -267,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
             textoMasAmigos[2].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 416)) / 434) * (Math.PI / 2));
         } else if (scroll >= seccionMasAmigosPosy + 850 && scroll < seccionMasAmigosPosy + 1375) {
             imagenesMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
-            tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
+            //tituloMasAmigos.style.transform = `translateY(${scroll - seccionMasAmigosPosy}px)`;
             imagen3.style.opacity = 1;
             imagen4.style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
 
@@ -275,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
             textoMasAmigos[3].style.opacity = Math.sin(((scroll - (seccionMasAmigosPosy + 850)) / 525) * (Math.PI / 2));
         } else {
             imagenesMasAmigos.style.transform = `translateY(${1375}px)`;
-            tituloMasAmigos.style.transform = `translateY(${1375}px)`;
+            //tituloMasAmigos.style.transform = `translateY(${1375}px)`;
             imagen4.style.opacity = 1;
             
             textoMasAmigos[3].style.opacity = 1;

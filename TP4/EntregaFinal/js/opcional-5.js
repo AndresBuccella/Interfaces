@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let imgHeroe = document.querySelector('#img-heroe');
     let txtDiv = document.querySelector('#texto-about-spiders');
 
-
+    /**
+     * Reset the positions, sizes, and filters of the elements on the page.
+     */
     function reset() {
         gwen.style.top = '171px';
         gwen.style.left = '90px';
@@ -40,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         //popup.style.opacity = 0;
         popup.style.height= "0px";
     }
+
+    // hover effect on Gwen
     gwen.addEventListener('mouseenter', function () {
         gwen.style.top = '114px';
         gwen.style.left = '80px';
@@ -64,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fondo.style.zIndex = 1;
     })
 
+    // hover effect on Peter
     peter.addEventListener('mouseenter', function () {
         peter.style.top = '116px';
         peter.style.left = '184px';
@@ -88,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fondo.style.zIndex = 1;
     })
 
+    // hover effect on miles
     miles.addEventListener('mouseenter', function () {
         miles.style.top = '63px';
         miles.style.right = '-11px';
@@ -112,12 +118,18 @@ document.addEventListener("DOMContentLoaded", function () {
         fondo.style.zIndex = 1;
     })
 
+    /**
+     * Leave the hero if the popup is not active.
+     *
+     * @param {boolean} onPopUp - a boolean indicating if the popup is active
+     */
     function leaveHero() {
         if (!onPopUp) {
             reset();
         }
     }
-
+    
+    // leave hover effect
     gwen.addEventListener('mouseleave', () => {
         leaveHero();
     })
@@ -128,11 +140,15 @@ document.addEventListener("DOMContentLoaded", function () {
         leaveHero();
     })
 
+    // close popup
     btnCruz.addEventListener('click', () => {
         onPopUp = false;
         reset();
     })
 
+     /**
+     * Loads the image, text, and description of Peter Parker.
+     */
     function loadPeter() {
         imgHeroe.src = 'images/peter-parker.png';
         txtDiv.innerHTML = `
@@ -173,6 +189,10 @@ document.addEventListener("DOMContentLoaded", function () {
             otros poderes y habilidades debido a diferentes tramas y
             eventos.t</p>`
     }
+    
+     /**
+     * Loads the image, text, and description of Gwen Stacy.
+     */
     function loadGwen() {
         imgHeroe.src = 'images/gwen-stacy.png';
         txtDiv.innerHTML = `
@@ -188,6 +208,10 @@ document.addEventListener("DOMContentLoaded", function () {
         </ol>
         <p>En resumen, Spider-Gwen posee habilidades arácnidas similares a las de otros personajes de Spider-Man, pero su traje y su identidad están diseñados de manera diferente, y proviene de una realidad alternativa donde Gwen Stacy adquiere los poderes de Spider-Man en lugar de Peter Parker. El personaje ha ganado popularidad en los cómics y se ha convertido en un ícono por derecho propio.</p>`
     }
+    
+     /**
+     * Loads the image, text, and description of Miles Morales.
+     */
     function loadMiles() {
         imgHeroe.src = 'images/miles-morales.png';
         txtDiv.innerHTML = `
@@ -203,11 +227,14 @@ document.addEventListener("DOMContentLoaded", function () {
         </ol>
         <p>Estos son los poderes principales de Miles Morales en los cómics y en las adaptaciones cinematográficas y de videojuegos. El personaje de Miles Morales ha ganado popularidad y es conocido por su origen diverso y sus habilidades únicas en el universo de Spider-Man.</p>`
     }
+
+    // slowly appear the popup
     function showPopUp() {
         onPopUp = true;
         popup.style.height= "832px";
     }
     
+    //onclick effect on each hero to show its popup
     gwen.addEventListener('click', () => {
         reset();
         loadGwen();

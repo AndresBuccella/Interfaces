@@ -2,23 +2,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const numeroElemento = document.getElementById('loading-contador');
     const loading = document.getElementById('loading');
     let numero = 0;
-    // Deshabilitar el scroll en el documento
+    // Disable scrolling in the document
     function disableScroll() {
-        // Guardar la posición actual del scroll
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        // Guarda la posición actual del scroll
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+        let scrollLeft = window.scrollX || document.documentElement.scrollLeft;
     
-        // Deshabilitar el scroll en el documento
+        // Returns the scroll to its original position
         window.onscroll = function() {
         window.scrollTo(scrollLeft, scrollTop);
         };
     }
     disableScroll();
   
-    // Habilitar el scroll en el documento
+    // Enable scrolling in the document
     function enableScroll() {
         window.onscroll = null;
     }
+
+    /**
+     * Increments the value of `numero` and updates the `numeroElemento.textContent` 
+     * accordingly. If `numero` is less than 100, it increments `numero` by 1 and updates 
+     * the text content of `numeroElemento` with the new value suffixed by "%". If `numero` 
+     * is equal to 100, it clears the `interval`, adds the "loading-close" class to 
+     * `loading`, and enables scrolling.
+     *
+     */
     function contar() {
         if (numero < 100) {
             numero++;
@@ -29,8 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
             enableScroll();
         }
     }
+
+    /**
+     * Adds an event listener to the "loading" element to detect the end of a CSS animation.
+     * When the animation ends, the "loading" element is removed from the DOM.
+     *
+     */
     loading.addEventListener("animationend", function () {
         loading.remove();
     })
+
+    /**
+     * Starts the `contar()` function with an interval of 5000ms (5 seconds).
+     */
     interval = setInterval(contar, 5000 / 100);
 });
